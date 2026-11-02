@@ -1,26 +1,348 @@
 @import "tailwindcss";
 
+/*
+ * Dar color system — two themes chosen by the visitor (light is the default; the choice is remembered).
+ *
+ *   Light: neutral white leaning very slightly grey #F7F7F8, lighter cards, charcoal text #29292B, warm calm greens for accents
+ *          (#3E6B53 for text/links) and gold buttons #DDA853.
+ *   Dark:  deep green page #17382F/#24483D, charcoal panels #29292B, cream text #F3F0E4, light gold accent #F0C982.
+ *
+ * Every text/background pair meets WCAG 2.x AA (4.5:1) on every surface of its theme.
+ * `primary` is the accent for text, links and icons; `primary-fill` is the button fill (they differ in light).
+ *
+ * Two layers:
+ *   1. Primitive scales (50–950) in OKLCH — used only for small decorative details (dots, window chrome).
+ *   2. Semantic tokens (paper, ink, primary, ...) — the only colors components use for surfaces and text.
+ */
+@theme {
+  /* Sand — warm ivory backgrounds that deepen into a green-tinted ink for text. */
+  --color-sand-50: #fbf9f5; /* oklch(98.2% 0.006 85) */
+  --color-sand-100: #f5f2ec;
+  --color-sand-200: #e9e5dd;
+  --color-sand-300: #d9d4cb;
+  --color-sand-400: #b4b1a7;
+  --color-sand-500: #85887d;
+  --color-sand-600: #656f66;
+  --color-sand-700: #49564f;
+  --color-sand-800: #314039;
+  --color-sand-900: #1d2d26;
+  --color-sand-950: #0e1d17; /* oklch(21.5% 0.024 168) */
+
+  /* Emerald — brand. */
+  --color-emerald-50: #f1faf5;
+  --color-emerald-100: #e1f5e9;
+  --color-emerald-200: #c6ecd8;
+  --color-emerald-300: #a0e0c3;
+  --color-emerald-400: #6ac8a5;
+  --color-emerald-500: #34ab86;
+  --color-emerald-600: #008b6a;
+  --color-emerald-700: #007057; /* oklch(48.5% 0.102 170) */
+  --color-emerald-800: #015643;
+  --color-emerald-900: #004032;
+  --color-emerald-950: #00291f;
+
+  /* Gold — accent: ornaments, highlights, "in development". */
+  --color-gold-50: #fcf7ec;
+  --color-gold-100: #faeed4;
+  --color-gold-200: #f7deae;
+  --color-gold-300: #f0c982;
+  --color-gold-400: #dfa849;
+  --color-gold-500: #c5850e; /* oklch(66.5% 0.138 74) */
+  --color-gold-600: #a56500;
+  --color-gold-700: #884f04;
+  --color-gold-800: #6b3c0b;
+  --color-gold-900: #4f2b0a;
+  --color-gold-950: #341a06;
+
+  /* Lapis — informational states ("coming soon"). */
+  --color-lapis-50: #f2f8ff;
+  --color-lapis-100: #e4f1ff;
+  --color-lapis-200: #cde4fe;
+  --color-lapis-300: #b2d2fb;
+  --color-lapis-400: #8fb5e9;
+  --color-lapis-500: #6e95d0;
+  --color-lapis-600: #5276b1;
+  --color-lapis-700: #405e95;
+  --color-lapis-800: #314777;
+  --color-lapis-900: #23345a;
+  --color-lapis-950: #15203c;
+
+  /* Madder — errors and problem reports only. */
+  --color-madder-50: #fff5f3;
+  --color-madder-100: #ffeae6;
+  --color-madder-200: #ffd7d0;
+  --color-madder-300: #ffbdb3;
+  --color-madder-400: #fa9185;
+  --color-madder-500: #e16a60;
+  --color-madder-600: #bc4d45;
+  --color-madder-700: #9b3b34;
+  --color-madder-800: #7a2c25;
+  --color-madder-900: #5b1f18;
+  --color-madder-950: #3d110c;
+}
+
+/* `dark:` targets the dark theme, which is chosen with <html data-theme="dark"> (see the theme toggle). */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* Light theme (default): white with a very slight grey, charcoal text, calm green accents, gold buttons. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
+
+  /* Surfaces — neutral, not warm */
+  --paper: #f7f7f8; /* page — white leaning very slightly grey */
+  --paper-glow: #f7f7f8;
+  --paper-2: rgb(41 41 43 / 0.05); /* subtle fill / hover */
+  --band: #f0f1f2; /* full-width alternate sections */
+  --surface: #fdfdfd; /* cards, one step lighter than the page */
+  --surface-2: #f0f0f2; /* elements inside cards */
+  --line: rgb(41 41 43 / 0.09);
+  --line-strong: rgb(41 41 43 / 0.16);
+
+  /* Text — every pair ≥ 4.5:1 on page, cards, inner elements and bands */
+  --ink: #29292b; /* charcoal — 13.3:1 on page */
+  --ink-2: #4b4b4f;
+  --muted: #68686d;
+
+  /* Brand */
+  --primary: #3e6b53; /* calm green for links, highlights and icons — 5.6:1 on page */
+  --primary-fill: #dda853; /* gold buttons, matching the dark theme */
+  --primary-hover: #d29c45;
+  --on-primary: #29292b; /* charcoal text on gold buttons — 6.8:1 */
+  --primary-ink: #3e6b53;
+  --primary-soft: rgb(62 107 83 / 0.1);
+  --primary-tint: #e9efea;
+  --ring: #3e6b53;
+  /* Logo colors taken from the owner's logo image: lighter left half, darker right half, gold door. */
+  --logo: #2a513f;
+  --logo-deep: #1c3a2f;
+  --logo-accent: #d0a368;
+
+  /* Accents (the gold-named tokens hold green here; gold is kept for buttons and the logo's door) */
+  --gold: #3e6b53;
+  --gold-bright: #7faa8d;
+  --gold-ink: #3e6b53;
+  --gold-soft: rgb(62 107 83 / 0.1);
+  --success: #2e7553;
+  --success-soft: rgb(46 117 83 / 0.1);
+  --lapis: #3d5d93;
+  --lapis-ink: #3d5d93;
+  --lapis-soft: rgb(61 93 147 / 0.1);
+  --danger: #9b3b34;
+  --danger-ink: #9b3b34;
+  --danger-soft: rgb(155 59 52 / 0.1);
+
+  /* The four cheerful tones (owner: #F0C982 gold, #FFBDB3 rose, #A0E0C3 mint, #9EC0EE blue). Each element of a
+     page takes one of them. In the light theme the text uses a deep shade of the hue (≥ 5:1) on a pastel fill. */
+  --tone-gold: #8a5d10;
+  --tone-gold-soft: #fbf0dc;
+  --tone-rose: #a3443a;
+  --tone-rose-soft: #ffe9e5;
+  --tone-mint: #2b6f4f;
+  --tone-mint-soft: #e1f4eb;
+  --tone-blue: #2e5996;
+  --tone-blue-soft: #e5eefb;
+
+  /* Shadows */
+  --sh-soft: 0 1px 2px rgb(41 41 43 / 0.04), 0 10px 24px -14px rgb(41 41 43 / 0.14);
+  --sh-lift: 0 2px 4px rgb(41 41 43 / 0.04), 0 24px 48px -22px rgb(41 41 43 / 0.2);
+  --sh-button: inset 0 1px 0 rgb(255 255 255 / 0.3), 0 1px 2px rgb(41 41 43 / 0.12);
+  --sh-header: 0 8px 28px -20px rgb(41 41 43 / 0.25);
+  --sh-panel: 0 1px 2px rgb(41 41 43 / 0.04), 0 12px 28px -18px rgb(41 41 43 / 0.14);
+}
+
+/* Dark theme: deep green page, charcoal panels, cream text. */
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --paper: #17382f;
+  --paper-glow: #24483d; /* top of the page gradient and raised green panels */
+  --paper-2: rgb(243 240 228 / 0.06);
+  --band: rgb(8 28 22 / 0.35);
+  --surface: #29292b;
+  --surface-2: #333336;
+  --line: rgb(243 240 228 / 0.1);
+  --line-strong: rgb(243 240 228 / 0.18);
+
+  --ink: #f3f0e4; /* cream — 11.2:1 on green, 12.7:1 on charcoal */
+  --ink-2: #d8d5c8;
+  --muted: #a9b4aa;
+
+  /* Gold is kept to buttons, the logo's door and ornaments; links and other accents are blue. */
+  --primary: #9ec0ee; /* 6.8:1 on green, 7.8:1 on charcoal */
+  --primary-fill: #f0c982; /* gold buttons */
+  --primary-hover: #f5d7a0;
+  --on-primary: #17382f;
+  --primary-ink: #9ec0ee;
+  --primary-soft: rgb(158 192 238 / 0.14);
+  --primary-tint: #24483d;
+  --ring: #9ec0ee;
+  --logo: #f3f0e4;
+  --logo-deep: #ddd8c6;
+  --logo-accent: #f0c982;
+
+  /* The four tones at full strength: 6.4:1–9.6:1 on green and charcoal. */
+  --tone-gold: #f0c982;
+  --tone-gold-soft: rgb(240 201 130 / 0.14);
+  --tone-rose: #ffbdb3;
+  --tone-rose-soft: rgb(255 189 179 / 0.14);
+  --tone-mint: #a0e0c3;
+  --tone-mint-soft: rgb(160 224 195 / 0.14);
+  --tone-blue: #9ec0ee;
+  --tone-blue-soft: rgb(158 192 238 / 0.14);
+
+  --gold: #f0c982;
+  --gold-bright: #f0c982;
+  --gold-ink: #f0c982;
+  --gold-soft: rgb(240 201 130 / 0.14);
+  --success: #8fd3b6;
+  --success-soft: rgb(143 211 182 / 0.14);
+  --lapis: #9ec0ee;
+  --lapis-ink: #9ec0ee;
+  --lapis-soft: rgb(158 192 238 / 0.14);
+  --danger: #f2a096;
+  --danger-ink: #f2a096;
+  --danger-soft: rgb(242 160 150 / 0.14);
+
+  --sh-soft: 0 1px 2px rgb(4 14 11 / 0.3), 0 12px 28px -14px rgb(4 14 11 / 0.55);
+  --sh-lift: 0 2px 4px rgb(4 14 11 / 0.3), 0 28px 56px -22px rgb(4 14 11 / 0.7);
+  --sh-button: inset 0 1px 0 rgb(255 255 255 / 0.25), 0 1px 2px rgb(4 14 11 / 0.4);
+  --sh-header: 0 10px 30px -18px rgb(4 14 11 / 0.7);
+  /* Panels get a hairline highlight on the top edge. */
+  --sh-panel: inset 0 1px 0 rgb(243 240 228 / 0.06), 0 30px 60px -24px rgb(4 14 11 / 0.75);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-paper: var(--paper);
+  --color-paper-glow: var(--paper-glow);
+  --color-paper-2: var(--paper-2);
+  --color-band: var(--band);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-on-primary: var(--on-primary);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-primary: var(--primary);
+  --color-primary-fill: var(--primary-fill);
+  --color-primary-hover: var(--primary-hover);
+  --color-logo: var(--logo);
+  --color-logo-deep: var(--logo-deep);
+  --color-logo-accent: var(--logo-accent);
+  --color-tone-gold: var(--tone-gold);
+  --color-tone-gold-soft: var(--tone-gold-soft);
+  --color-tone-rose: var(--tone-rose);
+  --color-tone-rose-soft: var(--tone-rose-soft);
+  --color-tone-mint: var(--tone-mint);
+  --color-tone-mint-soft: var(--tone-mint-soft);
+  --color-tone-blue: var(--tone-blue);
+  --color-tone-blue-soft: var(--tone-blue-soft);
+  --color-primary-ink: var(--primary-ink);
+  --color-primary-soft: var(--primary-soft);
+  --color-primary-tint: var(--primary-tint);
+  --color-ring: var(--ring);
+  --color-gold: var(--gold);
+  --color-gold-bright: var(--gold-bright);
+  --color-gold-ink: var(--gold-ink);
+  --color-gold-soft: var(--gold-soft);
+  --color-lapis: var(--lapis);
+  --color-lapis-ink: var(--lapis-ink);
+  --color-lapis-soft: var(--lapis-soft);
+  --color-danger: var(--danger);
+  --color-danger-ink: var(--danger-ink);
+  --color-danger-soft: var(--danger-soft);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  --font-sans: var(--font-plex-arabic), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-readex), var(--font-plex-arabic), ui-sans-serif, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+
+  --shadow-soft: var(--sh-soft);
+  --shadow-lift: var(--sh-lift);
+  --shadow-button: var(--sh-button);
+  --shadow-header: var(--sh-header);
+  --shadow-panel: var(--sh-panel);
+
+  --animate-fade-up: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-spin-slow: spin 90s linear infinite;
+  --animate-float: float 7s ease-in-out infinite;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* In the dark theme the page has a soft lighter glow at the top; in the light theme the gradient is flat. */
+  body {
+    background-color: var(--paper);
+    background-image: linear-gradient(180deg, var(--paper-glow) 0, var(--paper) 52rem);
+    background-repeat: no-repeat;
+    color: var(--ink);
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: var(--primary-soft);
+    color: var(--primary-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  /* Letter-spacing breaks Arabic letter joining, so tight tracking is only applied to Latin text. */
+  :lang(ar) {
+    letter-spacing: 0 !important;
+  }
+}
+
+/* Sections fade in as they scroll into view, where the browser supports scroll-driven animations
+   and the visitor has not asked for reduced motion (the duration override below does not stop scroll timelines). */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: fade-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 40%;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

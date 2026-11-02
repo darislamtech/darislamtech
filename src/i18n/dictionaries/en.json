@@ -1,0 +1,440 @@
+{
+  "meta": {
+    "title": "Dar Islam & Technology",
+    "description": "Dar Islam & Technology is a non-profit, open-source educational and da'wah platform: Islamic knowledge and da'wah, technology and building projects, and cultural, awareness and beneficial entertainment content."
+  },
+  "brand": {
+    "name": "Dar Islam & Technology",
+    "short": "Dar",
+    "descriptor": "Islam & Technology",
+    "tagline": "Beneficial knowledge, technology that makes an impact."
+  },
+  "nav": {
+    "label": "Main navigation",
+    "home": "Home",
+    "content": "Content",
+    "entertainment": "Entertainment",
+    "products": "Products",
+    "learn": "Learn",
+    "contribute": "Contribute",
+    "about": "About",
+    "contact": "Contact",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "switchLanguage": "العربية",
+    "switchLanguageLabel": "التبديل إلى العربية",
+    "skipToContent": "Skip to content",
+    "breadcrumb": "Breadcrumb",
+    "theme": "Switch between light and dark theme"
+  },
+  "common": {
+    "nonprofit": "A 100% non-profit, open-source initiative",
+    "now": "Now",
+    "readMore": "Read more",
+    "learnMore": "Learn more"
+  },
+  "pillars": [
+    {
+      "title": "Islamic knowledge & tech",
+      "body": "For the Muslim in their faith, for everyone in their life."
+    },
+    {
+      "title": "Free for everyone",
+      "body": "No subscriptions, no paid services."
+    },
+    {
+      "title": "Open source",
+      "body": "All code we own is open to learn from and improve."
+    },
+    {
+      "title": "Arabic & English",
+      "body": "For anyone who wants to learn."
+    }
+  ],
+  "topics": [
+    {
+      "title": "Religious and da'wah topics we cover",
+      "items": [
+        "Contemporary concepts and ideas",
+        "Secularism",
+        "\"Energy\" and modern spirituality",
+        "Atheism and doubts about belief",
+        "Feminism"
+      ]
+    },
+    {
+      "title": "Tech topics we cover",
+      "items": [
+        "Artificial intelligence",
+        "Software engineering",
+        "Automation",
+        "SaaS",
+        "Startups",
+        "Cyber security",
+        "Digital marketing",
+        "Tech news"
+      ]
+    }
+  ],
+  "phases": [
+    {
+      "title": "Foundation",
+      "body": "Identity, decisions, policies and platform accounts."
+    },
+    {
+      "title": "Preparation",
+      "body": "First content, repositories and contribution guides."
+    },
+    {
+      "title": "Build",
+      "body": "The website and the first open-source products."
+    },
+    {
+      "title": "Launch",
+      "body": "The first public release of the platform."
+    },
+    {
+      "title": "Growth",
+      "body": "A contributor community, new products and learning paths."
+    }
+  ],
+  "home": {
+    "badge": "100% non-profit · Open source",
+    "titleLead": "Beneficial knowledge,",
+    "titleAccent": "technology that makes an impact.",
+    "intro": "An educational and da'wah platform that strives to prepare scholars and callers with da'wah projects of their own, and programmers and technologists who build tech projects that serve Islam, while offering cultural, awareness and beneficial entertainment content.",
+    "primaryCta": "Explore content",
+    "secondaryCta": "Contribute",
+    "visual": {
+      "mission": "Beneficial knowledge",
+      "impact": "Technology with impact",
+      "chipNonprofit": "100% non-profit",
+      "chipOpen": "Open source",
+      "chipFree": "Free for everyone"
+    },
+    "offerEyebrow": "What we offer",
+    "offerTitle": "Learning that grounds, content that raises awareness, projects that help",
+    "offerBody": "Everything we publish and build is free and open, and starts with one question: how can we benefit people?",
+    "cards": {
+      "content": {
+        "title": "Content",
+        "body": "Islamic knowledge and da'wah, and technology and its news, in articles and videos from our YouTube channel."
+      },
+      "products": {
+        "title": "Products",
+        "body": "Free, open-source tools and digital projects, with an honest status for each one."
+      },
+      "learn": {
+        "title": "Learn",
+        "body": "A two-year program: a foundation year, then a specialization year with two tracks."
+      },
+      "contribute": {
+        "title": "Contribute",
+        "body": "Code, design, translation or review: every skill has a place in our open projects.",
+        "flow": [
+          "Fork",
+          "Branch",
+          "Pull request",
+          "Review",
+          "Merge"
+        ]
+      }
+    },
+    "missionEyebrow": "Our mission",
+    "missionLink": "Read our mission and vision",
+    "roadmapEyebrow": "Where we are",
+    "roadmapTitle": "Building step by step, in the open",
+    "roadmapBody": "We are in the foundation phase. We never claim a product before it launches, and we share our progress as it is.",
+    "channelEyebrow": "Dar Islam & Technology channel",
+    "channelTitle": "One channel, two tracks: Islamic knowledge and technology",
+    "channelBody": "Simple explainers where every topic stands on its own.",
+    "channelTracks": [
+      {
+        "title": "Islamic knowledge and da'wah",
+        "body": "Islamic knowledge from trusted sources, and beneficial da'wah content."
+      },
+      {
+        "title": "Technology and building projects",
+        "body": "AI and programming, comparisons and tools, and building real projects."
+      }
+    ],
+    "channelCta": "Visit the channel",
+    "ctaTitle": "Build something useful with us",
+    "ctaBody": "We are starting as a one-person effort and aim to grow a community of Islamic studies specialists, callers, developers and creators.",
+    "ctaPrimary": "How to contribute",
+    "ctaSecondary": "Contact us"
+  },
+  "content": {
+    "eyebrow": "Content",
+    "title": "Islamic knowledge and technology, in clear language",
+    "description": "Articles, news and videos on Islamic knowledge and da'wah, and on technology, programming and AI, with hand-picked videos from our YouTube channel.",
+    "tabs": {
+      "label": "Filter content",
+      "all": "All",
+      "articles": "Articles",
+      "news": "News",
+      "videos": "Videos"
+    },
+    "kind": {
+      "article": "Article",
+      "news": "News"
+    },
+    "emptyTitle": "Content is on its way",
+    "emptyBody": "We are preparing the first articles and news. Until then, follow our explainers on YouTube.",
+    "emptyTab": "Nothing in this section yet.",
+    "youtubeCta": "Watch the channel",
+    "back": "Back to content",
+    "relatedVideo": "Related video"
+  },
+  "products": {
+    "eyebrow": "Products",
+    "title": "Useful tools, free for everyone",
+    "description": "Open-source digital products and projects, with an honest status for each: what is available, what is in development and what is still an idea.",
+    "emptyTitle": "Our first product is on its way",
+    "emptyBody": "We have not launched a product yet, and we never list one before it launches. Our products will appear here with the first release.",
+    "statusTitle": "How we label each product",
+    "statusBody": "Every product card carries one of these statuses, so you always know what you can use today.",
+    "status": {
+      "available": "Available",
+      "inDevelopment": "In development",
+      "comingSoon": "Coming soon",
+      "idea": "Future idea"
+    },
+    "statusDescriptions": {
+      "available": "Released and ready to use now.",
+      "inDevelopment": "We are working on it.",
+      "comingSoon": "Planned, with work starting soon.",
+      "idea": "A useful idea we have noted but not started."
+    },
+    "principlesTitle": "Our promise in every product",
+    "principles": [
+      {
+        "title": "Completely free",
+        "body": "No subscriptions and no paid services, for everyone."
+      },
+      {
+        "title": "Open source",
+        "body": "All code we own is published in public repositories under an open license."
+      },
+      {
+        "title": "Works on your phone",
+        "body": "Installable on your phone wherever that suits the product."
+      }
+    ],
+    "suggestTitle": "Have an idea for a useful product?",
+    "suggestBody": "Share it with us. Many of the best projects started as a suggestion.",
+    "suggestCta": "Suggest an idea",
+    "free": "Free and open source",
+    "open": "Open product",
+    "source": "Source code",
+    "video": "Intro video",
+    "install": "Install on your phone",
+    "back": "Back to products"
+  },
+  "learn": {
+    "eyebrow": "Learn",
+    "title": "A learning program that joins Islamic and tech knowledge",
+    "description": "A two-year program: a foundation year with one track, then a specialization year with two tracks. This section is under construction, and no lessons are available yet.",
+    "notice": "The Learn section is under construction",
+    "underConstruction": "Under construction",
+    "roadmapTitle": "The program plan",
+    "shariaNote": "Islamic studies material will rely on trusted sources and be reviewed by qualified specialists before publishing.",
+    "suggestTitle": "Have a suggestion for the program?",
+    "suggestBody": "Your opinion helps us build the program.",
+    "suggestCta": "Share your opinion"
+  },
+  "contribute": {
+    "eyebrow": "Contribute",
+    "title": "Open projects, built by the community",
+    "description": "Dar Islam & Technology is a fully non-profit initiative, and the website and every product we own the rights to are open source. Every contribution, however small, makes an impact.",
+    "statusTitle": "GitHub repositories are being set up",
+    "status": "We are preparing the repositories, the contribution guide and the code of conduct, and will publish the links here as soon as they launch.",
+    "stepsEyebrow": "For developers",
+    "stepsTitle": "How to contribute code",
+    "stepsBody": "A clear, familiar flow for anyone who has worked on an open-source project.",
+    "steps": [
+      {
+        "title": "Explore the projects",
+        "body": "See our products and what needs development, translation or testing."
+      },
+      {
+        "title": "Read the guides",
+        "body": "The README and the CONTRIBUTING guide in the repository."
+      },
+      {
+        "title": "Pick a task",
+        "body": "An open issue that suits you; newcomers can start with good first issue."
+      },
+      {
+        "title": "Discuss big changes first",
+        "body": "Fix small bugs directly; agree on larger changes before writing code."
+      },
+      {
+        "title": "Open a pull request",
+        "body": "Fork, create a branch, and write your change with tests."
+      },
+      {
+        "title": "Review and merge",
+        "body": "Your change is reviewed and tested, then merged with credit."
+      }
+    ],
+    "waysEyebrow": "For everyone",
+    "waysTitle": "Every skill has a place",
+    "ways": [
+      {
+        "title": "Islamic review",
+        "body": "Review of verses, adhkar and quoted information by qualified people."
+      },
+      {
+        "title": "Code",
+        "body": "Build the website and products, write tests and fix bugs."
+      },
+      {
+        "title": "Design",
+        "body": "Interfaces, user experience and visual identity."
+      },
+      {
+        "title": "Translation & writing",
+        "body": "Arabic/English translation, documentation and articles."
+      },
+      {
+        "title": "Testing",
+        "body": "Accessibility and performance testing, and bug reports."
+      },
+      {
+        "title": "Product ideas",
+        "body": "Suggest useful ideas and assess their feasibility."
+      }
+    ],
+    "shariaNote": "Changes to Islamic content are only accepted with documented sources and qualified review.",
+    "principlesEyebrow": "Governance",
+    "principlesTitle": "How we run the project",
+    "principles": [
+      {
+        "title": "Transparency",
+        "body": "The roadmap, issues, technical decisions and release notes are public wherever possible."
+      },
+      {
+        "title": "Respect",
+        "body": "A shared code of conduct, with respectful discussions open to all backgrounds."
+      },
+      {
+        "title": "Review",
+        "body": "Every change is reviewed and tested before merging, and trusted reviewers join gradually."
+      },
+      {
+        "title": "Security",
+        "body": "We never publish keys or personal data, and security issues are reported privately."
+      }
+    ],
+    "faqTitle": "Frequently asked questions",
+    "faq": [
+      {
+        "q": "Is Dar Islam & Technology a registered charity?",
+        "a": "No. \"100% non-profit\" describes the initiative's mission and how it works; it is not a claim to be a legally registered charity."
+      },
+      {
+        "q": "Do you accept donations or financial support?",
+        "a": "Not at the moment. Anything in the future would come only after looking at the legal obligations, transparency and running costs."
+      },
+      {
+        "q": "What license is the code under?",
+        "a": "The website's code is released under the MIT License. The license covers the code only; the name «Dar Islam & Technology», its logo and the site's content are not included. Each product has its own explicit license, stated in its repository."
+      },
+      {
+        "q": "Do I need write access to the main repository?",
+        "a": "No. Contributions go through forks and pull requests, and maintainers review changes before merging."
+      },
+      {
+        "q": "How do I report a security issue?",
+        "a": "Privately, never in a public issue. Until we publish a SECURITY policy, email the project address."
+      }
+    ],
+    "ctaTitle": "Have a question before you start?",
+    "ctaBody": "Email us and tell us how you would like to contribute, and we will help you get started.",
+    "ctaButton": "Contact us"
+  },
+  "about": {
+    "eyebrow": "About",
+    "title": "A home for Islamic knowledge, da'wah and technology",
+    "description": "Get to know Dar Islam & Technology: who we are, why we started and where we are heading.",
+    "who": "Dar Islam & Technology is an educational and da'wah platform that strives to prepare scholars and callers with da'wah projects of their own, and programmers and technologists who build tech projects that serve Islam, while offering cultural, awareness and beneficial entertainment content.",
+    "nameTitle": "About the name",
+    "nameBody": "\"Dar Islam & Technology\" sums up our mission: bringing Islamic knowledge and modern technology together in useful content and products.",
+    "missionTitle": "Our mission",
+    "mission": "To teach Muslims what they must know of their religion and every person what they must know of technology, to spread awareness and da'wah through beneficial content, and to build tech tools and projects that serve Islam and make people's lives easier.",
+    "visionTitle": "Our vision",
+    "vision": "A generation of scholars and callers with da'wah projects of their own, and of programmers and technologists who serve Islam with beneficial tech projects and take part in shaping the future rather than only consuming its technology.",
+    "ambitionTitle": "Our ambition",
+    "ambition": "A community of Islamic studies specialists, callers, programmers and creators working together on beneficial da'wah and tech projects that serve Islam and Muslims and benefit every person.",
+    "valuesEyebrow": "Our values",
+    "valuesTitle": "What guides our work",
+    "values": [
+      "Beneficial knowledge",
+      "Calling to Allah",
+      "Awareness",
+      "Excellence",
+      "Public benefit",
+      "Building and innovation",
+      "The scientific and technical revival of the Muslim community"
+    ],
+    "communityTitle": "A community initiative",
+    "communityBody": "Dar Islam & Technology is a 100% non-profit, open-source initiative. It started as a one-person effort, and the ambition is a community where Islamic studies specialists, callers and technologists build world-class solutions together."
+  },
+  "entertainment": {
+    "eyebrow": "Entertainment",
+    "title": "Entertainment with benefit",
+    "description": "Videos we pick for you from YouTube, grouped by topic.",
+    "groupsLabel": "Entertainment groups",
+    "empty": "No videos in this category yet.",
+    "play": "Play video",
+    "untitled": "YouTube video"
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "We would love to hear from you",
+    "description": "A question, a project idea, an offer to volunteer or a mistake you spotted: pick the reason for your message and email us.",
+    "reasonsTitle": "What would you like to write about?",
+    "reasons": [
+      {
+        "title": "General",
+        "body": "A question, a note or any general message.",
+        "subject": "General inquiry"
+      },
+      {
+        "title": "Suggest a project",
+        "body": "An idea for a useful product or tool you would like us to build.",
+        "subject": "Project suggestion"
+      },
+      {
+        "title": "Volunteer",
+        "body": "You want to contribute your time or expertise to our projects.",
+        "subject": "Volunteering"
+      },
+      {
+        "title": "Report a problem",
+        "body": "A mistake in content, a product or the website itself.",
+        "subject": "Problem report"
+      }
+    ],
+    "send": "Write your message",
+    "emailLabel": "Project email",
+    "copy": "Copy email",
+    "copied": "Copied",
+    "followTitle": "Follow us",
+    "followBody": "News about our content and products."
+  },
+  "footer": {
+    "about": "A non-profit educational and da'wah platform: Islamic knowledge and da'wah, and technology that serves Islam, free and open source.",
+    "platform": "Platform",
+    "community": "Community",
+    "openSourceTitle": "Open source",
+    "openSource": "Our GitHub repositories are coming soon.",
+    "rights": "Dar Islam & Technology"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "body": "The page may have moved or has not been published yet.",
+    "back": "Back to home"
+  }
+}
