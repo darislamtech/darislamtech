@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import type { Locale } from "@/i18n/config";
 import { NavLink } from "./nav-link";
@@ -19,6 +20,14 @@ type MobileMenuProps = {
 export function MobileMenu({ locale, items, cta, labels }: MobileMenuProps) {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
+
+  // Close on any navigation the menu's own links don't handle (header logo, browser back/forward).
+  const pathname = usePathname();
+  const [menuPathname, setMenuPathname] = useState(pathname);
+  if (pathname !== menuPathname) {
+    setMenuPathname(pathname);
+    setOpen(false);
+  }
 
   // Lock page scroll and allow Escape to close while the menu is open.
   useEffect(() => {

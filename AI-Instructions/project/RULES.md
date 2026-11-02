@@ -8,7 +8,7 @@
 - Videos stay on YouTube and are embedded only, added by hand (no automatic import).
 - Entertainment videos show only the YouTube title and thumbnail (no description); the player loads in the page on click (`components/video-card.tsx`, youtube-nocookie).
 - Don't show the founder's name or photo.
-- Only link accounts and channels that exist (`src/config/site.ts`). No GitHub links until the organization exists.
+- Only link accounts and channels that exist (`src/config/site.ts`). The GitHub organization and repository exist (`docs/accounts.md`); GitHub links are added to the site only after the owner agrees.
 - Islamic content needs trusted sources and qualified review; never add verses, adhkar or rulings from unverified sources.
 - Design decisions (logo, colors, fonts, page layouts) are discussed with the owner before they are treated as approved.
 
@@ -28,7 +28,7 @@ SEO matters to the owner. Apply these on every new or changed page:
 - Deferred until the end of the project, because they need the final domain: `metadataBase`, `sitemap.xml`, `robots.txt`, ar/en `hreflang` alternates, Open Graph images. Do not start these before the owner asks.
 
 ## Documentation — `docs/` (owner's rule, added by claude)
-- `docs/` is the organized explanation of the site, written in Arabic: `README.md` (index), `pages.md`, `content.md`, `design.md`, `languages-seo-pwa.md`.
+- `docs/` is the organized explanation of the site, written in Arabic: `README.md` (index), `pages.md`, `content.md`, `design.md`, `languages-seo-pwa.md`, `accounts.md`.
 - Every change to the site updates the affected doc in the same change, following `core/reporting.md`: docs describe the current state only, so outdated text is rewritten or deleted, never kept as history.
 - A new page, content type or feature gets its section in the matching doc. A new doc is listed in `docs/README.md`. A doc whose subject no longer exists is deleted and removed from the index.
 - `docs/` describes what the site is and how to use it; binding rules (must / must not) live in `RULES.md` and file locations in `ARCHITECTURE.md`. When a value appears in both (for example a color), change both in the same edit.

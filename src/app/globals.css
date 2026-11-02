@@ -84,7 +84,7 @@
 /* `dark:` targets the dark theme, which is chosen with <html data-theme="dark"> (see the theme toggle). */
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
-/* Light theme (default): white with a very slight grey, charcoal text, calm green accents — no gold, no cream. */
+/* Light theme (default): white with a very slight grey, charcoal text, calm green accents, gold buttons. */
 :root {
   color-scheme: light;
 
@@ -117,7 +117,7 @@
   --logo-deep: #1c3a2f;
   --logo-accent: #d0a368;
 
-  /* Accents (the gold-named tokens hold green here: the light theme has no gold) */
+  /* Accents (the gold-named tokens hold green here; gold is kept for buttons and the logo's door) */
   --gold: #3e6b53;
   --gold-bright: #7faa8d;
   --gold-ink: #3e6b53;
@@ -323,12 +323,15 @@
   }
 }
 
-/* Sections fade in as they scroll into view, where the browser supports scroll-driven animations. */
-@supports (animation-timeline: view()) {
-  .reveal {
-    animation: fade-up linear both;
-    animation-timeline: view();
-    animation-range: entry 0% entry 40%;
+/* Sections fade in as they scroll into view, where the browser supports scroll-driven animations
+   and the visitor has not asked for reduced motion (the duration override below does not stop scroll timelines). */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: fade-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 40%;
+    }
   }
 }
 

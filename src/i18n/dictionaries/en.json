@@ -339,7 +339,7 @@
       },
       {
         "q": "What license is the code under?",
-        "a": "The final license has not been chosen yet; we are comparing options such as MIT and AGPLv3. We do not call any project open source until it has an explicit license."
+        "a": "The website's code is released under the MIT License. The license covers the code only; the name «Dar Islam & Technology», its logo and the site's content are not included. Each product has its own explicit license, stated in its repository."
       },
       {
         "q": "Do I need write access to the main repository?",

@@ -34,7 +34,7 @@ export function HeaderShell({ children }: { children: React.ReactNode }) {
         aria-hidden="true"
         className={cn(
           "absolute inset-0 -z-10 transition-colors duration-300",
-          // Transparent at the top so the page's green glow shows through; solid green once scrolled.
+          // Transparent at the top so the page's green glow shows through; frosted page color once scrolled.
           scrolled ? "bg-paper/85 backdrop-blur-xl backdrop-saturate-150" : "bg-transparent",
         )}
       />

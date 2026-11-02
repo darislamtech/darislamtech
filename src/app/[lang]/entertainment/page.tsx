@@ -29,7 +29,7 @@ export default async function EntertainmentPage() {
       categories: await Promise.all(
         group.categories.map(async (category) => ({
           ...category,
-          videos: (await Promise.all(category.videos.map(getYouTubeVideo))).filter((video) => video !== null),
+          videos: (await Promise.all(category.videos.map((link) => getYouTubeVideo(link)))).filter((video) => video !== null),
         })),
       ),
     })),
