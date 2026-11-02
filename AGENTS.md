@@ -1,3 +1,5 @@
+At the start of each task, read AI-Instructions/INDEX.md, follow its core rules, and load only the relevant files.
+
 <!-- BEGIN:nextjs-agent-rules -->
 
 ## This is NOT the Next.js you know
