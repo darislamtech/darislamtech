@@ -2,14 +2,15 @@ import type { Metadata } from "next";
 import { BookOpen, Compass, Eye, Gem, HeartHandshake, Lamp, Lightbulb, MessageCircleHeart, Sprout, Target, Users } from "lucide-react";
 import { localePath } from "@/i18n/config";
 import { getDictionary, getLocale } from "@/i18n/dictionaries";
+import { pageMetadata } from "@/lib/seo";
 import { LogoMark } from "@/components/brand";
 import { CtaPanel, PageHero } from "@/components/page-blocks";
 import { GeometricPattern } from "@/components/pattern";
 import { Container, IconTile, SectionHeading, type Tone } from "@/components/ui";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const dict = await getDictionary();
-  return { title: dict.nav.about, description: dict.about.description };
+  const [locale, dict] = await Promise.all([getLocale(), getDictionary()]);
+  return pageMetadata({ locale, dict, path: "/about", title: dict.nav.about, description: dict.about.description });
 }
 
 const valueIcons = [BookOpen, MessageCircleHeart, Lamp, Gem, HeartHandshake, Lightbulb, Sprout];

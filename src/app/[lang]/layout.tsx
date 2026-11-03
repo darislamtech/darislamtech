@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Mono, IBM_Plex_Sans_Arabic, Readex_Pro } from "next/font/google";
+import { siteConfig } from "@/config/site";
 import { getDirection, locales } from "@/i18n/config";
 import { getDictionary, getLocale } from "@/i18n/dictionaries";
 import { SiteHeader } from "@/components/site-header";
@@ -41,6 +42,8 @@ export const viewport: Viewport = {
 export async function generateMetadata(): Promise<Metadata> {
   const dict = await getDictionary();
   return {
+    // Base for the relative URLs in metadata (canonical, alternates, Open Graph).
+    metadataBase: new URL(siteConfig.url),
     title: { default: `${dict.brand.name} | ${dict.brand.tagline}`, template: `%s | ${dict.brand.name}` },
     description: dict.meta.description,
     // Name and status bar when the site is added to the iOS home screen (the manifest covers other platforms).

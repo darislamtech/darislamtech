@@ -6,7 +6,7 @@ It aims to prepare scholars and callers with da'wah projects of their own, and p
 
 ## Users
 - Visitors (Arabic first, English second): young Muslims, students of Islamic knowledge, programmers and technologists, and anyone interested.
-- Contributors (developers, designers, translators, testers, qualified Islamic reviewers) — through GitHub once the repositories exist.
+- Contributors (developers, designers, translators, testers, qualified Islamic reviewers) — through the GitHub repository `darislamtech/darislamtech`.
 
 ## Priorities
 1. Truthfulness: never present a product, course, link or account as live before it is.
@@ -15,7 +15,7 @@ It aims to prepare scholars and callers with da'wah projects of their own, and p
 4. Simple to maintain by one owner; content changes through pull requests.
 
 ## Current state
-- Website v1 in the "Foundation" phase, running locally and not deployed. Sections: Home, Content, Entertainment, Products, Learn (under construction), Contribute, About, Contact. Installable as a PWA.
+- Website v1 in the "Foundation" phase, live at https://darislamtech.com (Vercel). Sections: Home, Content, Entertainment, Products, Learn (under construction), Contribute, Support, About, Contact. Installable as a PWA.
 - No articles, videos, entertainment videos or products published yet; those pages show empty states.
 - The logo is the owner's image (approved). The palette and fonts are not final yet.
 - Name (approved by the owner): «دار الإسلام والتقنية» / "Dar Islam & Technology".

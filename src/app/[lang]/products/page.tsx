@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Boxes, Code, Gift, Smartphone } from "lucide-react";
 import { localePath } from "@/i18n/config";
 import { getDictionary, getLocale } from "@/i18n/dictionaries";
+import { pageMetadata } from "@/lib/seo";
 import { products } from "@/content/products";
 import { CtaPanel, EmptyState, PageHero } from "@/components/page-blocks";
 import { productStatusOrder, productStatusStyles } from "@/components/product-status";
@@ -9,8 +10,8 @@ import { Badge, ButtonLink, Card, Container, ForwardArrow, IconTile, SectionHead
 import { cn } from "@/lib/cn";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const dict = await getDictionary();
-  return { title: dict.nav.products, description: dict.products.description };
+  const [locale, dict] = await Promise.all([getLocale(), getDictionary()]);
+  return pageMetadata({ locale, dict, path: "/products", title: dict.nav.products, description: dict.products.description });
 }
 
 const statusStyles = productStatusStyles;

@@ -3,14 +3,15 @@ import { Bug, HandHeart, Lightbulb, Mail, MessageCircle } from "lucide-react";
 import { siteConfig } from "@/config/site";
 import { localePath } from "@/i18n/config";
 import { getDictionary, getLocale } from "@/i18n/dictionaries";
+import { pageMetadata } from "@/lib/seo";
 import { CopyButton } from "@/components/copy-button";
 import { socialIcons } from "@/components/icons";
 import { PageHero } from "@/components/page-blocks";
 import { Container, ForwardArrow, IconTile, type Tone } from "@/components/ui";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const dict = await getDictionary();
-  return { title: dict.nav.contact, description: dict.contact.description };
+  const [locale, dict] = await Promise.all([getLocale(), getDictionary()]);
+  return pageMetadata({ locale, dict, path: "/contact", title: dict.nav.contact, description: dict.contact.description });
 }
 
 const reasonIcons = [MessageCircle, Lightbulb, HandHeart, Bug];

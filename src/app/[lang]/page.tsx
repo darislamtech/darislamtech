@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import {
   ArrowUpRight,
@@ -26,6 +27,7 @@ import { PostCard } from "@/components/post-card";
 import { productStatusOrder, productStatusStyles } from "@/components/product-status";
 import { Badge, ButtonLink, Container, ForwardArrow, IconTile, SectionHeading, type Tone } from "@/components/ui";
 import { cn } from "@/lib/cn";
+import { pageMetadata } from "@/lib/seo";
 
 const pillarIcons = [BookOpen, Gift, Code, Languages];
 // Every element on the page takes one of the four tones, so the page uses all of them.
@@ -38,14 +40,50 @@ const channelTrackTones: Tone[] = ["mint", "blue"];
 // The project is currently in its first phase ("Foundation"), per the launch plan.
 const CURRENT_PHASE = 0;
 
+export async function generateMetadata(): Promise<Metadata> {
+  const [locale, dict] = await Promise.all([getLocale(), getDictionary()]);
+  return pageMetadata({ locale, dict, path: "", description: dict.meta.description });
+}
+
 export default async function HomePage() {
   const locale = await getLocale();
   const dict = await getDictionary();
   const home = dict.home;
   const latest = posts.slice(0, 3);
 
+  // Structured data for search engines: who publishes the site, its logo, email and accounts.
+  const homeUrl = `${siteConfig.url}${localePath(locale)}`;
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": `${siteConfig.url}/#organization`,
+        name: dict.brand.name,
+        alternateName: locale === "ar" ? "Dar Islam & Technology" : "دار الإسلام والتقنية",
+        url: homeUrl,
+        logo: `${siteConfig.url}/icons/icon-512.png`,
+        email: siteConfig.email,
+        description: dict.meta.description,
+        sameAs: siteConfig.socials.map((social) => social.href),
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${siteConfig.url}/#website-${locale}`,
+        name: dict.brand.name,
+        url: homeUrl,
+        inLanguage: locale,
+        publisher: { "@id": `${siteConfig.url}/#organization` },
+      },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
+      />
       {/* Hero */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(50%_60%_at_80%_20%,var(--primary-tint),transparent_70%)] rtl:bg-[radial-gradient(50%_60%_at_20%_20%,var(--primary-tint),transparent_70%)]" />

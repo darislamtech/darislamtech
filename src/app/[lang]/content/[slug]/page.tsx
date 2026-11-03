@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { localePath } from "@/i18n/config";
 import { getDictionary, getLocale } from "@/i18n/dictionaries";
+import { pageMetadata } from "@/lib/seo";
 import { getPost, posts } from "@/content/posts";
 import { formatDate } from "@/components/post-card";
 import { YouTubeEmbed } from "@/components/youtube-embed";
@@ -17,8 +18,8 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps<"/[lang]/content/[slug]">): Promise<Metadata> {
   const post = getPost((await params).slug);
   if (!post) return {};
-  const locale = await getLocale();
-  return { title: post.title[locale], description: post.summary[locale] };
+  const [locale, dict] = await Promise.all([getLocale(), getDictionary()]);
+  return pageMetadata({ locale, dict, path: `/content/${post.slug}`, title: post.title[locale], description: post.summary[locale] });
 }
 
 export default async function PostPage({ params }: PageProps<"/[lang]/content/[slug]">) {
