@@ -14,6 +14,7 @@
 
 ## Working rules — lessons from past mistakes (owner's rule, added by claude)
 Each rule below exists because the mistake already happened once. Add a new one whenever a mistake is found.
+- If any part of a request is unclear (what to change, where, or how much), ask the owner to clarify before doing anything; never act on a guess.
 - Change only what was asked. Edit text by its exact key or line; never run a broad pattern (regex/sed) across a dictionary, because the same words appear on pages that must not change (a broad replace once renamed a home-page card).
 - Before every commit, read the full `git diff` and confirm each changed line was intended (a stale edit once brought back a phrase that had just been removed).
 - When the owner points at a list or table and says «احذفهم» / "delete them", it applies to every item shown. If it is unclear which items or which element (title or body) the owner means, ask before acting.
