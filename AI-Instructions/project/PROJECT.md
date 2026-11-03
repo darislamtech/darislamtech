@@ -1,7 +1,7 @@
 # Project — Dar Islam & Technology website
 
 ## Purpose
-Public website of **دار الإسلام والتقنية | Dar Islam & Technology**, a 100% non-profit, open-source educational and da'wah initiative. Tagline: «علمٌ نافع، وتقنيةٌ تصنع الأثر.»
+Public website of **دار الإسلام والتقنية | Dar Islam & Technology**, a non-profit, open-source educational and da'wah initiative. Tagline: «علمٌ نافع، وتقنيةٌ تصنع الأثر.»
 It aims to prepare scholars and callers with da'wah projects of their own, and programmers and technologists who build tech projects that serve Islam. It offers Islamic knowledge and da'wah first, then technology, plus cultural, awareness and beneficial entertainment content, and free, open-source digital products.
 
 ## Users
@@ -20,7 +20,7 @@ It aims to prepare scholars and callers with da'wah projects of their own, and p
 - The logo is the owner's image (approved). The palette and fonts are not final yet.
 - Name (approved by the owner): «دار الإسلام والتقنية» / "Dar Islam & Technology".
   - Logo lockup: `brand.short` («دار» / "Dar") over `brand.descriptor` («الإسلام والتقنية» / "Islam & Technology"); prose uses the full `brand.name`.
-  - Accounts: `darislamtech` on YouTube, Facebook, Instagram, TikTok, GitHub, LinkedIn, Telegram, X and Qabilah; email `darislamtech@gmail.com`. Full list with links: `docs/accounts.md`. The site shows only YouTube, Facebook, Instagram and TikTok (`src/config/site.ts`).
+  - Accounts: `darislamtech` on YouTube, Facebook, Instagram, TikTok, GitHub, LinkedIn, Telegram, X and Qabilah; email `darislamtech@gmail.com`. Full list with links: `docs/accounts.md`. The site shows all of them (`src/config/site.ts`).
 - Repository: `darislamtech/darislamtech` (public) in the GitHub organization `darislamtech` (owner: `marwan7egazy`). Code license: MIT; the name and logo are not licensed for reuse.
 - Domain: `darislamtech.com` (owned). Hosting: Vercel Hobby (free; works because the organization repository is public).
 

@@ -12,11 +12,12 @@ import {
   ShieldCheck,
   UserCheck,
 } from "lucide-react";
+import { siteConfig } from "@/config/site";
 import { localePath } from "@/i18n/config";
 import { getDictionary, getLocale } from "@/i18n/dictionaries";
 import { GitHubIcon } from "@/components/icons";
 import { CtaPanel, PageHero } from "@/components/page-blocks";
-import { Container, IconTile, SectionHeading, toneText, type Tone } from "@/components/ui";
+import { ButtonLink, Container, IconTile, SectionHeading, toneText, type Tone } from "@/components/ui";
 import { cn } from "@/lib/cn";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -55,6 +56,9 @@ export default async function ContributePage() {
           <div>
             <p className="font-semibold text-ink">{t.statusTitle}</p>
             <p className="mt-1 text-sm leading-relaxed text-muted">{t.status}</p>
+            <ButtonLink href={siteConfig.repository} external variant="secondary" size="sm" arrow className="mt-4">
+              {t.repoButton}
+            </ButtonLink>
           </div>
         </div>
       </PageHero>

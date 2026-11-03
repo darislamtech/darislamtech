@@ -1,16 +1,28 @@
 # Project rules
 
 ## Business rules (from the owner's decisions in Notion)
-- Dar Islam & Technology is 100% non-profit: no paid services, subscriptions or donation flows on the site. Donations are not enabled.
-- "100% non-profit" describes the mission; never claim it is a registered charity.
+- Dar Islam & Technology is non-profit: no ads, and no paid products, courses or subscriptions. Financial support is optional and lives only on the support page (`/support`). Its wording is "support the project" / "support the content": never "donation" (تبرع) or "charity" (صدقة), and no WhatsApp contact for payments. The words "free" / «مجاني», "non-profit" / «غير ربحية» and "open source" / «مفتوح المصدر» appear only on the home page and the support page, plus the «مجانية بالكامل» card in the products page promises; the rest of the site (including the footer) does not repeat them.
+- Never add explanations of the initiative's legal status to the site (charity, registration, what "non-profit" means legally).
 - All products are free and open source. Never mark a product `available` before it actually launches; product statuses are `available`, `inDevelopment`, `comingSoon`, `idea`.
 - "Learn" is under construction: it shows the plan of a two-year program (a foundation year with one track, then a specialization year with two tracks) and no lessons until real material exists. This plan is the owner's initial idea: never describe it on the site as an "initial idea".
 - Videos stay on YouTube and are embedded only, added by hand (no automatic import).
 - Entertainment videos show only the YouTube title and thumbnail (no description); the player loads in the page on click (`components/video-card.tsx`, youtube-nocookie).
-- Don't show the founder's name or photo.
-- Only link accounts and channels that exist (`src/config/site.ts`). The GitHub organization and repository exist (`docs/accounts.md`); GitHub links are added to the site only after the owner agrees.
+- The founder's name and personal accounts (`marwan7egazy`) appear only in the contact card of the support page («مروان حجازي — المؤسس والمشرف»); no photo.
+- Only link accounts and channels that exist (`src/config/site.ts`, listed in `docs/accounts.md`). No Snapchat.
 - Islamic content needs trusted sources and qualified review; never add verses, adhkar or rulings from unverified sources.
 - Design decisions (logo, colors, fonts, page layouts) are discussed with the owner before they are treated as approved.
+
+## Working rules — lessons from past mistakes (owner's rule, added by claude)
+Each rule below exists because the mistake already happened once. Add a new one whenever a mistake is found.
+- If any part of a request is unclear (what to change, where, or how much), ask the owner to clarify before doing anything; never act on a guess.
+- Change only what was asked. Edit text by its exact key or line; never run a broad pattern (regex/sed) across a dictionary, because the same words appear on pages that must not change (a broad replace once renamed a home-page card).
+- Before every commit, read the full `git diff` and confirm each changed line was intended (a stale edit once brought back a phrase that had just been removed).
+- When the owner points at a list or table and says «احذفهم» / "delete them", it applies to every item shown. If it is unclear which items or which element (title or body) the owner means, ask before acting.
+- Use the owner's wording verbatim, in the exact element they point to.
+- Inline Arabic text in separate elements next to each other must be separated by a space or a flex gap; otherwise letters join across elements (a final «ي» once rendered in its medial form).
+- Header and nav: check English at 1024px and 1280px, not only Arabic; English labels are longer and once pushed a button off screen.
+- After a change, remove any text the change made untrue (for example "coming soon" for something that is now live).
+- Check the changed parts in the built site (screenshot or HTML) before reporting them as done.
 
 ## Mobile — check on every change (owner's rule, added by claude)
 - Mobile first: check every changed page at phone width (≈375px) in Arabic and English and in both themes. No horizontal page scroll, touch targets at least 44px, and grids that collapse to one column. Give `next/image` a real `sizes`.

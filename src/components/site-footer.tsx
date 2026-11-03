@@ -22,6 +22,7 @@ export function SiteFooter({ locale, dict }: { locale: Locale; dict: Dictionary 
       title: dict.footer.community,
       links: [
         { href: localePath(locale, "/contribute"), label: dict.nav.contribute },
+        { href: localePath(locale, "/support"), label: dict.nav.support },
         { href: localePath(locale, "/about"), label: dict.nav.about },
         { href: localePath(locale, "/contact"), label: dict.nav.contact },
       ],
@@ -39,7 +40,7 @@ export function SiteFooter({ locale, dict }: { locale: Locale; dict: Dictionary 
             </Link>
             <p className="mt-6 font-display text-xl font-medium text-ink">{dict.brand.tagline}</p>
             <p className="mt-3 max-w-sm leading-relaxed text-muted">{dict.footer.about}</p>
-            <ul className="mt-6 flex gap-2">
+            <ul className="mt-6 flex flex-wrap gap-2">
               {siteConfig.socials.map((social) => {
                 const Icon = socialIcons[social.name];
                 return (
@@ -76,17 +77,21 @@ export function SiteFooter({ locale, dict }: { locale: Locale; dict: Dictionary 
             ))}
             <div className="col-span-2 sm:col-span-1">
               <h2 className="text-sm font-semibold text-ink">{dict.footer.openSourceTitle}</h2>
-              <p className="mt-4 flex items-start gap-2 leading-relaxed text-muted">
+              <a
+                href={siteConfig.repository}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 flex items-start gap-2 leading-relaxed text-muted transition-colors hover:text-primary"
+              >
                 <GitHubIcon className="mt-1 size-4 shrink-0" />
                 {dict.footer.openSource}
-              </p>
+              </a>
             </div>
           </div>
         </div>
 
-        <div className="flex flex-col gap-2 border-t border-line py-6 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
+        <div className="border-t border-line py-6 text-center text-sm text-muted">
           <p>© 2026 {dict.footer.rights}</p>
-          <p>{dict.common.nonprofit}</p>
         </div>
       </Container>
     </footer>
