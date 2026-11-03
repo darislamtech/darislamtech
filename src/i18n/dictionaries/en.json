@@ -39,12 +39,12 @@
       "body": "For the Muslim in their faith, for everyone in their life."
     },
     {
-      "title": "Free for everyone",
-      "body": "All our products are free for everyone."
+      "title": "All our products are free for everyone",
+      "body": "No subscriptions, no paid services."
     },
     {
-      "title": "Code open to all",
-      "body": "All our products are open source."
+      "title": "All our products are open source",
+      "body": "All code we own is open to learn from and improve."
     },
     {
       "title": "Arabic & English",
@@ -208,6 +208,10 @@
     },
     "principlesTitle": "Our promise in every product",
     "principles": [
+      {
+        "title": "Completely free",
+        "body": "No subscriptions and no paid services, for everyone."
+      },
       {
         "title": "Code open to all",
         "body": "All code we own is published in public repositories under a license that lets anyone use and modify it."

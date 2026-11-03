@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Boxes, Code, Smartphone } from "lucide-react";
+import { Boxes, Code, Gift, Smartphone } from "lucide-react";
 import { localePath } from "@/i18n/config";
 import { getDictionary, getLocale } from "@/i18n/dictionaries";
 import { products } from "@/content/products";
@@ -15,8 +15,8 @@ export async function generateMetadata(): Promise<Metadata> {
 
 const statusStyles = productStatusStyles;
 const statusOrder = productStatusOrder;
-const principleIcons = [Code, Smartphone];
-const principleTones: Tone[] = ["blue", "mint"];
+const principleIcons = [Gift, Code, Smartphone];
+const principleTones: Tone[] = ["gold", "blue", "mint"];
 
 export default async function ProductsPage() {
   const locale = await getLocale();
@@ -93,7 +93,7 @@ export default async function ProductsPage() {
       <section className="reveal py-20 sm:py-24">
         <Container>
           <SectionHeading title={t.principlesTitle} align="center" />
-          <ul className="mx-auto mt-12 grid max-w-4xl gap-4 md:grid-cols-2">
+          <ul className="mt-12 grid gap-4 md:grid-cols-3">
             {t.principles.map((principle, index) => {
               const Icon = principleIcons[index];
               return (
