@@ -90,9 +90,8 @@ export function SiteFooter({ locale, dict }: { locale: Locale; dict: Dictionary 
           </div>
         </div>
 
-        <div className="flex flex-col gap-2 border-t border-line py-6 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
+        <div className="border-t border-line py-6 text-sm text-muted">
           <p>© 2026 {dict.footer.rights}</p>
-          <p>{dict.common.nonprofit}</p>
         </div>
       </Container>
     </footer>
