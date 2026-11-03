@@ -28,7 +28,7 @@
     "theme": "Switch between light and dark theme"
   },
   "common": {
-    "nonprofit": "A 100% non-profit, open-source initiative",
+    "nonprofit": "A non-profit, open-source initiative",
     "now": "Now",
     "readMore": "Read more",
     "learnMore": "Learn more"
@@ -99,7 +99,7 @@
     }
   ],
   "home": {
-    "badge": "100% non-profit · Open source",
+    "badge": "Non-profit · Open source",
     "titleLead": "Beneficial knowledge,",
     "titleAccent": "technology that makes an impact.",
     "intro": "An educational and da'wah platform that strives to prepare scholars and callers with da'wah projects of their own, and programmers and technologists who build tech projects that serve Islam, while offering cultural, awareness and beneficial entertainment content.",
@@ -108,7 +108,7 @@
     "visual": {
       "mission": "Beneficial knowledge",
       "impact": "Technology with impact",
-      "chipNonprofit": "100% non-profit",
+      "chipNonprofit": "Non-profit",
       "chipOpen": "Open source",
       "chipFree": "Free for everyone"
     },
@@ -331,7 +331,7 @@
     "faq": [
       {
         "q": "Is Dar Islam & Technology a registered charity?",
-        "a": "No. \"100% non-profit\" describes the initiative's mission and how it works; it is not a claim to be a legally registered charity."
+        "a": "No. \"Non-profit\" describes the initiative's mission and how it works; it is not a claim to be a legally registered charity."
       },
       {
         "q": "Do you accept donations or financial support?",
@@ -379,7 +379,7 @@
       "The scientific and technical revival of the Muslim community"
     ],
     "communityTitle": "A community initiative",
-    "communityBody": "Dar Islam & Technology is a 100% non-profit, open-source initiative. It started as a one-person effort, and the ambition is a community where Islamic studies specialists, callers and technologists build world-class solutions together."
+    "communityBody": "Dar Islam & Technology is a non-profit, open-source initiative. It started as a one-person effort, and the ambition is a community where Islamic studies specialists, callers and technologists build world-class solutions together."
   },
   "entertainment": {
     "eyebrow": "Entertainment",

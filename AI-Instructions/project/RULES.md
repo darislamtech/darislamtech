@@ -1,8 +1,8 @@
 # Project rules
 
 ## Business rules (from the owner's decisions in Notion)
-- Dar Islam & Technology is 100% non-profit: no paid services, subscriptions or donation flows on the site. Donations are not enabled.
-- "100% non-profit" describes the mission; never claim it is a registered charity.
+- Dar Islam & Technology is non-profit: no paid services, subscriptions or donation flows on the site. Donations are not enabled.
+- "Non-profit" describes the mission; never claim it is a registered charity.
 - All products are free and open source. Never mark a product `available` before it actually launches; product statuses are `available`, `inDevelopment`, `comingSoon`, `idea`.
 - "Learn" is under construction: it shows the plan of a two-year program (a foundation year with one track, then a specialization year with two tracks) and no lessons until real material exists. This plan is the owner's initial idea: never describe it on the site as an "initial idea".
 - Videos stay on YouTube and are embedded only, added by hand (no automatic import).
