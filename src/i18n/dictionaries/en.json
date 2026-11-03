@@ -17,6 +17,7 @@
     "products": "Products",
     "learn": "Learn",
     "contribute": "Contribute",
+    "support": "Support us",
     "about": "About",
     "contact": "Contact",
     "openMenu": "Open menu",
@@ -334,8 +335,8 @@
         "a": "No. \"Non-profit\" describes the initiative's mission and how it works; it is not a claim to be a legally registered charity."
       },
       {
-        "q": "Do you accept donations or financial support?",
-        "a": "Not at the moment. Anything in the future would come only after looking at the legal obligations, transparency and running costs."
+        "q": "Can I support the project financially?",
+        "a": "Yes, and support is entirely optional. You will find the ways on the \"Support us\" page."
       },
       {
         "q": "What license is the code under?",
@@ -389,6 +390,39 @@
     "empty": "No videos in this category yet.",
     "play": "Play video",
     "untitled": "YouTube video"
+  },
+  "support": {
+    "eyebrow": "Support the project",
+    "title": "Help keep the content going",
+    "description": "Dar Islam & Technology is a non-profit initiative: no ads, and no paid products, courses or subscriptions. Everyone is entitled to use the whole platform. If you would like to support the project and help it continue, here is how.",
+    "moneyTitle": "Support the project financially",
+    "moneyBody": "Your support helps us keep going, publish more beneficial content and build new projects.",
+    "moneyPending": "We are setting up the ways to support us financially; they will appear here as soon as they are live.",
+    "moneyThanks": "May Allah reward you with good and bless you.",
+    "moneyNote": "Note: financial support comes with no special perks, so let your intention be to keep the project going and spread what benefits people.",
+    "usesTitle": "Where your support goes",
+    "uses": ["Developers' pay", "Hosting and running costs", "Promoting the platform", "Making content"],
+    "otherTitle": "If you can't support us financially",
+    "other": [
+      {
+        "title": "Make du'a",
+        "body": "Your du'a for us, in our absence, is among the greatest support."
+      },
+      {
+        "title": "Moral support",
+        "body": "Share our content with people you care about, subscribe to the channel and follow our accounts."
+      },
+      {
+        "title": "Be part of the project",
+        "body": "Share your knowledge or skills: Islamic review, programming, design, translation and testing."
+      }
+    ],
+    "contributeButton": "Contribute",
+    "contactTitle": "Get in touch",
+    "contactBody": "For any question about supporting or taking part in the project, email us or reach the supervisor directly.",
+    "founderName": "Marwan Hegazy",
+    "founderRole": "Founder and supervisor",
+    "contactButton": "Contact page"
   },
   "contact": {
     "eyebrow": "Contact",

@@ -30,7 +30,7 @@ src/
     entertainment/     # Recommended YouTube videos: groups → categories → videos
     products/          # Product cards (+ [slug] detail)
     learn/             # Two-year learning program plan, under construction
-    contribute/ about/ contact/
+    contribute/ support/ about/ contact/
   app/globals.css      # design tokens: colors of both themes, fonts, shadows
   content/             # site content as typed data — edit these to publish
   i18n/dictionaries/   # UI text: ar.json (source of truth) and en.json

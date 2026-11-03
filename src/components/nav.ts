@@ -15,7 +15,7 @@ export function getNavItems(locale: Locale, dict: Dictionary): NavItem[] {
   ];
 }
 
-/** Mobile menu: home first, and "Contribute" placed before the about/contact pages. */
+/** Mobile menu: home first, and "Contribute" and "Support us" placed before the about/contact pages. */
 export function getAllNavItems(locale: Locale, dict: Dictionary): NavItem[] {
   const items = getNavItems(locale, dict);
   const aboutIndex = items.findIndex((item) => item.href === localePath(locale, "/about"));
@@ -23,6 +23,7 @@ export function getAllNavItems(locale: Locale, dict: Dictionary): NavItem[] {
     { href: localePath(locale), label: dict.nav.home },
     ...items.slice(0, aboutIndex),
     { href: localePath(locale, "/contribute"), label: dict.nav.contribute },
+    { href: localePath(locale, "/support"), label: dict.nav.support },
     ...items.slice(aboutIndex),
   ];
 }

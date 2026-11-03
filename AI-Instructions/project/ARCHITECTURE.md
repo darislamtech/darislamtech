@@ -14,7 +14,7 @@ src/
     [lang]/                 # root layout; every page lives under /ar or /en
       layout.tsx            # <html lang dir data-theme>, theme script, fonts, header, footer, metadata
       page.tsx              # Home
-      content/ entertainment/ products/ learn/ contribute/ about/ contact/
+      content/ entertainment/ products/ learn/ contribute/ support/ about/ contact/
       content/[slug]/ products/[slug]/   # detail pages; generateStaticParams from src/content
       not-found.tsx
   components/               # shared UI (ui.tsx primitives, page-blocks.tsx, header/footer, icons, pattern)

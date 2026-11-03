@@ -1,5 +1,12 @@
 // Only accounts that actually exist are listed here. Add the rest (GitHub, ...) once they are live.
+
+/** A way to support the project financially, shown on the support page. Add one only once its account is live. */
+export type SupportLink = { name: "Ko-fi" | "PayPal"; href: string };
+
+const supportLinks: SupportLink[] = [];
+
 export const siteConfig = {
+  supportLinks,
   email: "darislamtech@gmail.com",
   socials: [
     { name: "YouTube", href: "https://www.youtube.com/@darislamtech" },

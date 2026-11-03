@@ -22,6 +22,7 @@ export function SiteFooter({ locale, dict }: { locale: Locale; dict: Dictionary 
       title: dict.footer.community,
       links: [
         { href: localePath(locale, "/contribute"), label: dict.nav.contribute },
+        { href: localePath(locale, "/support"), label: dict.nav.support },
         { href: localePath(locale, "/about"), label: dict.nav.about },
         { href: localePath(locale, "/contact"), label: dict.nav.contact },
       ],
