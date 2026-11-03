@@ -331,7 +331,7 @@
     "faq": [
       {
         "q": "Can I support the project financially?",
-        "a": "Yes, and support is entirely optional. You will find the ways on the \"Support us\" page."
+        "a": "Yes, and support is entirely optional. The details are on the \"Support us\" page."
       },
       {
         "q": "What license is the code under?",
@@ -343,7 +343,7 @@
       },
       {
         "q": "How do I report a security issue?",
-        "a": "Privately, never in a public issue. Until we publish a SECURITY policy, email the project address."
+        "a": "Privately, never in a public issue: use Report a vulnerability in the repository's Security tab, or email the project address. The details are in SECURITY.md."
       }
     ],
     "ctaTitle": "Have a question before you start?",

@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { Boxes } from "lucide-react";
 import { localePath } from "@/i18n/config";
 import { getDictionary, getLocale } from "@/i18n/dictionaries";
+import { pageMetadata } from "@/lib/seo";
 import { getProduct, products } from "@/content/products";
 import { GitHubIcon } from "@/components/icons";
 import { productStatusStyles } from "@/components/product-status";
@@ -19,8 +20,8 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps<"/[lang]/products/[slug]">): Promise<Metadata> {
   const product = getProduct((await params).slug);
   if (!product) return {};
-  const locale = await getLocale();
-  return { title: product.name[locale], description: product.summary[locale] };
+  const [locale, dict] = await Promise.all([getLocale(), getDictionary()]);
+  return pageMetadata({ locale, dict, path: `/products/${product.slug}`, title: product.name[locale], description: product.summary[locale] });
 }
 
 export default async function ProductPage({ params }: PageProps<"/[lang]/products/[slug]">) {

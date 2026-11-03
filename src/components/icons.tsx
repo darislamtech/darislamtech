@@ -102,15 +102,6 @@ export function QabilahIcon({ className }: IconProps) {
   );
 }
 
-export function WhatsAppIcon({ className }: IconProps) {
-  return (
-    <Svg className={className}>
-      <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" />
-      <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1" />
-    </Svg>
-  );
-}
-
 export const socialIcons = {
   YouTube: YouTubeIcon,
   Facebook: FacebookIcon,
@@ -121,7 +112,6 @@ export const socialIcons = {
   Telegram: TelegramIcon,
   X: XIcon,
   Qabilah: QabilahIcon,
-  WhatsApp: WhatsAppIcon,
 } as const;
 
 export type SocialName = keyof typeof socialIcons;

@@ -3,6 +3,7 @@ import { Hash, Newspaper } from "lucide-react";
 import { siteConfig } from "@/config/site";
 import { localePath } from "@/i18n/config";
 import { getDictionary, getLocale } from "@/i18n/dictionaries";
+import { pageMetadata } from "@/lib/seo";
 import { posts } from "@/content/posts";
 import { videos } from "@/content/videos";
 import { YouTubeIcon } from "@/components/icons";
@@ -16,8 +17,8 @@ import { cn } from "@/lib/cn";
 const topicTones: Tone[] = ["blue", "gold", "mint", "rose"];
 
 export async function generateMetadata(): Promise<Metadata> {
-  const dict = await getDictionary();
-  return { title: dict.nav.content, description: dict.content.description };
+  const [locale, dict] = await Promise.all([getLocale(), getDictionary()]);
+  return pageMetadata({ locale, dict, path: "/content", title: dict.nav.content, description: dict.content.description });
 }
 
 export default async function ContentPage() {

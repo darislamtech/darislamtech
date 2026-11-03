@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { siteConfig } from "@/config/site";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
   title: "404 | دار الإسلام والتقنية",
+  robots: { index: false },
 };
 
 // Rendered for URLs that match no route at all, outside the [lang] layout, so it is bilingual.

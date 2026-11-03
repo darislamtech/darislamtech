@@ -3,6 +3,7 @@ import { Clapperboard, Coffee, HandHeart, Heart, Mail, Megaphone, Server, Share2
 import { siteConfig, type SupportLink } from "@/config/site";
 import { localePath } from "@/i18n/config";
 import { getDictionary, getLocale } from "@/i18n/dictionaries";
+import { pageMetadata } from "@/lib/seo";
 import { CopyButton } from "@/components/copy-button";
 import { socialIcons } from "@/components/icons";
 import { PageHero } from "@/components/page-blocks";
@@ -10,8 +11,8 @@ import { ButtonLink, Container, IconTile, toneText, type Tone } from "@/componen
 import { cn } from "@/lib/cn";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const dict = await getDictionary();
-  return { title: dict.nav.support, description: dict.support.description };
+  const [locale, dict] = await Promise.all([getLocale(), getDictionary()]);
+  return pageMetadata({ locale, dict, path: "/support", title: dict.nav.support, description: dict.support.description });
 }
 
 const linkIcons: Record<SupportLink["name"], typeof Coffee> = { "Ko-fi": Coffee, PayPal: Wallet };

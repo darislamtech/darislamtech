@@ -16,4 +16,4 @@ Package manager: npm. Node 24.
 - Unknown slugs under `/[lang]/content/` and `/[lang]/products/` render the 404 UI with `noindex` and a 200 status (streamed `notFound()`); that is expected.
 
 ## Deploy
-Target: Vercel (Hobby) for the public repository `darislamtech/darislamtech`, domain `darislamtech.com`. Not connected yet.
+Vercel (Hobby), project `darislamtech`, connected to the public repository `darislamtech/darislamtech`: every merge into `main` deploys production at https://darislamtech.com; every pull request gets a preview URL. `darislamtech.vercel.app` and `www` redirect to the domain. DNS is on Hostinger (A `@` and CNAME `www` point to Vercel). Roll back from Vercel → Deployments → Instant Rollback.

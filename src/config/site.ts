@@ -35,6 +35,8 @@ const founderSocials: Social[] = [
 ];
 
 export const siteConfig = {
+  /** Production origin: canonical URLs, sitemap, Open Graph and structured data. */
+  url: "https://darislamtech.com",
   supportLinks,
   email: "darislamtech@gmail.com",
   socials,

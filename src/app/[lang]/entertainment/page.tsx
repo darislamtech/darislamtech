@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { localePath } from "@/i18n/config";
 import { getDictionary, getLocale } from "@/i18n/dictionaries";
+import { pageMetadata } from "@/lib/seo";
 import { entertainmentGroups } from "@/content/entertainment";
 import { PageHero } from "@/components/page-blocks";
 import { Tabs } from "@/components/tabs";
@@ -10,8 +11,8 @@ import { getYouTubeVideo } from "@/lib/youtube";
 import { cn } from "@/lib/cn";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const dict = await getDictionary();
-  return { title: dict.nav.entertainment, description: dict.entertainment.description };
+  const [locale, dict] = await Promise.all([getLocale(), getDictionary()]);
+  return pageMetadata({ locale, dict, path: "/entertainment", title: dict.nav.entertainment, description: dict.entertainment.description });
 }
 
 // Each category heading takes the next of the four tones.

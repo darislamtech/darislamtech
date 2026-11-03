@@ -2,14 +2,15 @@ import type { Metadata } from "next";
 import { BookOpen, Code, Compass, Construction, ScrollText, ShieldCheck } from "lucide-react";
 import { localePath } from "@/i18n/config";
 import { getDictionary, getLocale } from "@/i18n/dictionaries";
+import { pageMetadata } from "@/lib/seo";
 import { learningYears } from "@/content/learn";
 import { CtaPanel, PageHero } from "@/components/page-blocks";
 import { Badge, Container, IconTile, SectionHeading, type Tone } from "@/components/ui";
 import { cn } from "@/lib/cn";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const dict = await getDictionary();
-  return { title: dict.nav.learn, description: dict.learn.description };
+  const [locale, dict] = await Promise.all([getLocale(), getDictionary()]);
+  return pageMetadata({ locale, dict, path: "/learn", title: dict.nav.learn, description: dict.learn.description });
 }
 
 // Each year and each track takes its own tone, so the page uses all four.

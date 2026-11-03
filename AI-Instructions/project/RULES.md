@@ -23,6 +23,7 @@ Each rule below exists because the mistake already happened once. Add a new one 
 - Header and nav: check English at 1024px and 1280px, not only Arabic; English labels are longer and once pushed a button off screen.
 - After a change, remove any text the change made untrue (for example "coming soon" for something that is now live).
 - Check the changed parts in the built site (screenshot or HTML) before reporting them as done.
+- Take layout screenshots at a normal window height (at least 600px). Headless Edge lays out very short windows (~90px) wrongly, which once looked like a header overflow and led to reverting a correct fix. Compare with another page or the live site before concluding something is broken.
 
 ## Mobile — check on every change (owner's rule, added by claude)
 - Mobile first: check every changed page at phone width (≈375px) in Arabic and English and in both themes. No horizontal page scroll, touch targets at least 44px, and grids that collapse to one column. Give `next/image` a real `sizes`.
@@ -37,7 +38,12 @@ SEO matters to the owner. Apply these on every new or changed page:
 - Meaningful images get descriptive `alt` text; decorative ones get `alt=""`.
 - Internal links use `next/link` with descriptive link text; URLs are short readable English slugs (`/entertainment`, `/products/<slug>`).
 - Use semantic elements (`header`, `nav`, `main`, `section`, `article`, `footer`) and keep `<html lang dir>` correct per locale.
-- Deferred until the end of the project, because they need the final domain: `metadataBase`, `sitemap.xml`, `robots.txt`, ar/en `hreflang` alternates, Open Graph images. Do not start these before the owner asks.
+- Every page's `generateMetadata` returns `pageMetadata()` from `src/lib/seo.ts` (canonical, ar/en/x-default alternates, Open Graph, X card); `metadataBase` is `siteConfig.url`. A new page is also added to the `paths` list in `src/app/sitemap.ts`.
+- The share image is `public/og-image.png` (1200×630), set by `pageMetadata` on every page (not the opengraph-image file convention: a page's own openGraph object drops inherited file images). The home page carries the Organization and WebSite JSON-LD.
+
+## Security headers (added by claude)
+- Security headers and the Content-Security-Policy live in `next.config.ts`. Anything that loads from another origin (a script, iframe, font, analytics or API) must be added to the CSP in the same change, then checked on the built site.
+- The CSP is sent on `darislamtech.com` only, so Vercel preview deployments keep their toolbar.
 
 ## Documentation — `docs/` (owner's rule, added by claude)
 - `docs/` is the organized explanation of the site, written in Arabic: `README.md` (index), `pages.md`, `content.md`, `design.md`, `languages-seo-pwa.md`, `accounts.md`.

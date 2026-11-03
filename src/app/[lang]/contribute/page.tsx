@@ -15,14 +15,15 @@ import {
 import { siteConfig } from "@/config/site";
 import { localePath } from "@/i18n/config";
 import { getDictionary, getLocale } from "@/i18n/dictionaries";
+import { pageMetadata } from "@/lib/seo";
 import { GitHubIcon } from "@/components/icons";
 import { CtaPanel, PageHero } from "@/components/page-blocks";
 import { ButtonLink, Container, IconTile, SectionHeading, toneText, type Tone } from "@/components/ui";
 import { cn } from "@/lib/cn";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const dict = await getDictionary();
-  return { title: dict.nav.contribute, description: dict.contribute.description };
+  const [locale, dict] = await Promise.all([getLocale(), getDictionary()]);
+  return pageMetadata({ locale, dict, path: "/contribute", title: dict.nav.contribute, description: dict.contribute.description });
 }
 
 // Islamic review first, then the technical and creative ways to help.
