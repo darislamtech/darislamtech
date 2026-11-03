@@ -29,7 +29,7 @@
     "theme": "Switch between light and dark theme"
   },
   "common": {
-    "nonprofit": "A non-profit, open-source initiative",
+    "nonprofit": "A non-profit initiative",
     "now": "Now",
     "readMore": "Read more",
     "learnMore": "Learn more"
@@ -456,11 +456,11 @@
     "followBody": "News about our content and products."
   },
   "footer": {
-    "about": "A non-profit educational and da'wah platform: Islamic knowledge and da'wah, and technology that serves Islam, open source.",
+    "about": "An educational and da'wah platform: Islamic knowledge and da'wah, and technology that serves Islam.",
     "platform": "Platform",
     "community": "Community",
     "openSourceTitle": "Open source",
-    "openSource": "The website's code is open source on GitHub.",
+    "openSource": "The website's code is on GitHub.",
     "rights": "Dar Islam & Technology"
   },
   "notFound": {
