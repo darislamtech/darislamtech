@@ -7,8 +7,8 @@
 - "Learn" is under construction: it shows the plan of a two-year program (a foundation year with one track, then a specialization year with two tracks) and no lessons until real material exists. This plan is the owner's initial idea: never describe it on the site as an "initial idea".
 - Videos stay on YouTube and are embedded only, added by hand (no automatic import).
 - Entertainment videos show only the YouTube title and thumbnail (no description); the player loads in the page on click (`components/video-card.tsx`, youtube-nocookie).
-- The founder's name appears only as the contact on the support page («مروان حجازي — المؤسس والمشرف»); no photo.
-- Only link accounts and channels that exist (`src/config/site.ts`). The GitHub organization and repository exist (`docs/accounts.md`); GitHub links are added to the site only after the owner agrees.
+- The founder's name and personal accounts (`marwan7egazy`) appear only in the contact card of the support page («مروان حجازي — المؤسس والمشرف»); no photo.
+- Only link accounts and channels that exist (`src/config/site.ts`, listed in `docs/accounts.md`). No Snapchat.
 - Islamic content needs trusted sources and qualified review; never add verses, adhkar or rulings from unverified sources.
 - Design decisions (logo, colors, fonts, page layouts) are discussed with the owner before they are treated as approved.
 

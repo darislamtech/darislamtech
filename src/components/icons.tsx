@@ -62,9 +62,66 @@ export function TikTokIcon({ className }: IconProps) {
   );
 }
 
+export function LinkedInIcon({ className }: IconProps) {
+  return (
+    <Svg className={className}>
+      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" />
+      <rect x="2" y="9" width="4" height="12" />
+      <circle cx="4" cy="4" r="2" />
+    </Svg>
+  );
+}
+
+export function TelegramIcon({ className }: IconProps) {
+  return (
+    <Svg className={className}>
+      <path d="M21.5 4.5 2.8 11.6a.6.6 0 0 0 0 1.1l4.7 1.7 1.8 5.4a.6.6 0 0 0 1 .3l2.7-2.5 4.7 3.5a.7.7 0 0 0 1.1-.4l3.4-14.4a.6.6 0 0 0-.7-.8z" />
+      <path d="m7.5 14.4 9.9-6.9-7.2 8.6" />
+    </Svg>
+  );
+}
+
+export function XIcon({ className }: IconProps) {
+  return (
+    <Svg className={className}>
+      <path d="M4 4l11.7 16H20L8.3 4z" />
+      <path d="M4 20l6.8-6.8m2.4-2.4L20 4" />
+    </Svg>
+  );
+}
+
+/** Qabilah («قبيلة», "tribe") has no brand mark we can reuse; a tent stands in for it. */
+export function QabilahIcon({ className }: IconProps) {
+  return (
+    <Svg className={className}>
+      <path d="M3.5 21 14 3" />
+      <path d="M20.5 21 10 3" />
+      <path d="M15.5 21 12 15l-3.5 6" />
+      <path d="M2 21h20" />
+    </Svg>
+  );
+}
+
+export function WhatsAppIcon({ className }: IconProps) {
+  return (
+    <Svg className={className}>
+      <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" />
+      <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1" />
+    </Svg>
+  );
+}
+
 export const socialIcons = {
   YouTube: YouTubeIcon,
   Facebook: FacebookIcon,
   Instagram: InstagramIcon,
   TikTok: TikTokIcon,
+  GitHub: GitHubIcon,
+  LinkedIn: LinkedInIcon,
+  Telegram: TelegramIcon,
+  X: XIcon,
+  Qabilah: QabilahIcon,
+  WhatsApp: WhatsAppIcon,
 } as const;
+
+export type SocialName = keyof typeof socialIcons;

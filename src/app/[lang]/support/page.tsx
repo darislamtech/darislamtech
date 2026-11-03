@@ -4,6 +4,7 @@ import { siteConfig, type SupportLink } from "@/config/site";
 import { localePath } from "@/i18n/config";
 import { getDictionary, getLocale } from "@/i18n/dictionaries";
 import { CopyButton } from "@/components/copy-button";
+import { socialIcons } from "@/components/icons";
 import { PageHero } from "@/components/page-blocks";
 import { ButtonLink, Container, IconTile, toneText, type Tone } from "@/components/ui";
 import { cn } from "@/lib/cn";
@@ -136,6 +137,24 @@ export default async function SupportPage() {
               <Mail aria-hidden="true" className="size-4 shrink-0 text-muted" />
               {siteConfig.email}
             </a>
+            <ul className="mt-5 flex flex-wrap gap-2">
+              {siteConfig.founderSocials.map((social) => {
+                const Icon = socialIcons[social.name];
+                return (
+                  <li key={social.name}>
+                    <a
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${t.founderName} – ${social.name}`}
+                      className="grid size-11 place-items-center rounded-full border border-line bg-surface-2 text-ink-2 transition-colors hover:border-primary/30 hover:bg-primary-soft hover:text-primary-ink"
+                    >
+                      <Icon className="size-[1.1rem]" />
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
           <div className="flex flex-wrap gap-3">
             <CopyButton value={siteConfig.email} label={dict.contact.copy} copiedLabel={dict.contact.copied} />

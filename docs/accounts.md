@@ -15,5 +15,21 @@
 | قبيلة | https://qabilah.com/profile/darislamtech/posts |
 | البريد الإلكتروني | darislamtech@gmail.com |
 
-- الموقع يعرض حاليًا يوتيوب وفيسبوك وإنستجرام وتيك توك والبريد فقط، ومصدرها `src/config/site.ts`. أي حساب يُضاف للموقع أو يتغيّر يُعدَّل هناك وفي هذا الملف معًا.
+- الموقع يعرض كل الحسابات التسعة والبريد (الفوتر، صفحة التواصل، قسم القناة في الرئيسية)، ومصدرها `socials` في `src/config/site.ts`. أي حساب يُضاف أو يتغيّر يُعدَّل هناك وفي هذا الملف معًا.
 - نفس القائمة في نوشن: صفحة «حسابات التواصل» داخل قسم دار الإسلام والتقنية.
+
+## حسابات المؤسس
+
+حسابات مروان حجازي (المؤسس والمشرف)، تظهر في بطاقة «تواصل معنا» بصفحة «ادعمنا». اسم المستخدم في كل المنصات: `marwan7egazy`. المصدر `founderSocials` في `src/config/site.ts`.
+
+| المنصة | الرابط |
+|---|---|
+| يوتيوب | https://www.youtube.com/@marwan7egazy |
+| فيسبوك | https://www.facebook.com/marwan7egazy |
+| إنستجرام | https://www.instagram.com/marwan7egazy/ |
+| تيك توك | https://www.tiktok.com/@marwan7egazy |
+| جيت هب | https://github.com/marwan7egazy |
+| لينكد إن | https://www.linkedin.com/in/marwan7egazy |
+| تيليجرام | https://t.me/marwan7egazy |
+| إكس (تويتر) | https://x.com/marwan7egazy |
+| قبيلة | https://qabilah.com/profile/marwan7egazy/posts |
