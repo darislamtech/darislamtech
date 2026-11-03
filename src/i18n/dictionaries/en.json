@@ -189,7 +189,7 @@
   },
   "products": {
     "eyebrow": "Products",
-    "title": "Useful tools, free for everyone",
+    "title": "Useful, open-source tools",
     "description": "Open-source digital products and projects, with an honest status for each: what is available, what is in development and what is still an idea.",
     "emptyTitle": "Our first product is on its way",
     "emptyBody": "We have not launched a product yet, and we never list one before it launches. Our products will appear here with the first release.",
@@ -210,10 +210,6 @@
     "principlesTitle": "Our promise in every product",
     "principles": [
       {
-        "title": "Completely free",
-        "body": "No subscriptions and no paid services, for everyone."
-      },
-      {
         "title": "Open source",
         "body": "All code we own is published in public repositories under an open license."
       },
@@ -225,7 +221,7 @@
     "suggestTitle": "Have an idea for a useful product?",
     "suggestBody": "Share it with us. Many of the best projects started as a suggestion.",
     "suggestCta": "Suggest an idea",
-    "free": "Free and open source",
+    "openSource": "Open source",
     "open": "Open product",
     "source": "Source code",
     "video": "Intro video",
@@ -460,7 +456,7 @@
     "followBody": "News about our content and products."
   },
   "footer": {
-    "about": "A non-profit educational and da'wah platform: Islamic knowledge and da'wah, and technology that serves Islam, free and open source.",
+    "about": "A non-profit educational and da'wah platform: Islamic knowledge and da'wah, and technology that serves Islam, open source.",
     "platform": "Platform",
     "community": "Community",
     "openSourceTitle": "Open source",
