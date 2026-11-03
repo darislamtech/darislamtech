@@ -40,11 +40,11 @@
     },
     {
       "title": "Free for everyone",
-      "body": "No subscriptions, no paid services."
+      "body": "All our products are free for everyone."
     },
     {
-      "title": "Open source",
-      "body": "All code we own is open to learn from and improve."
+      "title": "Code open to all",
+      "body": "All our products are open source."
     },
     {
       "title": "Arabic & English",
@@ -188,8 +188,8 @@
   },
   "products": {
     "eyebrow": "Products",
-    "title": "Useful, open-source tools",
-    "description": "Open-source digital products and projects, with an honest status for each: what is available, what is in development and what is still an idea.",
+    "title": "Useful tools",
+    "description": "Digital products and projects, with an honest status for each: what is available, what is in development and what is still an idea.",
     "emptyTitle": "Our first product is on its way",
     "emptyBody": "We have not launched a product yet, and we never list one before it launches. Our products will appear here with the first release.",
     "statusTitle": "How we label each product",
@@ -209,8 +209,8 @@
     "principlesTitle": "Our promise in every product",
     "principles": [
       {
-        "title": "Open source",
-        "body": "All code we own is published in public repositories under an open license."
+        "title": "Code open to all",
+        "body": "All code we own is published in public repositories under a license that lets anyone use and modify it."
       },
       {
         "title": "Works on your phone",
@@ -220,7 +220,6 @@
     "suggestTitle": "Have an idea for a useful product?",
     "suggestBody": "Share it with us. Many of the best projects started as a suggestion.",
     "suggestCta": "Suggest an idea",
-    "openSource": "Open source",
     "open": "Open product",
     "source": "Source code",
     "video": "Intro video",
@@ -241,14 +240,14 @@
   },
   "contribute": {
     "eyebrow": "Contribute",
-    "title": "Open projects, built by the community",
-    "description": "Dar Islam & Technology is a non-profit initiative, and the website and every product we own the rights to are open source. Every contribution, however small, makes an impact.",
+    "title": "Projects built by the community",
+    "description": "The website's code and every product we own the rights to are available to everyone on GitHub. Every contribution, however small, makes an impact.",
     "statusTitle": "The website's code is on GitHub",
     "status": "The website repository is live. We are preparing the contribution guide and the code of conduct, and will publish them here as soon as they are ready.",
     "repoButton": "Open the repository",
     "stepsEyebrow": "For developers",
     "stepsTitle": "How to contribute code",
-    "stepsBody": "A clear, familiar flow for anyone who has worked on an open-source project.",
+    "stepsBody": "A clear, familiar flow for anyone who has contributed to a project on GitHub.",
     "steps": [
       {
         "title": "Explore the projects",
@@ -327,10 +326,6 @@
     "faqTitle": "Frequently asked questions",
     "faq": [
       {
-        "q": "Is Dar Islam & Technology a registered charity?",
-        "a": "No. \"Non-profit\" describes the initiative's mission and how it works; it is not a claim to be a legally registered charity."
-      },
-      {
         "q": "Can I support the project financially?",
         "a": "Yes, and support is entirely optional. You will find the ways on the \"Support us\" page."
       },
@@ -376,7 +371,7 @@
       "The scientific and technical revival of the Muslim community"
     ],
     "communityTitle": "A community initiative",
-    "communityBody": "Dar Islam & Technology is a non-profit, open-source initiative. It started as a one-person effort, and the ambition is a community where Islamic studies specialists, callers and technologists build world-class solutions together."
+    "communityBody": "Dar Islam & Technology started as a one-person effort, and the ambition is a community where Islamic studies specialists, callers and technologists build world-class solutions together."
   },
   "entertainment": {
     "eyebrow": "Entertainment",
@@ -458,7 +453,7 @@
     "about": "An educational and da'wah platform: Islamic knowledge and da'wah, and technology that serves Islam.",
     "platform": "Platform",
     "community": "Community",
-    "openSourceTitle": "Open source",
+    "openSourceTitle": "Source code",
     "openSource": "The website's code is on GitHub.",
     "rights": "Dar Islam & Technology"
   },

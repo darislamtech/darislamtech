@@ -51,7 +51,6 @@ export default async function ProductPage({ params }: PageProps<"/[lang]/product
                 <Badge tone={productStatusStyles[product.status].tone} dot>
                   {t.status[product.status]}
                 </Badge>
-                <Badge tone="muted">{t.openSource}</Badge>
               </div>
               <h1 className="mt-4 font-display text-4xl leading-tight font-bold text-ink sm:text-5xl">
                 {product.name[locale]}

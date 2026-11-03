@@ -90,7 +90,7 @@ export function SiteFooter({ locale, dict }: { locale: Locale; dict: Dictionary 
           </div>
         </div>
 
-        <div className="border-t border-line py-6 text-sm text-muted">
+        <div className="border-t border-line py-6 text-center text-sm text-muted">
           <p>© 2026 {dict.footer.rights}</p>
         </div>
       </Container>
