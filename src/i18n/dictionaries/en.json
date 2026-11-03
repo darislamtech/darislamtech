@@ -247,9 +247,10 @@
   "contribute": {
     "eyebrow": "Contribute",
     "title": "Open projects, built by the community",
-    "description": "Dar Islam & Technology is a fully non-profit initiative, and the website and every product we own the rights to are open source. Every contribution, however small, makes an impact.",
-    "statusTitle": "GitHub repositories are being set up",
-    "status": "We are preparing the repositories, the contribution guide and the code of conduct, and will publish the links here as soon as they launch.",
+    "description": "Dar Islam & Technology is a non-profit initiative, and the website and every product we own the rights to are open source. Every contribution, however small, makes an impact.",
+    "statusTitle": "The website's code is on GitHub",
+    "status": "The website repository is live. We are preparing the contribution guide and the code of conduct, and will publish them here as soon as they are ready.",
+    "repoButton": "Open the repository",
     "stepsEyebrow": "For developers",
     "stepsTitle": "How to contribute code",
     "stepsBody": "A clear, familiar flow for anyone who has worked on an open-source project.",
