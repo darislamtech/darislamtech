@@ -392,14 +392,14 @@
     "untitled": "YouTube video"
   },
   "support": {
-    "eyebrow": "Support the project",
-    "title": "Help keep the content going",
+    "eyebrow": "Support us",
+    "title": "Support the project",
     "description": "Dar Islam & Technology is a non-profit initiative: no ads, and no paid products, courses or subscriptions. Everyone is entitled to use the whole platform. If you would like to support the project and help it continue, here is how.",
     "moneyTitle": "Support the project financially",
     "moneyBody": "Your support helps us keep going, publish more beneficial content and build new projects.",
     "moneyPending": "We are setting up the ways to support us financially; they will appear here as soon as they are live.",
     "moneyThanks": "May Allah reward you with good and bless you.",
-    "moneyNote": "Note: financial support comes with no special perks, so let your intention be to keep the project going and spread what benefits people.",
+    "moneyNote": "Note: financial support comes with no special perks on the site.",
     "usesTitle": "Where your support goes",
     "uses": ["Developers' pay", "Hosting and running costs", "Promoting the platform", "Making content"],
     "otherTitle": "If you can't support us financially",

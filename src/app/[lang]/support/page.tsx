@@ -123,9 +123,10 @@ export default async function SupportPage() {
           <div className="max-w-xl">
             <h2 className="font-display text-2xl font-semibold text-ink">{t.contactTitle}</h2>
             <p className="mt-2 leading-relaxed text-muted">{t.contactBody}</p>
-            <p className="mt-5 font-semibold text-ink">
-              {t.founderName}
-              <span className="ms-2 text-sm font-normal text-muted">{t.founderRole}</span>
+            {/* Separate flex items: inline siblings with no space would join the name's last Arabic letter to the role. */}
+            <p className="mt-5 flex flex-wrap items-baseline gap-x-2">
+              <span className="font-semibold text-ink">{t.founderName}</span>
+              <span className="text-sm text-muted">{t.founderRole}</span>
             </p>
             <a
               href={`mailto:${siteConfig.email}`}
