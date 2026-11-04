@@ -19,14 +19,16 @@ function preferredLocale(request: NextRequest): Locale {
   const saved = request.cookies.get(LOCALE_COOKIE)?.value;
   if (saved && isLocale(saved)) return saved;
 
-  // The browser's main language is the Accept-Language entry with the highest quality (the first one wins ties).
+  // The browser's main language is the Accept-Language entry with the highest quality (the first one wins ties;
+  // q=0 means "not acceptable").
   let main = "";
-  let mainQuality = -1;
+  let mainQuality = 0;
   for (const entry of (request.headers.get("accept-language") ?? "").split(",")) {
-    const [tag, ...params] = entry.trim().split(";");
-    const quality = Number(params.find((param) => param.trim().startsWith("q="))?.trim().slice(2) ?? 1);
-    if (tag && quality > mainQuality) {
-      main = tag.toLowerCase().split("-")[0];
+    const [rawTag, ...params] = entry.split(";").map((part) => part.trim());
+    const qParam = params.find((param) => param.toLowerCase().startsWith("q="));
+    const quality = qParam ? Number(qParam.slice(2)) : 1;
+    if (rawTag && quality > mainQuality) {
+      main = rawTag.toLowerCase().split("-")[0];
       mainQuality = quality;
     }
   }

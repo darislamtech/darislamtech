@@ -15,7 +15,7 @@ The Dar Islam & Technology website — a non-profit, open-source educational and
 
 ```bash
 npm install
-npm run dev      # http://localhost:3000 → redirects to /ar
+npm run dev      # http://localhost:3000 → redirects to the visitor's language (/ar or /en)
 npm run build    # production build
 npm run lint
 ```

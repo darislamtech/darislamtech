@@ -5,7 +5,7 @@ Package manager: npm. Node 24.
 | Purpose | Command |
 |---|---|
 | Install | `npm install` |
-| Dev server | `npm run dev` (http://localhost:3000 → redirects to /ar) |
+| Dev server | `npm run dev` (http://localhost:3000 → redirects to the visitor's language, /ar or /en) |
 | Lint | `npm run lint` |
 | Type check | `npx tsc --noEmit` |
 | Build | `npm run build` |
