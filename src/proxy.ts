@@ -1,15 +1,38 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { defaultLocale, isLocale } from "@/i18n/config";
+import { defaultLocale, isLocale, LOCALE_COOKIE, type Locale } from "@/i18n/config";
 
-// Every visit without a locale in the URL opens in Arabic, whatever the browser language;
-// visitors switch to English with the language switcher.
+// A visit without a locale in the URL opens in the language the visitor last chose with the language switcher;
+// on a first visit, English when the browser's main language is English, otherwise Arabic.
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const firstSegment = pathname.split("/")[1] ?? "";
   if (isLocale(firstSegment)) return;
 
-  request.nextUrl.pathname = `/${defaultLocale}${pathname === "/" ? "" : pathname}`;
-  return NextResponse.redirect(request.nextUrl);
+  request.nextUrl.pathname = `/${preferredLocale(request)}${pathname === "/" ? "" : pathname}`;
+  // Temporary redirect: the target depends on the visitor, so caches must vary on what decided it.
+  const response = NextResponse.redirect(request.nextUrl);
+  response.headers.set("Vary", "Cookie, Accept-Language");
+  return response;
+}
+
+function preferredLocale(request: NextRequest): Locale {
+  const saved = request.cookies.get(LOCALE_COOKIE)?.value;
+  if (saved && isLocale(saved)) return saved;
+
+  // The browser's main language is the Accept-Language entry with the highest quality (the first one wins ties;
+  // q=0 means "not acceptable").
+  let main = "";
+  let mainQuality = 0;
+  for (const entry of (request.headers.get("accept-language") ?? "").split(",")) {
+    const [rawTag, ...params] = entry.split(";").map((part) => part.trim());
+    const qParam = params.find((param) => param.toLowerCase().startsWith("q="));
+    const quality = qParam ? Number(qParam.slice(2)) : 1;
+    if (rawTag && quality > mainQuality) {
+      main = rawTag.toLowerCase().split("-")[0];
+      mainQuality = quality;
+    }
+  }
+  return main === "en" ? "en" : defaultLocale;
 }
 
 export const config = {

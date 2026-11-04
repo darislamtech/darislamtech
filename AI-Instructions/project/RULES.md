@@ -24,6 +24,8 @@ Each rule below exists because the mistake already happened once. Add a new one 
 - After a change, remove any text the change made untrue (for example "coming soon" for something that is now live).
 - Check the changed parts in the built site (screenshot or HTML) before reporting them as done.
 - Take layout screenshots at a normal window height (at least 600px). Headless Edge lays out very short windows (~90px) wrongly, which once looked like a header overflow and led to reverting a correct fix. Compare with another page or the live site before concluding something is broken.
+- Label every open PR you mention: «لا تدمجه بعد» while its review runs, «جاهز للدمج» only after approval; for stacked PRs say which one merges first. A stacked PR once got merged and deployed before its review finished.
+- Write commit messages and PR bodies with the file-writing tool, not PowerShell `Set-Content -Encoding utf8` (Windows PowerShell 5.1 adds a BOM that ended up in a commit subject).
 
 ## Mobile — check on every change (owner's rule, added by claude)
 - Mobile first: check every changed page at phone width (≈375px) in Arabic and English and in both themes. No horizontal page scroll, touch targets at least 44px, and grids that collapse to one column. Give `next/image` a real `sizes`.
@@ -53,6 +55,7 @@ SEO matters to the owner. Apply these on every new or changed page:
 
 ## Conventions
 - Site copy: Islamic knowledge and da'wah always come before technology in every title, list and ordering. The Islamic side addresses the Muslim; the tech side addresses every person (e.g. «ما لا يسع المسلمَ جهلُه في دينه، وما لا يسع الإنسانَ جهلُه في التقنية»). Keep the current style: simple, warm Modern Standard Arabic. The approved definition, mission, vision and ambition are in `docs/README.md`.
+- Git history (owner's rule): when the owner asks for a change and later reverts or reworks it, the history must look as if only the final version was ever written. Rework unpushed commits (amend or fixup) instead of adding "undo" commits, keep commit messages describing only what the commit contains, and recommend **Squash and merge** for PRs whose branch went back and forth. Force-pushing a pushed branch still needs the owner's approval.
 - Every user-facing string goes in both `ar.json` and `en.json`; content entries carry `{ ar, en }`.
 - Arabic is the default locale and must read correctly in RTL: use logical utilities (`ms-`, `pe-`, `start-`, `end-`), flip directional icons with `rtl:`, and wrap mixed-direction snippets with `<bdi>` or `dir`.
 - No letter-spacing on Arabic text (it breaks letter joining); apply tracking with `ltr:` only.

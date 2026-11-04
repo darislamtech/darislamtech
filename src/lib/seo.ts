@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { defaultLocale, localePath, locales, type Locale } from "@/i18n/config";
+import { localePath, locales, type Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries";
 
 const ogLocales: Record<Locale, string> = { ar: "ar_AR", en: "en_US" };
@@ -8,11 +8,14 @@ const ogLocales: Record<Locale, string> = { ar: "ar_AR", en: "en_US" };
 // otherwise replace an image inherited from the app/opengraph-image file convention.
 const shareImage = { url: "/og-image.png", width: 1200, height: 630 };
 
-/** ar/en/x-default alternates for a path after the locale ("" for home, "/about", ...). */
+/**
+ * ar/en/x-default alternates for a path after the locale ("" for home, "/about", ...). x-default is the same path
+ * without a locale, which src/proxy.ts sends to the visitor's language.
+ */
 export function languageAlternates(path: string) {
   return {
     ...Object.fromEntries(locales.map((locale) => [locale, localePath(locale, path)])),
-    "x-default": localePath(defaultLocale, path),
+    "x-default": path || "/",
   };
 }
 

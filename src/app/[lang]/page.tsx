@@ -61,7 +61,8 @@ export default async function HomePage() {
         "@id": `${siteConfig.url}/#organization`,
         name: dict.brand.name,
         alternateName: locale === "ar" ? "Dar Islam & Technology" : "دار الإسلام والتقنية",
-        url: homeUrl,
+        // One URL for the organization in both languages; the per-language home is on the WebSite node.
+        url: siteConfig.url,
         logo: `${siteConfig.url}/icons/icon-512.png`,
         email: siteConfig.email,
         description: dict.meta.description,

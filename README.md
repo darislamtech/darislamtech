@@ -15,7 +15,7 @@ The Dar Islam & Technology website — a non-profit, open-source educational and
 
 ```bash
 npm install
-npm run dev      # http://localhost:3000 → redirects to /ar
+npm run dev      # http://localhost:3000 → redirects to the visitor's language (/ar or /en)
 npm run build    # production build
 npm run lint
 ```
@@ -35,7 +35,7 @@ src/
   content/             # site content as typed data — edit these to publish
   i18n/dictionaries/   # UI text: ar.json (source of truth) and en.json
   config/site.ts       # email and social accounts
-  proxy.ts             # redirects / to /ar (Arabic is always the default)
+  proxy.ts             # sends / to the visitor's language (saved choice, else English browsers → /en, others → /ar)
 docs/                  # site documentation (Arabic), current state only
 ```
 
