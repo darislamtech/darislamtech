@@ -26,6 +26,8 @@ Each rule below exists because the mistake already happened once. Add a new one 
 - Take layout screenshots at a normal window height (at least 600px). Headless Edge lays out very short windows (~90px) wrongly, which once looked like a header overflow and led to reverting a correct fix. Compare with another page or the live site before concluding something is broken.
 - Label every open PR you mention: «لا تدمجه بعد» while its review runs, «جاهز للدمج» only after approval; for stacked PRs say which one merges first. A stacked PR once got merged and deployed before its review finished.
 - Write commit messages and PR bodies with the file-writing tool, not PowerShell `Set-Content -Encoding utf8` (Windows PowerShell 5.1 adds a BOM that ended up in a commit subject).
+- Before relying on a browser event or API, read its documented lifecycle and test repeats, not only the first event (Chrome fires `beforeinstallprompt` again after its install dialog is closed; the install card once came back 3 s after the visitor dismissed it).
+- After browser or server tests, stop every process the test started (headless Edge, `next start`) and check the process list; 68 headless Edge processes and four servers were once left running.
 
 ## Mobile — check on every change (owner's rule, added by claude)
 - Mobile first: check every changed page at phone width (≈375px) in Arabic and English and in both themes. No horizontal page scroll, touch targets at least 44px, and grids that collapse to one column. Give `next/image` a real `sizes`.
@@ -70,7 +72,7 @@ SEO matters to the owner. Apply these on every new or changed page:
   - Every new text/background pair must meet WCAG AA (4.5:1, or 3:1 for large text and UI marks) on every surface of both themes.
   - Product status colors come from `components/product-status.ts`.
 - Logo: `components/brand.tsx`, traced from the owner's logo image (a house-shaped arch spelling «دار» with a gold door). Tokens `logo` (left half), `logo-deep` (right half) and `logo-accent` (door): greens #2A513F / #1C3A2F and gold #D0A368 in light, cream #F3F0E4 / #DDD8C6 and gold #F0C982 in dark. The favicon and app icons show the image's own colors on its cream #F8F5EB. `app/icon.svg`, `app/favicon.ico`, `app/apple-icon.png` and `public/icons/*` are generated from the same paths.
-- PWA: `app/manifest.ts` (installable, opens on `/ar`, standalone, RTL) with the icons in `public/icons/` (192, 512 and a maskable 512). No service worker yet: no offline mode and no notifications.
+- PWA: `app/manifest.ts` (installable, opens on `/` so the proxy picks the visitor's language, standalone, Arabic name and RTL) with the icons in `public/icons/` (192, 512 and a maskable 512). The mobile install card is `components/install-prompt.tsx` (Install button on Chromium once it fires `beforeinstallprompt`, Share → Add to Home Screen steps on iOS Safari but not in social in-app browsers, "remind me in a week" or closing the install dialog snoozes it 7 days in localStorage; the browser's own install banner stays held back on phones). No service worker yet: no offline mode and no notifications.
 - Reuse primitives in `components/ui.tsx` and `components/page-blocks.tsx` before adding new ones.
 - Animations must respect `prefers-reduced-motion`.
 - Read the relevant guide in `node_modules/next/dist/docs/` before using a Next.js API.

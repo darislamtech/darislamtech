@@ -453,6 +453,14 @@
     "followTitle": "Follow us",
     "followBody": "News about our content and products."
   },
+  "install": {
+    "title": "Install the Dar Islam & Technology app",
+    "body": "Open the site from your home screen like any app, without the browser bar.",
+    "install": "Install",
+    "later": "Remind me in a week",
+    "iosBefore": "Tap the Share button",
+    "iosAfter": "then choose \"Add to Home Screen\"."
+  },
   "footer": {
     "about": "An educational and da'wah platform: Islamic knowledge and da'wah, and technology that serves Islam.",
     "platform": "Platform",

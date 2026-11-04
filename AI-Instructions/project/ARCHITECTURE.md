@@ -11,7 +11,7 @@ src/
   proxy.ts                  # redirects paths without a locale to the saved language (cookie `locale`, set by the language switcher), else English for English browsers, else Arabic
   app/
     globals.css             # design tokens (colors, fonts, shadows, animations) — the only place for raw colors
-    manifest.ts             # PWA web app manifest (name, start_url /ar, icons in public/icons/)
+    manifest.ts             # PWA web app manifest (name, start_url / → visitor's language, icons in public/icons/)
     sitemap.ts robots.ts    # /sitemap.xml (every page × locale with alternates) and /robots.txt
     icon.svg favicon.ico apple-icon.png   # generated from the logo paths in components/brand.tsx
     global-not-found.tsx    # bilingual 404 for URLs outside /[lang] (experimental.globalNotFound)
@@ -38,7 +38,7 @@ src/
 ## Data flow
 - Locale comes from the `[lang]` root param (`next/root-params`), never from props drilled through components.
 - UI strings come from the dictionaries; content entries carry both languages as `{ ar, en }`.
-- Client components are limited to interactivity: header scroll state, mobile menu, nav active state, language switcher, theme script and toggle, tabs, video player, copy button.
+- Client components are limited to interactivity: header scroll state, mobile menu, nav active state, language switcher, theme script and toggle, tabs, video player, copy button, install prompt (mobile install card).
 
 ## Cache Components constraints
 - Dynamic routes must return at least one param from `generateStaticParams`; empty content lists return a placeholder slug that renders `notFound()`.
