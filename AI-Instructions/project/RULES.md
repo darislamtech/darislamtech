@@ -55,6 +55,7 @@ SEO matters to the owner. Apply these on every new or changed page:
 
 ## Conventions
 - Site copy: Islamic knowledge and da'wah always come before technology in every title, list and ordering. The Islamic side addresses the Muslim; the tech side addresses every person (e.g. «ما لا يسع المسلمَ جهلُه في دينه، وما لا يسع الإنسانَ جهلُه في التقنية»). Keep the current style: simple, warm Modern Standard Arabic. The approved definition, mission, vision and ambition are in `docs/README.md`.
+- Git history (owner's rule): when the owner asks for a change and later reverts or reworks it, the history must look as if only the final version was ever written. Rework unpushed commits (amend or fixup) instead of adding "undo" commits, keep commit messages describing only what the commit contains, and recommend **Squash and merge** for PRs whose branch went back and forth. Force-pushing a pushed branch still needs the owner's approval.
 - Every user-facing string goes in both `ar.json` and `en.json`; content entries carry `{ ar, en }`.
 - Arabic is the default locale and must read correctly in RTL: use logical utilities (`ms-`, `pe-`, `start-`, `end-`), flip directional icons with `rtl:`, and wrap mixed-direction snippets with `<bdi>` or `dir`.
 - No letter-spacing on Arabic text (it breaks letter joining); apply tracking with `ltr:` only.

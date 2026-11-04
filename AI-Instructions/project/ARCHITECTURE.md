@@ -8,7 +8,7 @@ next.config.ts              # security headers, Content-Security-Policy (product
 SECURITY.md                 # how to report a vulnerability
 public/og-image.png         # 1200×630 share image used by every page
 src/
-  proxy.ts                  # redirects paths without a locale to /ar (Arabic is always the default)
+  proxy.ts                  # redirects paths without a locale to the saved language (cookie `locale`, set by the language switcher), else English for English browsers, else Arabic
   app/
     globals.css             # design tokens (colors, fonts, shadows, animations) — the only place for raw colors
     manifest.ts             # PWA web app manifest (name, start_url /ar, icons in public/icons/)
