@@ -5,6 +5,7 @@ import { getDirection, locales } from "@/i18n/config";
 import { getDictionary, getLocale } from "@/i18n/dictionaries";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { InstallPrompt } from "@/components/install-prompt";
 import { THEME_COLORS } from "@/components/theme";
 import { ThemeScript } from "@/components/theme-script";
 import "../globals.css";
@@ -80,6 +81,7 @@ export default async function RootLayout({ children }: LayoutProps<"/[lang]">) {
           {children}
         </main>
         <SiteFooter locale={locale} dict={dict} />
+        <InstallPrompt labels={dict.install} />
       </body>
     </html>
   );

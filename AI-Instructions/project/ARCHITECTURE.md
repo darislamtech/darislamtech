@@ -38,7 +38,7 @@ src/
 ## Data flow
 - Locale comes from the `[lang]` root param (`next/root-params`), never from props drilled through components.
 - UI strings come from the dictionaries; content entries carry both languages as `{ ar, en }`.
-- Client components are limited to interactivity: header scroll state, mobile menu, nav active state, language switcher, theme script and toggle, tabs, video player, copy button.
+- Client components are limited to interactivity: header scroll state, mobile menu, nav active state, language switcher, theme script and toggle, tabs, video player, copy button, install prompt (mobile install card).
 
 ## Cache Components constraints
 - Dynamic routes must return at least one param from `generateStaticParams`; empty content lists return a placeholder slug that renders `notFound()`.
