@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Download, Share } from "lucide-react";
 import { LogoMark } from "./brand";
 
@@ -21,8 +21,9 @@ type InstallLabels = {
 
 const SNOOZE_KEY = "install-prompt-snooze-until";
 const WEEK_MS = 7 * 24 * 60 * 60 * 1000;
-const INSTALLED_MS = 10 * 365 * 24 * 60 * 60 * 1000;
 const SHOW_DELAY_MS = 3000;
+// In-app browsers of the apps our social links open in have no "Add to Home Screen".
+const IN_APP_BROWSER = /instagram|fban|fbav|fb_iab|musical_ly|bytedancewebview|linkedinapp|snapchat|line\//i;
 
 function snoozed() {
   try {
@@ -32,9 +33,9 @@ function snoozed() {
   }
 }
 
-function snooze(ms: number) {
+function snoozeForAWeek() {
   try {
-    localStorage.setItem(SNOOZE_KEY, String(Date.now() + ms));
+    localStorage.setItem(SNOOZE_KEY, String(Date.now() + WEEK_MS));
   } catch {
     // Storage can be blocked (private mode); the card then simply shows again on the next visit.
   }
@@ -42,35 +43,48 @@ function snooze(ms: number) {
 
 /**
  * Mobile-only card inviting the visitor to install the site as an app. Chromium browsers get an "Install" button
- * (their own install dialog); iPhone and iPad get the Share → Add to Home Screen steps, since Safari has no install
- * API. "Remind me in a week" hides it for 7 days; it never shows once the site runs as an installed app.
+ * (their own install dialog) once they report the site installable; iPhone and iPad get the Share → Add to Home
+ * Screen steps, since Safari has no install API. "Remind me in a week", or closing the install dialog, hides it for
+ * 7 days. It never shows on desktop or inside the installed app.
  */
 export function InstallPrompt({ labels }: { labels: InstallLabels }) {
   const [mode, setMode] = useState<"hidden" | "install" | "ios">("hidden");
   const [installEvent, setInstallEvent] = useState<InstallEvent | null>(null);
+  // Once the visitor has answered the card on this page, it stays hidden even if the browser offers install again.
+  const answered = useRef(false);
 
   useEffect(() => {
     const installed =
       matchMedia("(display-mode: standalone)").matches ||
       (navigator as Navigator & { standalone?: boolean }).standalone === true;
     const phoneOrTablet = matchMedia("(max-width: 1023px) and (pointer: coarse)").matches;
-    if (installed || !phoneOrTablet || snoozed()) return;
+    if (installed || !phoneOrTablet) return;
 
     let timer: number | undefined;
+    const showLater = (next: "install" | "ios") => {
+      window.clearTimeout(timer);
+      timer = window.setTimeout(() => setMode(next), SHOW_DELAY_MS);
+    };
+
+    // Always hold back the browser's own install banner on phones, including during the snooze week; the browser
+    // menu's "Install app" stays available. Chrome fires this again after its dialog is closed, hence the checks.
     const onInstallAvailable = (event: Event) => {
       event.preventDefault();
+      if (answered.current || snoozed()) return;
       setInstallEvent(event as InstallEvent);
-      timer = window.setTimeout(() => setMode("install"), SHOW_DELAY_MS);
+      showLater("install");
     };
     const onInstalled = () => {
-      snooze(INSTALLED_MS);
+      answered.current = true;
+      window.clearTimeout(timer);
       setMode("hidden");
     };
     window.addEventListener("beforeinstallprompt", onInstallAvailable);
     window.addEventListener("appinstalled", onInstalled);
 
-    const ios = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
-    if (ios) timer = window.setTimeout(() => setMode("ios"), SHOW_DELAY_MS);
+    const ua = navigator.userAgent;
+    const ios = /iphone|ipad|ipod/i.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+    if (ios && !IN_APP_BROWSER.test(ua) && !snoozed()) showLater("ios");
 
     return () => {
       window.removeEventListener("beforeinstallprompt", onInstallAvailable);
@@ -82,23 +96,29 @@ export function InstallPrompt({ labels }: { labels: InstallLabels }) {
   if (mode === "hidden") return null;
 
   async function install() {
-    if (!installEvent) return;
-    await installEvent.prompt();
-    const { outcome } = await installEvent.userChoice;
-    // Accepted: the appinstalled event hides it for good. Dismissed: treat like "remind me in a week".
-    if (outcome === "dismissed") snooze(WEEK_MS);
+    const event = installEvent;
+    // The ref is set synchronously, so a second tap before the re-render can't call prompt() twice.
+    if (!event || answered.current) return;
+    answered.current = true;
     setInstallEvent(null);
     setMode("hidden");
+    try {
+      await event.prompt();
+      const { outcome } = await event.userChoice;
+      if (outcome === "dismissed") snoozeForAWeek();
+    } catch {
+      // The browser refused the prompt (already used, or no longer installable); nothing to show.
+    }
   }
 
   function later() {
-    snooze(WEEK_MS);
+    answered.current = true;
+    snoozeForAWeek();
     setMode("hidden");
   }
 
   return (
-    <section
-      role="dialog"
+    <aside
       aria-labelledby="install-prompt-title"
       className="fixed inset-x-3 bottom-3 z-30 mb-[env(safe-area-inset-bottom)] animate-fade-up rounded-3xl border border-line bg-surface p-4 shadow-lift sm:inset-x-auto sm:end-4 sm:w-96"
     >
@@ -125,7 +145,7 @@ export function InstallPrompt({ labels }: { labels: InstallLabels }) {
           <button
             type="button"
             onClick={install}
-            className="inline-flex h-11 flex-1 items-center justify-center gap-2 rounded-full bg-primary-fill font-semibold text-on-primary shadow-button transition-colors hover:bg-primary-hover"
+            className="inline-flex min-h-11 flex-1 items-center justify-center gap-2 rounded-full bg-primary-fill px-4 py-2 font-semibold text-on-primary shadow-button transition-colors hover:bg-primary-hover"
           >
             <Download aria-hidden="true" className="size-4" />
             {labels.install}
@@ -134,11 +154,11 @@ export function InstallPrompt({ labels }: { labels: InstallLabels }) {
         <button
           type="button"
           onClick={later}
-          className="inline-flex h-11 flex-1 items-center justify-center rounded-full border border-line-strong px-4 text-sm font-medium text-ink-2 transition-colors hover:border-ink-2/40 hover:text-ink"
+          className="inline-flex min-h-11 flex-1 items-center justify-center rounded-full border border-line-strong px-4 py-2 text-center text-sm font-medium text-ink-2 transition-colors hover:border-ink-2/40 hover:text-ink"
         >
           {labels.later}
         </button>
       </div>
-    </section>
+    </aside>
   );
 }
