@@ -22,7 +22,7 @@ type InstallLabels = {
 const SNOOZE_KEY = "install-prompt-snooze-until";
 const WEEK_MS = 7 * 24 * 60 * 60 * 1000;
 const SHOW_DELAY_MS = 3000;
-// In-app browsers of the apps our social links open in have no "Add to Home Screen".
+// In-app browsers of social apps (Instagram, Facebook, TikTok, LinkedIn, Snapchat, LINE) have no "Add to Home Screen".
 const IN_APP_BROWSER = /instagram|fban|fbav|fb_iab|musical_ly|bytedancewebview|linkedinapp|snapchat|line\//i;
 
 function snoozed() {
