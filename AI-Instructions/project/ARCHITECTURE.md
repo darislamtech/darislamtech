@@ -4,11 +4,15 @@ Next.js 16 (App Router, Cache Components, Turbopack) + React 19 + TypeScript + T
 
 ## Layout
 ```
+next.config.ts              # security headers, Content-Security-Policy (production host only), vercel.app → domain redirect
+SECURITY.md                 # how to report a vulnerability
+public/og-image.png         # 1200×630 share image used by every page
 src/
   proxy.ts                  # redirects paths without a locale to /ar (Arabic is always the default)
   app/
     globals.css             # design tokens (colors, fonts, shadows, animations) — the only place for raw colors
     manifest.ts             # PWA web app manifest (name, start_url /ar, icons in public/icons/)
+    sitemap.ts robots.ts    # /sitemap.xml (every page × locale with alternates) and /robots.txt
     icon.svg favicon.ico apple-icon.png   # generated from the logo paths in components/brand.tsx
     global-not-found.tsx    # bilingual 404 for URLs outside /[lang] (experimental.globalNotFound)
     [lang]/                 # root layout; every page lives under /ar or /en
@@ -25,8 +29,9 @@ src/
     dictionaries.ts         # getLocale() / getDictionary() via next/root-params
     dictionaries/ar.json    # UI text — source of truth for the shape
     dictionaries/en.json    # must match ar.json's shape (type-checked)
-  config/site.ts            # project email and the social accounts that actually exist
+  config/site.ts            # site URL, project email, Dar's and the founder's accounts, support links
   lib/cn.ts                 # clsx + tailwind-merge
+  lib/seo.ts                # pageMetadata(): canonical, ar/en/x-default alternates, Open Graph/X card for every page
   lib/youtube.ts            # link → video id; title via YouTube oEmbed ("use cache", cacheLife days), hqdefault thumbnail
 ```
 
