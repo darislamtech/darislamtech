@@ -70,7 +70,7 @@ SEO matters to the owner. Apply these on every new or changed page:
   - Every new text/background pair must meet WCAG AA (4.5:1, or 3:1 for large text and UI marks) on every surface of both themes.
   - Product status colors come from `components/product-status.ts`.
 - Logo: `components/brand.tsx`, traced from the owner's logo image (a house-shaped arch spelling «دار» with a gold door). Tokens `logo` (left half), `logo-deep` (right half) and `logo-accent` (door): greens #2A513F / #1C3A2F and gold #D0A368 in light, cream #F3F0E4 / #DDD8C6 and gold #F0C982 in dark. The favicon and app icons show the image's own colors on its cream #F8F5EB. `app/icon.svg`, `app/favicon.ico`, `app/apple-icon.png` and `public/icons/*` are generated from the same paths.
-- PWA: `app/manifest.ts` (installable, opens on `/ar`, standalone, RTL) with the icons in `public/icons/` (192, 512 and a maskable 512). No service worker yet: no offline mode and no notifications.
+- PWA: `app/manifest.ts` (installable, opens on `/` so the proxy picks the visitor's language, standalone, Arabic name and RTL) with the icons in `public/icons/` (192, 512 and a maskable 512). No service worker yet: no offline mode and no notifications.
 - Reuse primitives in `components/ui.tsx` and `components/page-blocks.tsx` before adding new ones.
 - Animations must respect `prefers-reduced-motion`.
 - Read the relevant guide in `node_modules/next/dist/docs/` before using a Next.js API.

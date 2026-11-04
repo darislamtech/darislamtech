@@ -3,7 +3,8 @@ import { defaultLocale } from "@/i18n/config";
 import { THEME_COLORS } from "@/components/theme";
 import ar from "@/i18n/dictionaries/ar.json";
 
-// Web app manifest (makes the site installable as a PWA). Arabic is the default locale, so the installed app opens on /ar.
+// Web app manifest (makes the site installable as a PWA). The installed app opens on "/", which src/proxy.ts sends to
+// the visitor's saved language or their browser's language, like the website. Name and direction stay Arabic.
 export default function manifest(): MetadataRoute.Manifest {
   return {
     id: "/",
@@ -12,7 +13,7 @@ export default function manifest(): MetadataRoute.Manifest {
     description: ar.meta.description,
     lang: defaultLocale,
     dir: "rtl",
-    start_url: `/${defaultLocale}`,
+    start_url: "/",
     scope: "/",
     display: "standalone",
     background_color: THEME_COLORS.light,

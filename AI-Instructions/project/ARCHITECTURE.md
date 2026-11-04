@@ -11,7 +11,7 @@ src/
   proxy.ts                  # redirects paths without a locale to the saved language (cookie `locale`, set by the language switcher), else English for English browsers, else Arabic
   app/
     globals.css             # design tokens (colors, fonts, shadows, animations) — the only place for raw colors
-    manifest.ts             # PWA web app manifest (name, start_url /ar, icons in public/icons/)
+    manifest.ts             # PWA web app manifest (name, start_url / → visitor's language, icons in public/icons/)
     sitemap.ts robots.ts    # /sitemap.xml (every page × locale with alternates) and /robots.txt
     icon.svg favicon.ico apple-icon.png   # generated from the logo paths in components/brand.tsx
     global-not-found.tsx    # bilingual 404 for URLs outside /[lang] (experimental.globalNotFound)
