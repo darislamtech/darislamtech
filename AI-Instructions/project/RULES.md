@@ -32,6 +32,7 @@ Each rule below exists because the mistake already happened once. Add a new one 
 ## Mobile — check on every change (owner's rule, added by claude)
 - Mobile first: check every changed page at phone width (≈375px) in Arabic and English and in both themes. No horizontal page scroll, touch targets at least 44px, and grids that collapse to one column. Give `next/image` a real `sizes`.
 - Report in the final summary which mobile widths were checked.
+- Header icon buttons (theme, language, menu) keep their 36–40px look on phones, and an invisible `before:` layer gives each a 44px touch area; keep 8px between them so the areas don't overlap (chosen by claude under the owner's delegation).
 
 ## SEO — build every page on these basics (owner's rule, added by claude)
 SEO matters to the owner. Apply these on every new or changed page:

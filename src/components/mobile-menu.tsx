@@ -4,20 +4,17 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
-import type { Locale } from "@/i18n/config";
 import { NavLink } from "./nav-link";
-import { LanguageSwitcher } from "./language-switcher";
 import { ForwardArrow } from "./ui";
 import type { NavItem } from "./nav";
 
 type MobileMenuProps = {
-  locale: Locale;
   items: NavItem[];
   cta: NavItem;
-  labels: { open: string; close: string; nav: string; switchLanguage: string; switchLanguageLabel: string };
+  labels: { open: string; close: string; nav: string };
 };
 
-export function MobileMenu({ locale, items, cta, labels }: MobileMenuProps) {
+export function MobileMenu({ items, cta, labels }: MobileMenuProps) {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
 
@@ -48,7 +45,7 @@ export function MobileMenu({ locale, items, cta, labels }: MobileMenuProps) {
         aria-expanded={open}
         aria-controls="mobile-menu"
         onClick={() => setOpen((value) => !value)}
-        className="grid size-10 place-items-center rounded-full text-ink transition-colors hover:bg-paper-2"
+        className="relative grid size-10 place-items-center rounded-full text-ink transition-colors hover:bg-paper-2 max-sm:before:absolute max-sm:before:-inset-0.5"
       >
         <span className="sr-only">{open ? labels.close : labels.open}</span>
         {open ? <X aria-hidden="true" className="size-5" /> : <Menu aria-hidden="true" className="size-5" />}
@@ -82,13 +79,6 @@ export function MobileMenu({ locale, items, cta, labels }: MobileMenuProps) {
             >
               {cta.label}
             </Link>
-            <LanguageSwitcher
-              locale={locale}
-              label={labels.switchLanguage}
-              ariaLabel={labels.switchLanguageLabel}
-              onNavigate={close}
-              className="h-12 justify-center border border-line-strong"
-            />
           </div>
         </nav>
       </div>

@@ -37,13 +37,14 @@ export function SiteHeader({ locale, dict }: { locale: Locale; dict: Dictionary 
           </ul>
         </nav>
 
-        <div className="ms-auto flex items-center gap-1.5">
+        {/* Phones: the theme, language and menu buttons look 36–40px but take taps over 44px (an invisible ::before);
+            the 8px gap keeps those areas from overlapping. */}
+        <div className="ms-auto flex items-center gap-1.5 max-sm:gap-2">
           <ThemeToggle label={dict.nav.theme} />
           <LanguageSwitcher
             locale={locale}
             label={dict.nav.switchLanguage}
             ariaLabel={dict.nav.switchLanguageLabel}
-            className="hidden sm:inline-flex"
           />
           {/* English only: icon only between lg and xl, where the longer English nav leaves no room for the label. */}
           <ButtonLink
@@ -59,15 +60,12 @@ export function SiteHeader({ locale, dict }: { locale: Locale; dict: Dictionary 
             {cta.label}
           </ButtonLink>
           <MobileMenu
-            locale={locale}
             items={getAllNavItems(locale, dict)}
             cta={cta}
             labels={{
               open: dict.nav.openMenu,
               close: dict.nav.closeMenu,
               nav: dict.nav.label,
-              switchLanguage: dict.nav.switchLanguage,
-              switchLanguageLabel: dict.nav.switchLanguageLabel,
             }}
           />
         </div>
