@@ -25,7 +25,7 @@ export function ThemeToggle({ label, className }: { label: string; className?: s
       aria-label={label}
       title={label}
       className={cn(
-        "grid size-9 place-items-center rounded-full text-ink-2 transition-colors hover:bg-paper-2 hover:text-ink",
+        "relative grid size-9 place-items-center rounded-full max-sm:before:absolute max-sm:before:-inset-1 text-ink-2 transition-colors hover:bg-paper-2 hover:text-ink",
         className,
       )}
     >
