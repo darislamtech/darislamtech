@@ -7,6 +7,7 @@
 - "Learn" is under construction: it shows the plan of a two-year program (a foundation year with one track, then a specialization year with two tracks) and no lessons until real material exists. This plan is the owner's initial idea: never describe it on the site as an "initial idea".
 - Videos stay on YouTube and are embedded only, added by hand (no automatic import).
 - Entertainment videos show only the YouTube title and thumbnail (no description); the player loads in the page on click (`components/video-card.tsx`, youtube-nocookie).
+- Entertainment has three pages with the same two groups (tabs), each type with its own categories: videos (`/entertainment`), channels (`/entertainment/channels`, YouTube only; the card is like YouTube's channel lists: round picture and the name as written on the channel, no description or subscriber count; it opens the channel) and books (`/entertainment/books`; no link, since many books circulate without their authors' permission) (owner's decision, added by claude).
 - The founder's name and personal accounts (`marwan7egazy`) appear only in the contact card of the support page («مروان حجازي — المؤسس والمشرف»); no photo.
 - Only link accounts and channels that exist (`src/config/site.ts`, listed in `docs/accounts.md`). No Snapchat.
 - Islamic content needs trusted sources and qualified review; never add verses, adhkar or rulings from unverified sources.
@@ -32,7 +33,8 @@ Each rule below exists because the mistake already happened once. Add a new one 
 ## Mobile — check on every change (owner's rule, added by claude)
 - Mobile first: check every changed page at phone width (≈375px) in Arabic and English and in both themes. No horizontal page scroll, touch targets at least 44px, and grids that collapse to one column. Give `next/image` a real `sizes`.
 - Report in the final summary which mobile widths were checked.
-- Header icon buttons (theme, language, menu) keep their 36–40px look on phones, and an invisible `before:` layer gives each a 44px touch area; keep 8px between them so the areas don't overlap (chosen by claude under the owner's delegation).
+- Header icon buttons (theme, language, menu) look 36px on phones, and an invisible `before:` layer gives each a 44px touch area; keep 8px between them so the areas don't overlap (chosen by claude under the owner's delegation). The English logo and the three buttons must still fit at 320px.
+- Measure horizontal scroll by comparing `document.documentElement.scrollWidth` with the emulated device width. With mobile emulation the layout viewport grows to fit wide content, so `scrollWidth > innerWidth` never fails; that check once missed a 4px overflow on every English page at 320px and a links bar wider than the phone.
 
 ## SEO — build every page on these basics (owner's rule, added by claude)
 SEO matters to the owner. Apply these on every new or changed page:

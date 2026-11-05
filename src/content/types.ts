@@ -49,15 +49,34 @@ export type LearningYear = {
   tracks: LearningTrack[];
 };
 
-export type EntertainmentCategory = {
-  id: string;
-  title: Localized;
-  /** YouTube links (or bare video IDs). The title and thumbnail are fetched from YouTube. */
-  videos: string[];
+export type RecommendedChannel = {
+  /** YouTube channel link (youtube.com/@handle or youtube.com/channel/...). Name and picture are fetched from YouTube. */
+  url: string;
+  /** The name as written on the channel; shown only when YouTube can't be read. */
+  name: string;
 };
 
+export type RecommendedBook = {
+  title: string;
+  author: string;
+  /** Why we recommend it, in one line. */
+  why: Localized;
+  /** Cover image in public/, e.g. "/entertainment/books/<name>.jpg". Without it a plain cover with the title is drawn. */
+  cover?: string;
+};
+
+export type EntertainmentCategory<Item> = {
+  id: string;
+  title: Localized;
+  items: Item[];
+};
+
+/** One tab of the Entertainment pages. Videos, channels and books each have their own categories under it. */
 export type EntertainmentGroup = {
   id: string;
   title: Localized;
-  categories: EntertainmentCategory[];
+  /** YouTube links (or bare video IDs). The title and thumbnail are fetched from YouTube. */
+  videos: EntertainmentCategory<string>[];
+  channels: EntertainmentCategory<RecommendedChannel>[];
+  books: EntertainmentCategory<RecommendedBook>[];
 };

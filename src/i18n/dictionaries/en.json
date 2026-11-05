@@ -384,7 +384,18 @@
     "groupsLabel": "Entertainment groups",
     "empty": "No videos in this category yet.",
     "play": "Play video",
-    "untitled": "YouTube video"
+    "untitled": "YouTube video",
+    "sectionsLabel": "Entertainment types",
+    "sections": { "videos": "Videos", "channels": "Channels", "books": "Books" },
+    "channels": {
+      "description": "YouTube channels we recommend, grouped by topic.",
+      "featured": "Including:",
+      "empty": "No channels yet."
+    },
+    "books": {
+      "description": "Books we recommend, grouped by topic.",
+      "empty": "No books yet."
+    }
   },
   "support": {
     "eyebrow": "Support us",

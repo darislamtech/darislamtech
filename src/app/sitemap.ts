@@ -11,6 +11,8 @@ const paths = [
   "",
   "/content",
   "/entertainment",
+  "/entertainment/channels",
+  "/entertainment/books",
   "/products",
   "/learn",
   "/contribute",

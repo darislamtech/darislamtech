@@ -28,7 +28,7 @@ export function Logo({ name, descriptor, className }: { name: string; descriptor
       <LogoMark />
       <span className="flex flex-col leading-none">
         <span className="font-display text-[1.35rem] font-bold text-ink ltr:tracking-tight">{name}</span>
-        <span className="mt-1 text-[12px] font-semibold whitespace-nowrap text-ink-2 ltr:font-mono ltr:text-[9px] ltr:font-medium ltr:tracking-[0.14em] ltr:text-muted ltr:uppercase">
+        <span className="mt-1 text-[12px] font-semibold whitespace-nowrap text-ink-2 ltr:font-mono ltr:text-[9px] ltr:font-medium ltr:tracking-[0.14em] ltr:text-muted ltr:uppercase ltr:max-sm:tracking-[0.08em]">
           {descriptor}
         </span>
       </span>

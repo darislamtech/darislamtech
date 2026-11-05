@@ -36,7 +36,12 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   images: {
     // YouTube video thumbnails on the Entertainment page.
-    remotePatterns: [{ protocol: "https", hostname: "i.ytimg.com", pathname: "/vi/**" }],
+    remotePatterns: [
+      { protocol: "https", hostname: "i.ytimg.com", pathname: "/vi/**" },
+      // YouTube channel pictures (Entertainment → channels).
+      { protocol: "https", hostname: "yt3.googleusercontent.com" },
+      { protocol: "https", hostname: "yt3.ggpht.com" },
+    ],
   },
   async headers() {
     return [

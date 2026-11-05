@@ -20,9 +20,11 @@ src/
       page.tsx              # Home
       content/ entertainment/ products/ learn/ contribute/ support/ about/ contact/
       content/[slug]/ products/[slug]/   # detail pages; generateStaticParams from src/content
+      entertainment/channels/ entertainment/books/   # Entertainment: channel and book recommendations (videos stay at /entertainment)
       not-found.tsx
   components/               # shared UI (ui.tsx primitives, page-blocks.tsx, header/footer, icons, pattern)
     home/                   # home-only components
+    entertainment/          # shared layout of the three Entertainment pages (hero, links between them, group tabs) + channel and book cards
   content/                  # site content as typed data (posts, videos, entertainment, products, learning program) + types.ts
   i18n/
     config.ts               # locales, direction, localePath()
@@ -32,7 +34,7 @@ src/
   config/site.ts            # site URL, project email, Dar's and the founder's accounts, support links
   lib/cn.ts                 # clsx + tailwind-merge
   lib/seo.ts                # pageMetadata(): canonical, ar/en/x-default alternates, Open Graph/X card for every page
-  lib/youtube.ts            # link → video id; title via YouTube oEmbed ("use cache", cacheLife days), hqdefault thumbnail
+  lib/youtube.ts            # link → video id; title via YouTube oEmbed ("use cache", cacheLife days), hqdefault thumbnail; channel name and picture from the channel page's Open Graph tags (same cache)
 ```
 
 ## Data flow

@@ -17,7 +17,8 @@ export function SiteHeader({ locale, dict }: { locale: Locale; dict: Dictionary 
 
   return (
     <HeaderShell>
-      <div className="mx-auto flex h-16 w-full max-w-7xl items-center gap-4 px-4 sm:px-6 lg:h-[4.5rem] lg:px-8">
+      {/* Phones: a smaller gap, so the English logo and the three buttons fit at 320px. */}
+      <div className="mx-auto flex h-16 w-full max-w-7xl items-center gap-4 px-4 max-sm:gap-2 sm:px-6 lg:h-[4.5rem] lg:px-8">
         <Link href={localePath(locale)} aria-label={`${dict.brand.name} – ${dict.nav.home}`} className="shrink-0 rounded-lg">
           <Logo name={dict.brand.short} descriptor={dict.brand.descriptor} />
         </Link>
@@ -37,7 +38,7 @@ export function SiteHeader({ locale, dict }: { locale: Locale; dict: Dictionary 
           </ul>
         </nav>
 
-        {/* Phones: the theme, language and menu buttons look 36–40px but take taps over 44px (an invisible ::before);
+        {/* Phones: the theme, language and menu buttons look 36px but take taps over 44px (an invisible ::before);
             the 8px gap keeps those areas from overlapping. */}
         <div className="ms-auto flex items-center gap-1.5 max-sm:gap-2">
           <ThemeToggle label={dict.nav.theme} />
