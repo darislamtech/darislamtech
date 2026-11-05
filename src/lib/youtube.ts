@@ -53,6 +53,27 @@ export async function getYouTubeVideo(input: string): Promise<YouTubeVideo | nul
   }
 }
 
+/**
+ * View count of a YouTube video, read from its public watch page (oEmbed has no counts), for the "most viewed" sort.
+ * Cached like the title; null when the page can't be read, and such videos sort last.
+ */
+export async function getYouTubeViews(id: string): Promise<number | null> {
+  "use cache";
+  cacheLife("days");
+
+  try {
+    const response = await fetch(`https://www.youtube.com/watch?v=${id}`, {
+      headers: { "Accept-Language": "en" },
+      signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
+    });
+    if (!response.ok) return null;
+    const views = (await response.text()).match(/"viewCount":"(\d+)"/)?.[1];
+    return views ? Number(views) : null;
+  } catch {
+    return null;
+  }
+}
+
 export type YouTubeChannel = { url: string; name: string | null; avatar: string | null };
 
 /** Normalizes a YouTube channel link (youtube.com/@handle, /channel/..., /c/..., /user/...) or returns null. */

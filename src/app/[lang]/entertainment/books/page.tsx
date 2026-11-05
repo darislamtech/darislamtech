@@ -29,8 +29,8 @@ export default async function EntertainmentBooksPage() {
       id: category.id,
       title: category.title[locale],
       items: category.items.map((book) => ({
-        key: `${book.title}-${book.author}`,
-        node: <BookCard title={book.title} author={book.author} why={book.why[locale]} cover={book.cover} />,
+        key: book.title,
+        node: <BookCard title={book.title} author={book.author} cover={book.cover} />,
       })),
     })),
   }));
@@ -43,7 +43,7 @@ export default async function EntertainmentBooksPage() {
       description={t.books.description}
       groups={groups}
       empty={t.books.empty}
-      gridClassName="grid-cols-2 sm:grid-cols-3 lg:grid-cols-4"
+      gridClassName="grid-cols-3 gap-x-3 sm:grid-cols-4 sm:gap-x-5 md:grid-cols-5 lg:grid-cols-6"
     />
   );
 }

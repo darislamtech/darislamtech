@@ -49,6 +49,13 @@ export type LearningYear = {
   tracks: LearningTrack[];
 };
 
+export type RecommendedVideo = {
+  /** YouTube link (or bare video ID). The title and thumbnail are fetched from YouTube. */
+  url: string;
+  /** When we added it, e.g. "2026-11-06T21:30". Newest first by default; the category with the newest video goes on top. */
+  added: string;
+};
+
 export type RecommendedChannel = {
   /** YouTube channel link (youtube.com/@handle or youtube.com/channel/...). Name and picture are fetched from YouTube. */
   url: string;
@@ -58,9 +65,8 @@ export type RecommendedChannel = {
 
 export type RecommendedBook = {
   title: string;
-  author: string;
-  /** Why we recommend it, in one line. */
-  why: Localized;
+  /** Shown under the title; given for Islamic books only (owner's choice). */
+  author?: string;
   /** Cover image in public/, e.g. "/entertainment/books/<name>.jpg". Without it a plain cover with the title is drawn. */
   cover?: string;
 };
@@ -75,8 +81,7 @@ export type EntertainmentCategory<Item> = {
 export type EntertainmentGroup = {
   id: string;
   title: Localized;
-  /** YouTube links (or bare video IDs). The title and thumbnail are fetched from YouTube. */
-  videos: EntertainmentCategory<string>[];
+  videos: EntertainmentCategory<RecommendedVideo>[];
   channels: EntertainmentCategory<RecommendedChannel>[];
   books: EntertainmentCategory<RecommendedBook>[];
 };

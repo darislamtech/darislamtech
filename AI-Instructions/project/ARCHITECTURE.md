@@ -24,7 +24,7 @@ src/
       not-found.tsx
   components/               # shared UI (ui.tsx primitives, page-blocks.tsx, header/footer, icons, pattern)
     home/                   # home-only components
-    entertainment/          # shared layout of the three Entertainment pages (hero, links between them, group tabs) + channel and book cards
+    entertainment/          # shared layout of the three Entertainment pages (hero, links between them, group tabs) + channel and book cards; video-rows.tsx: the videos sort buttons and one-row-per-category carousel
   content/                  # site content as typed data (posts, videos, entertainment, products, learning program) + types.ts
   i18n/
     config.ts               # locales, direction, localePath()

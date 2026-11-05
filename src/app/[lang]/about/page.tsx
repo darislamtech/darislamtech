@@ -1,10 +1,25 @@
 import type { Metadata } from "next";
-import { BookOpen, Compass, Eye, Gem, HeartHandshake, Lamp, Lightbulb, MessageCircleHeart, Sprout, Target, Users } from "lucide-react";
+import {
+  BookOpen,
+  Compass,
+  Eye,
+  Gem,
+  HeartHandshake,
+  Lamp,
+  Lightbulb,
+  MessageCircleHeart,
+  Sprout,
+  Target,
+  UserRound,
+  Users,
+} from "lucide-react";
+import { siteConfig } from "@/config/site";
 import { localePath } from "@/i18n/config";
 import { getDictionary, getLocale } from "@/i18n/dictionaries";
 import { pageMetadata } from "@/lib/seo";
 import { LogoMark } from "@/components/brand";
 import { CtaPanel, PageHero } from "@/components/page-blocks";
+import { socialIcons } from "@/components/icons";
 import { GeometricPattern } from "@/components/pattern";
 import { Container, IconTile, SectionHeading, type Tone } from "@/components/ui";
 
@@ -109,6 +124,44 @@ export default async function AboutPage() {
             <div>
               <h2 className="font-display text-2xl font-semibold text-ink">{t.communityTitle}</h2>
               <p className="mt-2 max-w-3xl leading-relaxed text-ink-2">{t.communityBody}</p>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Founder */}
+      <section className="reveal pt-6 pb-4">
+        <Container>
+          <div className="flex flex-col gap-6 rounded-3xl border border-line bg-surface p-7 sm:flex-row sm:items-start sm:p-10">
+            <IconTile tone="blue" className="size-14 rounded-2xl [&>svg]:size-6">
+              <UserRound />
+            </IconTile>
+            <div>
+              <h2 className="font-display text-2xl font-semibold text-ink">{t.founderTitle}</h2>
+              {/* Separate flex items: inline siblings with no space would join the name's last Arabic letter to the role. */}
+              <p className="mt-3 flex flex-wrap items-baseline gap-x-2">
+                <span className="font-semibold text-ink">{dict.support.founderName}</span>
+                <span className="text-sm text-muted">{dict.support.founderRole}</span>
+              </p>
+              <p className="mt-2 max-w-3xl leading-relaxed text-ink-2">{t.founderBio}</p>
+              <ul className="mt-5 flex flex-wrap gap-2">
+                {siteConfig.founderSocials.map((social) => {
+                  const Icon = socialIcons[social.name];
+                  return (
+                    <li key={social.name}>
+                      <a
+                        href={social.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`${dict.support.founderName} – ${social.name}`}
+                        className="grid size-11 place-items-center rounded-full border border-line bg-surface-2 text-ink-2 transition-colors hover:border-primary/30 hover:bg-primary-soft hover:text-primary-ink"
+                      >
+                        <Icon className="size-[1.1rem]" />
+                      </a>
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
           </div>
         </Container>

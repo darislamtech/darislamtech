@@ -21,7 +21,7 @@ const socials: Social[] = [
   { name: "Qabilah", href: "https://qabilah.com/profile/darislamtech/posts" },
 ];
 
-// The founder's personal accounts, all under the username "marwan7egazy"; shown on the support page.
+// The founder's personal accounts, all under the username "marwan7egazy"; shown on the About and support pages.
 const founderSocials: Social[] = [
   { name: "YouTube", href: "https://www.youtube.com/@marwan7egazy" },
   { name: "Facebook", href: "https://www.facebook.com/marwan7egazy" },

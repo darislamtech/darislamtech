@@ -12,7 +12,13 @@ export type EntertainmentSection = "videos" | "channels" | "books";
 export type EntertainmentGroupView = {
   id: string;
   label: string;
-  categories: { id: string; title: string; items: { key: string; node: React.ReactNode }[] }[];
+  categories: {
+    id: string;
+    title: string;
+    items: { key: string; node: React.ReactNode }[];
+    /** Shown instead of the grid of items (the videos page uses a sortable row). */
+    content?: React.ReactNode;
+  }[];
 };
 
 const sections: { id: EntertainmentSection; path: string; Icon: typeof Tv }[] = [
@@ -34,13 +40,24 @@ type EntertainmentShellProps = {
   empty: string;
   /** Grid columns for this kind of card. */
   gridClassName: string;
+  /** Controls shown above the tabs, e.g. the videos sort. */
+  toolbar?: React.ReactNode;
 };
 
 /**
  * Shared layout of the three Entertainment pages (videos, channels, books): hero, links between the pages, then one
  * tab per group with its categories. Each page resolves its own cards and passes them in.
  */
-export function EntertainmentShell({ locale, dict, current, description, groups, empty, gridClassName }: EntertainmentShellProps) {
+export function EntertainmentShell({
+  locale,
+  dict,
+  current,
+  description,
+  groups,
+  empty,
+  gridClassName,
+  toolbar,
+}: EntertainmentShellProps) {
   const t = dict.entertainment;
   const crumbs = [
     { href: localePath(locale), label: dict.nav.home },
@@ -82,6 +99,7 @@ export function EntertainmentShell({ locale, dict, current, description, groups,
         </nav>
 
         <div className="mt-10">
+          {toolbar && <div className="mb-8">{toolbar}</div>}
           <Tabs
             label={t.groupsLabel}
             items={groups.map((group) => ({
@@ -106,11 +124,13 @@ export function EntertainmentShell({ locale, dict, current, description, groups,
                           {category.title}
                         </h2>
                         {category.items.length > 0 ? (
-                          <div className={cn("grid gap-x-5 gap-y-8", gridClassName)}>
-                            {category.items.map((item) => (
-                              <div key={item.key}>{item.node}</div>
-                            ))}
-                          </div>
+                          (category.content ?? (
+                            <div className={cn("grid gap-x-5 gap-y-8", gridClassName)}>
+                              {category.items.map((item) => (
+                                <div key={item.key}>{item.node}</div>
+                              ))}
+                            </div>
+                          ))
                         ) : (
                           <EmptyNote text={empty} />
                         )}
