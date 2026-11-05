@@ -58,14 +58,15 @@ export default async function HomePage() {
     "@context": "https://schema.org",
     "@graph": [
       {
+        // One organization, described the same on both language pages: Arabic name and description, the same alternates as the WebSite.
         "@type": "Organization",
         "@id": `${siteConfig.url}/#organization`,
-        name: dict.brand.name,
-        alternateName: locale === "ar" ? "Dar Islam & Technology" : "دار الإسلام والتقنية",
+        name: ar.brand.name,
+        alternateName: [en.brand.name, "darislamtech"],
         url: siteConfig.url,
         logo: `${siteConfig.url}/icons/icon-512.png`,
         email: siteConfig.email,
-        description: dict.meta.description,
+        description: ar.meta.description,
         sameAs: siteConfig.socials.map((social) => social.href),
       },
       {
