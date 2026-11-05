@@ -12,10 +12,10 @@ export function SiteFooter({ locale, dict }: { locale: Locale; dict: Dictionary 
     {
       title: dict.footer.platform,
       links: [
-        { href: localePath(locale, "/content"), label: dict.nav.content },
+        { href: localePath(locale, "/learn"), label: dict.nav.learn },
         { href: localePath(locale, "/entertainment"), label: dict.nav.entertainment },
         { href: localePath(locale, "/products"), label: dict.nav.products },
-        { href: localePath(locale, "/learn"), label: dict.nav.learn },
+        { href: localePath(locale, "/content"), label: dict.nav.content },
       ],
     },
     {

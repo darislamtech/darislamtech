@@ -122,7 +122,7 @@
       },
       "products": {
         "title": "Products",
-        "body": "Free, open-source tools and digital projects, with an honest status for each one."
+        "body": "Digital products and projects that serve Islam, Muslims and people in general."
       },
       "learn": {
         "title": "Learn",
@@ -188,10 +188,10 @@
   },
   "products": {
     "eyebrow": "Products",
-    "title": "Useful tools",
-    "description": "Digital products and projects, with an honest status for each: what is available, what is in development and what is still an idea.",
+    "title": "Useful apps and websites",
+    "description": "Digital products and projects that serve Islam, Muslims and people in general, each with a status: available, in development, coming soon or future idea.",
     "emptyTitle": "Our first product is on its way",
-    "emptyBody": "We have not launched a product yet, and we never list one before it launches. Our products will appear here with the first release.",
+    "emptyBody": "No products yet. Our products will appear here, each with its status.",
     "statusTitle": "How we label each product",
     "statusBody": "Every product card carries one of these statuses, so you always know what you can use today.",
     "status": {
@@ -375,7 +375,9 @@
       "The scientific and technical revival of the Muslim community"
     ],
     "communityTitle": "A community initiative",
-    "communityBody": "Dar Islam & Technology started as a one-person effort, and the ambition is a community where Islamic studies specialists, callers and technologists build world-class solutions together."
+    "communityBody": "Dar Islam & Technology started as a one-person effort, and the ambition is a community where Islamic studies specialists, callers and technologists build world-class solutions together.",
+    "founderTitle": "The founder",
+    "founderBio": "Marwan works in Saudi Arabia in web development and search engine optimization (SEO). He is a student of Islamic sciences at Zad Academy, with a keen interest in da'wah and technology."
   },
   "entertainment": {
     "eyebrow": "Entertainment",
@@ -384,7 +386,22 @@
     "groupsLabel": "Entertainment groups",
     "empty": "No videos in this category yet.",
     "play": "Play video",
-    "untitled": "YouTube video"
+    "untitled": "YouTube video",
+    "sortLabel": "Sort:",
+    "sort": { "newest": "Newest", "oldest": "Oldest", "mostViewed": "Most viewed" },
+    "previous": "Previous",
+    "next": "Next",
+    "sectionsLabel": "Entertainment types",
+    "sections": { "videos": "Videos", "channels": "Channels", "books": "Books" },
+    "channels": {
+      "description": "YouTube channels we recommend, grouped by topic.",
+      "featured": "Including:",
+      "empty": "No channels yet."
+    },
+    "books": {
+      "description": "Books we recommend, grouped by topic.",
+      "empty": "No books yet."
+    }
   },
   "support": {
     "eyebrow": "Support us",

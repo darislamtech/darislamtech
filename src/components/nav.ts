@@ -6,10 +6,10 @@ export type NavItem = { href: string; label: string };
 /** Main sections. Home is reached through the logo; "Contribute" is the header call to action. */
 export function getNavItems(locale: Locale, dict: Dictionary): NavItem[] {
   return [
-    { href: localePath(locale, "/content"), label: dict.nav.content },
+    { href: localePath(locale, "/learn"), label: dict.nav.learn },
     { href: localePath(locale, "/entertainment"), label: dict.nav.entertainment },
     { href: localePath(locale, "/products"), label: dict.nav.products },
-    { href: localePath(locale, "/learn"), label: dict.nav.learn },
+    { href: localePath(locale, "/content"), label: dict.nav.content },
     { href: localePath(locale, "/about"), label: dict.nav.about },
     { href: localePath(locale, "/contact"), label: dict.nav.contact },
   ];

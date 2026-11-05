@@ -45,7 +45,7 @@ export function MobileMenu({ items, cta, labels }: MobileMenuProps) {
         aria-expanded={open}
         aria-controls="mobile-menu"
         onClick={() => setOpen((value) => !value)}
-        className="relative grid size-10 place-items-center rounded-full text-ink transition-colors hover:bg-paper-2 max-sm:before:absolute max-sm:before:-inset-0.5"
+        className="relative grid size-10 place-items-center rounded-full text-ink transition-colors hover:bg-paper-2 max-sm:size-9 max-sm:before:absolute max-sm:before:-inset-1"
       >
         <span className="sr-only">{open ? labels.close : labels.open}</span>
         {open ? <X aria-hidden="true" className="size-5" /> : <Menu aria-hidden="true" className="size-5" />}
