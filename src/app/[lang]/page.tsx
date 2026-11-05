@@ -28,6 +28,8 @@ import { productStatusOrder, productStatusStyles } from "@/components/product-st
 import { Badge, ButtonLink, Container, ForwardArrow, IconTile, SectionHeading, type Tone } from "@/components/ui";
 import { cn } from "@/lib/cn";
 import { pageMetadata } from "@/lib/seo";
+import ar from "@/i18n/dictionaries/ar.json";
+import en from "@/i18n/dictionaries/en.json";
 
 const pillarIcons = [BookOpen, Gift, Code, Languages];
 // Every element on the page takes one of the four tones, so the page uses all of them.
@@ -52,7 +54,6 @@ export default async function HomePage() {
   const latest = posts.slice(0, 3);
 
   // Structured data for search engines: who publishes the site, its logo, email and accounts.
-  const homeUrl = `${siteConfig.url}${localePath(locale)}`;
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -61,7 +62,6 @@ export default async function HomePage() {
         "@id": `${siteConfig.url}/#organization`,
         name: dict.brand.name,
         alternateName: locale === "ar" ? "Dar Islam & Technology" : "دار الإسلام والتقنية",
-        // One URL for the organization in both languages; the per-language home is on the WebSite node.
         url: siteConfig.url,
         logo: `${siteConfig.url}/icons/icon-512.png`,
         email: siteConfig.email,
@@ -69,11 +69,13 @@ export default async function HomePage() {
         sameAs: siteConfig.socials.map((social) => social.href),
       },
       {
+        // The site name Google shows above results: Google reads it from one WebSite node whose url is the domain
+        // root, so it is the same on both language pages. Arabic is the main name; the English one is an alternate.
         "@type": "WebSite",
-        "@id": `${siteConfig.url}/#website-${locale}`,
-        name: dict.brand.name,
-        url: homeUrl,
-        inLanguage: locale,
+        "@id": `${siteConfig.url}/#website`,
+        name: ar.brand.name,
+        alternateName: [en.brand.name, "darislamtech"],
+        url: `${siteConfig.url}/`,
         publisher: { "@id": `${siteConfig.url}/#organization` },
       },
     ],
