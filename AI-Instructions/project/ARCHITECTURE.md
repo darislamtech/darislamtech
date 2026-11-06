@@ -34,7 +34,7 @@ src/
   config/site.ts            # site URL, project email, Dar's and the founder's accounts, support links
   lib/cn.ts                 # clsx + tailwind-merge
   lib/seo.ts                # pageMetadata(): canonical, ar/en/x-default alternates, Open Graph/X card for every page
-  lib/youtube.ts            # link → video id; title via YouTube oEmbed ("use cache", cacheLife days), hqdefault thumbnail; channel name and picture from the channel page's Open Graph tags (same cache); video views via the YouTube Data API when `YOUTUBE_API_KEY` is set (Vercel env), else the watch page
+  lib/youtube.ts            # link → video id; title via YouTube oEmbed ("use cache", cacheLife days), hqdefault thumbnail; channel name and picture from the channel page's Open Graph tags (same cache); video views and publish date (getYouTubeDetails) via the YouTube Data API when `YOUTUBE_API_KEY` is set (Vercel env), else the watch page
 ```
 
 ## Data flow
