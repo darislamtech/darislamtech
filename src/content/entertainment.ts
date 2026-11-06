@@ -32,7 +32,11 @@ export const entertainmentGroups: EntertainmentGroup[] = [
       {
         id: "nasheeds",
         title: { ar: "أناشيد وابتهالات", en: "Nasheeds and devotional chants" },
-        items: [{ url: "https://www.youtube.com/watch?v=bXATUAGDNuM", added: "2026-11-06T18:10" }],
+        items: [
+          { url: "https://www.youtube.com/watch?v=bXATUAGDNuM", added: "2026-11-06T18:10" },
+          { url: "https://www.youtube.com/watch?v=x4yQdbPidhE", added: "2026-11-06T18:15" },
+          { url: "https://www.youtube.com/watch?v=_-CBrlKxz9k", added: "2026-11-06T18:16" },
+        ],
       },
       { id: "islamic-figures", title: { ar: "شخصيات إسلامية", en: "Islamic figures" }, items: [] },
       { id: "asceticism", title: { ar: "الزهد وحقيقة الدنيا", en: "Asceticism and the truth about this world" }, items: [] },
