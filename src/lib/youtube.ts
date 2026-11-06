@@ -54,14 +54,34 @@ export async function getYouTubeVideo(input: string): Promise<YouTubeVideo | nul
 }
 
 /**
- * View count of a YouTube video, read from its public watch page (oEmbed has no counts), for the "most viewed" sort.
- * Cached like the title; null when the page can't be read, and such videos sort last.
+ * View count of a YouTube video, for the "most viewed" sort. With YOUTUBE_API_KEY (a Vercel environment variable,
+ * restricted to the YouTube Data API) it comes from the official API, which also works from Vercel's servers; without
+ * it, from the public watch page, which YouTube may refuse to servers. Cached like the title; null when neither works,
+ * and such videos sort last. The key never leaves the server.
  */
 export async function getYouTubeViews(id: string): Promise<number | null> {
   "use cache";
   cacheLife("days");
 
   try {
+    const key = process.env.YOUTUBE_API_KEY;
+    if (key) {
+      // The key goes in a header, never the URL: Next stores fetch URLs in its Data Cache. The result is cached by
+      // "use cache" above, so this fetch itself is not.
+      const response = await fetch(`https://www.googleapis.com/youtube/v3/videos?part=statistics&id=${id}`, {
+        headers: { "X-goog-api-key": key },
+        cache: "no-store",
+        signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
+      });
+      if (response.ok) {
+        const data = (await response.json()) as { items?: { statistics?: { viewCount?: string } }[] };
+        const views = data.items?.[0]?.statistics?.viewCount;
+        if (views) return Number(views);
+      } else {
+        // Status only (bad key, quota, API disabled), so the Vercel logs explain a hidden "most viewed" button.
+        console.warn(`YouTube Data API returned ${response.status} for video views`);
+      }
+    }
     const response = await fetch(`https://www.youtube.com/watch?v=${id}`, {
       headers: { "Accept-Language": "en" },
       signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
