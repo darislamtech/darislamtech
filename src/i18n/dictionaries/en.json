@@ -237,7 +237,6 @@
     "description": "An Islamic knowledge and da'wah track and a technology track, studied at your own pace, in two sections: an external track you study on your own from sources we recommend, and the platform track with lessons made by Dar. This section is under construction.",
     "notice": "The Learn section is under construction",
     "underConstruction": "Under construction",
-    "roadmapTitle": "The program plan",
     "sectionsLabel": "Learn sections",
     "external": {
       "tab": "External track",
@@ -245,7 +244,7 @@
     },
     "platform": {
       "tab": "Platform track",
-      "intro": "Lessons and series made by Dar Islam & Technology, on the same plan. No lessons are available yet."
+      "intro": "Lessons and series made by Dar Islam & Technology. No lessons are available yet."
     },
     "project": "Project",
     "graduation": "Graduation project",

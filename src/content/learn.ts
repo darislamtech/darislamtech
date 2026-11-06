@@ -211,7 +211,7 @@ const techDomain: RoadmapDomain = {
       id: "foundation",
       title: text("المسار التأسيسي", "The foundation path"),
       description: text(
-        "استخدام الكمبيوتر والإنترنت بثقة، وتنظيم الحياة، والتعمق في أدوات الذكاء الاصطناعي، وصناعة المحتوى الدعوي ونشره، وإنشاء المواقع. ومعه الإنجليزي حتى مستوى B1.",
+        "استخدام الكمبيوتر والإنترنت بثقة، وتنظيم الحياة، والتعمق في أدوات الذكاء الاصطناعي، وصناعة المحتوى الدعوي ونشره، وإنشاء المواقع. ومعه اللغة الإنجليزية حتى مستوى B1.",
         "Using the computer and the internet with confidence, organizing life, going deep into AI tools, making and publishing da'wah content, and building websites. With English up to B1.",
       ),
       levels: [
@@ -231,7 +231,7 @@ const techDomain: RoadmapDomain = {
               ar: ["كلمات مرور قوية ومدير كلمات المرور", "التحقق بخطوتين", "كشف الاحتيال", "الخصوصية"],
               en: ["Strong passwords and a password manager", "Two-step verification", "Spotting scams", "Privacy"],
             }),
-            topic("english-a1", text("الإنجليزي: A1", "English: A1"), {
+            topic("english-a1", text("اللغة الإنجليزية: A1", "English: A1"), {
               ar: ["الأساسيات ومصطلحات الكمبيوتر والإنترنت"],
               en: ["The basics, and computer and internet terms"],
             }),
@@ -270,7 +270,7 @@ const techDomain: RoadmapDomain = {
                 "Islamic guidelines: never relied on for fatwas, nor for quoting rulings and hadiths without checking",
               ],
             }),
-            topic("english-a2", text("الإنجليزي: A2", "English: A2"), {
+            topic("english-a2", text("اللغة الإنجليزية: A2", "English: A2"), {
               ar: ["قراءة الأدلة البسيطة وكتابة بريد قصير"],
               en: ["Reading simple guides and writing a short email"],
             }),
@@ -327,7 +327,7 @@ const techDomain: RoadmapDomain = {
                 "Da'wah content guidelines: verses, hadiths and rulings from their trusted sources",
               ],
             }),
-            topic("english-a2-b1", text("الإنجليزي: من A2 إلى B1", "English: A2 to B1"), {
+            topic("english-a2-b1", text("اللغة الإنجليزية: من A2 إلى B1", "English: A2 to B1"), {
               ar: ["كتابة الأوامر بالإنجليزية وفهم الردود"],
               en: ["Writing prompts in English and understanding the answers"],
             }),
@@ -384,7 +384,7 @@ const techDomain: RoadmapDomain = {
                 "Publishing on Vercel or GitHub Pages and connecting a domain",
               ],
             }),
-            topic("english-b1", text("الإنجليزي: B1", "English: B1"), {
+            topic("english-b1", text("اللغة الإنجليزية: B1", "English: B1"), {
               ar: ["قراءة توثيق الأدوات ومتابعة الشروح بالإنجليزية"],
               en: ["Reading tool documentation and following tutorials in English"],
             }),
@@ -510,7 +510,7 @@ const techDomain: RoadmapDomain = {
               ar: ["مراجعة الكود", "التوثيق", "إدارة وكلاء الذكاء الاصطناعي"],
               en: ["Code review", "Documentation", "Managing AI agents"],
             }),
-            topic("product", text("التفكير المنتجي", "Product thinking"), {
+            topic("product", text("التفكير بعقلية المنتج", "Product thinking"), {
               ar: ["مشكلة المستخدم", "النسخة الأولى (MVP)", "القياس"],
               en: ["The user's problem", "The first version (MVP)", "Measuring"],
             }),

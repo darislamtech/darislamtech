@@ -7,7 +7,7 @@ import { externalDomains, platformDomains } from "@/content/learn";
 import type { RoadmapDomain, RoadmapLevel, RoadmapPath } from "@/content/types";
 import { CtaPanel, PageHero } from "@/components/page-blocks";
 import { Tabs } from "@/components/tabs";
-import { Badge, Container, IconTile, toneText, type Tone } from "@/components/ui";
+import { Badge, Container, IconTile, toneDot, toneText, type Tone } from "@/components/ui";
 import { cn } from "@/lib/cn";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -22,8 +22,6 @@ const domainStyle: Record<RoadmapDomain["id"], { icon: React.ComponentType<{ cla
 
 // The two paths of a domain take their own tones, so each domain reads as a sequence.
 const pathTones: Tone[] = ["gold", "rose"];
-
-const toneDot: Record<Tone, string> = { gold: "bg-tone-gold", rose: "bg-tone-rose", mint: "bg-tone-mint", blue: "bg-tone-blue" };
 
 type Learn = Dictionary["learn"];
 
@@ -61,6 +59,7 @@ export default async function LearnPage() {
                 label: t.external.tab,
                 content: (
                   <Roadmap
+                    id="external"
                     domains={externalDomains}
                     intro={t.external.intro}
                     pathNote={t.sourcesSoon}
@@ -74,6 +73,7 @@ export default async function LearnPage() {
                 label: t.platform.tab,
                 content: (
                   <Roadmap
+                    id="platform"
                     domains={platformDomains}
                     intro={t.platform.intro}
                     pathBadge={t.underConstruction}
@@ -103,6 +103,7 @@ export default async function LearnPage() {
 
 /** The program plan: each domain with its paths in order. */
 function Roadmap({
+  id,
   domains,
   intro,
   pathBadge,
@@ -110,6 +111,8 @@ function Roadmap({
   locale,
   t,
 }: {
+  /** Prefixes the headings' ids: both tabs are in the page, so ids must differ between them. */
+  id: string;
   domains: RoadmapDomain[];
   intro: string;
   pathBadge?: string;
@@ -125,12 +128,12 @@ function Roadmap({
         {domains.map((domain) => {
           const { icon: Icon, tone } = domainStyle[domain.id];
           return (
-            <section key={domain.id} aria-labelledby={`domain-${domain.id}`}>
+            <section key={domain.id} aria-labelledby={`${id}-${domain.id}`}>
               <div className="flex items-center gap-3">
                 <IconTile tone={tone}>
                   <Icon />
                 </IconTile>
-                <h2 id={`domain-${domain.id}`} className="font-display text-2xl font-semibold text-ink sm:text-3xl">
+                <h2 id={`${id}-${domain.id}`} className="font-display text-2xl font-semibold text-ink sm:text-3xl">
                   {domain.title[locale]}
                 </h2>
               </div>
