@@ -1,4 +1,4 @@
-import { Gift, HeartHandshake } from "lucide-react";
+import { Gift } from "lucide-react";
 import { siteConfig } from "@/config/site";
 import type { Dictionary } from "@/i18n/dictionaries";
 import { LogoMark } from "../brand";
@@ -90,12 +90,6 @@ export function HeroVisual({ dict }: { dict: Dictionary }) {
         </div>
       </div>
 
-      <Chip
-        icon={<HeartHandshake />}
-        label={v.chipNonprofit}
-        tone="rose"
-        className="start-0 top-[12%] [animation-delay:-1s] sm:start-[2%]"
-      />
       <Chip
         icon={<GitHubIcon />}
         label={v.chipOpen}

@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Dar Islam & Technology",
-    "description": "Dar Islam & Technology is a non-profit, open-source educational and da'wah platform: Islamic knowledge and da'wah, technology and building projects, and cultural, awareness and beneficial entertainment content."
+    "description": "Dar Islam & Technology is a free, open-source educational and da'wah platform: Islamic knowledge and da'wah, technology and building projects, and cultural, awareness and beneficial entertainment content."
   },
   "brand": {
     "name": "Dar Islam & Technology",
@@ -99,7 +99,7 @@
     }
   ],
   "home": {
-    "badge": "Non-profit · Open source",
+    "badge": "Free · Open source",
     "titleLead": "Beneficial knowledge,",
     "titleAccent": "technology that makes an impact.",
     "intro": "An educational and da'wah platform that strives to prepare scholars and callers with da'wah projects of their own, and programmers and technologists who build tech projects that serve Islam, while offering cultural, awareness and beneficial entertainment content.",
@@ -108,7 +108,6 @@
     "visual": {
       "mission": "Beneficial knowledge",
       "impact": "Technology with impact",
-      "chipNonprofit": "Non-profit",
       "chipOpen": "Open source",
       "chipFree": "Free for everyone"
     },
@@ -408,14 +407,14 @@
   "support": {
     "eyebrow": "Support us",
     "title": "Support the project",
-    "description": "Dar Islam & Technology is a non-profit initiative: no ads, and no paid products, courses or subscriptions. Everyone is entitled to use the whole platform. If you would like to support the project and help it continue, here is how.",
+    "description": "Dar Islam & Technology is a free project: no ads, and no paid products, courses or subscriptions. Everyone is entitled to use the whole platform. If you would like to support the project and help it continue, here is how.",
     "moneyTitle": "Support the project financially",
     "moneyBody": "Your support helps us keep going, publish more beneficial content and build new projects.",
     "moneyPending": "We are setting up the ways to support us financially; they will appear here as soon as they are live.",
     "moneyThanks": "May Allah reward you with good and bless you.",
     "moneyNote": "Note: financial support comes with no special perks on the site.",
     "usesTitle": "Where your support goes",
-    "uses": ["Developers' pay", "Hosting and running costs", "Promoting the platform", "Making content"],
+    "uses": ["Developers' pay", "Hosting and running costs", "Promoting the platform", "Making content", "A fair profit margin for the founder, so he can work full time on growing the platform"],
     "otherTitle": "If you can't support us financially",
     "other": [
       {

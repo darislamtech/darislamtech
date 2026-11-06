@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Clapperboard, Coffee, HandHeart, Heart, Mail, Megaphone, Server, Share2, Users, Wallet } from "lucide-react";
+import { Clapperboard, Coffee, HandHeart, Heart, Mail, Megaphone, Server, Share2, UserRound, Users, Wallet } from "lucide-react";
 import { siteConfig, type SupportLink } from "@/config/site";
 import { localePath } from "@/i18n/config";
 import { getDictionary, getLocale } from "@/i18n/dictionaries";
@@ -16,9 +16,9 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 const linkIcons: Record<SupportLink["name"], typeof Coffee> = { "Ko-fi": Coffee, PayPal: Wallet };
-// Developers' pay, hosting, promotion, content.
-const useIcons = [Users, Server, Megaphone, Clapperboard];
-const useTones: Tone[] = ["blue", "mint", "rose", "gold"];
+// Developers' pay, hosting, promotion, content, the founder's margin.
+const useIcons = [Users, Server, Megaphone, Clapperboard, UserRound];
+const useTones: Tone[] = ["blue", "mint", "rose", "gold", "blue"];
 // Du'a, moral support, taking part.
 const otherIcons = [HandHeart, Share2, Users];
 const otherTones: Tone[] = ["mint", "blue", "rose"];
@@ -81,10 +81,10 @@ export default async function SupportPage() {
           <h2 className="font-display text-2xl font-semibold text-ink">{t.usesTitle}</h2>
           <ul className="mt-6 space-y-3">
             {t.uses.map((use, index) => {
-              const Icon = useIcons[index];
+              const Icon = useIcons[index] ?? Heart;
               return (
                 <li key={use} className="flex items-center gap-3 rounded-2xl border border-line bg-surface-2 px-4 py-3">
-                  <Icon aria-hidden="true" className={cn("size-5 shrink-0", toneText[useTones[index]])} />
+                  <Icon aria-hidden="true" className={cn("size-5 shrink-0", toneText[useTones[index % useTones.length]])} />
                   <span className="font-medium text-ink">{use}</span>
                 </li>
               );

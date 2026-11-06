@@ -1,7 +1,7 @@
 # Project — Dar Islam & Technology website
 
 ## Purpose
-Public website of **دار الإسلام والتقنية | Dar Islam & Technology**, a non-profit, open-source educational and da'wah initiative. Tagline: «علمٌ نافع، وتقنيةٌ تصنع الأثر.»
+Public website of **دار الإسلام والتقنية | Dar Islam & Technology**, a free, open-source educational and da'wah initiative. Tagline: «علمٌ نافع، وتقنيةٌ تصنع الأثر.»
 It aims to prepare scholars and callers with da'wah projects of their own, and programmers and technologists who build tech projects that serve Islam. It offers Islamic knowledge and da'wah first, then technology, plus cultural, awareness and beneficial entertainment content, and free, open-source digital products.
 
 ## Users

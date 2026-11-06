@@ -2,9 +2,9 @@
 
 > علمٌ نافع، وتقنيةٌ تصنع الأثر.
 
-موقع دار الإسلام والتقنية: مبادرة تعليمية ودعوية غير ربحية ومفتوحة المصدر، تجمع العلم الشرعي والدعوة والتقنية. الموقع عربي (افتراضي) وإنجليزي.
+موقع دار الإسلام والتقنية: مبادرة تعليمية ودعوية مجانية ومفتوحة المصدر، تجمع العلم الشرعي والدعوة والتقنية. الموقع عربي (افتراضي) وإنجليزي.
 
-The Dar Islam & Technology website — a non-profit, open-source educational and da'wah initiative that brings together Islamic knowledge, da'wah and technology. Arabic (default) and English.
+The Dar Islam & Technology website — a free, open-source educational and da'wah initiative that brings together Islamic knowledge, da'wah and technology. Arabic (default) and English.
 
 ## Stack
 
