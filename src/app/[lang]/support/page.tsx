@@ -15,7 +15,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return pageMetadata({ locale, dict, path: "/support", title: dict.nav.support, description: dict.support.description });
 }
 
-const linkIcons: Record<SupportLink["name"], typeof Coffee> = { "Ko-fi": Coffee, PayPal: Wallet };
+const linkIcons: Record<SupportLink["name"], typeof Coffee> = { "Ko-fi": Coffee, PayPal: Wallet, "Buy Me a Coffee": Coffee };
 // Developers' pay, hosting, promotion, content, the founder's margin.
 const useIcons = [Users, Server, Megaphone, Clapperboard, UserRound];
 const useTones: Tone[] = ["blue", "mint", "rose", "gold", "blue"];

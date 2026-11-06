@@ -34,4 +34,4 @@
 | إكس (تويتر) | https://x.com/marwan7egazy |
 | قبيلة | https://qabilah.com/profile/marwan7egazy/posts |
 
-رابط الدعم المادي في صفحة «ادعمنا»: PayPal.Me باسم المؤسس، https://paypal.me/marwan7egazy (المصدر `supportLinks` في `src/config/site.ts`).
+روابط الدعم المادي في صفحة «ادعمنا» باسم المؤسس: PayPal.Me https://paypal.me/marwan7egazy وBuy Me a Coffee https://buymeacoffee.com/marwan7egazy (المصدر `supportLinks` في `src/config/site.ts`).
