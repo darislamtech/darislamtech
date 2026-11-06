@@ -46,7 +46,10 @@ export const entertainmentGroups: EntertainmentGroup[] = [
       {
         id: "asceticism",
         title: { ar: "الزهد وحقيقة الدنيا", en: "Asceticism and the truth about this world" },
-        items: [{ url: "https://www.youtube.com/watch?v=TWgFmxN0TGE", added: "2026-11-06T18:25" }],
+        items: [
+          { url: "https://www.youtube.com/watch?v=TWgFmxN0TGE", added: "2026-11-06T18:25" },
+          { url: "https://www.youtube.com/watch?v=akKm9tZo7yI", added: "2026-11-06T18:28" },
+        ],
       },
       { id: "advice", title: { ar: "نصائح", en: "Advice" }, items: [] },
       { id: "fatwas", title: { ar: "فتاوى", en: "Fatwas" }, items: [] },
