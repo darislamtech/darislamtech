@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
-import { BookOpen, Code, Compass, Construction, ScrollText, ShieldCheck } from "lucide-react";
-import { localePath } from "@/i18n/config";
-import { getDictionary, getLocale } from "@/i18n/dictionaries";
+import { BookOpen, ChevronDown, Code, Construction, GraduationCap, Hammer, ScrollText, ShieldCheck } from "lucide-react";
+import { localePath, type Locale } from "@/i18n/config";
+import { getDictionary, getLocale, type Dictionary } from "@/i18n/dictionaries";
 import { pageMetadata } from "@/lib/seo";
-import { learningYears } from "@/content/learn";
+import { externalDomains, platformDomains } from "@/content/learn";
+import type { RoadmapDomain, RoadmapLevel, RoadmapPath } from "@/content/types";
 import { CtaPanel, PageHero } from "@/components/page-blocks";
-import { Badge, Container, IconTile, SectionHeading, type Tone } from "@/components/ui";
+import { Tabs } from "@/components/tabs";
+import { Badge, Container, IconTile, toneText, type Tone } from "@/components/ui";
 import { cn } from "@/lib/cn";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -13,14 +15,17 @@ export async function generateMetadata(): Promise<Metadata> {
   return pageMetadata({ locale, dict, path: "/learn", title: dict.nav.learn, description: dict.learn.description });
 }
 
-// Each year and each track takes its own tone, so the page uses all four.
-const yearTones: Tone[] = ["rose", "gold"];
-
-const tracks: Record<string, { icon: React.ComponentType; tone: Tone }> = {
-  foundation: { icon: Compass, tone: "gold" },
+const domainStyle: Record<RoadmapDomain["id"], { icon: React.ComponentType<{ className?: string }>; tone: Tone }> = {
   sharia: { icon: ScrollText, tone: "mint" },
   tech: { icon: Code, tone: "blue" },
 };
+
+// The two paths of a domain take their own tones, so each domain reads as a sequence.
+const pathTones: Tone[] = ["gold", "rose"];
+
+const toneDot: Record<Tone, string> = { gold: "bg-tone-gold", rose: "bg-tone-rose", mint: "bg-tone-mint", blue: "bg-tone-blue" };
+
+type Learn = Dictionary["learn"];
 
 export default async function LearnPage() {
   const locale = await getLocale();
@@ -47,53 +52,43 @@ export default async function LearnPage() {
       </PageHero>
 
       <section className="py-16 sm:py-24">
-        <Container className="grid gap-12 lg:grid-cols-12">
-          <div className="lg:col-span-4">
-            <div className="lg:sticky lg:top-28">
-              <SectionHeading title={t.roadmapTitle} />
-              <div className="mt-8 flex gap-3 rounded-2xl border border-line bg-surface p-5">
-                <ShieldCheck aria-hidden="true" className="mt-0.5 size-5 shrink-0 text-tone-mint" />
-                <p className="text-sm leading-relaxed text-ink-2">{t.shariaNote}</p>
-              </div>
-            </div>
-          </div>
+        <Container>
+          <Tabs
+            label={t.sectionsLabel}
+            items={[
+              {
+                id: "external",
+                label: t.external.tab,
+                content: (
+                  <Roadmap
+                    domains={externalDomains}
+                    intro={t.external.intro}
+                    pathNote={t.sourcesSoon}
+                    locale={locale}
+                    t={t}
+                  />
+                ),
+              },
+              {
+                id: "platform",
+                label: t.platform.tab,
+                content: (
+                  <Roadmap
+                    domains={platformDomains}
+                    intro={t.platform.intro}
+                    pathBadge={t.underConstruction}
+                    locale={locale}
+                    t={t}
+                  />
+                ),
+              },
+            ]}
+          />
 
-          <ol className="relative space-y-4 lg:col-span-8">
-            <span aria-hidden="true" className="absolute start-[2.625rem] top-8 bottom-8 w-px bg-line-strong sm:start-[3.125rem]" />
-            {learningYears.map((year, yearIndex) => (
-              <li key={year.id} className="reveal relative flex gap-5 rounded-3xl border border-line bg-surface p-5 sm:p-7">
-                <IconTile tone={yearTones[yearIndex % yearTones.length]} className="relative z-10 size-11 ring-4 ring-surface">
-                  <span className="font-mono text-sm font-semibold">{String(yearIndex + 1).padStart(2, "0")}</span>
-                </IconTile>
-                <div className="min-w-0 flex-1">
-                  <div className="flex flex-wrap items-center justify-between gap-3">
-                    <h2 className="font-display text-2xl font-semibold text-ink">{year.title[locale]}</h2>
-                    <Badge tone="muted">
-                      <Construction aria-hidden="true" className="size-3" />
-                      {t.underConstruction}
-                    </Badge>
-                  </div>
-                  <p className="mt-2 leading-relaxed text-muted">{year.description[locale]}</p>
-                  <ul className={cn("mt-5 grid gap-3", year.tracks.length > 1 && "sm:grid-cols-2")}>
-                    {year.tracks.map((track) => {
-                      const { icon: Icon, tone } = tracks[track.id] ?? { icon: BookOpen, tone: "blue" };
-                      return (
-                        <li key={track.id} className="rounded-2xl border border-line bg-surface-2 p-4">
-                          <div className="flex items-center gap-3">
-                            <IconTile tone={tone}>
-                              <Icon />
-                            </IconTile>
-                            <h3 className="font-semibold text-ink">{track.title[locale]}</h3>
-                          </div>
-                          <p className="mt-3 text-sm leading-relaxed text-muted">{track.description[locale]}</p>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </div>
-              </li>
-            ))}
-          </ol>
+          <div className="mt-10 flex max-w-3xl gap-3 rounded-2xl border border-line bg-surface p-5">
+            <ShieldCheck aria-hidden="true" className="mt-0.5 size-5 shrink-0 text-tone-mint" />
+            <p className="text-sm leading-relaxed text-ink-2">{t.shariaNote}</p>
+          </div>
         </Container>
       </section>
 
@@ -103,5 +98,181 @@ export default async function LearnPage() {
         primary={{ href: localePath(locale, "/contact"), label: t.suggestCta }}
       />
     </>
+  );
+}
+
+/** The program plan: each domain with its paths in order. */
+function Roadmap({
+  domains,
+  intro,
+  pathBadge,
+  pathNote,
+  locale,
+  t,
+}: {
+  domains: RoadmapDomain[];
+  intro: string;
+  pathBadge?: string;
+  pathNote?: string;
+  locale: Locale;
+  t: Learn;
+}) {
+  return (
+    <>
+      <p className="max-w-3xl leading-relaxed text-ink-2">{intro}</p>
+      {/* The two domains side by side on wide screens, as they are studied together; stacked on phones. */}
+      <div className="mt-10 grid items-start gap-14 lg:grid-cols-2 lg:gap-8">
+        {domains.map((domain) => {
+          const { icon: Icon, tone } = domainStyle[domain.id];
+          return (
+            <section key={domain.id} aria-labelledby={`domain-${domain.id}`}>
+              <div className="flex items-center gap-3">
+                <IconTile tone={tone}>
+                  <Icon />
+                </IconTile>
+                <h2 id={`domain-${domain.id}`} className="font-display text-2xl font-semibold text-ink sm:text-3xl">
+                  {domain.title[locale]}
+                </h2>
+              </div>
+              <p className="mt-3 max-w-3xl leading-relaxed text-muted">{domain.description[locale]}</p>
+              <ol className="relative mt-6 space-y-4">
+                <span
+                  aria-hidden="true"
+                  className="absolute start-[2.625rem] top-8 bottom-8 w-px bg-line-strong sm:start-[3.125rem]"
+                />
+                {domain.paths.map((path, index) => (
+                  <PathCard
+                    key={path.id}
+                    path={path}
+                    index={index}
+                    tone={tone}
+                    badge={pathBadge}
+                    note={pathNote}
+                    locale={locale}
+                    t={t}
+                  />
+                ))}
+              </ol>
+            </section>
+          );
+        })}
+      </div>
+    </>
+  );
+}
+
+function PathCard({
+  path,
+  index,
+  tone,
+  badge,
+  note,
+  locale,
+  t,
+}: {
+  path: RoadmapPath;
+  index: number;
+  tone: Tone;
+  badge?: string;
+  note?: string;
+  locale: Locale;
+  t: Learn;
+}) {
+  return (
+    <li className="reveal relative flex gap-5 rounded-3xl border border-line bg-surface p-5 sm:p-7">
+      <IconTile tone={pathTones[index % pathTones.length]} className="relative z-10 size-11 ring-4 ring-surface">
+        <span className="font-mono text-sm font-semibold">{String(index + 1).padStart(2, "0")}</span>
+      </IconTile>
+      <div className="min-w-0 flex-1">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <h3 className="font-display text-xl font-semibold text-ink sm:text-2xl">{path.title[locale]}</h3>
+          {badge && (
+            <Badge tone="muted">
+              <Construction aria-hidden="true" className="size-3" />
+              {badge}
+            </Badge>
+          )}
+        </div>
+        <p className="mt-2 leading-relaxed text-muted">{path.description[locale]}</p>
+        {note && <p className="mt-2 text-xs font-medium text-muted">{note}</p>}
+
+        <ul className="mt-5 space-y-2">
+          {path.levels.map((level) => (
+            <LevelToggle key={level.id} level={level} tone={tone} locale={locale} t={t} />
+          ))}
+        </ul>
+
+        {path.graduation && (
+          <div className="mt-4 flex gap-3 rounded-2xl border border-line bg-tone-gold-soft p-4">
+            <GraduationCap aria-hidden="true" className={cn("mt-0.5 size-5 shrink-0", toneText.gold)} />
+            <div>
+              <p className="text-sm font-semibold text-ink">{t.graduation}</p>
+              <p className="mt-1 text-sm leading-relaxed text-ink-2">{path.graduation[locale]}</p>
+            </div>
+          </div>
+        )}
+      </div>
+    </li>
+  );
+}
+
+/** A level as a toggle: its topics (with what each covers, or as plain subjects) and its project. */
+function LevelToggle({ level, tone, locale, t }: { level: RoadmapLevel; tone: Tone; locale: Locale; t: Learn }) {
+  const plainSubjects = level.topics.length > 0 && level.topics.every((topic) => !topic.points);
+  return (
+    <li>
+      <details className="group rounded-2xl border border-line bg-surface-2">
+        <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 rounded-2xl px-4 py-3 font-semibold text-ink [&::-webkit-details-marker]:hidden">
+          <span className="flex items-center gap-2">
+            <span aria-hidden="true" className={cn("size-1.5 shrink-0 rounded-full", toneDot[tone])} />
+            {level.title[locale]}
+          </span>
+          <ChevronDown
+            aria-hidden="true"
+            className="size-4 shrink-0 text-muted transition-transform group-open:rotate-180"
+          />
+        </summary>
+        <div className="border-t border-line px-4 pt-3 pb-4">
+          {plainSubjects ? (
+            <ul className="flex flex-wrap gap-2">
+              {level.topics.map((topic) => (
+                <li
+                  key={topic.id}
+                  className="flex items-center gap-2 rounded-xl border border-line bg-surface px-3 py-2 text-sm text-ink"
+                >
+                  <BookOpen aria-hidden="true" className={cn("size-3.5 shrink-0", toneText[tone])} />
+                  {topic.title[locale]}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            level.topics.length > 0 && (
+              <ul className="space-y-3">
+                {level.topics.map((topic) => (
+                  <li key={topic.id} className="text-sm leading-relaxed">
+                    <span className="font-semibold text-ink">{topic.title[locale]}</span>
+                    {topic.points && (
+                      <span className="text-muted">
+                        {": "}
+                        {topic.points[locale].join(locale === "ar" ? "، " : ", ")}
+                      </span>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            )
+          )}
+          {level.project && (
+            <div className={cn("flex gap-2 text-sm leading-relaxed", level.topics.length > 0 && "mt-4")}>
+              <Hammer aria-hidden="true" className={cn("mt-0.5 size-4 shrink-0", toneText[tone])} />
+              <p>
+                <span className="font-semibold text-ink">{t.project}: </span>
+                <span className="text-ink-2">{level.project[locale]}</span>
+              </p>
+            </div>
+          )}
+        </div>
+      </details>
+    </li>
   );
 }

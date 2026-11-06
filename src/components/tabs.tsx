@@ -3,7 +3,7 @@
 import { useId, useState } from "react";
 import { cn } from "@/lib/cn";
 
-export type TabItem = { id: string; label: string; count: number; content: React.ReactNode };
+export type TabItem = { id: string; label: string; count?: number; content: React.ReactNode };
 
 /** Accessible tabs (roving focus with arrow keys). Panels are rendered on the server and passed in. */
 export function Tabs({ items, label }: { items: TabItem[]; label: string }) {
@@ -46,14 +46,16 @@ export function Tabs({ items, label }: { items: TabItem[]; label: string }) {
               )}
             >
               {item.label}
-              <span
-                className={cn(
-                  "rounded-full px-1.5 py-0.5 font-mono text-[0.7rem] leading-none",
-                  selected ? "bg-paper/15" : "bg-paper-2 text-muted",
-                )}
-              >
-                {item.count}
-              </span>
+              {item.count !== undefined && (
+                <span
+                  className={cn(
+                    "rounded-full px-1.5 py-0.5 font-mono text-[0.7rem] leading-none",
+                    selected ? "bg-paper/15" : "bg-paper-2 text-muted",
+                  )}
+                >
+                  {item.count}
+                </span>
+              )}
             </button>
           );
         })}

@@ -29,7 +29,7 @@ src/
     content/           # Articles, news, featured videos (+ [slug] detail)
     entertainment/     # Recommended YouTube videos: groups → categories → videos
     products/          # Product cards (+ [slug] detail)
-    learn/             # Two-year learning program plan, under construction
+    learn/             # Learning plan (external and platform tracks), under construction
     contribute/ support/ about/ contact/
   app/globals.css      # design tokens: colors of both themes, fonts, shadows
   content/             # site content as typed data — edit these to publish

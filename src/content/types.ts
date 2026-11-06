@@ -36,18 +36,23 @@ export type Product = {
   installSteps?: Localized<string[]>;
 };
 
-export type LearningTrack = {
+/** A topic of a roadmap level, optionally with what it covers. */
+export type RoadmapTopic = { id: string; title: Localized; points?: Localized<string[]> };
+
+/** One step of a path, shown as a toggle: its topics and the project that proves it was learned. */
+export type RoadmapLevel = { id: string; title: Localized; topics: RoadmapTopic[]; project?: Localized };
+
+/** A path studied in order within its domain, at the learner's own pace (no timing). */
+export type RoadmapPath = {
   id: string;
   title: Localized;
   description: Localized;
+  levels: RoadmapLevel[];
+  graduation?: Localized;
 };
 
-export type LearningYear = {
-  id: string;
-  title: Localized;
-  description: Localized;
-  tracks: LearningTrack[];
-};
+/** A domain of the Learn program (Islamic, technology), with its paths in order. */
+export type RoadmapDomain = { id: "sharia" | "tech"; title: Localized; description: Localized; paths: RoadmapPath[] };
 
 export type RecommendedVideo = {
   /** YouTube link (or bare video ID). The title and thumbnail are fetched from YouTube. */
