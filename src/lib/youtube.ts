@@ -53,44 +53,64 @@ export async function getYouTubeVideo(input: string): Promise<YouTubeVideo | nul
   }
 }
 
+export type YouTubeVideoDetails = {
+  views: number | null;
+  /** ISO date-time YouTube published the video. */
+  published: string | null;
+};
+
 /**
- * View count of a YouTube video, for the "most viewed" sort. With YOUTUBE_API_KEY (a Vercel environment variable,
- * restricted to the YouTube Data API) it comes from the official API, which also works from Vercel's servers; without
- * it, from the public watch page, which YouTube may refuse to servers. Cached like the title; null when neither works,
- * and such videos sort last. The key never leaves the server.
+ * View count and publish date of a YouTube video: views for the "most viewed" sort, the date for the VideoObject
+ * structured data. (The video's own description is never read: the page doesn't show it, and it is other people's
+ * text.) With YOUTUBE_API_KEY (a Vercel environment variable, restricted to the YouTube Data API) they come from the
+ * official API, which also works from Vercel's servers; without it, from the public watch page, which YouTube may
+ * refuse to servers. Cached like the title; each is null when it can't be read (such videos sort last and get no
+ * structured data). The key never leaves the server.
  */
-export async function getYouTubeViews(id: string): Promise<number | null> {
+export async function getYouTubeDetails(id: string): Promise<YouTubeVideoDetails> {
   "use cache";
   cacheLife("days");
 
+  const unread = { views: null, published: null };
   try {
     const key = process.env.YOUTUBE_API_KEY;
     if (key) {
       // The key goes in a header, never the URL: Next stores fetch URLs in its Data Cache. The result is cached by
       // "use cache" above, so this fetch itself is not.
-      const response = await fetch(`https://www.googleapis.com/youtube/v3/videos?part=statistics&id=${id}`, {
+      const response = await fetch(`https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&id=${id}`, {
         headers: { "X-goog-api-key": key },
         cache: "no-store",
         signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
       });
       if (response.ok) {
-        const data = (await response.json()) as { items?: { statistics?: { viewCount?: string } }[] };
-        const views = data.items?.[0]?.statistics?.viewCount;
-        if (views) return Number(views);
+        const data = (await response.json()) as {
+          items?: { snippet?: { publishedAt?: string }; statistics?: { viewCount?: string } }[];
+        };
+        const video = data.items?.[0];
+        if (video) {
+          return {
+            views: video.statistics?.viewCount ? Number(video.statistics.viewCount) : null,
+            published: video.snippet?.publishedAt ?? null,
+          };
+        }
       } else {
         // Status only (bad key, quota, API disabled), so the Vercel logs explain a hidden "most viewed" button.
-        console.warn(`YouTube Data API returned ${response.status} for video views`);
+        console.warn(`YouTube Data API returned ${response.status} for video details`);
       }
     }
     const response = await fetch(`https://www.youtube.com/watch?v=${id}`, {
       headers: { "Accept-Language": "en" },
       signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
     });
-    if (!response.ok) return null;
-    const views = (await response.text()).match(/"viewCount":"(\d+)"/)?.[1];
-    return views ? Number(views) : null;
+    if (!response.ok) return unread;
+    const html = await response.text();
+    const views = html.match(/"viewCount":"(\d+)"/)?.[1];
+    return {
+      views: views ? Number(views) : null,
+      published: html.match(/"publishDate":"([^"]+)"/)?.[1] ?? null,
+    };
   } catch {
-    return null;
+    return unread;
   }
 }
 

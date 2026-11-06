@@ -391,6 +391,7 @@
     "sort": { "newest": "Newest", "oldest": "Oldest", "mostViewed": "Most viewed" },
     "previous": "Previous",
     "next": "Next",
+    "topics": "Topics:",
     "sectionsLabel": "Entertainment types",
     "sections": { "videos": "Videos", "channels": "Channels", "books": "Books" },
     "channels": {
@@ -400,6 +401,7 @@
     },
     "books": {
       "description": "Books we recommend, grouped by topic.",
+      "featured": "Including:",
       "empty": "No books yet."
     }
   },

@@ -391,6 +391,7 @@
     "sort": { "newest": "الأحدث", "oldest": "الأقدم", "mostViewed": "الأكثر مشاهدة" },
     "previous": "السابق",
     "next": "التالي",
+    "topics": "مواضيعها:",
     "sectionsLabel": "أنواع الترفيه",
     "sections": { "videos": "فيديوهات", "channels": "قنوات", "books": "كتب" },
     "channels": {
@@ -400,6 +401,7 @@
     },
     "books": {
       "description": "كتب نرشّحها لك، مقسّمة حسب الموضوع.",
+      "featured": "منها:",
       "empty": "لم نُضف كتبًا بعد."
     }
   },
