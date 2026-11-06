@@ -1,4 +1,4 @@
-import { Gift } from "lucide-react";
+import { BookOpen, Clapperboard, Gift } from "lucide-react";
 import { siteConfig } from "@/config/site";
 import type { Dictionary } from "@/i18n/dictionaries";
 import { LogoMark } from "../brand";
@@ -90,6 +90,18 @@ export function HeroVisual({ dict }: { dict: Dictionary }) {
         </div>
       </div>
 
+      <Chip
+        icon={<BookOpen />}
+        label={v.chipLearning}
+        tone="rose"
+        className="start-0 top-[1%] [animation-delay:-1s] sm:start-[2%] sm:top-[12%]"
+      />
+      <Chip
+        icon={<Clapperboard />}
+        label={v.chipEntertainment}
+        tone="gold"
+        className="end-0 top-[3%] [animation-delay:-2.2s] sm:end-[4%] sm:top-[7%]"
+      />
       <Chip
         icon={<GitHubIcon />}
         label={v.chipOpen}
