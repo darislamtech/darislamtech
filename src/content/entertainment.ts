@@ -111,6 +111,7 @@ export const entertainmentGroups: EntertainmentGroup[] = [
           { url: "https://www.youtube.com/@مؤسسةوعي", name: "مؤسسة وعي" },
           { url: "https://www.youtube.com/@Dr.Ibrahem_Emam", name: "Ibrahim Emam - الساخر الهادف" },
           { url: "https://www.youtube.com/@marwan7egazy", name: "Marwan Hegazy - مروان حجازي" },
+          { url: "https://www.youtube.com/@yuosef_jo", name: "YUOSEF JO" },
         ],
       },
       {
