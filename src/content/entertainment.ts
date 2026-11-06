@@ -15,7 +15,6 @@ export const entertainmentGroups: EntertainmentGroup[] = [
         items: [
           { url: "https://www.youtube.com/watch?v=S9QMNG9Lt9I", added: "2026-11-05T21:40" },
           { url: "https://www.youtube.com/watch?v=G7PyaAorVHE", added: "2026-11-05T21:41" },
-          { url: "https://www.youtube.com/watch?v=IKLoGOr0390", added: "2026-11-05T21:42" },
         ],
       },
       {
