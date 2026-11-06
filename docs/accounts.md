@@ -33,3 +33,5 @@
 | تيليجرام | https://t.me/marwan7egazy |
 | إكس (تويتر) | https://x.com/marwan7egazy |
 | قبيلة | https://qabilah.com/profile/marwan7egazy/posts |
+
+رابط الدعم المادي في صفحة «ادعمنا»: PayPal.Me باسم المؤسس، https://paypal.me/marwan7egazy (المصدر `supportLinks` في `src/config/site.ts`).
