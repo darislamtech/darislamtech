@@ -29,7 +29,11 @@ export const entertainmentGroups: EntertainmentGroup[] = [
       },
       { id: "quran-clips", title: { ar: "تلاوات قرآنية قصيرة", en: "Short Quran recitations" }, items: [] },
       { id: "quran-reflections", title: { ar: "تدبرات قرآنية", en: "Quranic reflections" }, items: [] },
-      { id: "nasheeds", title: { ar: "أناشيد وابتهالات", en: "Nasheeds and devotional chants" }, items: [] },
+      {
+        id: "nasheeds",
+        title: { ar: "أناشيد وابتهالات", en: "Nasheeds and devotional chants" },
+        items: [{ url: "https://www.youtube.com/watch?v=bXATUAGDNuM", added: "2026-11-06T18:10" }],
+      },
       { id: "islamic-figures", title: { ar: "شخصيات إسلامية", en: "Islamic figures" }, items: [] },
       { id: "asceticism", title: { ar: "الزهد وحقيقة الدنيا", en: "Asceticism and the truth about this world" }, items: [] },
       { id: "advice", title: { ar: "نصائح", en: "Advice" }, items: [] },
