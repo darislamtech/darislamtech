@@ -28,7 +28,11 @@ export const entertainmentGroups: EntertainmentGroup[] = [
         ],
       },
       { id: "quran-clips", title: { ar: "تلاوات قرآنية قصيرة", en: "Short Quran recitations" }, items: [] },
-      { id: "quran-reflections", title: { ar: "تدبرات قرآنية", en: "Quranic reflections" }, items: [] },
+      {
+        id: "quran-reflections",
+        title: { ar: "تدبرات قرآنية", en: "Quranic reflections" },
+        items: [{ url: "https://www.youtube.com/watch?v=s0-kPcacIcw", added: "2026-11-06T18:21" }],
+      },
       {
         id: "nasheeds",
         title: { ar: "أناشيد وابتهالات", en: "Nasheeds and devotional chants" },
@@ -39,10 +43,34 @@ export const entertainmentGroups: EntertainmentGroup[] = [
         ],
       },
       { id: "islamic-figures", title: { ar: "شخصيات إسلامية", en: "Islamic figures" }, items: [] },
-      { id: "asceticism", title: { ar: "الزهد وحقيقة الدنيا", en: "Asceticism and the truth about this world" }, items: [] },
+      {
+        id: "asceticism",
+        title: { ar: "الزهد وحقيقة الدنيا", en: "Asceticism and the truth about this world" },
+        items: [{ url: "https://www.youtube.com/watch?v=TWgFmxN0TGE", added: "2026-11-06T18:25" }],
+      },
       { id: "advice", title: { ar: "نصائح", en: "Advice" }, items: [] },
       { id: "fatwas", title: { ar: "فتاوى", en: "Fatwas" }, items: [] },
-      { id: "doubts", title: { ar: "الإلحاد والرد على الشبهات", en: "Atheism and answering doubts" }, items: [] },
+      {
+        id: "islamic-studies",
+        title: { ar: "طلب العلم الشرعي", en: "Studying Islamic knowledge" },
+        items: [{ url: "https://www.youtube.com/watch?v=K9m35qrKtTE", added: "2026-11-06T18:26" }],
+      },
+      {
+        id: "family",
+        title: { ar: "الأسرة والمجتمع", en: "Family and society" },
+        items: [
+          { url: "https://www.youtube.com/watch?v=pm1PRg-_q5g", added: "2026-11-06T18:20" },
+          { url: "https://www.youtube.com/watch?v=SoNssPRyQTE", added: "2026-11-06T18:23" },
+        ],
+      },
+      {
+        id: "doubts",
+        title: { ar: "الإلحاد والرد على الشبهات", en: "Atheism and answering doubts" },
+        items: [
+          { url: "https://www.youtube.com/watch?v=LquO5LWcf6Y", added: "2026-11-06T18:22" },
+          { url: "https://www.youtube.com/watch?v=3WVIycBGRRE", added: "2026-11-06T18:24" },
+        ],
+      },
       { id: "comparative-religion", title: { ar: "مقارنة الأديان والمناظرات", en: "Comparative religion and debates" }, items: [] },
       {
         id: "feminism",
@@ -79,6 +107,7 @@ export const entertainmentGroups: EntertainmentGroup[] = [
           { url: "https://www.youtube.com/@fedaaadeen", name: "Fedaadeen فداءالدين" },
           { url: "https://www.youtube.com/@مؤسسةوعي", name: "مؤسسة وعي" },
           { url: "https://www.youtube.com/@Dr.Ibrahem_Emam", name: "Ibrahim Emam - الساخر الهادف" },
+          { url: "https://www.youtube.com/@marwan7egazy", name: "Marwan Hegazy - مروان حجازي" },
         ],
       },
       {
@@ -146,7 +175,11 @@ export const entertainmentGroups: EntertainmentGroup[] = [
     id: "tech",
     title: { ar: "محتوى ترفيهي تقني", en: "Tech entertainment" },
     videos: [
-      { id: "ai-jobs", title: { ar: "الذكاء الاصطناعي وسوق العمل", en: "AI and the job market" }, items: [] },
+      {
+        id: "ai-jobs",
+        title: { ar: "الذكاء الاصطناعي وسوق العمل", en: "AI and the job market" },
+        items: [{ url: "https://www.youtube.com/watch?v=qNZJSUg6eBs", added: "2026-11-06T18:19" }],
+      },
       { id: "tokens", title: { ar: "الحفاظ على التوكنز", en: "Saving tokens" }, items: [] },
     ],
     channels: [
