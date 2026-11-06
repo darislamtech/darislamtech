@@ -27,7 +27,7 @@ export function VideoSortProvider({ children }: { children: React.ReactNode }) {
   return <SortContext.Provider value={{ sort, setSort }}>{children}</SortContext.Provider>;
 }
 
-export function VideoSortControl({ label, options }: { label: string; options: Record<VideoSort, string> }) {
+export function VideoSortControl({ label, options }: { label: string; options: Partial<Record<VideoSort, string>> }) {
   const { sort, setSort } = useContext(SortContext);
   return (
     <div role="group" aria-label={label} className="flex flex-wrap items-center gap-2">

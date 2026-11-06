@@ -58,6 +58,11 @@ export default async function EntertainmentPage() {
     }),
   );
 
+  // "Most viewed" only when YouTube gave us view counts; otherwise it would just repeat "newest".
+  const hasViews = groups.some((group) => group.categories.some((category) => category.items.some((item) => item.views !== null)));
+  const { mostViewed, ...dateSorts } = t.sort;
+  const sortOptions = hasViews ? { ...dateSorts, mostViewed } : dateSorts;
+
   return (
     <VideoSortProvider>
       <EntertainmentShell
@@ -68,7 +73,7 @@ export default async function EntertainmentPage() {
         groups={groups}
         empty={t.empty}
         gridClassName="sm:grid-cols-2 lg:grid-cols-3"
-        toolbar={<VideoSortControl label={t.sortLabel} options={t.sort} />}
+        toolbar={<VideoSortControl label={t.sortLabel} options={sortOptions} />}
       />
     </VideoSortProvider>
   );
