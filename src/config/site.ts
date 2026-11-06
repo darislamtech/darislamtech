@@ -6,7 +6,8 @@ export type SupportLink = { name: "Ko-fi" | "PayPal"; href: string };
 
 type Social = { name: SocialName; href: string };
 
-const supportLinks: SupportLink[] = [];
+// The founder's PayPal.Me: a plain payment link, never a PayPal "Donate" button (see AI-Instructions/project/RULES.md).
+const supportLinks: SupportLink[] = [{ name: "PayPal", href: "https://paypal.me/marwan7egazy" }];
 
 // Dar's accounts, all under the username "darislamtech".
 const socials: Social[] = [
