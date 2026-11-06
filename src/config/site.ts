@@ -2,12 +2,15 @@
 import type { SocialName } from "@/components/icons";
 
 /** A way to support the project financially, shown on the support page. Add one only once its account is live. */
-export type SupportLink = { name: "Ko-fi" | "PayPal"; href: string };
+export type SupportLink = { name: "Ko-fi" | "PayPal" | "Buy Me a Coffee"; href: string };
 
 type Social = { name: SocialName; href: string };
 
-// The founder's PayPal.Me: a plain payment link, never a PayPal "Donate" button (see AI-Instructions/project/RULES.md).
-const supportLinks: SupportLink[] = [{ name: "PayPal", href: "https://paypal.me/marwan7egazy" }];
+// The founder's PayPal.Me and Buy Me a Coffee pages: plain payment links, never a PayPal "Donate" button (see AI-Instructions/project/RULES.md).
+const supportLinks: SupportLink[] = [
+  { name: "PayPal", href: "https://paypal.me/marwan7egazy" },
+  { name: "Buy Me a Coffee", href: "https://buymeacoffee.com/marwan7egazy" },
+];
 
 // Dar's accounts, all under the username "darislamtech".
 const socials: Social[] = [
