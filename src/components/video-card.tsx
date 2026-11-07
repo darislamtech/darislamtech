@@ -1,14 +1,34 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useId, useState } from "react";
 import Image from "next/image";
 import { Play } from "lucide-react";
 
 type VideoCardProps = { id: string; title: string; thumbnail: string; playLabel: string };
 
-/** Thumbnail and title only; the YouTube player loads in place on click, so a page of many videos stays light. */
+// Sent when a card starts playing, so the others on the page close their player.
+const PLAY_EVENT = "dar:video-play";
+
+/**
+ * Thumbnail and title only; the YouTube player loads in place on click, so a page of many videos stays light. One
+ * video plays at a time: starting one turns any other playing card back into its thumbnail.
+ */
 export function VideoCard({ id, title, thumbnail, playLabel }: VideoCardProps) {
   const [playing, setPlaying] = useState(false);
+  const cardId = useId();
+
+  useEffect(() => {
+    const stopIfOther = (event: Event) => {
+      if ((event as CustomEvent<string>).detail !== cardId) setPlaying(false);
+    };
+    window.addEventListener(PLAY_EVENT, stopIfOther);
+    return () => window.removeEventListener(PLAY_EVENT, stopIfOther);
+  }, [cardId]);
+
+  function play() {
+    setPlaying(true);
+    window.dispatchEvent(new CustomEvent(PLAY_EVENT, { detail: cardId }));
+  }
 
   return (
     <figure className="flex flex-col gap-3">
@@ -25,7 +45,7 @@ export function VideoCard({ id, title, thumbnail, playLabel }: VideoCardProps) {
         ) : (
           <button
             type="button"
-            onClick={() => setPlaying(true)}
+            onClick={play}
             aria-label={`${playLabel}: ${title}`}
             className="group absolute inset-0 size-full"
           >
