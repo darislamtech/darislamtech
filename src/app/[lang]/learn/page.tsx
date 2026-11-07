@@ -53,6 +53,7 @@ export default async function LearnPage() {
         <Container>
           <Tabs
             label={t.sectionsLabel}
+            stackOnMobile
             items={[
               {
                 id: "external",

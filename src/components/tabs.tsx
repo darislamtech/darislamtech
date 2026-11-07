@@ -5,8 +5,11 @@ import { cn } from "@/lib/cn";
 
 export type TabItem = { id: string; label: string; count?: number; content: React.ReactNode };
 
-/** Accessible tabs (roving focus with arrow keys). Panels are rendered on the server and passed in. */
-export function Tabs({ items, label }: { items: TabItem[]; label: string }) {
+/**
+ * Accessible tabs (roving focus with arrow keys). Panels are rendered on the server and passed in. With
+ * `stackOnMobile`, long labels stack as full-width 44px buttons on phones instead of scrolling out of sight.
+ */
+export function Tabs({ items, label, stackOnMobile }: { items: TabItem[]; label: string; stackOnMobile?: boolean }) {
   const [active, setActive] = useState(items[0]?.id);
   const baseId = useId();
 
@@ -25,7 +28,12 @@ export function Tabs({ items, label }: { items: TabItem[]; label: string }) {
       <div
         role="tablist"
         aria-label={label}
-        className="inline-flex max-w-full gap-1 overflow-x-auto rounded-full border border-line bg-surface p-1"
+        className={cn(
+          "max-w-full gap-1 border border-line bg-surface p-1",
+          stackOnMobile
+            ? "flex flex-col rounded-3xl sm:inline-flex sm:flex-row sm:rounded-full"
+            : "inline-flex overflow-x-auto rounded-full",
+        )}
       >
         {items.map((item, index) => {
           const selected = item.id === active;
@@ -42,6 +50,7 @@ export function Tabs({ items, label }: { items: TabItem[]; label: string }) {
               onKeyDown={(event) => onKeyDown(event, index)}
               className={cn(
                 "flex shrink-0 items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-colors",
+                stackOnMobile && "min-h-11 justify-center",
                 selected ? "bg-ink text-paper" : "text-ink-2 hover:bg-paper-2",
               )}
             >
