@@ -49,6 +49,8 @@ export const entertainmentGroups: EntertainmentGroup[] = [
         items: [
           { url: "https://www.youtube.com/watch?v=TWgFmxN0TGE", added: "2026-11-06T18:25" },
           { url: "https://www.youtube.com/watch?v=akKm9tZo7yI", added: "2026-11-06T18:28" },
+          { url: "https://www.youtube.com/watch?v=Ss6cVO9c_aY", added: "2026-11-07T23:22" },
+          { url: "https://www.youtube.com/watch?v=DUjjlMMD9g0", added: "2026-11-07T23:23" },
         ],
       },
       { id: "advice", title: { ar: "نصائح", en: "Advice" }, items: [] },
@@ -119,7 +121,6 @@ export const entertainmentGroups: EntertainmentGroup[] = [
         title: { ar: "دروس ومواعظ", en: "Lessons and sermons" },
         items: [
           { url: "https://www.youtube.com/@amgad_samir", name: "أمجد سمير" },
-          { url: "https://www.youtube.com/@AlHuwayni", name: "الشيخ أبو إسحاق الحويني" },
           { url: "https://www.youtube.com/@Fayezalkandary", name: "فايز الكندري | Fayez Alkandary" },
           { url: "https://www.youtube.com/@3laaHamed", name: "Alaa Hamed - علاء حامد" },
         ],
