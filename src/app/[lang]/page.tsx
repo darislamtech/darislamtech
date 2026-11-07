@@ -16,7 +16,7 @@ import {
 import { siteConfig } from "@/config/site";
 import { localePath } from "@/i18n/config";
 import { getDictionary, getLocale } from "@/i18n/dictionaries";
-import { learningYears } from "@/content/learn";
+import { externalDomains } from "@/content/learn";
 import { posts } from "@/content/posts";
 import { LogoMark } from "@/components/brand";
 import { HeroVisual } from "@/components/home/hero-visual";
@@ -209,14 +209,14 @@ export default async function HomePage() {
               className="lg:col-span-2"
             >
               <ul className="mt-8 space-y-2">
-                {learningYears.map((year) => (
+                {externalDomains.map((domain) => (
                   <li
-                    key={year.id}
+                    key={domain.id}
                     className="flex items-center justify-between gap-3 rounded-xl bg-surface-2 px-3 py-2.5 text-sm"
                   >
                     <span className="flex items-center gap-2 text-ink-2">
                       <Construction aria-hidden="true" className="size-3.5 shrink-0 text-muted" />
-                      {year.title[locale]}
+                      {domain.title[locale]}
                     </span>
                     <span className="shrink-0 text-xs text-muted">{dict.learn.underConstruction}</span>
                   </li>
