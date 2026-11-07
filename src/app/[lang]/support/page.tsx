@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Clapperboard, Coffee, HandHeart, Heart, Mail, Megaphone, Server, Share2, UserRound, Users, Wallet } from "lucide-react";
+import { Clapperboard, Coffee, HandCoins, HandHeart, Heart, Mail, Megaphone, Server, Share2, UserRound, Users, Wallet } from "lucide-react";
 import { siteConfig, type SupportLink } from "@/config/site";
 import { localePath } from "@/i18n/config";
 import { getDictionary, getLocale } from "@/i18n/dictionaries";
@@ -15,7 +15,12 @@ export async function generateMetadata(): Promise<Metadata> {
   return pageMetadata({ locale, dict, path: "/support", title: dict.nav.support, description: dict.support.description });
 }
 
-const linkIcons: Record<SupportLink["name"], typeof Coffee> = { "Ko-fi": Coffee, PayPal: Wallet, "Buy Me a Coffee": Coffee };
+const linkIcons: Record<SupportLink["name"], typeof Coffee> = {
+  "Ko-fi": Coffee,
+  PayPal: Wallet,
+  "Buy Me a Coffee": Coffee,
+  Patreon: HandCoins,
+};
 // Developers' pay, hosting, promotion, content, the founder's margin.
 const useIcons = [Users, Server, Megaphone, Clapperboard, UserRound];
 const useTones: Tone[] = ["blue", "mint", "rose", "gold", "blue"];
