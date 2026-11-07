@@ -117,7 +117,7 @@ books: [{ id: "programming", title: { ar: "البرمجة", en: "Programming" },
 في `src/config/site.ts`، ومعها القائمة في [accounts.md](accounts.md) تُحدَّث في نفس التعديل. لا يُضاف إلا حساب موجود فعلًا.
 
 ## طرق الدعم المادي (صفحة «ادعمنا»)
-في `supportLinks` داخل `src/config/site.ts`، مثلًا `{ name: "Ko-fi", href: "https://ko-fi.com/..." }` أو `{ name: "PayPal", href: "https://paypal.me/..." }`. الموجود الآن رابطان باسم المؤسس: PayPal.Me `https://paypal.me/marwan7egazy` وBuy Me a Coffee `https://buymeacoffee.com/marwan7egazy`. لو فرغت القائمة تعرض الصفحة «نجهّز طرق الدعم المادي». لا يُضاف رابط قبل أن يكون الحساب مفعّلًا.
+في `supportLinks` داخل `src/config/site.ts`، مثلًا `{ name: "Ko-fi", href: "https://ko-fi.com/..." }` أو `{ name: "PayPal", href: "https://paypal.me/..." }`. الموجود الآن ثلاثة روابط باسم المؤسس: PayPal.Me `https://paypal.me/marwan7egazy`، وBuy Me a Coffee `https://buymeacoffee.com/marwan7egazy`، وPatreon `https://www.patreon.com/cw/marwan7egazy`. لو فرغت القائمة تعرض الصفحة «نجهّز طرق الدعم المادي». لا يُضاف رابط قبل أن يكون الحساب مفعّلًا.
 
 ## المحتوى الشرعي
 الآيات والأذكار والأحكام لا تُضاف إلا من مصادر موثوقة وبمراجعة مؤهلين.
