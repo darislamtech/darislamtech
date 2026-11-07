@@ -105,7 +105,7 @@ const platformShariaDomain: RoadmapDomain = {
 };
 
 // Islamic knowledge and da'wah, external track: first what no Muslim may be ignorant of, then one field the learner
-// chooses, studies in depth, and makes content about. The fields' topics await the owner's sources and review.
+// takes on as a da'wah project, studies in depth, and makes content about. The fields' topics await the owner's sources and review.
 
 const contentProject = text(
   "يصنع محتوى في هذا المجال (فيديوهات أو مقاطع قصيرة أو مقالات) بمهارات المسار التقني، ويراجعه مختص قبل النشر.",
@@ -123,8 +123,8 @@ const externalShariaDomain: RoadmapDomain = {
   id: "sharia",
   title: text("المسار الديني والدعوي", "Islamic knowledge and da'wah"),
   description: text(
-    "يبدأ بما لا يسع المسلمَ جهلُه في دينه، ثم يختار الدارس مجالًا يتعمّق فيه، ثم يصنع فيه محتوى ينفع الناس.",
-    "It starts with what no Muslim may be ignorant of in their religion; then learners choose a field, study it in depth, and make content in it that benefits people.",
+    "يبدأ بما لا يسع المسلمَ جهلُه في دينه، ثم يتبنّى الدارس مشروعًا دعويًا يدافع به عن الإسلام، يتعمّق فيه ويصنع فيه محتوى ينفع الناس.",
+    "It starts with what no Muslim may be ignorant of in their religion; then learners take on a da'wah project that defends Islam, study its field in depth, and make content in it that benefits people.",
   ),
   paths: [
     {
@@ -138,10 +138,10 @@ const externalShariaDomain: RoadmapDomain = {
     },
     {
       id: "field",
-      title: text("التخصص في مجال", "Specializing in a field"),
+      title: text("مشاريع دعوية", "Da'wah projects"),
       description: text(
-        "يختار الدارس مجالًا واحدًا، فيتعمّق فيه علميًا، ثم يصنع فيه محتوى ينفع الناس، مستعينًا بمهارات المسار التقني.",
-        "Learners choose one field, study it in depth, then make content in it that benefits people, using the technology track's skills.",
+        "يتبنّى الدارس مشروعًا دعويًا واحدًا على الأقل للدفاع عن الإسلام: يتعمّق في مجاله علميًا، ثم يصنع فيه محتوى ينفع الناس، مستعينًا بمهارات المسار التقني.",
+        "Learners take on at least one da'wah project to defend Islam: they study its field in depth, then make content in it that benefits people, using the technology track's skills.",
       ),
       levels: [
         // Spreading Islam so that people enter it.
@@ -183,6 +183,15 @@ const externalShariaDomain: RoadmapDomain = {
         field("secularism", text("الرد على العلمانية", "Answering secularism"), {
           ar: ["مفهوم العلمانية ونشأتها", "شمول الإسلام للحياة", "أشهر شبهاتها"],
           en: ["What secularism is and where it came from", "Islam as a whole way of life", "Its best-known claims"],
+        }),
+        field("kemetism", text("الرد على الكمايتة", "Answering Kemetism"), {
+          ar: ["حقيقة الكمايتة ونشأتها", "دعاوى الهوية والعرق", "موقف الإسلام من العصبية والوثنية", "أشهر شبهاتهم"],
+          en: [
+            "What Kemetism is and where it came from",
+            "Its claims about identity and race",
+            "Where Islam stands on tribalism and idolatry",
+            "Their best-known claims",
+          ],
         }),
         field("spirituality", text("الرد على دعاوى الطاقة والروحانيات الحديثة", "Answering \"energy\" and modern spirituality claims"), {
           ar: ["أصول هذه الدعاوى وجذورها", "موقف العقيدة منها", "أشهر صورها المنتشرة"],
