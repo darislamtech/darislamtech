@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { BookOpen, ChevronDown, Code, Construction, GraduationCap, Hammer, ScrollText, ShieldCheck } from "lucide-react";
+import { BookOpen, ChevronDown, Code, Construction, GraduationCap, Hammer, ScrollText, ShieldCheck, Target } from "lucide-react";
 import { localePath, type Locale } from "@/i18n/config";
 import { getDictionary, getLocale, type Dictionary } from "@/i18n/dictionaries";
 import { pageMetadata } from "@/lib/seo";
@@ -51,6 +51,14 @@ export default async function LearnPage() {
 
       <section className="py-16 sm:py-24">
         <Container>
+          <div className="mb-10 flex max-w-3xl gap-4 rounded-3xl border border-line bg-tone-gold-soft p-5 sm:p-6">
+            <Target aria-hidden="true" className="mt-1 size-6 shrink-0 text-tone-gold" />
+            <div>
+              <p className="font-display text-lg font-semibold text-ink">{t.goalTitle}</p>
+              <p className="mt-1 leading-relaxed text-ink-2">{t.goal}</p>
+            </div>
+          </div>
+
           <Tabs
             label={t.sectionsLabel}
             stackOnMobile
@@ -72,15 +80,29 @@ export default async function LearnPage() {
               {
                 id: "platform",
                 label: t.platform.tab,
+                // Still being planned: the plan shows blurred and out of reach, under a card that says so.
                 content: (
-                  <Roadmap
-                    id="platform"
-                    domains={platformDomains}
-                    intro={t.platform.intro}
-                    pathBadge={t.underConstruction}
-                    locale={locale}
-                    t={t}
-                  />
+                  <div className="relative">
+                    <div inert className="pointer-events-none blur-[3px] select-none opacity-70">
+                      <Roadmap
+                        id="platform"
+                        domains={platformDomains}
+                        intro={t.platform.intro}
+                        pathBadge={t.underConstruction}
+                        locale={locale}
+                        t={t}
+                      />
+                    </div>
+                    <div className="absolute inset-0 flex items-start justify-center pt-8 sm:pt-14">
+                      <div className="sticky top-28 max-w-md rounded-3xl border border-line bg-surface/95 p-6 text-center shadow-lift backdrop-blur sm:p-8">
+                        <IconTile tone="gold" className="mx-auto">
+                          <Construction />
+                        </IconTile>
+                        <h2 className="mt-4 font-display text-xl font-semibold text-ink">{t.platform.planningTitle}</h2>
+                        <p className="mt-2 leading-relaxed text-muted">{t.platform.planningBody}</p>
+                      </div>
+                    </div>
+                  </div>
                 ),
               },
             ]}

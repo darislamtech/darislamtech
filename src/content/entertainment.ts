@@ -90,6 +90,11 @@ export const entertainmentGroups: EntertainmentGroup[] = [
       { id: "secularism", title: { ar: "العلمانية", en: "Secularism" }, items: [] },
       { id: "kemetism", title: { ar: "الكمايتة والعنصرية", en: "Kemetism and racism" }, items: [] },
       { id: "colonialism", title: { ar: "جرائم الاستعمار", en: "Crimes of colonialism" }, items: [] },
+      {
+        id: "podcasts",
+        title: { ar: "بودكاست", en: "Podcasts" },
+        items: [{ url: "https://www.youtube.com/watch?v=pIVlYDFQc6o", added: "2026-11-08T12:15" }],
+      },
     ],
     channels: [
       {
