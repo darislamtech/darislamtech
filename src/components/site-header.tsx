@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Heart } from "lucide-react";
 import { localePath, type Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries";
 import { Logo } from "./brand";
@@ -47,16 +46,6 @@ export function SiteHeader({ locale, dict }: { locale: Locale; dict: Dictionary 
             label={dict.nav.switchLanguage}
             ariaLabel={dict.nav.switchLanguageLabel}
           />
-          {/* English only: icon only between lg and xl, where the longer English nav leaves no room for the label. */}
-          <ButtonLink
-            href={localePath(locale, "/support")}
-            variant="secondary"
-            size="sm"
-            className="hidden sm:inline-flex ltr:lg:max-xl:px-3"
-          >
-            <Heart aria-hidden="true" className="size-4 text-tone-rose" />
-            <span className="ltr:lg:max-xl:sr-only">{dict.nav.support}</span>
-          </ButtonLink>
           <ButtonLink href={cta.href} size="sm" className="hidden sm:inline-flex">
             {cta.label}
           </ButtonLink>
