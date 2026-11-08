@@ -2,7 +2,8 @@ import type { Localized, RoadmapDomain, RoadmapLevel, RoadmapTopic } from "./typ
 
 // The program plan, shown on the Learn page as the external track (what to study, in order, from recommended outside
 // sources, in the spirit of roadmap.sh) and the platform track (lessons and series made by Dar, under construction).
-// The owner is working on the external track only for now: the platform track is frozen as it was, so a change to the
+// The owner is working on the external track only for now: the platform track is frozen (changed only when the owner
+// asks, as with its trusted-sources wording) and shown blurred, so a change to the
 // external plan must not reach it (split a shared domain before changing it). No timing: each learner goes at their
 // own pace. Sources and lessons are added per topic once chosen; Islamic material only from trusted references,
 // reviewed by the qualified. The owner's working plan for technology is the Notion page «رود ماب المسار التقني».
