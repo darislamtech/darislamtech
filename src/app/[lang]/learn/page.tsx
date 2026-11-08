@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { BookOpen, ChevronDown, Code, Construction, GraduationCap, Hammer, ScrollText, ShieldCheck, Target } from "lucide-react";
+import { BookOpen, ChevronDown, Code, Construction, GraduationCap, Hammer, ScrollText, Target } from "lucide-react";
 import { localePath, type Locale } from "@/i18n/config";
 import { getDictionary, getLocale, type Dictionary } from "@/i18n/dictionaries";
 import { pageMetadata } from "@/lib/seo";
@@ -42,12 +42,7 @@ export default async function LearnPage() {
           { href: localePath(locale), label: dict.nav.home },
           { href: localePath(locale, "/learn"), label: dict.nav.learn },
         ]}
-      >
-        <Badge tone="gold" className="px-3 py-2 text-sm">
-          <Construction aria-hidden="true" className="size-3.5" />
-          {t.notice}
-        </Badge>
-      </PageHero>
+      />
 
       <section className="py-16 sm:py-24">
         <Container>
@@ -107,11 +102,6 @@ export default async function LearnPage() {
               },
             ]}
           />
-
-          <div className="mt-10 flex max-w-3xl gap-3 rounded-2xl border border-line bg-surface p-5">
-            <ShieldCheck aria-hidden="true" className="mt-0.5 size-5 shrink-0 text-tone-mint" />
-            <p className="text-sm leading-relaxed text-ink-2">{t.shariaNote}</p>
-          </div>
         </Container>
       </section>
 
