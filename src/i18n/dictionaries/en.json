@@ -235,8 +235,9 @@
     "eyebrow": "Learn",
     "title": "A learning program that joins Islamic and tech knowledge",
     "description": "An Islamic knowledge and da'wah track and a technology track, studied at your own pace, in two plans: one you study on your own from outside sources we recommend, and one from the platform with lessons made by Dar. This section is under construction.",
-    "notice": "The Learn section is under construction",
     "underConstruction": "Under construction",
+    "goalTitle": "Our goal",
+    "goal": "That every learner takes on a da'wah project, starts calling people to Allah, and produces work that benefits the Muslim ummah.",
     "sectionsLabel": "Learn sections",
     "external": {
       "tab": "Study plan with outside sources",
@@ -244,12 +245,13 @@
     },
     "platform": {
       "tab": "Study plan from the platform",
-      "intro": "Lessons and series made by Dar Islam & Technology. No lessons are available yet."
+      "intro": "Lessons and series made by Dar Islam & Technology. No lessons are available yet.",
+      "planningTitle": "Being planned and produced",
+      "planningBody": "We are working on lessons and series made by Dar. Until they are ready, study with the plan that uses outside sources."
     },
     "project": "Project",
     "graduation": "Graduation project",
     "sourcesSoon": "Sources coming soon",
-    "shariaNote": "Islamic studies material will rely on trusted sources and be reviewed by qualified specialists before publishing.",
     "suggestTitle": "Have a suggestion for the program?",
     "suggestBody": "Your opinion helps us build the program.",
     "suggestCta": "Share your opinion"
@@ -427,7 +429,7 @@
     "moneyThanks": "May Allah reward you with good and bless you.",
     "moneyNote": "Note: financial support comes with no special perks on the site.",
     "usesTitle": "Where your support goes",
-    "uses": ["Developing the platform", "Hosting and running costs", "Promoting the platform", "Making content", "A fair profit margin for the founder, so he can work full time on growing the platform"],
+    "uses": ["Developing the platform", "Hosting and running costs", "Promoting the platform", "Making content", "A fair profit margin for the founder, so he can work on the platform full time"],
     "otherTitle": "If you can't support us financially",
     "other": [
       {

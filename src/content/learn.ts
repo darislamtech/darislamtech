@@ -2,7 +2,8 @@ import type { Localized, RoadmapDomain, RoadmapLevel, RoadmapTopic } from "./typ
 
 // The program plan, shown on the Learn page as the external track (what to study, in order, from recommended outside
 // sources, in the spirit of roadmap.sh) and the platform track (lessons and series made by Dar, under construction).
-// The owner is working on the external track only for now: the platform track is frozen as it was, so a change to the
+// The owner is working on the external track only for now: the platform track is frozen (changed only when the owner
+// asks, as with its trusted-sources wording) and shown blurred, so a change to the
 // external plan must not reach it (split a shared domain before changing it). No timing: each learner goes at their
 // own pace. Sources and lessons are added per topic once chosen; Islamic material only from trusted references,
 // reviewed by the qualified. The owner's working plan for technology is the Notion page «رود ماب المسار التقني».
@@ -35,8 +36,8 @@ const levelNames = [
 ];
 
 const responseProject = text(
-  "ردود على أشهر شبهاتهم، تُعدّ من مصادر موثوقة ويراجعها مختص، ثم تُنشر محتوى (فيديو أو مقال).",
-  "Answers to their best-known claims, prepared from trusted sources and reviewed by a specialist, then published as content (a video or an article).",
+  "ردود على أشهر شبهاتهم، معتمدةً على مصادر موثوقة، ثم تُنشر محتوى (فيديو أو مقال).",
+  "Answers to their best-known claims, based on trusted sources, then published as content (a video or an article).",
 );
 
 const practicalFields: RoadmapLevel[] = [
@@ -109,8 +110,8 @@ const platformShariaDomain: RoadmapDomain = {
 // await the owner's sources and review.
 
 const contentProject = text(
-  "يصنع محتوى في هذا المجال (فيديوهات أو مقاطع قصيرة أو مقالات) بمهارات المسار التقني، ويراجعه مختص قبل النشر.",
-  "Make content in this field (videos, shorts or articles) with the technology track's skills, reviewed by a specialist before publishing.",
+  "يصنع محتوى في هذا المجال (فيديوهات أو مقاطع قصيرة أو مقالات) بمهارات المسار التقني، معتمدًا على مصادر موثوقة.",
+  "Make content in this field (videos, shorts or articles) with the technology track's skills, based on trusted sources.",
 );
 
 const field = (id: string, title: Localized, study: { ar: string[]; en: string[] }): RoadmapLevel => ({
