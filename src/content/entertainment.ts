@@ -95,6 +95,11 @@ export const entertainmentGroups: EntertainmentGroup[] = [
         title: { ar: "بودكاست", en: "Podcasts" },
         items: [{ url: "https://www.youtube.com/watch?v=pIVlYDFQc6o", added: "2026-11-08T12:15" }],
       },
+      {
+        id: "deceivers",
+        title: { ar: "المدلّسون", en: "Deceivers" },
+        items: [{ url: "https://www.youtube.com/watch?v=F6E1mFIZC0o", added: "2026-11-08T12:35" }],
+      },
     ],
     channels: [
       {

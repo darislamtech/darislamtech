@@ -35,8 +35,8 @@ const levelNames = [
 ];
 
 const responseProject = text(
-  "ردود على أشهر شبهاتهم، تُعدّ من مصادر موثوقة ويراجعها مختص، ثم تُنشر محتوى (فيديو أو مقال).",
-  "Answers to their best-known claims, prepared from trusted sources and reviewed by a specialist, then published as content (a video or an article).",
+  "ردود على أشهر شبهاتهم، معتمدةً على مصادر موثوقة، ثم تُنشر محتوى (فيديو أو مقال).",
+  "Answers to their best-known claims, based on trusted sources, then published as content (a video or an article).",
 );
 
 const practicalFields: RoadmapLevel[] = [
@@ -109,8 +109,8 @@ const platformShariaDomain: RoadmapDomain = {
 // await the owner's sources and review.
 
 const contentProject = text(
-  "يصنع محتوى في هذا المجال (فيديوهات أو مقاطع قصيرة أو مقالات) بمهارات المسار التقني، مع ذكر مصادره.",
-  "Make content in this field (videos, shorts or articles) with the technology track's skills, citing its sources.",
+  "يصنع محتوى في هذا المجال (فيديوهات أو مقاطع قصيرة أو مقالات) بمهارات المسار التقني، معتمدًا على مصادر موثوقة.",
+  "Make content in this field (videos, shorts or articles) with the technology track's skills, based on trusted sources.",
 );
 
 const field = (id: string, title: Localized, study: { ar: string[]; en: string[] }): RoadmapLevel => ({
