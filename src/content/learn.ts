@@ -109,8 +109,8 @@ const platformShariaDomain: RoadmapDomain = {
 // await the owner's sources and review.
 
 const contentProject = text(
-  "يصنع محتوى في هذا المجال (فيديوهات أو مقاطع قصيرة أو مقالات) بمهارات المسار التقني، ويراجعه مختص قبل النشر.",
-  "Make content in this field (videos, shorts or articles) with the technology track's skills, reviewed by a specialist before publishing.",
+  "يصنع محتوى في هذا المجال (فيديوهات أو مقاطع قصيرة أو مقالات) بمهارات المسار التقني، مع ذكر مصادره.",
+  "Make content in this field (videos, shorts or articles) with the technology track's skills, citing its sources.",
 );
 
 const field = (id: string, title: Localized, study: { ar: string[]; en: string[] }): RoadmapLevel => ({
