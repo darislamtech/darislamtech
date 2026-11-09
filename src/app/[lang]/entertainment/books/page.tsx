@@ -6,6 +6,7 @@ import { pageMetadata } from "@/lib/seo";
 import { entertainmentGroups } from "@/content/entertainment";
 import { BookCard } from "@/components/entertainment/book-card";
 import { EntertainmentShell } from "@/components/entertainment/entertainment-shell";
+import { RandomPick } from "@/components/entertainment/random-pick";
 
 const PATH = "/entertainment/books";
 const allBooks = entertainmentGroups.flatMap((group) => group.books.flatMap((category) => category.items));
@@ -79,6 +80,7 @@ export default async function EntertainmentBooksPage() {
         description={t.books.description}
         groups={groups}
         empty={t.books.empty}
+        toolbar={<RandomPick label={t.random.books} />}
         gridClassName="grid-cols-3 gap-x-3 sm:grid-cols-4 sm:gap-x-5 md:grid-cols-5 lg:grid-cols-6"
       />
     </>

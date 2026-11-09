@@ -6,6 +6,7 @@ import { pageMetadata } from "@/lib/seo";
 import { entertainmentGroups } from "@/content/entertainment";
 import { ChannelCard } from "@/components/entertainment/channel-card";
 import { EntertainmentShell } from "@/components/entertainment/entertainment-shell";
+import { RandomPick } from "@/components/entertainment/random-pick";
 import { getYouTubeChannel } from "@/lib/youtube";
 
 const PATH = "/entertainment/channels";
@@ -88,6 +89,7 @@ export default async function EntertainmentChannelsPage() {
           })),
         }))}
         empty={t.channels.empty}
+        toolbar={<RandomPick label={t.random.channels} />}
         gridClassName="grid-cols-2 sm:grid-cols-3 lg:grid-cols-5"
       />
     </>

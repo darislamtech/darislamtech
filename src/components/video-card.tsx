@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useId, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import Image from "next/image";
 import { Play } from "lucide-react";
 
@@ -16,6 +16,12 @@ const PLAY_EVENT = "dar:video-play";
 export function VideoCard({ id, title, thumbnail, playLabel }: VideoCardProps) {
   const [playing, setPlaying] = useState(false);
   const cardId = useId();
+  const player = useRef<HTMLIFrameElement>(null);
+
+  // The play button goes away when the player loads, so focus moves to the player (and screen readers read its title).
+  useEffect(() => {
+    if (playing) player.current?.focus({ preventScroll: true });
+  }, [playing]);
 
   useEffect(() => {
     const stopIfOther = (event: Event) => {
@@ -35,17 +41,19 @@ export function VideoCard({ id, title, thumbnail, playLabel }: VideoCardProps) {
       <div className="relative aspect-video overflow-hidden rounded-2xl border border-line bg-surface-2 shadow-soft">
         {playing ? (
           <iframe
+            ref={player}
             src={`https://www.youtube-nocookie.com/embed/${id}?autoplay=1`}
             title={title}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerPolicy="strict-origin-when-cross-origin"
             allowFullScreen
-            className="size-full"
+            className="size-full focus-visible:rounded-2xl focus-visible:outline-offset-[-3px]"
           />
         ) : (
           <button
             type="button"
             onClick={play}
+            data-random-pick="play"
             aria-label={`${playLabel}: ${title}`}
             className="group absolute inset-0 size-full"
           >
