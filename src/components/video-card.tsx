@@ -46,6 +46,7 @@ export function VideoCard({ id, title, thumbnail, playLabel }: VideoCardProps) {
           <button
             type="button"
             onClick={play}
+            data-random-pick="play"
             aria-label={`${playLabel}: ${title}`}
             className="group absolute inset-0 size-full"
           >

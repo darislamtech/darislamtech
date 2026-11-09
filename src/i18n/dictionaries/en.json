@@ -403,6 +403,7 @@
     "untitled": "YouTube video",
     "sortLabel": "Sort:",
     "sort": { "newest": "Newest", "oldest": "Oldest", "mostViewed": "Most viewed" },
+    "random": { "videos": "Pick a random video", "channels": "Pick a random channel", "books": "Pick a random book" },
     "previous": "Previous",
     "next": "Next",
     "topics": "Topics:",

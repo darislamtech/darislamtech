@@ -5,6 +5,7 @@ import { getDictionary, getLocale } from "@/i18n/dictionaries";
 import { pageMetadata } from "@/lib/seo";
 import { entertainmentGroups } from "@/content/entertainment";
 import { EntertainmentShell } from "@/components/entertainment/entertainment-shell";
+import { RandomPick } from "@/components/entertainment/random-pick";
 import { VideoRow, VideoSortControl, VideoSortProvider } from "@/components/entertainment/video-rows";
 import { VideoCard } from "@/components/video-card";
 import { getYouTubeDetails, getYouTubeVideo } from "@/lib/youtube";
@@ -136,7 +137,12 @@ export default async function EntertainmentPage() {
         groups={groups}
         empty={t.empty}
         gridClassName="sm:grid-cols-2 lg:grid-cols-3"
-        toolbar={<VideoSortControl label={t.sortLabel} options={sortOptions} />}
+        toolbar={
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <VideoSortControl label={t.sortLabel} options={sortOptions} />
+            <RandomPick label={t.random.videos} />
+          </div>
+        }
       />
     </VideoSortProvider>
   );

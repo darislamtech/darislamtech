@@ -10,6 +10,7 @@ export function ChannelCard({ url, name, avatar }: ChannelCardProps) {
       href={url}
       target="_blank"
       rel="noopener noreferrer"
+      data-random-pick="highlight"
       className="flex h-full flex-col items-center gap-3 rounded-2xl p-3 text-center transition-colors hover:bg-paper-2"
     >
       {avatar ? (
