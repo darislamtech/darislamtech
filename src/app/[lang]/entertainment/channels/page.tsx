@@ -10,7 +10,12 @@ import { RandomPick } from "@/components/entertainment/random-pick";
 import { getYouTubeChannel } from "@/lib/youtube";
 
 const PATH = "/entertainment/channels";
-const allChannels = entertainmentGroups.flatMap((group) => group.channels.flatMap((category) => category.items));
+// Every channel once, even when listed in both groups (like our own).
+const allChannels = [
+  ...new Map(
+    entertainmentGroups.flatMap((group) => group.channels.flatMap((category) => category.items)).map((channel) => [channel.url, channel]),
+  ).values(),
+];
 
 export async function generateMetadata(): Promise<Metadata> {
   const [locale, dict] = await Promise.all([getLocale(), getDictionary()]);

@@ -1,4 +1,11 @@
-import type { EntertainmentGroup } from "./types";
+import { siteConfig } from "@/config/site";
+import type { EntertainmentGroup, RecommendedChannel } from "./types";
+
+// Our own channel, listed in both groups (Islamic and tech): one entry used in both places.
+const ourChannel: RecommendedChannel = {
+  url: siteConfig.youtubeChannel,
+  name: "دار الاسلام و التقنية - Dar Islam & Technology",
+};
 
 // Recommendations for the three Entertainment pages. Each group is a tab; videos, channels and books each have their
 // own categories under it. Videos: a YouTube link and when we added it (title, thumbnail and views are fetched).
@@ -136,8 +143,7 @@ export const entertainmentGroups: EntertainmentGroup[] = [
           { url: "https://www.youtube.com/@Dr.Ibrahem_Emam", name: "Ibrahim Emam - الساخر الهادف" },
           { url: "https://www.youtube.com/@marwan7egazy", name: "Marwan Hegazy - مروان حجازي" },
           { url: "https://www.youtube.com/@yuosef_jo", name: "YUOSEF JO" },
-          // Our own channel, listed in both groups (Islamic and tech).
-          { url: "https://www.youtube.com/@darislamtech", name: "دار الاسلام و التقنية - Dar Islam & Technology" },
+          ourChannel,
         ],
       },
       {
@@ -299,8 +305,7 @@ export const entertainmentGroups: EntertainmentGroup[] = [
           { url: "https://www.youtube.com/@tarmeez", name: "أكاديمية ترميز" },
           { url: "https://www.youtube.com/@MagdyBytes", name: "أحمد مجدي - MagdyBytes" },
           { url: "https://www.youtube.com/@ArabicCompetitiveProgramming", name: "Arabic Competitive Programming" },
-          // Our own channel, listed in both groups (Islamic and tech).
-          { url: "https://www.youtube.com/@darislamtech", name: "دار الاسلام و التقنية - Dar Islam & Technology" },
+          ourChannel,
         ],
       },
       {
