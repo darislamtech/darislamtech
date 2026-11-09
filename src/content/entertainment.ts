@@ -61,7 +61,10 @@ export const entertainmentGroups: EntertainmentGroup[] = [
       {
         id: "islamic-studies",
         title: { ar: "طلب العلم الشرعي", en: "Studying Islamic knowledge" },
-        items: [{ url: "https://www.youtube.com/watch?v=K9m35qrKtTE", added: "2026-11-06T18:26" }],
+        items: [
+          { url: "https://www.youtube.com/watch?v=K9m35qrKtTE", added: "2026-11-06T18:26" },
+          { url: "https://www.youtube.com/watch?v=TTSDjcliNos", added: "2026-11-09T13:37" },
+        ],
       },
       {
         id: "family",
@@ -82,7 +85,11 @@ export const entertainmentGroups: EntertainmentGroup[] = [
           { url: "https://www.youtube.com/watch?v=huPMNLlXFNg", added: "2026-11-09T13:33" },
         ],
       },
-      { id: "comparative-religion", title: { ar: "مقارنة الأديان والمناظرات", en: "Comparative religion and debates" }, items: [] },
+      {
+        id: "comparative-religion",
+        title: { ar: "مقارنة الأديان والمناظرات", en: "Comparative religion and debates" },
+        items: [{ url: "https://www.youtube.com/watch?v=dAkH5Y8D4Qo", added: "2026-11-09T13:37" }],
+      },
       {
         id: "feminism",
         title: { ar: "النسوية", en: "Feminism" },
