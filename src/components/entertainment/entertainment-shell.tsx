@@ -2,9 +2,9 @@ import Link from "next/link";
 import { BookOpen, Clapperboard, Tv } from "lucide-react";
 import { localePath, type Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries";
-import { PageHero } from "@/components/page-blocks";
-import { Tabs } from "@/components/tabs";
-import { Container, toneDot, type Tone } from "@/components/ui";
+import { PageHero } from "../page-blocks";
+import { Tabs } from "../tabs";
+import { Container, toneDot, type Tone } from "../ui";
 import { cn } from "@/lib/cn";
 
 export type EntertainmentSection = "videos" | "channels" | "books";

@@ -1,6 +1,6 @@
 "use client";
 
-import { THEME_COLORS, THEME_STORAGE_KEY } from "./theme";
+import { THEME_COLORS, THEME_STORAGE_KEY } from "./colors";
 
 // Applies the saved theme before the first paint so the page never flashes the wrong colors.
 // Light is the default; the visitor's choice is stored in localStorage by the theme toggle.

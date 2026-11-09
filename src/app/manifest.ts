@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { defaultLocale } from "@/i18n/config";
-import { THEME_COLORS } from "@/components/theme";
+import { THEME_COLORS } from "@/components/theme/colors";
 import ar from "@/i18n/dictionaries/ar.json";
 
 // Web app manifest (makes the site installable as a PWA). The installed app opens on "/", which src/proxy.ts sends to

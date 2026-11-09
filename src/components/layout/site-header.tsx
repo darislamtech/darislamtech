@@ -1,14 +1,14 @@
 import Link from "next/link";
 import { localePath, type Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries";
-import { Logo } from "./brand";
+import { Logo } from "../brand";
 import { HeaderShell } from "./header-shell";
 import { LanguageSwitcher } from "./language-switcher";
-import { ThemeToggle } from "./theme-toggle";
+import { ThemeToggle } from "../theme/theme-toggle";
 import { MobileMenu } from "./mobile-menu";
 import { getAllNavItems, getNavItems } from "./nav";
 import { NavLink } from "./nav-link";
-import { ButtonLink } from "./ui";
+import { ButtonLink } from "../ui";
 
 export function SiteHeader({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const items = getNavItems(locale, dict);

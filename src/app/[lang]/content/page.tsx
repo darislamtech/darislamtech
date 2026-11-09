@@ -8,10 +8,10 @@ import { posts } from "@/content/posts";
 import { videos } from "@/content/videos";
 import { YouTubeIcon } from "@/components/icons";
 import { EmptyState, PageHero } from "@/components/page-blocks";
-import { PostCard } from "@/components/post-card";
+import { PostCard } from "@/components/content/post-card";
 import { Tabs } from "@/components/tabs";
 import { ButtonLink, Container, toneText, type Tone } from "@/components/ui";
-import { YouTubeEmbed } from "@/components/youtube-embed";
+import { YouTubeEmbed } from "@/components/video/youtube-embed";
 import { cn } from "@/lib/cn";
 
 const topicTones: Tone[] = ["blue", "gold", "mint", "rose"];

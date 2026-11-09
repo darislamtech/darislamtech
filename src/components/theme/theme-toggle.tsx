@@ -2,7 +2,7 @@
 
 import { Moon, Sun } from "lucide-react";
 import { cn } from "@/lib/cn";
-import { THEME_COLORS, THEME_STORAGE_KEY } from "./theme";
+import { THEME_COLORS, THEME_STORAGE_KEY } from "./colors";
 
 /** Switches between the light and dark themes and remembers the choice. Icons swap through the `dark:` variant. */
 export function ThemeToggle({ label, className }: { label: string; className?: string }) {

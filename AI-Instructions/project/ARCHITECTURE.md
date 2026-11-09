@@ -22,8 +22,13 @@ src/
       content/[slug]/ products/[slug]/   # detail pages; generateStaticParams from src/content
       entertainment/channels/ entertainment/books/   # Entertainment: channel and book recommendations (videos stay at /entertainment)
       not-found.tsx
-  components/               # shared UI (ui.tsx primitives, page-blocks.tsx, header/footer, icons, pattern)
-    home/                   # home-only components
+  components/               # root: only shared building blocks used across pages — ui.tsx (primitives), page-blocks.tsx, icons.tsx, pattern.tsx, brand.tsx (logo), tabs.tsx, copy-button.tsx. Everything else lives in a feature folder:
+    layout/                 # the site shell: site-header (+ header-shell, mobile-menu, nav data, nav-link, language-switcher), site-footer, install-prompt (mobile install card)
+    theme/                  # light/dark theme: colors.ts (theme-color values), theme-script (applied before paint), theme-toggle
+    video/                  # youtube-player.tsx (the one YouTube iframe), video-card.tsx (thumbnail → player, one at a time), youtube-embed.tsx (a video shown in place)
+    content/                # post-card.tsx
+    products/               # product-status.ts (status order and colors)
+    home/                   # the home page sections, one file each (home-hero, offer-section + bento-card, latest-posts, mission-section, roadmap-section, channel-section) + hero-visual; app/[lang]/page.tsx assembles them and adds the site JSON-LD
     entertainment/          # shared layout of the three Entertainment pages (hero, links between them, group tabs) + channel and book cards; video-rows.tsx: the videos sort buttons and one-row-per-category carousel; random-pick.tsx: the «اختر لي...» random pick button
   content/                  # site content as typed data (posts, videos, entertainment, products, learning program) + types.ts
   i18n/

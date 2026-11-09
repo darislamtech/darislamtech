@@ -5,8 +5,8 @@ import { localePath } from "@/i18n/config";
 import { getDictionary, getLocale } from "@/i18n/dictionaries";
 import { pageMetadata } from "@/lib/seo";
 import { getPost, posts } from "@/content/posts";
-import { formatDate } from "@/components/post-card";
-import { YouTubeEmbed } from "@/components/youtube-embed";
+import { formatDate } from "@/components/content/post-card";
+import { YouTubeEmbed } from "@/components/video/youtube-embed";
 import { Badge, Container, ForwardArrow, Paragraphs } from "@/components/ui";
 
 export function generateStaticParams() {

@@ -7,8 +7,8 @@ import { getDictionary, getLocale } from "@/i18n/dictionaries";
 import { pageMetadata } from "@/lib/seo";
 import { getProduct, products } from "@/content/products";
 import { GitHubIcon } from "@/components/icons";
-import { productStatusStyles } from "@/components/product-status";
-import { YouTubeEmbed } from "@/components/youtube-embed";
+import { productStatusStyles } from "@/components/products/product-status";
+import { YouTubeEmbed } from "@/components/video/youtube-embed";
 import { Badge, ButtonLink, Container, ForwardArrow, IconTile, Paragraphs } from "@/components/ui";
 
 export function generateStaticParams() {
