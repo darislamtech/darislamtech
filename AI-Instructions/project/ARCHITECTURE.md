@@ -24,7 +24,7 @@ src/
       not-found.tsx
   components/               # shared UI (ui.tsx primitives, page-blocks.tsx, header/footer, icons, pattern)
     home/                   # home-only components
-    entertainment/          # shared layout of the three Entertainment pages (hero, links between them, group tabs) + channel and book cards; video-rows.tsx: the videos sort buttons and one-row-per-category carousel
+    entertainment/          # shared layout of the three Entertainment pages (hero, links between them, group tabs) + channel and book cards; video-rows.tsx: the videos sort buttons and one-row-per-category carousel; random-pick.tsx: the «اختر لي...» random pick button
   content/                  # site content as typed data (posts, videos, entertainment, products, learning program) + types.ts
   i18n/
     config.ts               # locales, direction, localePath()
@@ -40,7 +40,7 @@ src/
 ## Data flow
 - Locale comes from the `[lang]` root param (`next/root-params`), never from props drilled through components.
 - UI strings come from the dictionaries; content entries carry both languages as `{ ar, en }`.
-- Client components are limited to interactivity: header scroll state, mobile menu, nav active state, language switcher, theme script and toggle, tabs, video player, copy button, install prompt (mobile install card).
+- Client components are limited to interactivity: header scroll state, mobile menu, nav active state, language switcher, theme script and toggle, tabs, video player, videos sort and carousel, random pick, copy button, install prompt (mobile install card).
 
 ## Cache Components constraints
 - Dynamic routes must return at least one param from `generateStaticParams`; empty content lists return a placeholder slug that renders `notFound()`.

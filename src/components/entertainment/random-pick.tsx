@@ -3,17 +3,18 @@
 import { useRef } from "react";
 import { Shuffle } from "lucide-react";
 
-// Shown on the picked channel or book for a moment, so the eye finds it.
-const HIGHLIGHT = ["outline-3", "outline-offset-4", "outline-tone-gold", "rounded-2xl"];
+// How long a picked channel or book stays outlined. The outline itself is the cards' `data-picked:` classes.
 const HIGHLIGHT_MS = 2500;
 
 /**
- * "Pick one for me": a random item shown on the page (visible tab only), marked with `data-random-pick`. A video ("play") is scrolled to
- * and started; a channel or book ("highlight") is scrolled to, outlined for a moment and focused. Never the same item
- * twice in a row.
+ * "Pick one for me": a random item shown on the page (visible tab only), marked with `data-random-pick`. A video
+ * ("play") is scrolled to and started; a channel or book ("highlight") is scrolled to, outlined for a moment (via a
+ * `data-picked` attribute) and focused. Never the same item twice in a row.
  */
 export function RandomPick({ label }: { label: string }) {
   const last = useRef<HTMLElement | null>(null);
+  // One timer per item, so picking it again restarts its outline instead of an older timer cutting it short.
+  const timers = useRef(new WeakMap<HTMLElement, number>());
 
   function pick() {
     // Only what is actually shown: not the other tab, and not the other entertainment pages, which Next keeps in the
@@ -32,9 +33,17 @@ export function RandomPick({ label }: { label: string }) {
       item.click();
       return;
     }
-    item.classList.add(...HIGHLIGHT);
-    window.setTimeout(() => item.classList.remove(...HIGHLIGHT), HIGHLIGHT_MS);
-    if (!item.matches("a, button")) item.tabIndex = -1;
+    window.clearTimeout(timers.current.get(item));
+    item.dataset.picked = "";
+    timers.current.set(
+      item,
+      window.setTimeout(() => delete item.dataset.picked, HIGHLIGHT_MS),
+    );
+    // A book card is not focusable on its own: made focusable for this one focus, then back to normal.
+    if (!item.matches("a, button")) {
+      item.tabIndex = -1;
+      item.addEventListener("blur", () => item.removeAttribute("tabindex"), { once: true });
+    }
     item.focus({ preventScroll: true });
   }
 

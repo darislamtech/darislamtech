@@ -27,7 +27,7 @@
 قبل إنشاء مكوّن جديد، يُستخدم الموجود:
 - `src/components/ui.tsx`: Container، ButtonLink، Badge، Eyebrow، SectionHeading، IconTile، Card، Paragraphs، والألوان `Tone`.
 - `src/components/page-blocks.tsx`: PageHero (رأس كل صفحة مع مسار التنقل)، EmptyState، CtaPanel.
-- `src/components/tabs.tsx`: التبويبات (صفحة المحتوى والترفيه).
+- `src/components/tabs.tsx`: التبويبات (صفحات المحتوى والترفيه وتعلّم).
 - `src/components/video-card.tsx`: بطاقة فيديو تشغّل يوتيوب داخل الصفحة؛ تشغيل بطاقة يوقف أي بطاقة أخرى شغّالة (فيديو واحد في كل مرة).
 
 ## الموبايل

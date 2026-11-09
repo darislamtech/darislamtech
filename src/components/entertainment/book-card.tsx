@@ -6,7 +6,10 @@ type BookCardProps = { title: string; author?: string; cover?: string };
 /** A recommended book: its cover (or a plain one drawn with the title), the title and, if given, the author. No link. */
 export function BookCard({ title, author, cover }: BookCardProps) {
   return (
-    <article data-random-pick="highlight" className="flex flex-col gap-3">
+    <article
+      data-random-pick="highlight"
+      className="flex flex-col gap-3 rounded-2xl data-picked:outline-3 data-picked:outline-offset-4 data-picked:outline-tone-gold"
+    >
       <div className="relative aspect-[2/3] overflow-hidden rounded-xl border border-line bg-surface-2 shadow-soft">
         {cover ? (
           <Image

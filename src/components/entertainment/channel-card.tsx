@@ -11,7 +11,7 @@ export function ChannelCard({ url, name, avatar }: ChannelCardProps) {
       target="_blank"
       rel="noopener noreferrer"
       data-random-pick="highlight"
-      className="flex h-full flex-col items-center gap-3 rounded-2xl p-3 text-center transition-colors hover:bg-paper-2"
+      className="flex h-full flex-col items-center gap-3 rounded-2xl p-3 text-center transition-colors hover:bg-paper-2 data-picked:outline-3 data-picked:outline-offset-4 data-picked:outline-tone-gold"
     >
       {avatar ? (
         <Image
