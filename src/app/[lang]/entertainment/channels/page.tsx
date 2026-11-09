@@ -56,7 +56,12 @@ export default async function EntertainmentChannelsPage() {
   );
 
   // Structured data for search engines: this page is a list of these channels, each linked to YouTube.
-  const listed = groups.flatMap((group) => group.categories.flatMap((category) => category.channels));
+  // One entry per channel, even when a channel is listed in both groups (like our own).
+  const listed = [
+    ...new Map(
+      groups.flatMap((group) => group.categories.flatMap((category) => category.channels)).map((channel) => [channel.url, channel]),
+    ).values(),
+  ];
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",

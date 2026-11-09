@@ -136,6 +136,8 @@ export const entertainmentGroups: EntertainmentGroup[] = [
           { url: "https://www.youtube.com/@Dr.Ibrahem_Emam", name: "Ibrahim Emam - الساخر الهادف" },
           { url: "https://www.youtube.com/@marwan7egazy", name: "Marwan Hegazy - مروان حجازي" },
           { url: "https://www.youtube.com/@yuosef_jo", name: "YUOSEF JO" },
+          // Our own channel, listed in both groups (Islamic and tech).
+          { url: "https://www.youtube.com/@darislamtech", name: "دار الاسلام و التقنية - Dar Islam & Technology" },
         ],
       },
       {
@@ -297,6 +299,8 @@ export const entertainmentGroups: EntertainmentGroup[] = [
           { url: "https://www.youtube.com/@tarmeez", name: "أكاديمية ترميز" },
           { url: "https://www.youtube.com/@MagdyBytes", name: "أحمد مجدي - MagdyBytes" },
           { url: "https://www.youtube.com/@ArabicCompetitiveProgramming", name: "Arabic Competitive Programming" },
+          // Our own channel, listed in both groups (Islamic and tech).
+          { url: "https://www.youtube.com/@darislamtech", name: "دار الاسلام و التقنية - Dar Islam & Technology" },
         ],
       },
       {
