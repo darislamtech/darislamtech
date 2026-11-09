@@ -8,7 +8,7 @@ const HIGHLIGHT = ["outline-3", "outline-offset-4", "outline-tone-gold", "rounde
 const HIGHLIGHT_MS = 2500;
 
 /**
- * "Pick one for me": a random item of the visible tab, marked with `data-random-pick`. A video ("play") is scrolled to
+ * "Pick one for me": a random item shown on the page (visible tab only), marked with `data-random-pick`. A video ("play") is scrolled to
  * and started; a channel or book ("highlight") is scrolled to, outlined for a moment and focused. Never the same item
  * twice in a row.
  */
@@ -16,8 +16,10 @@ export function RandomPick({ label }: { label: string }) {
   const last = useRef<HTMLElement | null>(null);
 
   function pick() {
+    // Only what is actually shown: not the other tab, and not the other entertainment pages, which Next keeps in the
+    // document (hidden) after a visit so going back is instant.
     const items = [...document.querySelectorAll<HTMLElement>("[data-random-pick]")].filter(
-      (item) => !item.closest("[hidden]"),
+      (item) => item.getClientRects().length > 0,
     );
     const choices = items.length > 1 ? items.filter((item) => item !== last.current) : items;
     if (choices.length === 0) return;
