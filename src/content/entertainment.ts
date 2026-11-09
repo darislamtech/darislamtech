@@ -96,8 +96,9 @@ export const entertainmentGroups: EntertainmentGroup[] = [
         items: [{ url: "https://www.youtube.com/watch?v=pIVlYDFQc6o", added: "2026-11-08T12:15" }],
       },
       {
-        id: "deceivers",
-        title: { ar: "المدلّسون", en: "Deceivers" },
+        // Videos that fit no other category clearly go here (owner's rule).
+        id: "misc",
+        title: { ar: "منوعات", en: "Miscellaneous" },
         items: [{ url: "https://www.youtube.com/watch?v=F6E1mFIZC0o", added: "2026-11-08T12:35" }],
       },
     ],
