@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { YouTubeIcon } from "@/components/icons";
+import { YouTubeIcon } from "../icons";
 
 type ChannelCardProps = { url: string; name: string; avatar: string | null };
 

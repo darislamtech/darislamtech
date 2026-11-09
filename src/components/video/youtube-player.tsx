@@ -1,5 +1,6 @@
 // Videos stay on YouTube; we only embed them, in privacy-enhanced mode (youtube-nocookie, the only frame the CSP allows).
-const PERMISSIONS = "accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+const permissions = (autoplay: boolean) =>
+  `accelerometer; ${autoplay ? "autoplay; " : ""}clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share`;
 
 /**
  * The YouTube player iframe, shared by every video on the site. It fills its frame (the caller gives the size and the
@@ -23,7 +24,7 @@ export function YouTubePlayer({
       src={`https://www.youtube-nocookie.com/embed/${id}${autoplay ? "?autoplay=1" : ""}`}
       title={title}
       loading={autoplay ? undefined : "lazy"}
-      allow={autoplay ? `autoplay; ${PERMISSIONS}` : PERMISSIONS}
+      allow={permissions(autoplay)}
       referrerPolicy="strict-origin-when-cross-origin"
       allowFullScreen
       className="size-full focus-visible:rounded-2xl focus-visible:outline-offset-[-3px]"

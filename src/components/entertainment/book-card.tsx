@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { GeometricPattern } from "@/components/pattern";
+import { GeometricPattern } from "../pattern";
 
 type BookCardProps = { title: string; author?: string; cover?: string };
 

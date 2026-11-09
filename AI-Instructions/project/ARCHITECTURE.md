@@ -28,7 +28,7 @@ src/
     video/                  # youtube-player.tsx (the one YouTube iframe), video-card.tsx (thumbnail → player, one at a time), youtube-embed.tsx (a video shown in place)
     content/                # post-card.tsx
     products/               # product-status.ts (status order and colors)
-    home/                   # the home page sections, one file each (home-hero, offer-section + bento-card, latest-posts, mission-section, roadmap-section, channel-section) + hero-visual; app/[lang]/page.tsx only assembles them
+    home/                   # the home page sections, one file each (home-hero, offer-section + bento-card, latest-posts, mission-section, roadmap-section, channel-section) + hero-visual; app/[lang]/page.tsx assembles them and adds the site JSON-LD
     entertainment/          # shared layout of the three Entertainment pages (hero, links between them, group tabs) + channel and book cards; video-rows.tsx: the videos sort buttons and one-row-per-category carousel; random-pick.tsx: the «اختر لي...» random pick button
   content/                  # site content as typed data (posts, videos, entertainment, products, learning program) + types.ts
   i18n/
