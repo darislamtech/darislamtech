@@ -8,10 +8,9 @@ import { EntertainmentShell } from "@/components/entertainment/entertainment-she
 import { RandomPick } from "@/components/entertainment/random-pick";
 import { VideoRow, VideoSortControl, VideoSortProvider } from "@/components/entertainment/video-rows";
 import { VideoCard } from "@/components/video/video-card";
-import { getYouTubeDetails, getYouTubeVideo } from "@/lib/youtube";
+import { resolveVideo } from "@/lib/entertainment-videos";
 
 const PATH = "/entertainment";
-const ADDED_FORMAT = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/;
 
 // Categories that have videos, in the page order: group by group (cultural before tech), and inside each group the
 // category we added to most recently first.
@@ -41,24 +40,12 @@ export default async function EntertainmentPage() {
   const dict = await getDictionary();
   const t = dict.entertainment;
 
-  // Resolve every video up front (title + thumbnail, then views and publish date); unknown links are dropped.
+  // Resolve every video up front (lib/entertainment-videos.ts); unknown links are dropped.
   const groups = await Promise.all(
     entertainmentGroups.map(async (group) => {
       const categories = await Promise.all(
         group.videos.map(async (category) => {
-          const videos = (
-            await Promise.all(
-              category.items.map(async (item, order) => {
-                // A mistyped date would silently break the order, so the build stops on it instead.
-                if (!ADDED_FORMAT.test(item.added) || Number.isNaN(Date.parse(item.added))) {
-                  throw new Error(`Entertainment video ${item.url}: "added" must look like 2026-11-06T21:30, got "${item.added}"`);
-                }
-                const video = await getYouTubeVideo(item.url);
-                if (!video) return null;
-                return { ...video, ...(await getYouTubeDetails(video.id)), order, added: Date.parse(item.added) };
-              }),
-            )
-          ).filter((video) => video !== null);
+          const videos = (await Promise.all(category.items.map(resolveVideo))).filter((video) => video !== null);
           const items = videos.map((video) => ({
             key: video.id,
             added: video.added,

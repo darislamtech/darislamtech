@@ -18,6 +18,7 @@ import { localePath } from "@/i18n/config";
 import { getDictionary, getLocale } from "@/i18n/dictionaries";
 import { pageMetadata } from "@/lib/seo";
 import { LogoMark } from "@/components/brand";
+import { RoadmapSection } from "@/components/about/roadmap-section";
 import { CtaPanel, PageHero } from "@/components/page-blocks";
 import { socialIcons } from "@/components/icons";
 import { GeometricPattern } from "@/components/pattern";
@@ -113,6 +114,8 @@ export default async function AboutPage() {
           </ol>
         </Container>
       </section>
+
+      <RoadmapSection dict={dict} />
 
       {/* Community */}
       <section className="reveal pb-4">

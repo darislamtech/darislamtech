@@ -7,8 +7,8 @@ const ourChannel: RecommendedChannel = {
   name: "دار الاسلام و التقنية - Dar Islam & Technology",
 };
 
-// Recommendations for the three Entertainment pages. Each group is a tab; videos, channels and books each have their
-// own categories under it. Videos: a YouTube link and when we added it (title, thumbnail and views are fetched).
+// Recommendations for the Entertainment pages (DarTube shows all the videos together). Each group is a tab; videos,
+// channels and books each have their own categories under it. Videos: a YouTube link and when we added it (title, thumbnail and views are fetched).
 // Channels: link and the name as written on the channel (name and picture are fetched). Books: title and cover
 // (author for Islamic books only). The first group is the one shown by default. How to add each: docs/content.md.
 export const entertainmentGroups: EntertainmentGroup[] = [

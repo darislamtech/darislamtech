@@ -5,16 +5,23 @@ import Image from "next/image";
 import { Play } from "lucide-react";
 import { YouTubePlayer } from "./youtube-player";
 
-type VideoCardProps = { id: string; title: string; thumbnail: string; playLabel: string };
+type VideoCardProps = {
+  id: string;
+  title: string;
+  thumbnail: string;
+  playLabel: string;
+  /** A line under the title, e.g. the channel and views (DarTube). */
+  meta?: string;
+};
 
 // Sent when a card starts playing, so the others on the page close their player.
 const PLAY_EVENT = "dar:video-play";
 
 /**
- * Thumbnail and title only; the YouTube player loads in place on click, so a page of many videos stays light. One
+ * Thumbnail and title (and an optional line under it); the YouTube player loads in place on click, so a page of many videos stays light. One
  * video plays at a time: starting one turns any other playing card back into its thumbnail.
  */
-export function VideoCard({ id, title, thumbnail, playLabel }: VideoCardProps) {
+export function VideoCard({ id, title, thumbnail, playLabel, meta }: VideoCardProps) {
   const [playing, setPlaying] = useState(false);
   const cardId = useId();
   const player = useRef<HTMLIFrameElement>(null);
@@ -64,8 +71,17 @@ export function VideoCard({ id, title, thumbnail, playLabel }: VideoCardProps) {
           </button>
         )}
       </div>
-      {/* YouTube titles can be in any language, so each one takes its own direction. */}
-      <figcaption dir="auto" className="line-clamp-2 leading-relaxed font-medium text-ink">{title}</figcaption>
+      {/* YouTube titles and channel names can be in any language, so each takes its own direction. */}
+      <figcaption>
+        <p dir="auto" className="line-clamp-2 leading-relaxed font-medium text-ink">
+          {title}
+        </p>
+        {meta && (
+          <p dir="auto" className="mt-1 truncate text-sm text-muted">
+            {meta}
+          </p>
+        )}
+      </figcaption>
     </figure>
   );
 }

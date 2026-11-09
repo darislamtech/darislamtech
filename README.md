@@ -27,7 +27,7 @@ src/
   app/[lang]/          # every page lives under /ar or /en
     page.tsx           # Home
     content/           # Articles, news, featured videos (+ [slug] detail)
-    entertainment/     # Recommendations: videos, channels/ and books/ (groups → categories → items)
+    entertainment/     # Recommendations: videos, channels/, books/ (groups → categories → items) and dartube/ (all videos, shuffled)
     products/          # Product cards (+ [slug] detail)
     learn/             # Learning plan (external and platform tracks), under construction
     contribute/ support/ about/ contact/
