@@ -47,7 +47,7 @@ export function VideoCard({ id, title, thumbnail, playLabel }: VideoCardProps) {
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerPolicy="strict-origin-when-cross-origin"
             allowFullScreen
-            className="size-full"
+            className="size-full focus-visible:outline-offset-[-3px]"
           />
         ) : (
           <button
