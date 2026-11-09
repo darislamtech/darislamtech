@@ -7,7 +7,7 @@ import { entertainmentGroups } from "@/content/entertainment";
 import { EntertainmentShell } from "@/components/entertainment/entertainment-shell";
 import { RandomPick } from "@/components/entertainment/random-pick";
 import { VideoRow, VideoSortControl, VideoSortProvider } from "@/components/entertainment/video-rows";
-import { VideoCard } from "@/components/video-card";
+import { VideoCard } from "@/components/video/video-card";
 import { getYouTubeDetails, getYouTubeVideo } from "@/lib/youtube";
 
 const PATH = "/entertainment";

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { NavLink } from "./nav-link";
-import { ForwardArrow } from "./ui";
+import { ForwardArrow } from "../ui";
 import type { NavItem } from "./nav";
 
 type MobileMenuProps = {

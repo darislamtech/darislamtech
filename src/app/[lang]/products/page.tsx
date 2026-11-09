@@ -5,7 +5,7 @@ import { getDictionary, getLocale } from "@/i18n/dictionaries";
 import { pageMetadata } from "@/lib/seo";
 import { products } from "@/content/products";
 import { CtaPanel, EmptyState, PageHero } from "@/components/page-blocks";
-import { productStatusOrder, productStatusStyles } from "@/components/product-status";
+import { productStatusOrder, productStatusStyles } from "@/components/products/product-status";
 import { Badge, ButtonLink, Card, Container, ForwardArrow, IconTile, SectionHeading, type Tone } from "@/components/ui";
 import { cn } from "@/lib/cn";
 

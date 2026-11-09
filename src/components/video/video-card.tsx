@@ -3,6 +3,7 @@
 import { useEffect, useId, useRef, useState } from "react";
 import Image from "next/image";
 import { Play } from "lucide-react";
+import { YouTubePlayer } from "./youtube-player";
 
 type VideoCardProps = { id: string; title: string; thumbnail: string; playLabel: string };
 
@@ -40,15 +41,7 @@ export function VideoCard({ id, title, thumbnail, playLabel }: VideoCardProps) {
     <figure className="flex flex-col gap-3">
       <div className="relative aspect-video overflow-hidden rounded-2xl border border-line bg-surface-2 shadow-soft">
         {playing ? (
-          <iframe
-            ref={player}
-            src={`https://www.youtube-nocookie.com/embed/${id}?autoplay=1`}
-            title={title}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen
-            className="size-full focus-visible:rounded-2xl focus-visible:outline-offset-[-3px]"
-          />
+          <YouTubePlayer ref={player} id={id} title={title} autoplay />
         ) : (
           <button
             type="button"

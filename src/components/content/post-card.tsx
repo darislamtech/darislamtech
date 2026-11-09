@@ -2,7 +2,7 @@ import type { Locale } from "@/i18n/config";
 import { localePath } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries";
 import type { Post } from "@/content/types";
-import { Badge, Card, ForwardArrow } from "./ui";
+import { Badge, Card, ForwardArrow } from "../ui";
 
 export function formatDate(date: string, locale: Locale) {
   return new Intl.DateTimeFormat(locale, { dateStyle: "long" }).format(new Date(date));

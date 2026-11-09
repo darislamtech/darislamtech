@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Download, Share } from "lucide-react";
-import { LogoMark } from "./brand";
+import { LogoMark } from "../brand";
 
 // Chromium's install event is not in the DOM typings yet.
 type InstallEvent = Event & {

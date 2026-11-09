@@ -2,10 +2,10 @@ import Link from "next/link";
 import { siteConfig } from "@/config/site";
 import { localePath, type Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries";
-import { Logo } from "./brand";
-import { GitHubIcon, socialIcons } from "./icons";
-import { GeometricPattern } from "./pattern";
-import { Container } from "./ui";
+import { Logo } from "../brand";
+import { GitHubIcon, socialIcons } from "../icons";
+import { GeometricPattern } from "../pattern";
+import { Container } from "../ui";
 
 export function SiteFooter({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const columns = [
