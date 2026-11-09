@@ -31,7 +31,10 @@ export const entertainmentGroups: EntertainmentGroup[] = [
       {
         id: "quran-reflections",
         title: { ar: "تدبرات قرآنية", en: "Quranic reflections" },
-        items: [{ url: "https://www.youtube.com/watch?v=s0-kPcacIcw", added: "2026-11-06T18:21" }],
+        items: [
+          { url: "https://www.youtube.com/watch?v=s0-kPcacIcw", added: "2026-11-06T18:21" },
+          { url: "https://www.youtube.com/watch?v=TGUsvlJIXXw", added: "2026-11-09T13:32" },
+        ],
       },
       {
         id: "nasheeds",
@@ -74,6 +77,9 @@ export const entertainmentGroups: EntertainmentGroup[] = [
         items: [
           { url: "https://www.youtube.com/watch?v=LquO5LWcf6Y", added: "2026-11-06T18:22" },
           { url: "https://www.youtube.com/watch?v=3WVIycBGRRE", added: "2026-11-06T18:24" },
+          { url: "https://www.youtube.com/watch?v=eaW10GIWIpQ", added: "2026-11-09T13:32" },
+          { url: "https://www.youtube.com/watch?v=Jfl9kguMZj4", added: "2026-11-09T13:33" },
+          { url: "https://www.youtube.com/watch?v=huPMNLlXFNg", added: "2026-11-09T13:33" },
         ],
       },
       { id: "comparative-religion", title: { ar: "مقارنة الأديان والمناظرات", en: "Comparative religion and debates" }, items: [] },
@@ -197,6 +203,55 @@ export const entertainmentGroups: EntertainmentGroup[] = [
         items: [{ url: "https://www.youtube.com/watch?v=qNZJSUg6eBs", added: "2026-11-06T18:19" }],
       },
       { id: "tokens", title: { ar: "الحفاظ على التوكنز", en: "Saving tokens" }, items: [] },
+      {
+        // Full videos about Claude from the recommended tech channels (Shorts and videos about other tools left out).
+        id: "claude",
+        title: { ar: "كلود (Claude)", en: "Claude" },
+        items: [
+          // Ghareeb Elshaikh
+          { url: "https://www.youtube.com/watch?v=oz44Wp22iCU", added: "2026-11-09T13:34" },
+          { url: "https://www.youtube.com/watch?v=fjJ0iM-ft-0", added: "2026-11-09T13:34" },
+          { url: "https://www.youtube.com/watch?v=bvDVXBIO6EI", added: "2026-11-09T13:34" },
+          { url: "https://www.youtube.com/watch?v=jWh-ZIBBcZ4", added: "2026-11-09T13:34" },
+          { url: "https://www.youtube.com/watch?v=l-1_-ugiEOY", added: "2026-11-09T13:34" },
+          { url: "https://www.youtube.com/watch?v=IH0m-6sa7z4", added: "2026-11-09T13:34" },
+          // Learn Simply (اتعلم ببساطة)
+          { url: "https://www.youtube.com/watch?v=azy3_sBMYCM", added: "2026-11-09T13:34" },
+          { url: "https://www.youtube.com/watch?v=egs9TADvV2A", added: "2026-11-09T13:34" },
+          { url: "https://www.youtube.com/watch?v=QN_-quEiCwE", added: "2026-11-09T13:34" },
+          { url: "https://www.youtube.com/watch?v=rEJYxdTpmxw", added: "2026-11-09T13:34" },
+          { url: "https://www.youtube.com/watch?v=k6bxJsM0Qaw", added: "2026-11-09T13:34" },
+          { url: "https://www.youtube.com/watch?v=qZBEkkP05Vg", added: "2026-11-09T13:34" },
+          { url: "https://www.youtube.com/watch?v=eZfHQunaiLs", added: "2026-11-09T13:34" },
+          // Yehia Tech
+          { url: "https://www.youtube.com/watch?v=ss8pLZ1BLoM", added: "2026-11-09T13:34" },
+          { url: "https://www.youtube.com/watch?v=wbHCWzc71Sk", added: "2026-11-09T13:34" },
+          { url: "https://www.youtube.com/watch?v=KKc_rdk28_4", added: "2026-11-09T13:34" },
+          { url: "https://www.youtube.com/watch?v=ZlixPXX6lQI", added: "2026-11-09T13:34" },
+          { url: "https://www.youtube.com/watch?v=aoMXPfLZy9s", added: "2026-11-09T13:34" },
+          { url: "https://www.youtube.com/watch?v=B2iWpi5GPvQ", added: "2026-11-09T13:34" },
+          { url: "https://www.youtube.com/watch?v=EFhjaCxMMCM", added: "2026-11-09T13:34" },
+          // Fathy & Abusrea
+          { url: "https://www.youtube.com/watch?v=zfgxi_ZS5mo", added: "2026-11-09T13:34" },
+          { url: "https://www.youtube.com/watch?v=j3K_eir_5Q4", added: "2026-11-09T13:34" },
+          { url: "https://www.youtube.com/watch?v=vOvs_sI86iU", added: "2026-11-09T13:34" },
+          { url: "https://www.youtube.com/watch?v=ZKu-iJIDp0I", added: "2026-11-09T13:34" },
+          { url: "https://www.youtube.com/watch?v=jdChMYaEI_0", added: "2026-11-09T13:34" },
+          // Bashmohandes Mazen, Simple Arab Code, MagdyBytes
+          { url: "https://www.youtube.com/watch?v=XgfgzEQkldg", added: "2026-11-09T13:34" },
+          { url: "https://www.youtube.com/watch?v=fY5psvIHahg", added: "2026-11-09T13:34" },
+          { url: "https://www.youtube.com/watch?v=VjzqRouM_UQ", added: "2026-11-09T13:34" },
+          // Tarmeez (أكاديمية ترميز)
+          { url: "https://www.youtube.com/watch?v=VmJvywPQvqE", added: "2026-11-09T13:34" },
+          { url: "https://www.youtube.com/watch?v=Ph04YzvlySg", added: "2026-11-09T13:34" },
+          // freeCodeCamp
+          { url: "https://www.youtube.com/watch?v=gh2_PhgZGsM", added: "2026-11-09T13:34" },
+          { url: "https://www.youtube.com/watch?v=brLhhkUqcn4", added: "2026-11-09T13:34" },
+          { url: "https://www.youtube.com/watch?v=QfJB9d0J3Iw", added: "2026-11-09T13:34" },
+          { url: "https://www.youtube.com/watch?v=C_1QKZAcJjk", added: "2026-11-09T13:34" },
+          { url: "https://www.youtube.com/watch?v=reDRM0tqhNs", added: "2026-11-09T13:34" },
+        ],
+      },
     ],
     channels: [
       {
