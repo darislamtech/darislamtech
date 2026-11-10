@@ -125,7 +125,7 @@ const field = (id: string, title: Localized, study: { ar: string[]; en: string[]
 // level by level in «ما لا يسع المسلمَ جهلُه». Contents from Zad's curriculum page and the books' tables of contents;
 // page counts (2019 edition) only give the reading time. The books are «جميع الحقوق محفوظة», so they are listed by name
 // only, with no download or read links; the owner asked Zad for permission on 2026-11-10.
-type ZadBook = { id: string; title: Localized; pages: number; contents: Localized };
+type ZadBook = { id: (typeof subjectOrder)[number]; title: Localized; pages: number; contents: Localized };
 
 const aqeedah = text("العقيدة", "Creed (Aqeedah)");
 const seerah = text("السيرة النبوية", "The Prophet's biography (Seerah)");
@@ -136,7 +136,7 @@ const tarbiyah = text("التربية الإسلامية", "Islamic character (T
 const arabic = text("اللغة العربية", "Arabic language");
 
 // Each level's books are read in our order of the subjects (the owner's choice), not Zad's.
-const subjectOrder = ["aqeedah", "fiqh", "tarbiyah", "hadith", "seerah", "tafsir", "arabic"];
+const subjectOrder = ["aqeedah", "fiqh", "tarbiyah", "hadith", "seerah", "tafsir", "arabic"] as const;
 
 const zadLevels: ZadBook[][] = [
   [
@@ -464,7 +464,7 @@ const externalShariaDomain: RoadmapDomain = {
         }),
         field("atheism", text("الرد على الإلحاد والشبهات", "Answering atheism and doubts"), {
           ar: ["أدلة وجود الله", "النبوة وصدق القرآن", "أصول الإلحاد وأشهر شبهاته", "أدب الحوار والرد"],
-          en: ["The proofs of God's existence", "Prophethood and the truth of the Quran", "The roots of atheism and its best-known claims", "The manners of dialogue and response"],
+          en: ["The proofs of Allah's existence", "Prophethood and the truth of the Quran", "The roots of atheism and its best-known claims", "The manners of dialogue and response"],
         }),
         field("quranists", text("الرد على القرآنيين ومنكري السنة", "Answering Quranists and Sunnah deniers"), {
           ar: ["حجية السنة ومكانتها", "علوم الحديث وتدوين السنة", "أشهر شبهاتهم"],
