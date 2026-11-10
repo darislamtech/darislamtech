@@ -1,4 +1,4 @@
-import { Boxes, Construction, GitPullRequest, GraduationCap, Newspaper } from "lucide-react";
+import { Boxes, Clapperboard, Construction, GitPullRequest, GraduationCap, Newspaper } from "lucide-react";
 import { localePath, type Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries";
 import { externalDomains } from "@/content/learn";
@@ -7,7 +7,10 @@ import { productStatusOrder, productStatusStyles } from "../products/product-sta
 import { Container, SectionHeading } from "../ui";
 import { BentoCard } from "./bento-card";
 
-/** Home: "what we offer", one card per section of the site (content, products, learn, contribute). */
+/**
+ * Home: "what we offer", one card per section of the site. Two rows on large screens: content and entertainment,
+ * then learn, products and contribute.
+ */
 export function OfferSection({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const home = dict.home;
 
@@ -27,34 +30,22 @@ export function OfferSection({ locale, dict }: { locale: Locale; dict: Dictionar
             icon={<Newspaper />}
             title={home.cards.content.title}
             body={home.cards.content.body}
-            className="lg:col-span-4"
+            className="lg:col-span-3"
           >
-            <ul className="mt-8 flex flex-wrap gap-2">
-              {/* The first topics of each group, religious and da'wah topics first. */}
-              {dict.topics.flatMap((group) => group.items.slice(0, 4)).map((topic) => (
-                <li key={topic} className="rounded-full border border-line bg-surface-2 px-3 py-1.5 text-sm text-ink-2">
-                  {topic}
-                </li>
-              ))}
-            </ul>
+            {/* The first topics of each group, religious and da'wah topics first. */}
+            <ChipList items={dict.topics.flatMap((group) => group.items.slice(0, 4))} />
           </BentoCard>
 
           <BentoCard
-            href={localePath(locale, "/products")}
+            href={localePath(locale, "/entertainment")}
             tone="gold"
-            icon={<Boxes />}
-            title={home.cards.products.title}
-            body={home.cards.products.body}
-            className="lg:col-span-2"
+            icon={<Clapperboard />}
+            title={dict.entertainment.title}
+            body={home.cards.entertainment.body}
+            className="lg:col-span-3"
           >
-            <ul className="mt-8 grid grid-cols-2 gap-2">
-              {productStatusOrder.map((status) => (
-                <li key={status} className="flex items-center gap-2 rounded-xl bg-surface-2 px-3 py-2 text-sm text-ink-2">
-                  <span className={cn("size-2 rounded-full", productStatusStyles[status].dot)} />
-                  {dict.products.status[status]}
-                </li>
-              ))}
-            </ul>
+            {/* The entertainment pages themselves, so the card follows when a page is added. */}
+            <ChipList items={Object.values(dict.entertainment.sections)} />
           </BentoCard>
 
           <BentoCard
@@ -82,20 +73,32 @@ export function OfferSection({ locale, dict }: { locale: Locale; dict: Dictionar
           </BentoCard>
 
           <BentoCard
+            href={localePath(locale, "/products")}
+            tone="gold"
+            icon={<Boxes />}
+            title={home.cards.products.title}
+            body={home.cards.products.body}
+            className="lg:col-span-2"
+          >
+            <ul className="mt-8 grid grid-cols-2 gap-2">
+              {productStatusOrder.map((status) => (
+                <li key={status} className="flex items-center gap-2 rounded-xl bg-surface-2 px-3 py-2 text-sm text-ink-2">
+                  <span className={cn("size-2 rounded-full", productStatusStyles[status].dot)} />
+                  {dict.products.status[status]}
+                </li>
+              ))}
+            </ul>
+          </BentoCard>
+
+          <BentoCard
             href={localePath(locale, "/contribute")}
             tone="rose"
             icon={<GitPullRequest />}
             title={home.cards.contribute.title}
             body={home.cards.contribute.body}
-            className="lg:col-span-4"
+            className="lg:col-span-2"
           >
-            <ul className="mt-8 flex flex-wrap gap-2">
-              {dict.contribute.ways.map((way) => (
-                <li key={way.title} className="rounded-full border border-line bg-surface-2 px-3 py-1.5 text-sm text-ink-2">
-                  {way.title}
-                </li>
-              ))}
-            </ul>
+            <ChipList items={dict.contribute.ways.map((way) => way.title)} />
             <ol className="mt-6 flex flex-wrap items-center gap-2 border-t border-dashed border-line pt-6">
               {home.cards.contribute.flow.map((step, index) => (
                 <li key={step} className="flex items-center gap-2">
@@ -119,5 +122,18 @@ export function OfferSection({ locale, dict }: { locale: Locale; dict: Dictionar
         </div>
       </Container>
     </section>
+  );
+}
+
+/** A card's preview as a row of rounded labels. */
+function ChipList({ items }: { items: string[] }) {
+  return (
+    <ul className="mt-8 flex flex-wrap gap-2">
+      {items.map((item) => (
+        <li key={item} className="rounded-full border border-line bg-surface-2 px-3 py-1.5 text-sm text-ink-2">
+          {item}
+        </li>
+      ))}
+    </ul>
   );
 }

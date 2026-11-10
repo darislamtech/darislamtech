@@ -7,10 +7,11 @@ const ourChannel: RecommendedChannel = {
   name: "دار الاسلام و التقنية - Dar Islam & Technology",
 };
 
-// Recommendations for the three Entertainment pages. Each group is a tab; videos, channels and books each have their
-// own categories under it. Videos: a YouTube link and when we added it (title, thumbnail and views are fetched).
-// Channels: link and the name as written on the channel (name and picture are fetched). Books: title and cover
-// (author for Islamic books only). The first group is the one shown by default. How to add each: docs/content.md.
+// Recommendations for the Entertainment pages (DarTube shows all the videos together). Each group is a tab; videos,
+// channels and books each have their own categories under it. Videos: a YouTube link and when we added it (title,
+// thumbnail and views are fetched). Channels: link and the name as written on the channel (name and picture are
+// fetched). Books: title and cover (author for Islamic books only). The first group is the one shown by default. How to
+// add each: docs/content.md.
 export const entertainmentGroups: EntertainmentGroup[] = [
   {
     id: "cultural",
@@ -117,7 +118,10 @@ export const entertainmentGroups: EntertainmentGroup[] = [
         // Videos that fit no other category clearly go here (owner's rule).
         id: "misc",
         title: { ar: "منوعات", en: "Miscellaneous" },
-        items: [{ url: "https://www.youtube.com/watch?v=F6E1mFIZC0o", added: "2026-11-08T12:35" }],
+        items: [
+          { url: "https://www.youtube.com/watch?v=F6E1mFIZC0o", added: "2026-11-08T12:35" },
+          { url: "https://www.youtube.com/watch?v=JMsxXg41I2o", added: "2026-11-10T12:25" },
+        ],
       },
     ],
     channels: [
@@ -163,6 +167,7 @@ export const entertainmentGroups: EntertainmentGroup[] = [
           { url: "https://www.youtube.com/@RamyEissa", name: "رامي عيسى ( للمهتدين )" },
           { url: "https://www.youtube.com/@mo3az3lian", name: "moaz alian معاذ عليان" },
           { url: "https://www.youtube.com/@hishamsedqialibrashi", name: "هشام صدقي الإبراشي" },
+          { url: "https://www.youtube.com/@Albyyinah", name: "قناة البينة لمقارنة الأديان والرد على الشبهات" },
         ],
       },
       {

@@ -7,7 +7,6 @@ import { HomeHero } from "@/components/home/home-hero";
 import { LatestPosts } from "@/components/home/latest-posts";
 import { MissionSection } from "@/components/home/mission-section";
 import { OfferSection } from "@/components/home/offer-section";
-import { RoadmapSection } from "@/components/home/roadmap-section";
 import { CtaPanel } from "@/components/page-blocks";
 import { pageMetadata } from "@/lib/seo";
 import ar from "@/i18n/dictionaries/ar.json";
@@ -63,7 +62,6 @@ export default async function HomePage() {
       <OfferSection locale={locale} dict={dict} />
       <LatestPosts locale={locale} dict={dict} />
       <MissionSection locale={locale} dict={dict} />
-      <RoadmapSection dict={dict} />
       <ChannelSection dict={dict} />
       <CtaPanel
         title={home.ctaTitle}

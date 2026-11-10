@@ -114,12 +114,15 @@
       "chipFree": "Free for everyone"
     },
     "offerEyebrow": "What we offer",
-    "offerTitle": "Learning that grounds, content that raises awareness, projects that help",
+    "offerTitle": "Learning that grounds, content that raises awareness, entertainment that benefits, projects that help",
     "offerBody": "Everything we publish and build is free and open, and starts with one question: how can we benefit people?",
     "cards": {
       "content": {
         "title": "Content",
         "body": "Islamic knowledge and da'wah, and technology and its news, in articles and videos from our YouTube channel."
+      },
+      "entertainment": {
+        "body": "Videos, channels and books we pick for you, grouped by topic: Islamic and cultural, and tech."
       },
       "products": {
         "title": "Products",
@@ -143,9 +146,6 @@
     },
     "missionEyebrow": "Our mission",
     "missionLink": "Read our mission and vision",
-    "roadmapEyebrow": "Where we are",
-    "roadmapTitle": "Building step by step, in the open",
-    "roadmapBody": "We are in the foundation phase. We never claim a product before it launches, and we share our progress as it is.",
     "channelEyebrow": "Dar Islam & Technology channel",
     "channelTitle": "One channel, two tracks: Islamic knowledge and technology",
     "channelBody": "Simple explainers where every topic stands on its own.",
@@ -252,6 +252,7 @@
     "project": "Project",
     "graduation": "Graduation project",
     "sourcesSoon": "Sources coming soon",
+    "pages": "{n} pages",
     "suggestTitle": "Have a suggestion for the program?",
     "suggestBody": "Your opinion helps us build the program.",
     "suggestCta": "Share your opinion"
@@ -379,6 +380,9 @@
     "ambition": "A community of Islamic studies specialists, callers, programmers and creators working together on beneficial da'wah and tech projects that serve Islam and Muslims and benefit every person.",
     "valuesEyebrow": "Our values",
     "valuesTitle": "What guides our work",
+    "roadmapEyebrow": "Where we are",
+    "roadmapTitle": "Building step by step, in the open",
+    "roadmapBody": "We are now in the build phase: the site is live, and we are working on our first products and learning tracks. We never claim a product before it launches, and we share our progress as it is.",
     "values": [
       "Beneficial knowledge",
       "Calling to Allah",
@@ -408,7 +412,11 @@
     "next": "Next",
     "topics": "Topics:",
     "sectionsLabel": "Entertainment types",
-    "sections": { "videos": "Videos", "channels": "Channels", "books": "Books" },
+    "sections": { "videos": "Videos", "channels": "Channels", "books": "Books", "dartube": "DarTube" },
+    "dartube": {
+      "description": "All our entertainment videos in one place, Islamic and tech together, in a new random order on every visit.",
+      "views": "{n} views"
+    },
     "channels": {
       "description": "YouTube channels we recommend, grouped by topic.",
       "featured": "Including:",

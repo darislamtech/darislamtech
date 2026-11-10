@@ -44,7 +44,7 @@ export default async function ProductPage({ params }: PageProps<"/[lang]/product
             {t.back}
           </Link>
           <div className="mt-10 flex flex-col gap-6 sm:flex-row sm:items-start">
-            <IconTile className="size-16 rounded-2xl [&>svg]:size-7">
+            <IconTile tone={productStatusStyles[product.status].icon} className="size-16 rounded-2xl [&>svg]:size-7">
               <Boxes />
             </IconTile>
             <div>

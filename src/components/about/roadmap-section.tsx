@@ -2,21 +2,22 @@ import type { Dictionary } from "@/i18n/dictionaries";
 import { cn } from "@/lib/cn";
 import { Badge, Container, SectionHeading } from "../ui";
 
-// The project is currently in its first phase ("Foundation"), per the launch plan.
-const CURRENT_PHASE = 0;
+// The current phase, an index into `dict.phases`: "Build" (the site is live; first products and learning tracks in
+// progress). Update it when the project moves on — the site must not show an outdated phase.
+const CURRENT_PHASE = 2;
 
-/** Home: the project's phases in order, with the current one marked. */
+/** About: «أين نحن الآن», the project's phases in order with the current one marked. */
 export function RoadmapSection({ dict }: { dict: Dictionary }) {
-  const home = dict.home;
+  const t = dict.about;
 
   return (
-    <section className="reveal py-20 sm:py-28">
+    <section className="reveal py-20 sm:py-24">
       <Container>
         <SectionHeading
-          eyebrow={home.roadmapEyebrow}
+          eyebrow={t.roadmapEyebrow}
           eyebrowTone="mint"
-          title={home.roadmapTitle}
-          description={home.roadmapBody}
+          title={t.roadmapTitle}
+          description={t.roadmapBody}
         />
         <ol className="relative mt-14 grid gap-4 md:grid-cols-5 md:gap-0">
           <span aria-hidden="true" className="absolute inset-x-[10%] top-5 hidden h-px bg-line-strong md:block" />

@@ -1,10 +1,21 @@
 import type { Metadata } from "next";
-import { BookOpen, ChevronDown, Code, Construction, GraduationCap, Hammer, ScrollText, Target } from "lucide-react";
+import {
+  BookOpen,
+  ChevronDown,
+  Clock,
+  Code,
+  Construction,
+  ExternalLink,
+  GraduationCap,
+  Hammer,
+  ScrollText,
+  Target,
+} from "lucide-react";
 import { localePath, type Locale } from "@/i18n/config";
 import { getDictionary, getLocale, type Dictionary } from "@/i18n/dictionaries";
 import { pageMetadata } from "@/lib/seo";
 import { externalDomains, platformDomains } from "@/content/learn";
-import type { RoadmapDomain, RoadmapLevel, RoadmapPath } from "@/content/types";
+import type { BookSeries, RoadmapDomain, RoadmapLevel, RoadmapPath } from "@/content/types";
 import { CtaPanel, PageHero } from "@/components/page-blocks";
 import { Tabs } from "@/components/tabs";
 import { Badge, Container, IconTile, toneDot, toneText, type Tone } from "@/components/ui";
@@ -210,13 +221,24 @@ function PathCard({
           )}
         </div>
         <p className="mt-2 leading-relaxed text-muted">{path.description[locale]}</p>
-        {note && <p className="mt-2 text-xs font-medium text-muted">{note}</p>}
+        {/* A path studied from a book series says how long the reading takes; the others, that sources are coming. */}
+        {path.series ? (
+          <p className="mt-3 flex gap-2 text-sm leading-relaxed text-ink-2">
+            <Clock aria-hidden="true" className={cn("mt-0.5 size-4 shrink-0", toneText[tone])} />
+            {path.series.reading[locale]}
+          </p>
+        ) : (
+          note && <p className="mt-2 text-xs font-medium text-muted">{note}</p>
+        )}
 
-        <ul className="mt-5 space-y-2">
-          {path.levels.map((level) => (
-            <LevelToggle key={level.id} level={level} tone={tone} locale={locale} t={t} />
-          ))}
-        </ul>
+        {path.levels.length > 0 && (
+          <ul className="mt-5 space-y-2">
+            {path.levels.map((level) => (
+              <LevelToggle key={level.id} level={level} tone={tone} locale={locale} t={t} />
+            ))}
+          </ul>
+        )}
+        {path.series && <SeriesSubjects series={path.series} tone={tone} locale={locale} t={t} />}
 
         {path.graduation && (
           <div className="mt-4 flex gap-3 rounded-2xl border border-line bg-tone-gold-soft p-4">
@@ -290,5 +312,64 @@ function LevelToggle({ level, tone, locale, t }: { level: RoadmapLevel; tone: To
         </div>
       </details>
     </li>
+  );
+}
+
+/**
+ * A book series: its subjects one under another, each a toggle with its books in level order, then how to study it
+ * with its publisher. Books by name and page count only (see BookSeries).
+ */
+function SeriesSubjects({ series, tone, locale, t }: { series: BookSeries; tone: Tone; locale: Locale; t: Learn }) {
+  const pages = (count: number) => t.pages.replace("{n}", String(count));
+  return (
+    <>
+      <ul className="mt-5 space-y-2">
+        {series.subjects.map((subject) => (
+          <li key={subject.id}>
+            <details className="group rounded-2xl border border-line bg-surface-2">
+              <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 rounded-2xl px-4 py-3 font-semibold text-ink [&::-webkit-details-marker]:hidden">
+                <span className="flex items-center gap-2">
+                  <span aria-hidden="true" className={cn("size-1.5 shrink-0 rounded-full", toneDot[tone])} />
+                  {subject.title[locale]}
+                </span>
+                <ChevronDown
+                  aria-hidden="true"
+                  className="size-4 shrink-0 text-muted transition-transform group-open:rotate-180"
+                />
+              </summary>
+              <ol className="space-y-2 border-t border-line px-4 pt-3 pb-4">
+                {subject.books.map((book) => (
+                  <li
+                    key={book.title.en}
+                    className="flex items-center justify-between gap-3 rounded-xl border border-line bg-surface px-3 py-2 text-sm"
+                  >
+                    <span className="flex min-w-0 items-center gap-2 text-ink">
+                      <BookOpen aria-hidden="true" className={cn("size-3.5 shrink-0", toneText[tone])} />
+                      {book.title[locale]}
+                    </span>
+                    <span className="shrink-0 text-xs text-muted">{pages(book.pages)}</span>
+                  </li>
+                ))}
+              </ol>
+            </details>
+          </li>
+        ))}
+      </ul>
+      <div className="mt-4 flex gap-3 rounded-2xl border border-line bg-tone-gold-soft p-4">
+        <GraduationCap aria-hidden="true" className={cn("mt-0.5 size-5 shrink-0", toneText.gold)} />
+        <div>
+          <p className="text-sm leading-relaxed text-ink-2">{series.study.body[locale]}</p>
+          <a
+            href={series.study.url[locale]}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-2 inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
+          >
+            {series.study.label[locale]}
+            <ExternalLink aria-hidden="true" className="size-3.5" />
+          </a>
+        </div>
+      </div>
+    </>
   );
 }

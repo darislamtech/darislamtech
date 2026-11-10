@@ -1,12 +1,12 @@
-import type { Localized, RoadmapDomain, RoadmapLevel, RoadmapTopic } from "./types";
+import type { BookSeries, Localized, RoadmapDomain, RoadmapLevel, RoadmapTopic } from "./types";
 
 // The program plan, shown on the Learn page as the external track (what to study, in order, from recommended outside
 // sources, in the spirit of roadmap.sh) and the platform track (lessons and series made by Dar, under construction).
 // The owner is working on the external track only for now: the platform track is frozen (changed only when the owner
-// asks, as with its trusted-sources wording) and shown blurred, so a change to the
-// external plan must not reach it (split a shared domain before changing it). No timing: each learner goes at their
-// own pace. Sources and lessons are added per topic once chosen; Islamic material only from trusted references,
-// reviewed by the qualified. The owner's working plan for technology is the Notion page «رود ماب المسار التقني».
+// asks, as with its trusted-sources wording) and shown blurred, so a change to the external plan must not reach it
+// (split a shared domain before changing it). No timing: each learner goes at their own pace (except the reading time
+// of a recommended book series, which the owner asked for). Sources and lessons are added per topic once chosen;
+// Islamic material only from trusted references, reviewed by the qualified. The owner's working plan for technology is the Notion page «رود ماب المسار التقني».
 
 const text = (ar: string, en: string): Localized => ({ ar, en });
 
@@ -121,6 +121,47 @@ const field = (id: string, title: Localized, study: { ar: string[]; en: string[]
   project: contentProject,
 });
 
+// Zad Academy's book series («سلسلة زاد العلمية»): seven subjects, one book per level, four levels; studied from it in
+// «ما لا يسع المسلمَ جهلُه». Page counts of the 2019 edition. The books are «جميع الحقوق محفوظة», so they are listed
+// by name only, with no download or read links; the owner asked Zad for permission on 2026-11-10.
+const zadBooks: { id: string; title: Localized; pages: [number, number, number, number] }[] = [
+  { id: "aqeedah", title: text("العقيدة", "Creed (Aqeedah)"), pages: [89, 93, 96, 82] },
+  { id: "seerah", title: text("السيرة النبوية", "The Prophet's biography (Seerah)"), pages: [102, 84, 78, 84] },
+  { id: "fiqh", title: text("الفقه", "Jurisprudence (Fiqh)"), pages: [132, 120, 110, 94] },
+  { id: "tafsir", title: text("التفسير", "Quran exegesis (Tafsir)"), pages: [84, 110, 102, 103] },
+  { id: "hadith", title: text("الحديث", "Hadith"), pages: [110, 97, 96, 111] },
+  { id: "tarbiyah", title: text("التربية الإسلامية", "Islamic character (Tarbiyah)"), pages: [94, 98, 93, 74] },
+  { id: "arabic", title: text("اللغة العربية", "Arabic language"), pages: [103, 89, 108, 82] },
+];
+
+// About a minute a page (the books run about 100 words a page), so the reading time follows from the page count.
+const zadPages = zadBooks.reduce((sum, subject) => sum + subject.pages.reduce((a, b) => a + b, 0), 0);
+const zadHours = Math.round(zadPages / 60);
+const zadPagesAbout = (Math.round(zadPages / 100) * 100).toLocaleString("en");
+
+const zadSeries: BookSeries = {
+  reading: text(
+    `قراءة كتب المستويات الأربعة تأخذ نحو ${zadHours} ساعة (قرابة ${zadPagesAbout} صفحة): نحو أسبوع لكل مادة بمعدل ساعة يوميًا، أي قرابة شهر ونصف للسلسلة كاملة، وقد تتضاعف المدة مع المراجعة وحلّ التمارين.`,
+    `Reading the books of all four levels takes about ${zadHours} hours (some ${zadPagesAbout} pages): about a week per subject at an hour a day, so around six weeks for the whole series; reviewing and doing the exercises can double that.`,
+  ),
+  subjects: zadBooks.map(({ id, title, pages }) => ({
+    id,
+    title,
+    books: pages.map((count, index) => ({
+      title: text(`${title.ar} – ${levelNames[index].ar}`, `${title.en} – ${levelNames[index].en}`),
+      pages: count,
+    })),
+  })),
+  study: {
+    body: text(
+      "لو حابب تدرس المسار من أكاديمية زاد نفسها لمدة سنتين، بمحاضرات واختبارات وشهادة، والكتب الرقمية مجانًا للمسجّلين:",
+      "To study this path with Zad Academy itself over two years, with lectures, exams and a certificate, and the digital books free for those enrolled:",
+    ),
+    label: text("سجّل في أكاديمية زاد", "Enroll at Zad Academy"),
+    url: text("https://zad-academy.com/ar", "https://zad-academy.com/en"),
+  },
+};
+
 const externalShariaDomain: RoadmapDomain = {
   id: "sharia",
   title: text("المسار الديني والدعوي", "Islamic knowledge and da'wah"),
@@ -133,10 +174,11 @@ const externalShariaDomain: RoadmapDomain = {
       id: "essentials",
       title: text("ما لا يسع المسلمَ جهلُه", "What no Muslim may be ignorant of"),
       description: text(
-        "الحد الأدنى من العلم الشرعي الذي يحتاجه كل مسلم، قبل التخصص في أي مجال.",
-        "The minimum of Islamic knowledge every Muslim needs, before specializing in any field.",
+        "الحد الأدنى من العلم الشرعي الذي يحتاجه كل مسلم، قبل التخصص في أي مجال، من كتب «سلسلة زاد العلمية» لأكاديمية زاد.",
+        "The minimum of Islamic knowledge every Muslim needs, before specializing in any field, from Zad Academy's book series.",
       ),
-      levels: [{ id: "subjects", title: text("المواد", "The subjects"), topics: shariaSubjects }],
+      levels: [],
+      series: zadSeries,
     },
     {
       id: "field",

@@ -3,7 +3,13 @@ import { cacheLife } from "next/cache";
 // A YouTube request that hangs gives up after this and falls back like any other failure, so the build never stalls.
 const FETCH_TIMEOUT_MS = 10_000;
 
-export type YouTubeVideo = { id: string; title: string | null; thumbnail: string };
+export type YouTubeVideo = {
+  id: string;
+  title: string | null;
+  thumbnail: string;
+  /** The channel that published it. */
+  channel: string | null;
+};
 
 /** Extracts the video ID from a YouTube link (watch, youtu.be, shorts, embed, live) or returns a bare ID as is. */
 export function getYouTubeId(input: string): string | null {
@@ -26,7 +32,7 @@ export function getYouTubeId(input: string): string | null {
 }
 
 /**
- * Title and thumbnail of a YouTube video, from YouTube's public oEmbed endpoint (no API key).
+ * Title, channel name and thumbnail of a YouTube video, from YouTube's public oEmbed endpoint (no API key).
  * Cached so the request happens when the page is built, not on every visit. A video YouTube reports as missing,
  * private or not embeddable returns null and is dropped; if YouTube is unreachable the video still shows with its
  * thumbnail and a generic label.
@@ -45,11 +51,11 @@ export async function getYouTubeVideo(input: string): Promise<YouTubeVideo | nul
       signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
     });
     if ([400, 401, 403, 404].includes(response.status)) return null;
-    if (!response.ok) return { id, title: null, thumbnail };
-    const data = (await response.json()) as { title?: string };
-    return { id, title: data.title ?? null, thumbnail };
+    if (!response.ok) return { id, title: null, thumbnail, channel: null };
+    const data = (await response.json()) as { title?: string; author_name?: string };
+    return { id, title: data.title ?? null, thumbnail, channel: data.author_name ?? null };
   } catch {
-    return { id, title: null, thumbnail };
+    return { id, title: null, thumbnail, channel: null };
   }
 }
 
