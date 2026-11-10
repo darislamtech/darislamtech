@@ -49,6 +49,20 @@ export type RoadmapPath = {
   description: Localized;
   levels: RoadmapLevel[];
   graduation?: Localized;
+  /** A book series the path is studied from, shown as its subjects one under another, each with its books. */
+  series?: BookSeries;
+};
+
+/**
+ * A recommended book series, e.g. Zad Academy's: its subjects in order, each with one book per level. Books are listed
+ * by name only (no download or read links) unless their publisher allows sharing them.
+ */
+export type BookSeries = {
+  /** How long reading the series takes, shown at the top of the path. */
+  reading: Localized;
+  subjects: { id: string; title: Localized; books: { title: Localized; pages: number }[] }[];
+  /** Studying the series with its publisher, shown after the subjects. */
+  study: { body: Localized; label: Localized; url: Localized };
 };
 
 /** A domain of the Learn program (Islamic, technology), with its paths in order. */

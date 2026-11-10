@@ -252,6 +252,7 @@
     "project": "Project",
     "graduation": "Graduation project",
     "sourcesSoon": "Sources coming soon",
+    "pages": "{n} pages",
     "suggestTitle": "Have a suggestion for the program?",
     "suggestBody": "Your opinion helps us build the program.",
     "suggestCta": "Share your opinion"
