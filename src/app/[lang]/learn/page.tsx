@@ -315,8 +315,10 @@ function LevelToggle({ level, tone, locale, t }: { level: RoadmapLevel; tone: To
   );
 }
 
-/** A book series: its subjects one under another, each a toggle with its books in level order, then how to study it
- * with its publisher. Books by name and page count only (see BookSeries). */
+/**
+ * A book series: its subjects one under another, each a toggle with its books in level order, then how to study it
+ * with its publisher. Books by name and page count only (see BookSeries).
+ */
 function SeriesSubjects({ series, tone, locale, t }: { series: BookSeries; tone: Tone; locale: Locale; t: Learn }) {
   const pages = (count: number) => t.pages.replace("{n}", String(count));
   return (
