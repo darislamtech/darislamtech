@@ -26,7 +26,7 @@ export async function resolveVideo(item: RecommendedVideo, order: number): Promi
 // Categories that have videos, in the videos page order: group by group (cultural before tech), and inside each group
 // the category we added to most recently first.
 const newestAdded = (items: { added: string }[]) => Math.max(...items.map((item) => Date.parse(item.added)));
-export const filledVideoCategories = entertainmentGroups.flatMap((group) =>
+const filledVideoCategories = entertainmentGroups.flatMap((group) =>
   group.videos.filter((category) => category.items.length > 0).sort((a, b) => newestAdded(b.items) - newestAdded(a.items)),
 );
 
