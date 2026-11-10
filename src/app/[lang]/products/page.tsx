@@ -44,7 +44,7 @@ export default async function ProductsPage() {
             {products.map((product) => (
               <Card key={product.slug} href={localePath(locale, `/products/${product.slug}`)}>
                 <div className="flex items-start justify-between gap-4">
-                  <IconTile>
+                  <IconTile tone={statusStyles[product.status].icon}>
                     <Boxes />
                   </IconTile>
                   <Badge tone={statusStyles[product.status].tone} dot>
