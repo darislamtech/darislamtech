@@ -49,19 +49,20 @@ export type RoadmapPath = {
   description: Localized;
   levels: RoadmapLevel[];
   graduation?: Localized;
-  /** A book series the path is studied from, shown as its subjects one under another, each with its books. */
+  /** A book series the path is studied from, level by level, each level with its books in order. */
   series?: BookSeries;
 };
 
 /**
- * A recommended book series, e.g. Zad Academy's: its subjects in order, each with one book per level. Books are listed
- * by name only (no download or read links) unless their publisher allows sharing them.
+ * A recommended book series, e.g. Zad Academy's: its levels in order, each with its books in the order they are
+ * studied and what each covers. Books are listed by name only (no download or read links) unless their publisher
+ * allows sharing them.
  */
 export type BookSeries = {
   /** How long reading the series takes, shown at the top of the path. */
   reading: Localized;
-  subjects: { id: string; title: Localized; books: { title: Localized; pages: number }[] }[];
-  /** Studying the series with its publisher, shown after the subjects. */
+  levels: { id: string; title: Localized; books: { id: string; title: Localized; contents: Localized }[] }[];
+  /** Studying the series with its publisher, shown after the levels. */
   study: { body: Localized; label: Localized; url: Localized };
 };
 

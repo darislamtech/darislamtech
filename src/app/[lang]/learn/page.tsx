@@ -238,7 +238,7 @@ function PathCard({
             ))}
           </ul>
         )}
-        {path.series && <SeriesSubjects series={path.series} tone={tone} locale={locale} t={t} />}
+        {path.series && <SeriesLevels series={path.series} tone={tone} locale={locale} />}
 
         {path.graduation && (
           <div className="mt-4 flex gap-3 rounded-2xl border border-line bg-tone-gold-soft p-4">
@@ -316,21 +316,20 @@ function LevelToggle({ level, tone, locale, t }: { level: RoadmapLevel; tone: To
 }
 
 /**
- * A book series: its subjects one under another, each a toggle with its books in level order, then how to study it
- * with its publisher. Books by name and page count only (see BookSeries).
+ * A book series studied level by level: each level a toggle with its books in the order they are read and what each
+ * covers, then how to study it with its publisher. Books by name only (see BookSeries).
  */
-function SeriesSubjects({ series, tone, locale, t }: { series: BookSeries; tone: Tone; locale: Locale; t: Learn }) {
-  const pages = (count: number) => t.pages.replace("{n}", String(count));
+function SeriesLevels({ series, tone, locale }: { series: BookSeries; tone: Tone; locale: Locale }) {
   return (
     <>
       <ul className="mt-5 space-y-2">
-        {series.subjects.map((subject) => (
-          <li key={subject.id}>
+        {series.levels.map((level) => (
+          <li key={level.id}>
             <details className="group rounded-2xl border border-line bg-surface-2">
               <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 rounded-2xl px-4 py-3 font-semibold text-ink [&::-webkit-details-marker]:hidden">
                 <span className="flex items-center gap-2">
                   <span aria-hidden="true" className={cn("size-1.5 shrink-0 rounded-full", toneDot[tone])} />
-                  {subject.title[locale]}
+                  {level.title[locale]}
                 </span>
                 <ChevronDown
                   aria-hidden="true"
@@ -338,16 +337,13 @@ function SeriesSubjects({ series, tone, locale, t }: { series: BookSeries; tone:
                 />
               </summary>
               <ol className="space-y-2 border-t border-line px-4 pt-3 pb-4">
-                {subject.books.map((book) => (
-                  <li
-                    key={book.title.en}
-                    className="flex items-center justify-between gap-3 rounded-xl border border-line bg-surface px-3 py-2 text-sm"
-                  >
-                    <span className="flex min-w-0 items-center gap-2 text-ink">
+                {level.books.map((book) => (
+                  <li key={book.id} className="rounded-xl border border-line bg-surface px-3 py-2.5 text-sm">
+                    <p className="flex items-center gap-2 font-semibold text-ink">
                       <BookOpen aria-hidden="true" className={cn("size-3.5 shrink-0", toneText[tone])} />
                       {book.title[locale]}
-                    </span>
-                    <span className="shrink-0 text-xs text-muted">{pages(book.pages)}</span>
+                    </p>
+                    <p className="mt-1 leading-relaxed text-muted">{book.contents[locale]}</p>
                   </li>
                 ))}
               </ol>
