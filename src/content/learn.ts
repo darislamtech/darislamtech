@@ -121,36 +121,286 @@ const field = (id: string, title: Localized, study: { ar: string[]; en: string[]
   project: contentProject,
 });
 
-// Zad Academy's book series («سلسلة زاد العلمية»): seven subjects, one book per level, four levels; studied from it in
-// «ما لا يسع المسلمَ جهلُه». Page counts of the 2019 edition. The books are «جميع الحقوق محفوظة», so they are listed
-// by name only, with no download or read links; the owner asked Zad for permission on 2026-11-10.
-const zadBooks: { id: string; title: Localized; pages: [number, number, number, number] }[] = [
-  { id: "aqeedah", title: text("العقيدة", "Creed (Aqeedah)"), pages: [89, 93, 96, 82] },
-  { id: "seerah", title: text("السيرة النبوية", "The Prophet's biography (Seerah)"), pages: [102, 84, 78, 84] },
-  { id: "fiqh", title: text("الفقه", "Jurisprudence (Fiqh)"), pages: [132, 120, 110, 94] },
-  { id: "tafsir", title: text("التفسير", "Quran exegesis (Tafsir)"), pages: [84, 110, 102, 103] },
-  { id: "hadith", title: text("الحديث", "Hadith"), pages: [110, 97, 96, 111] },
-  { id: "tarbiyah", title: text("التربية الإسلامية", "Islamic character (Tarbiyah)"), pages: [94, 98, 93, 74] },
-  { id: "arabic", title: text("اللغة العربية", "Arabic language"), pages: [103, 89, 108, 82] },
+// Zad Academy's book series («سلسلة زاد العلمية»): four levels, each with one book in each of seven subjects, studied
+// level by level in «ما لا يسع المسلمَ جهلُه». Contents from Zad's curriculum page and the books' tables of contents;
+// page counts (2019 edition) only give the reading time. The books are «جميع الحقوق محفوظة», so they are listed by name
+// only, with no download or read links; the owner asked Zad for permission on 2026-11-10.
+type ZadBook = { id: (typeof subjectOrder)[number]; title: Localized; pages: number; contents: Localized };
+
+const aqeedah = text("العقيدة", "Creed (Aqeedah)");
+const seerah = text("السيرة النبوية", "The Prophet's biography (Seerah)");
+const fiqh = text("الفقه", "Jurisprudence (Fiqh)");
+const tafsir = text("التفسير", "Quran exegesis (Tafsir)");
+const hadith = text("الحديث", "Hadith");
+const tarbiyah = text("التربية الإسلامية", "Islamic character (Tarbiyah)");
+const arabic = text("اللغة العربية", "Arabic language");
+
+// Each level's books are read in our order of the subjects (the owner's choice), not Zad's.
+const subjectOrder = ["aqeedah", "fiqh", "tarbiyah", "hadith", "seerah", "tafsir", "arabic"] as const;
+
+const zadLevels: ZadBook[][] = [
+  [
+    {
+      id: "aqeedah",
+      title: aqeedah,
+      pages: 89,
+      contents: text(
+        "معنى العقيدة وأهميتها، والتوحيد وأركانه وأقسامه، وتوحيد الربوبية، وأدلة وجود الله.",
+        "What creed is and why it matters; tawheed, its pillars and kinds; the oneness of Lordship; proofs of Allah's existence.",
+      ),
+    },
+    {
+      id: "seerah",
+      title: seerah,
+      pages: 102,
+      contents: text(
+        "نسبه ومولده ونشأته ﷺ، والعهد المكي، والعهد المدني، والغزوات، وفتح مكة، وحجه، ووفاته ﷺ.",
+        "His lineage, birth and upbringing ﷺ; the Makkan period; the Madinan period; the battles; the conquest of Makkah; his Hajj; his death ﷺ.",
+      ),
+    },
+    {
+      id: "fiqh",
+      title: fiqh,
+      pages: 132,
+      contents: text("الطهارة والمياه، والحيض والنفاس، والصلاة.", "Purification and water; menstruation and postnatal bleeding; prayer."),
+    },
+    {
+      id: "tafsir",
+      title: tafsir,
+      pages: 84,
+      contents: text(
+        "مدخل إلى علم التفسير، وتفسير سورة الفاتحة، وآية الكرسي، وخواتيم سورة البقرة.",
+        "An introduction to tafsir; Surat al-Fatihah; Ayat al-Kursi; the closing verses of Surat al-Baqarah.",
+      ),
+    },
+    {
+      id: "hadith",
+      title: hadith,
+      pages: 110,
+      contents: text(
+        "شرح 21 حديثًا، منها: «بُني الإسلام على خمس»، وحديث جبريل «أخبرني عن الإسلام»، و«إنما الأعمال بالنيات»، و«الإيمان بضع وستون شعبة»، و«المؤمن القوي خير».",
+        "21 hadiths explained, among them “Islam is built on five”, the hadith of Jibril, “Actions are by intentions”, “Faith has sixty-odd branches” and “The strong believer is better”.",
+      ),
+    },
+    {
+      id: "tarbiyah",
+      title: tarbiyah,
+      pages: 94,
+      contents: text(
+        "الحقوق: حق الله، وحق النبي ﷺ، والصحابة، والعلماء، والوالدين، والأبناء، والزوجين، والأرحام، والجار، والضيف، والراعي والرعية.",
+        "Rights: of Allah, of the Prophet ﷺ, the Companions, scholars, parents, children, spouses, relatives, neighbours, guests, and rulers and the ruled.",
+      ),
+    },
+    {
+      id: "arabic",
+      title: arabic,
+      pages: 103,
+      contents: text(
+        "مدخل إلى النحو، وأقسام الكلام، والإعراب والبناء، والمثنى، وجمع المذكر السالم، وجمع التكسير، والأسماء الخمسة، والأفعال الخمسة.",
+        "An introduction to grammar; parts of speech; declension and fixed endings; the dual; sound masculine and broken plurals; the five nouns; the five verbs.",
+      ),
+    },
+  ],
+  [
+    {
+      id: "aqeedah",
+      title: aqeedah,
+      pages: 93,
+      contents: text(
+        "توحيد الألوهية، وتوحيد الأسماء والصفات وقواعده، والعبادة وأركانها وشروطها.",
+        "The oneness of worship; the oneness of Allah's names and attributes and its rules; worship, its pillars and conditions.",
+      ),
+    },
+    {
+      id: "seerah",
+      title: seerah,
+      pages: 84,
+      contents: text(
+        "الشمائل النبوية: خِلقته ﷺ، ولباسه، ومشيته، وأكله، وكلامه، ونومه، وعبادته، وتواضعه، وأخلاقه.",
+        "His features and manners ﷺ: appearance, clothing, walk, eating, speech, sleep, worship, humility and character.",
+      ),
+    },
+    {
+      id: "fiqh",
+      title: fiqh,
+      pages: 120,
+      contents: text("تتمة أحكام الصلاة، والزكاة.", "The rest of prayer; zakat."),
+    },
+    {
+      id: "tafsir",
+      title: tafsir,
+      pages: 110,
+      contents: text(
+        "تفسير سور: النبأ، والنازعات، وعبس، والتكوير، والانفطار، والمطففين.",
+        "Surahs an-Naba', an-Nazi'at, 'Abasa, at-Takwir, al-Infitar and al-Mutaffifin.",
+      ),
+    },
+    {
+      id: "hadith",
+      title: hadith,
+      pages: 97,
+      contents: text(
+        "شرح 21 حديثًا، منها: «من عادى لي وليًا»، و«كن في الدنيا كأنك غريب»، و«حُفّت الجنة بالمكاره»، و«ازهد في الدنيا يحبك الله».",
+        "21 hadiths explained, among them “Whoever shows enmity to an ally of Mine”, “Be in this world as a stranger”, “Paradise is surrounded by hardships” and “Renounce the world and Allah will love you”.",
+      ),
+    },
+    {
+      id: "tarbiyah",
+      title: tarbiyah,
+      pages: 98,
+      contents: text(
+        "أعمال القلوب: الإخلاص، والتقوى، والخوف، والرجاء، والمحبة، والصبر، والشكر، والورع، والرضا، والتفكر، والمحاسبة، والتوكل.",
+        "Deeds of the heart: sincerity, piety, fear, hope, love, patience, gratitude, scrupulousness, contentment, reflection, self-accounting and trust in Allah.",
+      ),
+    },
+    {
+      id: "arabic",
+      title: arabic,
+      pages: 89,
+      contents: text(
+        "النكرة والمعرفة، والمبتدأ والخبر، وكان وأخواتها، وكاد وأخواتها، وإنّ وأخواتها، ولا النافية للجنس، والأفعال.",
+        "Indefinite and definite nouns; subject and predicate; kana, kada and inna and their sisters; the la of absolute negation; verbs.",
+      ),
+    },
+  ],
+  [
+    {
+      id: "aqeedah",
+      title: aqeedah,
+      pages: 96,
+      contents: text(
+        "الإيمان بالملائكة والكتب والرسل واليوم الآخر والقدر، ونواقض التوحيد، وأنواع الكفر والشرك، والتوسل، والإلحاد.",
+        "Belief in the angels, books, messengers, the Last Day and divine decree; what nullifies tawheed; kinds of disbelief and shirk; tawassul; atheism.",
+      ),
+    },
+    {
+      id: "seerah",
+      title: seerah,
+      pages: 78,
+      contents: text(
+        "تعاملاته ﷺ: مع زوجاته، وأقاربه، وجيرانه، وخدمه، والفقراء والأغنياء، وغير المسلمين، والعصاة، والنساء، والكبار، والأطفال.",
+        "How he ﷺ treated his wives, relatives, neighbours, servants, the poor and the rich, non-Muslims, sinners, women, the elderly and children.",
+      ),
+    },
+    {
+      id: "fiqh",
+      title: fiqh,
+      pages: 110,
+      contents: text("الصيام، والحج والعمرة.", "Fasting; Hajj and Umrah."),
+    },
+    {
+      id: "tafsir",
+      title: tafsir,
+      pages: 102,
+      contents: text("تفسير السور من الانشقاق إلى الضحى.", "The surahs from al-Inshiqaq to ad-Duha."),
+    },
+    {
+      id: "hadith",
+      title: hadith,
+      pages: 96,
+      contents: text(
+        "شرح 20 حديثًا، منها: «إن الحلال بيّن»، و«ما نهيتكم عنه فاجتنبوه»، و«يا غلام إني أعلمك كلمات»، و«اتق الله حيثما كنت».",
+        "20 hadiths explained, among them “The lawful is clear”, “What I forbid you, avoid”, “Young man, I will teach you some words” and “Fear Allah wherever you are”.",
+      ),
+    },
+    {
+      id: "tarbiyah",
+      title: tarbiyah,
+      pages: 93,
+      contents: text(
+        "الآداب الشرعية: مع الله ورسوله ﷺ، وآداب الطعام والشراب، والبيت، والطريق، والكلام، وعيادة المريض، والمساجد، والدعاء.",
+        "Islamic manners: with Allah and His Messenger ﷺ, and of eating and drinking, the home, the road, speech, visiting the sick, mosques and supplication.",
+      ),
+    },
+    {
+      id: "arabic",
+      title: arabic,
+      pages: 108,
+      contents: text(
+        "الفاعل، ونائب الفاعل، والمفاعيل، والاستثناء، والحال، والتمييز، وحروف الجر، والإضافة.",
+        "The subject of a verb; the deputy subject; the objects; exception; the circumstantial; specification; prepositions; the construct.",
+      ),
+    },
+  ],
+  [
+    {
+      id: "aqeedah",
+      title: aqeedah,
+      pages: 82,
+      contents: text(
+        "البدعة وضوابطها، والتكفير وضوابطه، وأشراط الساعة، والصحابة وآل البيت، والأولياء وكراماتهم، والشفاعة.",
+        "Innovation and its criteria; declaring disbelief and its conditions; the signs of the Hour; the Companions and the Prophet's family; Allah's allies (awliya') and their karamat (wonders); intercession.",
+      ),
+    },
+    {
+      id: "seerah",
+      title: seerah,
+      pages: 84,
+      contents: text(
+        "أحواله ﷺ: كلامه، وما يحب وما يكره، وبكاؤه، وضحكه، وغضبه، وفرحه، وحزنه، وعتابه.",
+        "His states ﷺ: his speech, what he loved and disliked, his weeping, laughter, anger, joy, sadness and reproach.",
+      ),
+    },
+    {
+      id: "fiqh",
+      title: fiqh,
+      pages: 94,
+      contents: text(
+        "البيع وأحكامه، والإجارة، والنكاح، والطلاق، والأيمان والنذور، والأطعمة.",
+        "Sales and their rulings; hire; marriage; divorce; oaths and vows; food.",
+      ),
+    },
+    {
+      id: "tafsir",
+      title: tafsir,
+      pages: 103,
+      contents: text("تفسير السور من الشرح إلى الناس.", "The surahs from ash-Sharh to an-Nas."),
+    },
+    {
+      id: "hadith",
+      title: hadith,
+      pages: 111,
+      contents: text(
+        "شرح 20 حديثًا، منها: «الدين النصيحة»، و«البر حسن الخلق»، و«من رأى منكم منكرًا فليغيّره»، و«لو يُعطى الناس بدعواهم».",
+        "20 hadiths explained, among them “Religion is sincere advice”, “Righteousness is good character”, “Whoever sees a wrong, let him change it” and “If people were given what they claim”.",
+      ),
+    },
+    {
+      id: "tarbiyah",
+      title: tarbiyah,
+      pages: 74,
+      contents: text(
+        "أمراض القلوب وعلاجها: الغفلة، واتباع الهوى، وحب الدنيا، والكِبر، والحسد، وغيرها، وقواعد معرفتها، وأهمية التوبة.",
+        "Diseases of the heart and their cure (heedlessness, following desires, love of this world, arrogance, envy and others), how to recognise them, and the importance of repentance.",
+      ),
+    },
+    {
+      id: "arabic",
+      title: arabic,
+      pages: 82,
+      contents: text(
+        "التعجب، واسم التفضيل، وصيغ المدح والذم، والتوابع، والنداء، وإعراب الفعل المضارع، وأسلوب الشرط.",
+        "Exclamation; the elative; praise and blame; followers; the vocative; the present tense's endings; conditionals.",
+      ),
+    },
+  ],
 ];
 
 // About a minute a page (the books run about 100 words a page), so the reading time follows from the page count.
-const zadPages = zadBooks.reduce((sum, subject) => sum + subject.pages.reduce((a, b) => a + b, 0), 0);
-const zadHours = Math.round(zadPages / 60);
-const zadPagesAbout = (Math.round(zadPages / 100) * 100).toLocaleString("en");
+const zadHours = Math.round(zadLevels.flat().reduce((sum, book) => sum + book.pages, 0) / 60);
+const zadLevelHours = Math.round(zadHours / zadLevels.length);
 
 const zadSeries: BookSeries = {
   reading: text(
-    `قراءة كتب المستويات الأربعة تأخذ نحو ${zadHours} ساعة (قرابة ${zadPagesAbout} صفحة): نحو أسبوع لكل مادة بمعدل ساعة يوميًا، أي قرابة شهر ونصف للسلسلة كاملة، وقد تتضاعف المدة مع المراجعة وحلّ التمارين.`,
-    `Reading the books of all four levels takes about ${zadHours} hours (some ${zadPagesAbout} pages): about a week per subject at an hour a day, so around six weeks for the whole series; reviewing and doing the exercises can double that.`,
+    `قراءة كتب المستويات الأربعة تأخذ نحو ${zadHours} ساعة: نحو ${zadLevelHours} ساعة لكل مستوى، أي قرابة أسبوعين بمعدل ساعة يوميًا، وقرابة ستة أسابيع للسلسلة كاملة، وقد تتضاعف المدة مع المراجعة وحلّ التمارين.`,
+    `Reading the books of all four levels takes about ${zadHours} hours: about ${zadLevelHours} hours per level, so around two weeks at an hour a day, and around six weeks for the whole series; reviewing and doing the exercises can double that.`,
   ),
-  subjects: zadBooks.map(({ id, title, pages }) => ({
-    id,
-    title,
-    books: pages.map((count, index) => ({
-      title: text(`${title.ar} – ${levelNames[index].ar}`, `${title.en} – ${levelNames[index].en}`),
-      pages: count,
-    })),
+  levels: zadLevels.map((books, index) => ({
+    id: `level-${index + 1}`,
+    title: levelNames[index],
+    books: books
+      .toSorted((a, b) => subjectOrder.indexOf(a.id) - subjectOrder.indexOf(b.id))
+      .map(({ id, title, contents }) => ({ id, title, contents })),
   })),
   study: {
     body: text(
@@ -214,7 +464,7 @@ const externalShariaDomain: RoadmapDomain = {
         }),
         field("atheism", text("الرد على الإلحاد والشبهات", "Answering atheism and doubts"), {
           ar: ["أدلة وجود الله", "النبوة وصدق القرآن", "أصول الإلحاد وأشهر شبهاته", "أدب الحوار والرد"],
-          en: ["The proofs of God's existence", "Prophethood and the truth of the Quran", "The roots of atheism and its best-known claims", "The manners of dialogue and response"],
+          en: ["The proofs of Allah's existence", "Prophethood and the truth of the Quran", "The roots of atheism and its best-known claims", "The manners of dialogue and response"],
         }),
         field("quranists", text("الرد على القرآنيين ومنكري السنة", "Answering Quranists and Sunnah deniers"), {
           ar: ["حجية السنة ومكانتها", "علوم الحديث وتدوين السنة", "أشهر شبهاتهم"],
