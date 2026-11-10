@@ -143,7 +143,7 @@ const zadLevels: ZadBook[][] = [
       pages: 89,
       contents: text(
         "معنى العقيدة وأهميتها، والتوحيد وأركانه وأقسامه، وتوحيد الربوبية، وأدلة وجود الله.",
-        "What creed is and why it matters; tawheed, its pillars and kinds; the oneness of Lordship; proofs of God's existence.",
+        "What creed is and why it matters; tawheed, its pillars and kinds; the oneness of Lordship; proofs of Allah's existence.",
       ),
     },
     {
@@ -152,7 +152,7 @@ const zadLevels: ZadBook[][] = [
       pages: 102,
       contents: text(
         "نسبه ومولده ونشأته ﷺ، والعهد المكي، والعهد المدني، والغزوات، وفتح مكة، وحجه، ووفاته ﷺ.",
-        "His lineage, birth and upbringing ﷺ; the Meccan period; the Madinan period; the battles; the conquest of Makkah; his Hajj; his death ﷺ.",
+        "His lineage, birth and upbringing ﷺ; the Makkan period; the Madinan period; the battles; the conquest of Makkah; his Hajj; his death ﷺ.",
       ),
     },
     {
@@ -185,7 +185,7 @@ const zadLevels: ZadBook[][] = [
       pages: 94,
       contents: text(
         "الحقوق: حق الله، وحق النبي ﷺ، والصحابة، والعلماء، والوالدين، والأبناء، والزوجين، والأرحام، والجار، والضيف، والراعي والرعية.",
-        "Rights: of God, of the Prophet ﷺ, the Companions, scholars, parents, children, spouses, relatives, neighbours, guests, and rulers and the ruled.",
+        "Rights: of Allah, of the Prophet ﷺ, the Companions, scholars, parents, children, spouses, relatives, neighbours, guests, and rulers and the ruled.",
       ),
     },
     {
@@ -205,7 +205,7 @@ const zadLevels: ZadBook[][] = [
       pages: 93,
       contents: text(
         "توحيد الألوهية، وتوحيد الأسماء والصفات وقواعده، والعبادة وأركانها وشروطها.",
-        "The oneness of worship; the oneness of God's names and attributes and its rules; worship, its pillars and conditions.",
+        "The oneness of worship; the oneness of Allah's names and attributes and its rules; worship, its pillars and conditions.",
       ),
     },
     {
@@ -238,7 +238,7 @@ const zadLevels: ZadBook[][] = [
       pages: 97,
       contents: text(
         "شرح 21 حديثًا، منها: «من عادى لي وليًا»، و«كن في الدنيا كأنك غريب»، و«حُفّت الجنة بالمكاره»، و«ازهد في الدنيا يحبك الله».",
-        "21 hadiths explained, among them “Whoever shows enmity to an ally of Mine”, “Be in this world as a stranger”, “Paradise is surrounded by hardships” and “Renounce the world and God will love you”.",
+        "21 hadiths explained, among them “Whoever shows enmity to an ally of Mine”, “Be in this world as a stranger”, “Paradise is surrounded by hardships” and “Renounce the world and Allah will love you”.",
       ),
     },
     {
@@ -247,7 +247,7 @@ const zadLevels: ZadBook[][] = [
       pages: 98,
       contents: text(
         "أعمال القلوب: الإخلاص، والتقوى، والخوف، والرجاء، والمحبة، والصبر، والشكر، والورع، والرضا، والتفكر، والمحاسبة، والتوكل.",
-        "Deeds of the heart: sincerity, piety, fear, hope, love, patience, gratitude, scrupulousness, contentment, reflection, self-accounting and trust in God.",
+        "Deeds of the heart: sincerity, piety, fear, hope, love, patience, gratitude, scrupulousness, contentment, reflection, self-accounting and trust in Allah.",
       ),
     },
     {
@@ -297,7 +297,7 @@ const zadLevels: ZadBook[][] = [
       pages: 96,
       contents: text(
         "شرح 20 حديثًا، منها: «إن الحلال بيّن»، و«ما نهيتكم عنه فاجتنبوه»، و«يا غلام إني أعلمك كلمات»، و«اتق الله حيثما كنت».",
-        "20 hadiths explained, among them “The lawful is clear”, “What I forbid you, avoid”, “Young man, I will teach you some words” and “Fear God wherever you are”.",
+        "20 hadiths explained, among them “The lawful is clear”, “What I forbid you, avoid”, “Young man, I will teach you some words” and “Fear Allah wherever you are”.",
       ),
     },
     {
@@ -306,7 +306,7 @@ const zadLevels: ZadBook[][] = [
       pages: 93,
       contents: text(
         "الآداب الشرعية: مع الله ورسوله ﷺ، وآداب الطعام والشراب، والبيت، والطريق، والكلام، وعيادة المريض، والمساجد، والدعاء.",
-        "Islamic manners: with God and His Messenger ﷺ, and of eating and drinking, the home, the road, speech, visiting the sick, mosques and supplication.",
+        "Islamic manners: with Allah and His Messenger ﷺ, and of eating and drinking, the home, the road, speech, visiting the sick, mosques and supplication.",
       ),
     },
     {
@@ -326,7 +326,7 @@ const zadLevels: ZadBook[][] = [
       pages: 82,
       contents: text(
         "البدعة وضوابطها، والتكفير وضوابطه، وأشراط الساعة، والصحابة وآل البيت، والأولياء وكراماتهم، والشفاعة.",
-        "Innovation and its limits; declaring disbelief and its limits; the signs of the Hour; the Companions and the Prophet's family; the righteous and their miracles; intercession.",
+        "Innovation and its criteria; declaring disbelief and its conditions; the signs of the Hour; the Companions and the Prophet's family; Allah's allies (awliya') and their karamat (wonders); intercession.",
       ),
     },
     {
@@ -389,7 +389,7 @@ const zadLevelHours = Math.round(zadHours / zadLevels.length);
 
 const zadSeries: BookSeries = {
   reading: text(
-    `قراءة كتب المستويات الأربعة تأخذ نحو ${zadHours} ساعة: نحو ${zadLevelHours} ساعة لكل مستوى، أي قرابة أسبوعين بمعدل ساعة يوميًا، وقرابة شهر ونصف للسلسلة كاملة، وقد تتضاعف المدة مع المراجعة وحلّ التمارين.`,
+    `قراءة كتب المستويات الأربعة تأخذ نحو ${zadHours} ساعة: نحو ${zadLevelHours} ساعة لكل مستوى، أي قرابة أسبوعين بمعدل ساعة يوميًا، وقرابة ستة أسابيع للسلسلة كاملة، وقد تتضاعف المدة مع المراجعة وحلّ التمارين.`,
     `Reading the books of all four levels takes about ${zadHours} hours: about ${zadLevelHours} hours per level, so around two weeks at an hour a day, and around six weeks for the whole series; reviewing and doing the exercises can double that.`,
   ),
   levels: zadLevels.map((books, index) => ({
