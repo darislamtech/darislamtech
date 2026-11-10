@@ -12,16 +12,25 @@ type VideoCardProps = {
   playLabel: string;
   /** A line under the title, e.g. the channel and views (DarTube). */
   meta?: string;
+  /** The thumbnail's width on the page, for the browser to pick its size (default: up to 3 per row). */
+  sizes?: string;
 };
 
 // Sent when a card starts playing, so the others on the page close their player.
 const PLAY_EVENT = "dar:video-play";
 
 /**
- * Thumbnail and title (and an optional line under it); the YouTube player loads in place on click, so a page of many videos stays light. One
- * video plays at a time: starting one turns any other playing card back into its thumbnail.
+ * Thumbnail and title (and an optional line under it); the YouTube player loads in place on click, so a page of many
+ * videos stays light. One video plays at a time: starting one turns any other playing card back into its thumbnail.
  */
-export function VideoCard({ id, title, thumbnail, playLabel, meta }: VideoCardProps) {
+export function VideoCard({
+  id,
+  title,
+  thumbnail,
+  playLabel,
+  meta,
+  sizes = "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw",
+}: VideoCardProps) {
   const [playing, setPlaying] = useState(false);
   const cardId = useId();
   const player = useRef<HTMLIFrameElement>(null);
@@ -61,7 +70,7 @@ export function VideoCard({ id, title, thumbnail, playLabel, meta }: VideoCardPr
               src={thumbnail}
               alt=""
               fill
-              sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+              sizes={sizes}
               className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
             />
             <span className="absolute inset-0 bg-[linear-gradient(to_top,rgb(0_0_0/0.35),transparent_60%)]" />

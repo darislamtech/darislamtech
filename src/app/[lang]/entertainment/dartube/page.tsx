@@ -1,19 +1,22 @@
 import type { Metadata } from "next";
 import { getDictionary, getLocale } from "@/i18n/dictionaries";
 import { pageMetadata } from "@/lib/seo";
+import { getYouTubeId } from "@/lib/youtube";
 import { entertainmentGroups } from "@/content/entertainment";
 import { EntertainmentShell } from "@/components/entertainment/entertainment-shell";
 import { RandomPick } from "@/components/entertainment/random-pick";
 import { ShuffledGrid } from "@/components/entertainment/shuffled-grid";
 import { VideoCard } from "@/components/video/video-card";
-import { resolveVideo } from "@/lib/entertainment-videos";
+import { describeVideoTopics, resolveVideo, videoListJsonLd } from "@/lib/entertainment-videos";
 
 const PATH = "/entertainment/dartube";
 
-// Every recommended video, from both groups, once (a video may sit in two categories).
+// Every recommended video, from both groups, once: a video may sit in two categories, under two forms of its link.
 const allVideos = [
   ...new Map(
-    entertainmentGroups.flatMap((group) => group.videos.flatMap((category) => category.items)).map((item) => [item.url, item]),
+    entertainmentGroups
+      .flatMap((group) => group.videos.flatMap((category) => category.items))
+      .map((item) => [getYouTubeId(item.url) ?? item.url, item]),
   ).values(),
 ];
 
@@ -25,7 +28,7 @@ export async function generateMetadata(): Promise<Metadata> {
     dict,
     path: PATH,
     title: `${t.sections.dartube} – ${dict.nav.entertainment}`,
-    description: t.dartube.description,
+    description: describeVideoTopics(locale, t.dartube.description, t.topics),
   });
 }
 
@@ -40,33 +43,41 @@ export default async function DarTubePage() {
 
   const videos = (await Promise.all(allVideos.map(resolveVideo))).filter((video) => video !== null);
   const views = new Intl.NumberFormat(locale, { notation: "compact" });
+  const jsonLd = videoListJsonLd({ locale, name: `${t.sections.dartube} – ${dict.nav.entertainment}`, path: PATH, videos });
 
   return (
-    <EntertainmentShell
-      locale={locale}
-      dict={dict}
-      current="dartube"
-      description={t.dartube.description}
-      toolbar={<RandomPick label={t.random.videos} />}
-    >
-      {/* Like YouTube's home page: as many columns as the screen allows. */}
-      <ShuffledGrid
-        className="grid grid-cols-1 gap-x-5 gap-y-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
-        items={videos.map((video) => ({
-          key: video.id,
-          node: (
-            <VideoCard
-              id={video.id}
-              title={video.title ?? t.untitled}
-              thumbnail={video.thumbnail}
-              playLabel={t.play}
-              meta={[video.channel, video.views !== null ? t.dartube.views.replace("{n}", views.format(video.views)) : null]
-                .filter(Boolean)
-                .join(" · ")}
-            />
-          ),
-        }))}
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
       />
-    </EntertainmentShell>
+      <EntertainmentShell
+        locale={locale}
+        dict={dict}
+        current="dartube"
+        description={t.dartube.description}
+        toolbar={<RandomPick label={t.random.videos} />}
+      >
+        {/* Like YouTube's home page: as many columns as the screen allows. */}
+        <ShuffledGrid
+          className="grid grid-cols-1 gap-x-5 gap-y-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+          items={videos.map((video) => ({
+            key: video.id,
+            node: (
+              <VideoCard
+                id={video.id}
+                title={video.title ?? t.untitled}
+                thumbnail={video.thumbnail}
+                playLabel={t.play}
+                sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                meta={[video.channel, video.views !== null ? t.dartube.views.replace("{n}", views.format(video.views)) : null]
+                  .filter(Boolean)
+                  .join(" · ")}
+              />
+            ),
+          }))}
+        />
+      </EntertainmentShell>
+    </>
   );
 }

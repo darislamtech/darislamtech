@@ -39,7 +39,7 @@ src/
     dictionaries/en.json    # must match ar.json's shape (type-checked)
   config/site.ts            # site URL, project email, Dar's and the founder's accounts, support links
   lib/cn.ts                 # clsx + tailwind-merge
-  lib/entertainment-videos.ts   # resolveVideo(): one recommended video → title, channel, thumbnail, views, publish date (shared by the videos page and DarTube)
+  lib/entertainment-videos.ts   # resolveVideo(): one recommended video → title, channel, thumbnail, views, publish date; the topics meta description and the CollectionPage/VideoObject JSON-LD (shared by the videos page and DarTube)
   lib/shuffle.ts            # shuffled(): random order (browser only, or after connection() on the server)
   lib/seo.ts                # pageMetadata(): canonical, ar/en/x-default alternates, Open Graph/X card for every page
   lib/youtube.ts            # link → video id; title via YouTube oEmbed ("use cache", cacheLife days), hqdefault thumbnail; channel name and picture from the channel page's Open Graph tags (same cache); video views and publish date (getYouTubeDetails) via the YouTube Data API when `YOUTUBE_API_KEY` is set (Vercel env), else the watch page
