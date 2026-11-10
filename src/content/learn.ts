@@ -135,6 +135,9 @@ const hadith = text("الحديث", "Hadith");
 const tarbiyah = text("التربية الإسلامية", "Islamic character (Tarbiyah)");
 const arabic = text("اللغة العربية", "Arabic language");
 
+// Each level's books are read in our order of the subjects (the owner's choice), not Zad's.
+const subjectOrder = ["aqeedah", "fiqh", "tarbiyah", "hadith", "seerah", "tafsir", "arabic"];
+
 const zadLevels: ZadBook[][] = [
   [
     {
@@ -395,7 +398,9 @@ const zadSeries: BookSeries = {
   levels: zadLevels.map((books, index) => ({
     id: `level-${index + 1}`,
     title: levelNames[index],
-    books: books.map(({ id, title, contents }) => ({ id, title, contents })),
+    books: books
+      .toSorted((a, b) => subjectOrder.indexOf(a.id) - subjectOrder.indexOf(b.id))
+      .map(({ id, title, contents }) => ({ id, title, contents })),
   })),
   study: {
     body: text(
