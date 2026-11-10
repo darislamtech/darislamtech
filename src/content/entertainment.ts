@@ -117,7 +117,10 @@ export const entertainmentGroups: EntertainmentGroup[] = [
         // Videos that fit no other category clearly go here (owner's rule).
         id: "misc",
         title: { ar: "منوعات", en: "Miscellaneous" },
-        items: [{ url: "https://www.youtube.com/watch?v=F6E1mFIZC0o", added: "2026-11-08T12:35" }],
+        items: [
+          { url: "https://www.youtube.com/watch?v=F6E1mFIZC0o", added: "2026-11-08T12:35" },
+          { url: "https://www.youtube.com/watch?v=JMsxXg41I2o", added: "2026-11-10T12:25" },
+        ],
       },
     ],
     channels: [
@@ -163,6 +166,7 @@ export const entertainmentGroups: EntertainmentGroup[] = [
           { url: "https://www.youtube.com/@RamyEissa", name: "رامي عيسى ( للمهتدين )" },
           { url: "https://www.youtube.com/@mo3az3lian", name: "moaz alian معاذ عليان" },
           { url: "https://www.youtube.com/@hishamsedqialibrashi", name: "هشام صدقي الإبراشي" },
+          { url: "https://www.youtube.com/@Albyyinah", name: "قناة البينة لمقارنة الأديان والرد على الشبهات" },
         ],
       },
       {
