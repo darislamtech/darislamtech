@@ -307,7 +307,7 @@ function LevelToggle({ level, tone, locale, t }: { level: RoadmapLevel; tone: To
             <LevelVideos urls={level.videos} tone={tone} label={t.startHere} />
           )}
           {level.project && (
-            <div className={cn("flex gap-2 text-sm leading-relaxed", level.topics.length > 0 && "mt-4")}>
+            <div className={cn("flex gap-2 text-sm leading-relaxed", (level.topics.length > 0 || level.videos?.length) && "mt-4")}>
               <Hammer aria-hidden="true" className={cn("mt-0.5 size-4 shrink-0", toneText[tone])} />
               <p>
                 <span className="font-semibold text-ink">{t.project}: </span>
@@ -327,7 +327,10 @@ function LevelToggle({ level, tone, locale, t }: { level: RoadmapLevel; tone: To
  */
 async function LevelVideos({ urls, tone, label }: { urls: string[]; tone: Tone; label: string }) {
   const [videos, dict] = await Promise.all([Promise.all(urls.map((url) => getYouTubeVideo(url))), getDictionary()]);
-  const found = videos.filter((video) => video !== null);
+  // The same video listed twice (e.g. a youtu.be and a watch link) shows once.
+  const found = videos
+    .filter((video) => video !== null)
+    .filter((video, index, list) => list.findIndex((other) => other.id === video.id) === index);
   if (found.length === 0) return null;
   return (
     <div className="mt-4">
