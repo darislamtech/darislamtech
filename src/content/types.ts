@@ -39,8 +39,11 @@ export type Product = {
 /** A topic of a roadmap level, optionally with what it covers. */
 export type RoadmapTopic = { id: string; title: Localized; points?: Localized<string[]> };
 
-/** One step of a path, shown as a toggle: its topics and the project that proves it was learned. */
-export type RoadmapLevel = { id: string; title: Localized; topics: RoadmapTopic[]; project?: Localized };
+/**
+ * One step of a path, shown as a toggle: its topics, the YouTube videos to start with (links or bare IDs; title and
+ * thumbnail are fetched from YouTube) and the project that proves it was learned.
+ */
+export type RoadmapLevel = { id: string; title: Localized; topics: RoadmapTopic[]; videos?: string[]; project?: Localized };
 
 /** A path studied in order within its domain, at the learner's own pace (no timing). */
 export type RoadmapPath = {
