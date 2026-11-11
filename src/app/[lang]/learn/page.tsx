@@ -8,16 +8,19 @@ import {
   ExternalLink,
   GraduationCap,
   Hammer,
+  PlayCircle,
   ScrollText,
   Target,
 } from "lucide-react";
 import { localePath, type Locale } from "@/i18n/config";
 import { getDictionary, getLocale, type Dictionary } from "@/i18n/dictionaries";
 import { pageMetadata } from "@/lib/seo";
+import { getYouTubeVideo } from "@/lib/youtube";
 import { externalDomains, platformDomains } from "@/content/learn";
 import type { BookSeries, RoadmapDomain, RoadmapLevel, RoadmapPath } from "@/content/types";
 import { CtaPanel, PageHero } from "@/components/page-blocks";
 import { Tabs } from "@/components/tabs";
+import { VideoCard } from "@/components/video/video-card";
 import { Badge, Container, IconTile, toneDot, toneText, type Tone } from "@/components/ui";
 import { cn } from "@/lib/cn";
 
@@ -300,8 +303,11 @@ function LevelToggle({ level, tone, locale, t }: { level: RoadmapLevel; tone: To
               </ul>
             )
           )}
+          {level.videos && level.videos.length > 0 && (
+            <LevelVideos urls={level.videos} tone={tone} label={t.startHere} />
+          )}
           {level.project && (
-            <div className={cn("flex gap-2 text-sm leading-relaxed", level.topics.length > 0 && "mt-4")}>
+            <div className={cn("flex gap-2 text-sm leading-relaxed", (level.topics.length > 0 || level.videos?.length) && "mt-4")}>
               <Hammer aria-hidden="true" className={cn("mt-0.5 size-4 shrink-0", toneText[tone])} />
               <p>
                 <span className="font-semibold text-ink">{t.project}: </span>
@@ -312,6 +318,40 @@ function LevelToggle({ level, tone, locale, t }: { level: RoadmapLevel; tone: To
         </div>
       </details>
     </li>
+  );
+}
+
+/**
+ * The videos a level starts with, as cards that play in place (title and thumbnail from YouTube, cached). A link
+ * YouTube doesn't know is dropped.
+ */
+async function LevelVideos({ urls, tone, label }: { urls: string[]; tone: Tone; label: string }) {
+  const [videos, dict] = await Promise.all([Promise.all(urls.map((url) => getYouTubeVideo(url))), getDictionary()]);
+  // The same video listed twice (e.g. a youtu.be and a watch link) shows once.
+  const found = videos
+    .filter((video) => video !== null)
+    .filter((video, index, list) => list.findIndex((other) => other.id === video.id) === index);
+  if (found.length === 0) return null;
+  return (
+    <div className="mt-4">
+      <p className="flex items-center gap-2 text-sm font-semibold text-ink">
+        <PlayCircle aria-hidden="true" className={cn("size-4 shrink-0", toneText[tone])} />
+        {label}
+      </p>
+      <div className="mt-3 grid gap-4 sm:grid-cols-2">
+        {found.map((video) => (
+          <VideoCard
+            key={video.id}
+            id={video.id}
+            title={video.title ?? dict.entertainment.untitled}
+            thumbnail={video.thumbnail}
+            playLabel={dict.entertainment.play}
+            meta={video.channel ?? undefined}
+            sizes="(min-width: 640px) 360px, 100vw"
+          />
+        ))}
+      </div>
+    </div>
   );
 }
 

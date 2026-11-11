@@ -114,10 +114,11 @@ const contentProject = text(
   "Make content in this field (videos, shorts or articles) with the technology track's skills, based on trusted sources.",
 );
 
-const field = (id: string, title: Localized, study: { ar: string[]; en: string[] }): RoadmapLevel => ({
+const field = (id: string, title: Localized, study: { ar: string[]; en: string[] }, videos?: string[]): RoadmapLevel => ({
   id,
   title,
   topics: [topic(`${id}-study`, text("ما يدرسه في المجال", "What to study in the field"), study)],
+  videos,
   project: contentProject,
 });
 
@@ -453,6 +454,13 @@ const externalShariaDomain: RoadmapDomain = {
             "Caring for new Muslims",
           ],
         }),
+        field("atheism", text("الرد على الإلحاد والشبهات", "Answering atheism and doubts"), {
+          ar: ["أدلة وجود الله", "النبوة وصدق القرآن", "أصول الإلحاد وأشهر شبهاته", "أدب الحوار والرد"],
+          en: ["The proofs of Allah's existence", "Prophethood and the truth of the Quran", "The roots of atheism and its best-known claims", "The manners of dialogue and response"],
+        }, [
+          // د. هيثم طلعت: «منهج لدراسة نقد الإلحاد | الكتب التي أحتاجها للرد على الملحدين ومناظرتهم».
+          "https://www.youtube.com/watch?v=QIPzwDxDdJg",
+        ]),
         field("comparative-religion", text("مقارنة الأديان", "Comparative religion"), {
           ar: ["الأديان الكبرى وعقائدها", "الكتب السابقة وتاريخها", "دلائل صدق النبوة والقرآن", "أدب الحوار والمناظرة"],
           en: [
@@ -461,10 +469,6 @@ const externalShariaDomain: RoadmapDomain = {
             "The signs of true prophethood and of the Quran",
             "The manners of dialogue and debate",
           ],
-        }),
-        field("atheism", text("الرد على الإلحاد والشبهات", "Answering atheism and doubts"), {
-          ar: ["أدلة وجود الله", "النبوة وصدق القرآن", "أصول الإلحاد وأشهر شبهاته", "أدب الحوار والرد"],
-          en: ["The proofs of Allah's existence", "Prophethood and the truth of the Quran", "The roots of atheism and its best-known claims", "The manners of dialogue and response"],
         }),
         field("quranists", text("الرد على القرآنيين ومنكري السنة", "Answering Quranists and Sunnah deniers"), {
           ar: ["حجية السنة ومكانتها", "علوم الحديث وتدوين السنة", "أشهر شبهاتهم"],
