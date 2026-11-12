@@ -4,12 +4,15 @@ import {
   ChevronDown,
   Clock,
   Code,
+  Download,
+  Eye,
   Construction,
   ExternalLink,
   GraduationCap,
   Hammer,
   PlayCircle,
   ScrollText,
+  ShieldCheck,
   Target,
 } from "lucide-react";
 import { localePath, type Locale } from "@/i18n/config";
@@ -241,7 +244,7 @@ function PathCard({
             ))}
           </ul>
         )}
-        {path.series && <SeriesLevels series={path.series} tone={tone} locale={locale} />}
+        {path.series && <SeriesLevels series={path.series} tone={tone} locale={locale} t={t} />}
 
         {path.graduation && (
           <div className="mt-4 flex gap-3 rounded-2xl border border-line bg-tone-gold-soft p-4">
@@ -359,9 +362,15 @@ async function LevelVideos({ urls, tone, label }: { urls: string[]; tone: Tone; 
  * A book series studied level by level: each level a toggle with its books in the order they are read and what each
  * covers, then how to study it with its publisher. Books by name only (see BookSeries).
  */
-function SeriesLevels({ series, tone, locale }: { series: BookSeries; tone: Tone; locale: Locale }) {
+function SeriesLevels({ series, tone, locale, t }: { series: BookSeries; tone: Tone; locale: Locale; t: Learn }) {
   return (
     <>
+      {series.permission && (
+        <p className="mt-3 flex gap-2 text-sm leading-relaxed text-ink-2">
+          <ShieldCheck aria-hidden="true" className={cn("mt-0.5 size-4 shrink-0", toneText[tone])} />
+          {series.permission[locale]}
+        </p>
+      )}
       <ul className="mt-5 space-y-2">
         {series.levels.map((level) => (
           <li key={level.id}>
@@ -384,6 +393,29 @@ function SeriesLevels({ series, tone, locale }: { series: BookSeries; tone: Tone
                       {book.title[locale]}
                     </p>
                     <p className="mt-1 leading-relaxed text-muted">{book.contents[locale]}</p>
+                    {book.file?.[locale] && (
+                      <div className="mt-2 flex flex-wrap gap-2">
+                        <a
+                          href={book.file[locale].read}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`${t.read}: ${book.title[locale]} — ${level.title[locale]}`}
+                          className="inline-flex min-h-11 items-center gap-1.5 rounded-xl border border-line bg-surface-2 px-3 text-sm font-semibold text-ink transition-colors hover:border-line-strong"
+                        >
+                          <Eye aria-hidden="true" className={cn("size-4", toneText[tone])} />
+                          {t.read}
+                        </a>
+                        <a
+                          href={book.file[locale].download}
+                          download
+                          aria-label={`${t.download}: ${book.title[locale]} — ${level.title[locale]}`}
+                          className="inline-flex min-h-11 items-center gap-1.5 rounded-xl border border-line bg-surface-2 px-3 text-sm font-semibold text-ink transition-colors hover:border-line-strong"
+                        >
+                          <Download aria-hidden="true" className={cn("size-4", toneText[tone])} />
+                          {t.download}
+                        </a>
+                      </div>
+                    )}
                   </li>
                 ))}
               </ol>

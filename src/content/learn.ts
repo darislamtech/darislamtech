@@ -1,4 +1,4 @@
-import type { BookSeries, Localized, RoadmapDomain, RoadmapLevel, RoadmapTopic } from "./types";
+import type { BookFile, BookSeries, Localized, RoadmapDomain, RoadmapLevel, RoadmapTopic } from "./types";
 
 // The program plan, shown on the Learn page as the external track (what to study, in order, from recommended outside
 // sources, in the spirit of roadmap.sh) and the platform track (lessons and series made by Dar, under construction).
@@ -124,9 +124,17 @@ const field = (id: string, title: Localized, study: { ar: string[]; en: string[]
 
 // Zad Academy's book series («سلسلة زاد العلمية»): four levels, each with one book in each of seven subjects, studied
 // level by level in «ما لا يسع المسلمَ جهلُه». Contents from Zad's curriculum page and the books' tables of contents;
-// page counts (2019 edition) only give the reading time. The books are «جميع الحقوق محفوظة», so they are listed by name
-// only, with no download or read links; the owner asked Zad for permission on 2026-11-10.
-type ZadBook = { id: (typeof subjectOrder)[number]; title: Localized; pages: number; contents: Localized };
+// page counts (2019 edition) only give the reading time. The books are «جميع الحقوق محفوظة»; Zad Academy allowed us in
+// writing (2026-11-12) to offer them free for learning, never sold, translated or printed. The files, on the
+// darislamtech Google Drive: Arabic, the published first edition; English, Zad Group's English edition (both from
+// archive.org).
+type ZadBook = {
+  id: (typeof subjectOrder)[number];
+  title: Localized;
+  pages: number;
+  contents: Localized;
+  file?: Localized<BookFile>;
+};
 
 const aqeedah = text("العقيدة", "Creed (Aqeedah)");
 const seerah = text("السيرة النبوية", "The Prophet's biography (Seerah)");
@@ -137,6 +145,12 @@ const tarbiyah = text("التربية الإسلامية", "Islamic character (T
 const arabic = text("اللغة العربية", "Arabic language");
 
 // Each level's books are read in our order of the subjects (the owner's choice), not Zad's.
+// A book on the darislamtech Google Drive: read in Drive's viewer, or download straight to the device.
+const drive = (id: string) => ({
+  read: `https://drive.google.com/file/d/${id}/view`,
+  download: `https://drive.google.com/uc?export=download&id=${id}`,
+});
+
 const subjectOrder = ["aqeedah", "fiqh", "tarbiyah", "hadith", "seerah", "tafsir", "arabic"] as const;
 
 const zadLevels: ZadBook[][] = [
@@ -145,6 +159,7 @@ const zadLevels: ZadBook[][] = [
       id: "aqeedah",
       title: aqeedah,
       pages: 89,
+      file: { ar: drive("1TrGbgk0jCSEHH2aOpkLVDuNC2Z9PI4fm"), en: drive("1hsldTyURBF7m3DB_cWR4Cw8iD6Bp7YL5") },
       contents: text(
         "معنى العقيدة وأهميتها، والتوحيد وأركانه وأقسامه، وتوحيد الربوبية، وأدلة وجود الله.",
         "What creed is and why it matters; tawheed, its pillars and kinds; the oneness of Lordship; proofs of Allah's existence.",
@@ -154,6 +169,7 @@ const zadLevels: ZadBook[][] = [
       id: "seerah",
       title: seerah,
       pages: 102,
+      file: { ar: drive("1n7JX-1iMQ8ZmnMfNOW9EbxrGLo3ffTdX"), en: drive("1kQVVlmdAb3b-1mObgnJgQRBakP-kEZIL") },
       contents: text(
         "نسبه ومولده ونشأته ﷺ، والعهد المكي، والعهد المدني، والغزوات، وفتح مكة، وحجه، ووفاته ﷺ.",
         "His lineage, birth and upbringing ﷺ; the Makkan period; the Madinan period; the battles; the conquest of Makkah; his Hajj; his death ﷺ.",
@@ -163,12 +179,14 @@ const zadLevels: ZadBook[][] = [
       id: "fiqh",
       title: fiqh,
       pages: 132,
+      file: { ar: drive("1z7wLlCSjVkCg5NX1wfABlObCnu80MMS3"), en: drive("1u8QL2ciMcMDBZ0nX77B22VerLpprl-MP") },
       contents: text("الطهارة والمياه، والحيض والنفاس، والصلاة.", "Purification and water; menstruation and postnatal bleeding; prayer."),
     },
     {
       id: "tafsir",
       title: tafsir,
       pages: 84,
+      file: { ar: drive("1nEcbPf00AlXNDJdB1T8nxdSKRlxyYcfo"), en: drive("1QMXSzjbbnmRdIsKHjqkN5qAxnn_zkjdx") },
       contents: text(
         "مدخل إلى علم التفسير، وتفسير سورة الفاتحة، وآية الكرسي، وخواتيم سورة البقرة.",
         "An introduction to tafsir; Surat al-Fatihah; Ayat al-Kursi; the closing verses of Surat al-Baqarah.",
@@ -178,6 +196,7 @@ const zadLevels: ZadBook[][] = [
       id: "hadith",
       title: hadith,
       pages: 110,
+      file: { ar: drive("1qklfktH6sYspeG0TRR8RDrAwxcJF-FWf"), en: drive("1mcQnl9a7q3WM2fNbNW3g7qdJVj3A5zB2") },
       contents: text(
         "شرح 21 حديثًا، منها: «بُني الإسلام على خمس»، وحديث جبريل «أخبرني عن الإسلام»، و«إنما الأعمال بالنيات»، و«الإيمان بضع وستون شعبة»، و«المؤمن القوي خير».",
         "21 hadiths explained, among them “Islam is built on five”, the hadith of Jibril, “Actions are by intentions”, “Faith has sixty-odd branches” and “The strong believer is better”.",
@@ -187,6 +206,7 @@ const zadLevels: ZadBook[][] = [
       id: "tarbiyah",
       title: tarbiyah,
       pages: 94,
+      file: { ar: drive("1GmE9_36sQWblls_hHURotE0LcFf9I21O"), en: drive("1eYMK3dqwXqlOmoK0eOO40xwHsMMTJa2f") },
       contents: text(
         "الحقوق: حق الله، وحق النبي ﷺ، والصحابة، والعلماء، والوالدين، والأبناء، والزوجين، والأرحام، والجار، والضيف، والراعي والرعية.",
         "Rights: of Allah, of the Prophet ﷺ, the Companions, scholars, parents, children, spouses, relatives, neighbours, guests, and rulers and the ruled.",
@@ -196,6 +216,7 @@ const zadLevels: ZadBook[][] = [
       id: "arabic",
       title: arabic,
       pages: 103,
+      file: { ar: drive("1qKXwdF1TwD_okGt5ojPQMJnm-uRvTxL6"), en: drive("1pQj2-2znzDUR9Ih7T80kt_5Zsoh1eumm") },
       contents: text(
         "مدخل إلى النحو، وأقسام الكلام، والإعراب والبناء، والمثنى، وجمع المذكر السالم، وجمع التكسير، والأسماء الخمسة، والأفعال الخمسة.",
         "An introduction to grammar; parts of speech; declension and fixed endings; the dual; sound masculine and broken plurals; the five nouns; the five verbs.",
@@ -207,6 +228,7 @@ const zadLevels: ZadBook[][] = [
       id: "aqeedah",
       title: aqeedah,
       pages: 93,
+      file: { ar: drive("1dvaSxENLZYZeRX1ToCaWNKoWJ8K8I91A"), en: drive("1dkifdjcCRg1upwvE_esSehVGMjVFX_Nm") },
       contents: text(
         "توحيد الألوهية، وتوحيد الأسماء والصفات وقواعده، والعبادة وأركانها وشروطها.",
         "The oneness of worship; the oneness of Allah's names and attributes and its rules; worship, its pillars and conditions.",
@@ -216,6 +238,7 @@ const zadLevels: ZadBook[][] = [
       id: "seerah",
       title: seerah,
       pages: 84,
+      file: { ar: drive("1xgI6T6TNRIXrxmRXWtflGLDTsXhOC2Ql"), en: drive("1-pAO4Sue9sxz--kv4thrKEpan6Nysdur") },
       contents: text(
         "الشمائل النبوية: خِلقته ﷺ، ولباسه، ومشيته، وأكله، وكلامه، ونومه، وعبادته، وتواضعه، وأخلاقه.",
         "His features and manners ﷺ: appearance, clothing, walk, eating, speech, sleep, worship, humility and character.",
@@ -225,12 +248,14 @@ const zadLevels: ZadBook[][] = [
       id: "fiqh",
       title: fiqh,
       pages: 120,
+      file: { ar: drive("1c_uiJ6g0vlgoU5ccUlP9NaKYSueYi7MJ"), en: drive("1ElOI1b5grmQ4QCi6vilusvDic5gcdw1O") },
       contents: text("تتمة أحكام الصلاة، والزكاة.", "The rest of prayer; zakat."),
     },
     {
       id: "tafsir",
       title: tafsir,
       pages: 110,
+      file: { ar: drive("13FdW0ORoaAvehcYVHI8gucf39e7JdweP"), en: drive("1-q6EyfrTPttDHrzwdb39-wgBWZvvE8pb") },
       contents: text(
         "تفسير سور: النبأ، والنازعات، وعبس، والتكوير، والانفطار، والمطففين.",
         "Surahs an-Naba', an-Nazi'at, 'Abasa, at-Takwir, al-Infitar and al-Mutaffifin.",
@@ -240,6 +265,7 @@ const zadLevels: ZadBook[][] = [
       id: "hadith",
       title: hadith,
       pages: 97,
+      file: { ar: drive("172jPb1hf9VuYXutMVKDyKWvIzeS_2ezP"), en: drive("1fXlQosEQrHLqNvvpjc77gRGzHZahGTPo") },
       contents: text(
         "شرح 21 حديثًا، منها: «من عادى لي وليًا»، و«كن في الدنيا كأنك غريب»، و«حُفّت الجنة بالمكاره»، و«ازهد في الدنيا يحبك الله».",
         "21 hadiths explained, among them “Whoever shows enmity to an ally of Mine”, “Be in this world as a stranger”, “Paradise is surrounded by hardships” and “Renounce the world and Allah will love you”.",
@@ -249,6 +275,7 @@ const zadLevels: ZadBook[][] = [
       id: "tarbiyah",
       title: tarbiyah,
       pages: 98,
+      file: { ar: drive("1o-BfjNHDlGoVMZS310DwHDx9LoEon5Ll"), en: drive("1PMem-lV1zwFgNOrxQqQB416ROC5aSLo7") },
       contents: text(
         "أعمال القلوب: الإخلاص، والتقوى، والخوف، والرجاء، والمحبة، والصبر، والشكر، والورع، والرضا، والتفكر، والمحاسبة، والتوكل.",
         "Deeds of the heart: sincerity, piety, fear, hope, love, patience, gratitude, scrupulousness, contentment, reflection, self-accounting and trust in Allah.",
@@ -258,6 +285,7 @@ const zadLevels: ZadBook[][] = [
       id: "arabic",
       title: arabic,
       pages: 89,
+      file: { ar: drive("1eOMEPVjIMakCOErtnP4qa88eq14vnxMd"), en: drive("1HpMlDl6aJhvqJlU0mxyWXDdC8WJiGFHZ") },
       contents: text(
         "النكرة والمعرفة، والمبتدأ والخبر، وكان وأخواتها، وكاد وأخواتها، وإنّ وأخواتها، ولا النافية للجنس، والأفعال.",
         "Indefinite and definite nouns; subject and predicate; kana, kada and inna and their sisters; the la of absolute negation; verbs.",
@@ -269,6 +297,7 @@ const zadLevels: ZadBook[][] = [
       id: "aqeedah",
       title: aqeedah,
       pages: 96,
+      file: { ar: drive("117ZK2zuVD3r7y0VimI6pRZ5sFMVq4R_w"), en: drive("1Is7-jzTORy7mANup0VUPkAEBBLJHNhQT") },
       contents: text(
         "الإيمان بالملائكة والكتب والرسل واليوم الآخر والقدر، ونواقض التوحيد، وأنواع الكفر والشرك، والتوسل، والإلحاد.",
         "Belief in the angels, books, messengers, the Last Day and divine decree; what nullifies tawheed; kinds of disbelief and shirk; tawassul; atheism.",
@@ -278,6 +307,7 @@ const zadLevels: ZadBook[][] = [
       id: "seerah",
       title: seerah,
       pages: 78,
+      file: { ar: drive("1pU92vPA3aQ_G7Vo0K4Luk7oWGNSXexEY"), en: drive("1huz42HpGIy-swws91zG60LpoHXkWYLbi") },
       contents: text(
         "تعاملاته ﷺ: مع زوجاته، وأقاربه، وجيرانه، وخدمه، والفقراء والأغنياء، وغير المسلمين، والعصاة، والنساء، والكبار، والأطفال.",
         "How he ﷺ treated his wives, relatives, neighbours, servants, the poor and the rich, non-Muslims, sinners, women, the elderly and children.",
@@ -287,18 +317,21 @@ const zadLevels: ZadBook[][] = [
       id: "fiqh",
       title: fiqh,
       pages: 110,
+      file: { ar: drive("1R8Hty7-lHwGXReafbRuWV9fW3kHjlDvB"), en: drive("1dlcblXoMIxfcZPYvmEGxsr1kb84g64SG") },
       contents: text("الصيام، والحج والعمرة.", "Fasting; Hajj and Umrah."),
     },
     {
       id: "tafsir",
       title: tafsir,
       pages: 102,
+      file: { ar: drive("1jNg0XymhXtqAM8tNIYfGDYkae9wzJMWk"), en: drive("1E0Sx_yqqUBIIwr2K1eNjFuGzy505KXVf") },
       contents: text("تفسير السور من الانشقاق إلى الضحى.", "The surahs from al-Inshiqaq to ad-Duha."),
     },
     {
       id: "hadith",
       title: hadith,
       pages: 96,
+      file: { ar: drive("1M_IEejLN703Nf3Ecf6IgzFob0y1Zbzhi"), en: drive("1-b5ONJowuy1Mr1Vbhge8S-qSzGVnSbpr") },
       contents: text(
         "شرح 20 حديثًا، منها: «إن الحلال بيّن»، و«ما نهيتكم عنه فاجتنبوه»، و«يا غلام إني أعلمك كلمات»، و«اتق الله حيثما كنت».",
         "20 hadiths explained, among them “The lawful is clear”, “What I forbid you, avoid”, “Young man, I will teach you some words” and “Fear Allah wherever you are”.",
@@ -308,6 +341,7 @@ const zadLevels: ZadBook[][] = [
       id: "tarbiyah",
       title: tarbiyah,
       pages: 93,
+      file: { ar: drive("1qAtkJd5eC3OKDAbZI98-J1nerNp1zhjX"), en: drive("1cgqASMKj6Aam5lSxPI3SmSh-gZ5C8AcW") },
       contents: text(
         "الآداب الشرعية: مع الله ورسوله ﷺ، وآداب الطعام والشراب، والبيت، والطريق، والكلام، وعيادة المريض، والمساجد، والدعاء.",
         "Islamic manners: with Allah and His Messenger ﷺ, and of eating and drinking, the home, the road, speech, visiting the sick, mosques and supplication.",
@@ -317,6 +351,7 @@ const zadLevels: ZadBook[][] = [
       id: "arabic",
       title: arabic,
       pages: 108,
+      file: { ar: drive("1sK_74TG_pFX27ugASixkZUIdmnsWZISw"), en: drive("1PFv3KM4_Ti19U4CeQUepvPgaMgQd6UaZ") },
       contents: text(
         "الفاعل، ونائب الفاعل، والمفاعيل، والاستثناء، والحال، والتمييز، وحروف الجر، والإضافة.",
         "The subject of a verb; the deputy subject; the objects; exception; the circumstantial; specification; prepositions; the construct.",
@@ -328,6 +363,7 @@ const zadLevels: ZadBook[][] = [
       id: "aqeedah",
       title: aqeedah,
       pages: 82,
+      file: { ar: drive("1AXu2FoYQt5mmXF1IFshNNZN1WNPU5uwn"), en: drive("1FrDiJtuaUB_iKEr1FeITuye4mBbXLAN2") },
       contents: text(
         "البدعة وضوابطها، والتكفير وضوابطه، وأشراط الساعة، والصحابة وآل البيت، والأولياء وكراماتهم، والشفاعة.",
         "Innovation and its criteria; declaring disbelief and its conditions; the signs of the Hour; the Companions and the Prophet's family; Allah's allies (awliya') and their karamat (wonders); intercession.",
@@ -337,6 +373,7 @@ const zadLevels: ZadBook[][] = [
       id: "seerah",
       title: seerah,
       pages: 84,
+      file: { ar: drive("11QgTqGvTimfjun-J4f7lZpalmvaZXur2"), en: drive("1epZyOEJMOxJIqGJjax9qbWi9dLOevPtn") },
       contents: text(
         "أحواله ﷺ: كلامه، وما يحب وما يكره، وبكاؤه، وضحكه، وغضبه، وفرحه، وحزنه، وعتابه.",
         "His states ﷺ: his speech, what he loved and disliked, his weeping, laughter, anger, joy, sadness and reproach.",
@@ -346,6 +383,7 @@ const zadLevels: ZadBook[][] = [
       id: "fiqh",
       title: fiqh,
       pages: 94,
+      file: { ar: drive("1r6PVA_h67vmRtEU9bXtlgOGvFWTi8koi"), en: drive("19XWmjapSI--q8kgENOGxYc0XvTXL38WD") },
       contents: text(
         "البيع وأحكامه، والإجارة، والنكاح، والطلاق، والأيمان والنذور، والأطعمة.",
         "Sales and their rulings; hire; marriage; divorce; oaths and vows; food.",
@@ -355,12 +393,14 @@ const zadLevels: ZadBook[][] = [
       id: "tafsir",
       title: tafsir,
       pages: 103,
+      file: { ar: drive("1k_4dpBg68ZvwCJXsQxCYjEapelOE5JZJ"), en: drive("1tX8TOIxihsI45GtaegAKPMYUAguuL9ED") },
       contents: text("تفسير السور من الشرح إلى الناس.", "The surahs from ash-Sharh to an-Nas."),
     },
     {
       id: "hadith",
       title: hadith,
       pages: 111,
+      file: { ar: drive("1Ex9nH8-fRpLh3NaLVgncAAnSdzwP-C-c"), en: drive("1iN4onGoV3M4axcKxK58ieD4SuKyEgN2A") },
       contents: text(
         "شرح 20 حديثًا، منها: «الدين النصيحة»، و«البر حسن الخلق»، و«من رأى منكم منكرًا فليغيّره»، و«لو يُعطى الناس بدعواهم».",
         "20 hadiths explained, among them “Religion is sincere advice”, “Righteousness is good character”, “Whoever sees a wrong, let him change it” and “If people were given what they claim”.",
@@ -370,6 +410,7 @@ const zadLevels: ZadBook[][] = [
       id: "tarbiyah",
       title: tarbiyah,
       pages: 74,
+      file: { ar: drive("1PZX_G2NoWl96cE5HrHTXsa2BMZfbxoRe"), en: drive("1xwfBArPrtKZsCsFK9MTECAY4wBjD5iQi") },
       contents: text(
         "أمراض القلوب وعلاجها: الغفلة، واتباع الهوى، وحب الدنيا، والكِبر، والحسد، وغيرها، وقواعد معرفتها، وأهمية التوبة.",
         "Diseases of the heart and their cure (heedlessness, following desires, love of this world, arrogance, envy and others), how to recognise them, and the importance of repentance.",
@@ -379,6 +420,7 @@ const zadLevels: ZadBook[][] = [
       id: "arabic",
       title: arabic,
       pages: 82,
+      file: { ar: drive("1NJkzwi9S07Ywy0H0kLx1zUB8OCGJyC6b"), en: drive("1lX1xD_mzAjb8hIyrZT--iOAaTyw6Pc_S") },
       contents: text(
         "التعجب، واسم التفضيل، وصيغ المدح والذم، والتوابع، والنداء، وإعراب الفعل المضارع، وأسلوب الشرط.",
         "Exclamation; the elative; praise and blame; followers; the vocative; the present tense's endings; conditionals.",
@@ -396,17 +438,21 @@ const zadSeries: BookSeries = {
     `قراءة كتب المستويات الأربعة تأخذ نحو ${zadHours} ساعة: نحو ${zadLevelHours} ساعة لكل مستوى، أي قرابة أسبوعين بمعدل ساعة يوميًا، وقرابة ستة أسابيع للسلسلة كاملة، وقد تتضاعف المدة مع المراجعة وحلّ التمارين.`,
     `Reading the books of all four levels takes about ${zadHours} hours: about ${zadLevelHours} hours per level, so around two weeks at an hour a day, and around six weeks for the whole series; reviewing and doing the exercises can double that.`,
   ),
+  permission: text(
+    "الكتب متاحة هنا بإذن من أكاديمية زاد، مجانًا وللاستفادة العلمية فقط: لا تُباع ولا تُترجم ولا تُطبع.",
+    "The books are offered here with Zad Academy's permission, free and for learning only: they may not be sold, translated or printed.",
+  ),
   levels: zadLevels.map((books, index) => ({
     id: `level-${index + 1}`,
     title: levelNames[index],
     books: books
       .toSorted((a, b) => subjectOrder.indexOf(a.id) - subjectOrder.indexOf(b.id))
-      .map(({ id, title, contents }) => ({ id, title, contents })),
+      .map(({ id, title, contents, file }) => ({ id, title, contents, file })),
   })),
   study: {
     body: text(
-      "لو حابب تدرس المسار من أكاديمية زاد نفسها لمدة سنتين، بمحاضرات واختبارات وشهادة، والكتب الرقمية مجانًا للمسجّلين:",
-      "To study this path with Zad Academy itself over two years, with lectures, exams and a certificate, and the digital books free for those enrolled:",
+      "لو حابب تدرس المسار مع أكاديمية زاد نفسها لمدة سنتين، بمحاضرات واختبارات وشهادة:",
+      "To study this path with Zad Academy itself over two years, with lectures, exams and a certificate:",
     ),
     label: text("سجّل في أكاديمية زاد", "Enroll at Zad Academy"),
     url: text("https://zad-academy.com/ar", "https://zad-academy.com/en"),
