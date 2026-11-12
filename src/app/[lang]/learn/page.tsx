@@ -360,7 +360,8 @@ async function LevelVideos({ urls, tone, label }: { urls: string[]; tone: Tone; 
 
 /**
  * A book series studied level by level: each level a toggle with its books in the order they are read and what each
- * covers, then how to study it with its publisher. Books by name only (see BookSeries).
+ * covers, and read and download links for each book that has a file (the publisher's terms above the levels), then
+ * how to study it with its publisher.
  */
 function SeriesLevels({ series, tone, locale, t }: { series: BookSeries; tone: Tone; locale: Locale; t: Learn }) {
   return (

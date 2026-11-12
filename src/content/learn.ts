@@ -144,13 +144,13 @@ const hadith = text("الحديث", "Hadith");
 const tarbiyah = text("التربية الإسلامية", "Islamic character (Tarbiyah)");
 const arabic = text("اللغة العربية", "Arabic language");
 
-// Each level's books are read in our order of the subjects (the owner's choice), not Zad's.
 // A book on the darislamtech Google Drive: read in Drive's viewer, or download straight to the device.
 const drive = (id: string) => ({
   read: `https://drive.google.com/file/d/${id}/view`,
   download: `https://drive.google.com/uc?export=download&id=${id}`,
 });
 
+// Each level's books are read in our order of the subjects (the owner's choice), not Zad's.
 const subjectOrder = ["aqeedah", "fiqh", "tarbiyah", "hadith", "seerah", "tafsir", "arabic"] as const;
 
 const zadLevels: ZadBook[][] = [
