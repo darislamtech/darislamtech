@@ -56,15 +56,23 @@ export type RoadmapPath = {
   series?: BookSeries;
 };
 
+/** Where a book is read in the browser and where it is downloaded from. */
+export type BookFile = { read: string; download: string };
+
+/** A book of a series: what it covers, and (with its publisher's permission) its file in each language's edition. */
+export type SeriesBook = { id: string; title: Localized; contents: Localized; file?: Localized<BookFile> };
+
 /**
  * A recommended book series, e.g. Zad Academy's: its levels in order, each with its books in the order they are
- * studied and what each covers. Books are listed by name only (no download or read links) unless their publisher
- * allows sharing them.
+ * studied and what each covers. A book gets read and download links only with its publisher's permission, whose
+ * terms are shown with the books.
  */
 export type BookSeries = {
   /** How long reading the series takes, shown at the top of the path. */
   reading: Localized;
-  levels: { id: string; title: Localized; books: { id: string; title: Localized; contents: Localized }[] }[];
+  levels: { id: string; title: Localized; books: SeriesBook[] }[];
+  /** The publisher's permission and its terms, shown above the levels once books can be read or downloaded. */
+  permission?: Localized;
   /** Studying the series with its publisher, shown after the levels. */
   study: { body: Localized; label: Localized; url: Localized };
 };
