@@ -59,6 +59,19 @@ export default async function ContentPage() {
       </p>
     );
 
+  // "All" holds the posts and then the videos, so a page with only videos still opens on them.
+  const allGrid =
+    posts.length === 0 ? (
+      videoGrid
+    ) : videos.length === 0 ? (
+      postGrid(posts)
+    ) : (
+      <div className="space-y-10">
+        {postGrid(posts)}
+        {videoGrid}
+      </div>
+    );
+
   return (
     <>
       <PageHero
@@ -72,24 +85,17 @@ export default async function ContentPage() {
           { href: localePath(locale, "/content"), label: dict.nav.content },
         ]}
       >
-        <div className="space-y-6">
-          {dict.topics.map((group) => (
-            <div key={group.title}>
-              <p className="mb-3 text-sm font-semibold text-ink-2">{group.title}</p>
-              <ul className="flex flex-wrap gap-2">
-                {group.items.map((topic, index) => (
-                  <li
-                    key={topic}
-                    className="flex items-center gap-1 rounded-full border border-line bg-surface px-3 py-1.5 text-sm text-ink-2"
-                  >
-                    <Hash aria-hidden="true" className={cn("size-3.5", toneText[topicTones[index % topicTones.length]])} />
-                    {topic}
-                  </li>
-                ))}
-              </ul>
-            </div>
+        <ul className="flex flex-wrap gap-2">
+          {dict.topics.map((topic, index) => (
+            <li
+              key={topic}
+              className="flex items-center gap-1 rounded-full border border-line bg-surface px-3 py-1.5 text-sm text-ink-2"
+            >
+              <Hash aria-hidden="true" className={cn("size-3.5", toneText[topicTones[index % topicTones.length]])} />
+              {topic}
+            </li>
           ))}
-        </div>
+        </ul>
       </PageHero>
 
       <Container className="py-16 sm:py-20">
@@ -97,7 +103,7 @@ export default async function ContentPage() {
           <Tabs
             label={t.tabs.label}
             items={[
-              { id: "all", label: t.tabs.all, count: posts.length, content: postGrid(posts) },
+              { id: "all", label: t.tabs.all, count: posts.length + videos.length, content: allGrid },
               { id: "articles", label: t.tabs.articles, count: articles.length, content: postGrid(articles) },
               { id: "news", label: t.tabs.news, count: news.length, content: postGrid(news) },
               { id: "videos", label: t.tabs.videos, count: videos.length, content: videoGrid },

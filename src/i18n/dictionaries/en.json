@@ -51,31 +51,7 @@
       "body": "For anyone who wants to learn."
     }
   ],
-  "topics": [
-    {
-      "title": "Religious and da'wah topics we cover",
-      "items": [
-        "Contemporary concepts and ideas",
-        "Secularism",
-        "\"Energy\" and modern spirituality",
-        "Atheism and doubts about belief",
-        "Feminism"
-      ]
-    },
-    {
-      "title": "Tech topics we cover",
-      "items": [
-        "Artificial intelligence",
-        "Software engineering",
-        "Automation",
-        "SaaS",
-        "Startups",
-        "Cyber security",
-        "Digital marketing",
-        "Tech news"
-      ]
-    }
-  ],
+  "topics": ["Topics on da'wah and Islam in general", "Tech and programming topics"],
   "phases": [
     {
       "title": "Foundation",
@@ -409,7 +385,7 @@
     "communityTitle": "A community initiative",
     "communityBody": "Dar Islam & Technology started as a one-person effort, and the ambition is a community where Islamic studies specialists, callers and technologists build world-class solutions together.",
     "founderTitle": "The founder",
-    "founderBio": "Marwan works in Saudi Arabia in web development and search engine optimization (SEO). He is a student of Islamic sciences at Zad Academy, with a keen interest in da'wah and technology."
+    "founderBio": "Marwan works in Saudi Arabia building office management systems, and creating and developing websites and improving their visibility in search engines (SEO). He is a student of Islamic sciences at Zad Academy, with a keen interest in da'wah and technology."
   },
   "entertainment": {
     "eyebrow": "Entertainment",

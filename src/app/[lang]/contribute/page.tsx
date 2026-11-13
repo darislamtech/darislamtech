@@ -33,7 +33,6 @@ const wayIcons = [Lightbulb, BookOpenCheck, ScrollText, Code, Palette, Languages
 const principleIcons = [Eye, Handshake, UserCheck, ShieldCheck];
 const wayTones: Tone[] = ["gold", "mint", "rose", "blue", "rose", "gold"];
 
-// An email to the project with the subject filled in, as on the Contact page.
 const principleTones: Tone[] = ["blue", "mint", "gold", "rose"];
 
 export default async function ContributePage() {
