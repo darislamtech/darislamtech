@@ -897,7 +897,7 @@ const techDomain: RoadmapDomain = {
         },
         {
           id: "level-3",
-          title: text("المستوى الثالث: بناء الأنظمة والاستضافة وDevOps", "Level three: building systems, hosting and DevOps"),
+          title: text("المستوى الثالث: بناء الأنظمة والاستضافة", "Level three: building systems and hosting"),
           topics: [
             topic("web", text("الإنترنت بتعمّق", "The internet in depth"), {
               ar: ["HTTP", "DNS", "CDN", "المتصفح والسيرفر"],
@@ -919,7 +919,7 @@ const techDomain: RoadmapDomain = {
               ar: ["المشتركة", "VPS", "السحابية", "Serverless", "الدومين وDNS وSSL"],
               en: ["Shared", "VPS", "Cloud", "Serverless", "Domains, DNS and SSL"],
             }),
-            topic("devops", text("DevOps", "DevOps"), {
+            topic("operations", text("تشغيل الأنظمة ونشرها", "Running and deploying systems"), {
               ar: ["البيئات", "CI/CD", "Docker", "المراقبة", "النسخ الاحتياطي"],
               en: ["Environments", "CI/CD", "Docker", "Monitoring", "Backups"],
             }),
