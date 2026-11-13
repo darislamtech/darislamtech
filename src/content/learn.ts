@@ -897,7 +897,10 @@ const techDomain: RoadmapDomain = {
         },
         {
           id: "level-3",
-          title: text("المستوى الثالث: بناء الأنظمة والاستضافة", "Level three: building systems and hosting"),
+          title: text(
+            "المستوى الثالث: بناء الأنظمة والرفع والتعامل مع الاستضافة وأمان الموقع",
+            "Level three: building systems, deploying them, working with hosting, and site security",
+          ),
           topics: [
             topic("web", text("الإنترنت بتعمّق", "The internet in depth"), {
               ar: ["HTTP", "DNS", "CDN", "المتصفح والسيرفر"],
