@@ -32,8 +32,8 @@ export function OfferSection({ locale, dict }: { locale: Locale; dict: Dictionar
             body={home.cards.content.body}
             className="lg:col-span-3"
           >
-            {/* The first topics of each group, religious and da'wah topics first. */}
-            <ChipList items={dict.topics.flatMap((group) => group.items.slice(0, 4))} />
+            {/* What the content covers: Islamic and da'wah topics, then tech. */}
+            <ChipList items={dict.topics} />
           </BentoCard>
 
           <BentoCard

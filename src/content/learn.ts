@@ -642,8 +642,8 @@ const techDomain: RoadmapDomain = {
       id: "foundation",
       title: text("المسار التأسيسي", "The foundation path"),
       description: text(
-        "استخدام الكمبيوتر والإنترنت بثقة، وتنظيم الحياة، والتعمق في أدوات الذكاء الاصطناعي، وصناعة المحتوى الدعوي ونشره، وإنشاء المواقع. ومعه اللغة الإنجليزية حتى مستوى B1.",
-        "Using the computer and the internet with confidence, organizing life, going deep into AI tools, making and publishing da'wah content, and building websites. With English up to B1.",
+        "استخدام الكمبيوتر والإنترنت بثقة، وتنظيم الحياة، والتعمق في أدوات الذكاء الاصطناعي، وصناعة المحتوى الدعوي ونشره، وإنشاء المواقع. ومعه اللغة الإنجليزية حتى مستوى A2.",
+        "Using the computer and the internet with confidence, organizing life, going deep into AI tools, making and publishing da'wah content, and building websites. With English up to A2.",
       ),
       levels: [
         {
@@ -675,8 +675,8 @@ const techDomain: RoadmapDomain = {
         {
           id: "level-2",
           title: text(
-            "المستوى الثاني: التنظيم والإنتاجية ومقدمة في الذكاء الاصطناعي",
-            "Level two: organization, productivity and an introduction to AI",
+            "المستوى الثاني: التنظيم والإنتاجية ومقدمة في استخدام الذكاء الاصطناعي",
+            "Level two: organization, productivity and an introduction to using AI",
           ),
           topics: [
             topic("organization", text("التنظيم في Notion", "Organizing in Notion"), {
@@ -701,7 +701,7 @@ const techDomain: RoadmapDomain = {
                 "Islamic guidelines: never relied on for fatwas, nor for quoting rulings and hadiths without checking",
               ],
             }),
-            topic("english-a2", text("اللغة الإنجليزية: A2", "English: A2"), {
+            topic("english-a1-a2", text("اللغة الإنجليزية: من A1 إلى A2", "English: A1 to A2"), {
               ar: ["قراءة الأدلة البسيطة وكتابة بريد قصير"],
               en: ["Reading simple guides and writing a short email"],
             }),
@@ -714,8 +714,8 @@ const techDomain: RoadmapDomain = {
         {
           id: "level-3",
           title: text(
-            "المستوى الثالث: التعمق في الذكاء الاصطناعي وصناعة المحتوى",
-            "Level three: going deep into AI, and making content",
+            "المستوى الثالث: التعمق في استخدام الذكاء الاصطناعي وصناعة المحتوى",
+            "Level three: going deep into using AI, and making content",
           ),
           topics: [
             topic("prompting", text("كتابة الأوامر", "Prompting"), {
@@ -758,7 +758,7 @@ const techDomain: RoadmapDomain = {
                 "Da'wah content guidelines: verses, hadiths and rulings from their trusted sources",
               ],
             }),
-            topic("english-a2-b1", text("اللغة الإنجليزية: من A2 إلى B1", "English: A2 to B1"), {
+            topic("english-a2", text("اللغة الإنجليزية: A2", "English: A2"), {
               ar: ["كتابة الأوامر بالإنجليزية وفهم الردود"],
               en: ["Writing prompts in English and understanding the answers"],
             }),
@@ -815,9 +815,9 @@ const techDomain: RoadmapDomain = {
                 "Publishing on Vercel or GitHub Pages and connecting a domain",
               ],
             }),
-            topic("english-b1", text("اللغة الإنجليزية: B1", "English: B1"), {
-              ar: ["قراءة توثيق الأدوات ومتابعة الشروح بالإنجليزية"],
-              en: ["Reading tool documentation and following tutorials in English"],
+            topic("english-a2-practice", text("اللغة الإنجليزية: A2", "English: A2"), {
+              ar: ["قراءة الشروح البسيطة للأدوات ومصطلحاتها بالإنجليزية"],
+              en: ["Reading simple tool guides and their terms in English"],
             }),
           ],
         },
@@ -897,7 +897,10 @@ const techDomain: RoadmapDomain = {
         },
         {
           id: "level-3",
-          title: text("المستوى الثالث: بناء الأنظمة والاستضافة وDevOps", "Level three: building systems, hosting and DevOps"),
+          title: text(
+            "المستوى الثالث: بناء الأنظمة والرفع والتعامل مع الاستضافة وأمان الموقع",
+            "Level three: building systems, deploying them, working with hosting, and site security",
+          ),
           topics: [
             topic("web", text("الإنترنت بتعمّق", "The internet in depth"), {
               ar: ["HTTP", "DNS", "CDN", "المتصفح والسيرفر"],
@@ -919,7 +922,7 @@ const techDomain: RoadmapDomain = {
               ar: ["المشتركة", "VPS", "السحابية", "Serverless", "الدومين وDNS وSSL"],
               en: ["Shared", "VPS", "Cloud", "Serverless", "Domains, DNS and SSL"],
             }),
-            topic("devops", text("DevOps", "DevOps"), {
+            topic("operations", text("تشغيل الأنظمة ونشرها", "Running and deploying systems"), {
               ar: ["البيئات", "CI/CD", "Docker", "المراقبة", "النسخ الاحتياطي"],
               en: ["Environments", "CI/CD", "Docker", "Monitoring", "Backups"],
             }),
