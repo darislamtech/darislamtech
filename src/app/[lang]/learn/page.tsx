@@ -89,7 +89,7 @@ export default async function LearnPage() {
                     id="external"
                     domains={externalDomains}
                     intro={t.external.intro}
-                    pathNote={t.sourcesSoon}
+                    markBuilding
                     locale={locale}
                     t={t}
                   />
@@ -143,7 +143,7 @@ function Roadmap({
   domains,
   intro,
   pathBadge,
-  pathNote,
+  markBuilding,
   locale,
   t,
 }: {
@@ -152,7 +152,8 @@ function Roadmap({
   domains: RoadmapDomain[];
   intro: string;
   pathBadge?: string;
-  pathNote?: string;
+  /** Show the levels that have no sources yet as under construction. */
+  markBuilding?: boolean;
   locale: Locale;
   t: Learn;
 }) {
@@ -186,7 +187,7 @@ function Roadmap({
                     index={index}
                     tone={tone}
                     badge={pathBadge}
-                    note={pathNote}
+                    markBuilding={markBuilding}
                     locale={locale}
                     t={t}
                   />
@@ -205,7 +206,7 @@ function PathCard({
   index,
   tone,
   badge,
-  note,
+  markBuilding,
   locale,
   t,
 }: {
@@ -213,10 +214,14 @@ function PathCard({
   index: number;
   tone: Tone;
   badge?: string;
-  note?: string;
+  markBuilding?: boolean;
   locale: Locale;
   t: Learn;
 }) {
+  const building = (level: RoadmapLevel) => Boolean(markBuilding && !level.ready && !level.videos?.length);
+  // A path with no book series whose levels all await sources is under construction as a whole.
+  const pathBuilding = markBuilding && !path.series && path.levels.length > 0 && path.levels.every(building);
+  const shownBadge = badge ?? (pathBuilding ? t.underConstruction : undefined);
   return (
     <li className="reveal relative flex gap-5 rounded-3xl border border-line bg-surface p-5 sm:p-7">
       <IconTile tone={pathTones[index % pathTones.length]} className="relative z-10 size-11 ring-4 ring-surface">
@@ -225,28 +230,34 @@ function PathCard({
       <div className="min-w-0 flex-1">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <h3 className="font-display text-xl font-semibold text-ink sm:text-2xl">{path.title[locale]}</h3>
-          {badge && (
+          {shownBadge && (
             <Badge tone="muted">
               <Construction aria-hidden="true" className="size-3" />
-              {badge}
+              {shownBadge}
             </Badge>
           )}
         </div>
         <p className="mt-2 leading-relaxed text-muted">{path.description[locale]}</p>
-        {/* A path studied from a book series says how long the reading takes; the others, that sources are coming. */}
-        {path.series ? (
+        {/* A path studied from a book series says how long the reading takes. */}
+        {path.series && (
           <p className="mt-3 flex gap-2 text-sm leading-relaxed text-ink-2">
             <Clock aria-hidden="true" className={cn("mt-0.5 size-4 shrink-0", toneText[tone])} />
             {path.series.reading[locale]}
           </p>
-        ) : (
-          note && <p className="mt-2 text-xs font-medium text-muted">{note}</p>
         )}
 
         {path.levels.length > 0 && (
           <ul className="mt-5 space-y-2">
             {path.levels.map((level) => (
-              <LevelToggle key={level.id} level={level} tone={tone} locale={locale} t={t} />
+              <LevelToggle
+                key={level.id}
+                level={level}
+                tone={tone}
+                building={building(level) && !pathBuilding}
+                blurred={building(level)}
+                locale={locale}
+                t={t}
+              />
             ))}
           </ul>
         )}
@@ -266,64 +277,107 @@ function PathCard({
   );
 }
 
-/** A level as a toggle: its topics (with what each covers, or as plain subjects) and its project. */
-function LevelToggle({ level, tone, locale, t }: { level: RoadmapLevel; tone: Tone; locale: Locale; t: Learn }) {
+/**
+ * A level as a toggle: its topics (with what each covers, or as plain subjects) and its project. A level whose sources
+ * are still being prepared shows them blurred and out of reach under a card that says so (`blurred`), and an
+ * «under construction» badge by its title (`building`) unless its whole path already carries one.
+ */
+function LevelToggle({
+  level,
+  tone,
+  building,
+  blurred,
+  locale,
+  t,
+}: {
+  level: RoadmapLevel;
+  tone: Tone;
+  building?: boolean;
+  blurred?: boolean;
+  locale: Locale;
+  t: Learn;
+}) {
   const plainSubjects = level.topics.length > 0 && level.topics.every((topic) => !topic.points);
   return (
     <li>
       <details className="group rounded-2xl border border-line bg-surface-2">
         <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 rounded-2xl px-4 py-3 font-semibold text-ink [&::-webkit-details-marker]:hidden">
-          <span className="flex items-center gap-2">
-            <span aria-hidden="true" className={cn("size-1.5 shrink-0 rounded-full", toneDot[tone])} />
-            {level.title[locale]}
+          {/* The badge follows the title and wraps under it on narrow screens, so the title keeps its width. */}
+          <span className="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <span className="flex items-center gap-2">
+              <span aria-hidden="true" className={cn("size-1.5 shrink-0 rounded-full", toneDot[tone])} />
+              {level.title[locale]}
+            </span>
+            {building && (
+              <Badge tone="muted">
+                <Construction aria-hidden="true" className="size-3" />
+                {t.underConstruction}
+              </Badge>
+            )}
           </span>
           <ChevronDown
             aria-hidden="true"
             className="size-4 shrink-0 text-muted transition-transform group-open:rotate-180"
           />
         </summary>
-        <div className="border-t border-line px-4 pt-3 pb-4">
-          {plainSubjects ? (
-            <ul className="flex flex-wrap gap-2">
-              {level.topics.map((topic) => (
-                <li
-                  key={topic.id}
-                  className="flex items-center gap-2 rounded-xl border border-line bg-surface px-3 py-2 text-sm text-ink"
-                >
-                  <BookOpen aria-hidden="true" className={cn("size-3.5 shrink-0", toneText[tone])} />
-                  {topic.title[locale]}
-                </li>
-              ))}
-            </ul>
-          ) : (
-            level.topics.length > 0 && (
-              <ul className="space-y-3">
+        <div className="relative border-t border-line">
+          {blurred && (
+            <div className="absolute inset-0 z-10 flex items-center justify-center p-4">
+              <div className="max-w-xs rounded-2xl border border-line bg-surface/95 px-4 py-3 text-center shadow-lift backdrop-blur">
+                <p className="flex items-center justify-center gap-2 text-sm font-semibold text-ink">
+                  <Construction aria-hidden="true" className="size-4 shrink-0 text-tone-gold" />
+                  {t.sectionStatus}
+                </p>
+                <p className="mt-1 text-xs leading-relaxed text-muted">{t.buildingBody}</p>
+              </div>
+            </div>
+          )}
+          <div
+            inert={blurred}
+            className={cn("px-4 pt-3 pb-4", blurred && "pointer-events-none min-h-32 blur-[3px] select-none opacity-60")}
+          >
+            {plainSubjects ? (
+              <ul className="flex flex-wrap gap-2">
                 {level.topics.map((topic) => (
-                  <li key={topic.id} className="text-sm leading-relaxed">
-                    <span className="font-semibold text-ink">{topic.title[locale]}</span>
-                    {topic.points && (
-                      <span className="text-muted">
-                        {": "}
-                        {topic.points[locale].join(locale === "ar" ? "، " : ", ")}
-                      </span>
-                    )}
+                  <li
+                    key={topic.id}
+                    className="flex items-center gap-2 rounded-xl border border-line bg-surface px-3 py-2 text-sm text-ink"
+                  >
+                    <BookOpen aria-hidden="true" className={cn("size-3.5 shrink-0", toneText[tone])} />
+                    {topic.title[locale]}
                   </li>
                 ))}
               </ul>
-            )
-          )}
-          {level.videos && level.videos.length > 0 && (
-            <LevelVideos entries={level.videos} tone={tone} locale={locale} label={t.startHere} t={t} />
-          )}
-          {level.project && (
-            <div className={cn("flex gap-2 text-sm leading-relaxed", (level.topics.length > 0 || level.videos?.length) && "mt-4")}>
-              <Hammer aria-hidden="true" className={cn("mt-0.5 size-4 shrink-0", toneText[tone])} />
-              <p>
-                <span className="font-semibold text-ink">{t.project}: </span>
-                <span className="text-ink-2">{level.project[locale]}</span>
-              </p>
-            </div>
-          )}
+            ) : (
+              level.topics.length > 0 && (
+                <ul className="space-y-3">
+                  {level.topics.map((topic) => (
+                    <li key={topic.id} className="text-sm leading-relaxed">
+                      <span className="font-semibold text-ink">{topic.title[locale]}</span>
+                      {topic.points && (
+                        <span className="text-muted">
+                          {": "}
+                          {topic.points[locale].join(locale === "ar" ? "، " : ", ")}
+                        </span>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              )
+            )}
+            {level.videos && level.videos.length > 0 && (
+              <LevelVideos entries={level.videos} tone={tone} locale={locale} label={t.startHere} t={t} />
+            )}
+            {level.project && (
+              <div className={cn("flex gap-2 text-sm leading-relaxed", (level.topics.length > 0 || level.videos?.length) && "mt-4")}>
+                <Hammer aria-hidden="true" className={cn("mt-0.5 size-4 shrink-0", toneText[tone])} />
+                <p>
+                  <span className="font-semibold text-ink">{t.project}: </span>
+                  <span className="text-ink-2">{level.project[locale]}</span>
+                </p>
+              </div>
+            )}
+          </div>
         </div>
       </details>
     </li>

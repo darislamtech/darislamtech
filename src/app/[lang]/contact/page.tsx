@@ -3,6 +3,7 @@ import { Bug, HandHeart, Lightbulb, Mail, MessageCircle } from "lucide-react";
 import { siteConfig } from "@/config/site";
 import { localePath } from "@/i18n/config";
 import { getDictionary, getLocale } from "@/i18n/dictionaries";
+import { mailtoDar } from "@/lib/mailto";
 import { pageMetadata } from "@/lib/seo";
 import { CopyButton } from "@/components/copy-button";
 import { socialIcons } from "@/components/icons";
@@ -45,7 +46,7 @@ export default async function ContactPage() {
               return (
                 <li key={reason.title}>
                   <a
-                    href={`mailto:${siteConfig.email}?subject=${encodeURIComponent(`[Dar] ${reason.subject}`)}`}
+                    href={mailtoDar(reason.subject)}
                     className="group flex h-full flex-col rounded-3xl border border-line bg-surface p-6 transition-all duration-300 hover:-translate-y-0.5 hover:border-line-strong hover:shadow-lift sm:p-7"
                   >
                     <IconTile tone={reasonTones[index]}>
