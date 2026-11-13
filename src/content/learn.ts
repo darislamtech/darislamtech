@@ -675,8 +675,8 @@ const techDomain: RoadmapDomain = {
         {
           id: "level-2",
           title: text(
-            "المستوى الثاني: التنظيم والإنتاجية ومقدمة في الذكاء الاصطناعي",
-            "Level two: organization, productivity and an introduction to AI",
+            "المستوى الثاني: التنظيم والإنتاجية ومقدمة في استخدام الذكاء الاصطناعي",
+            "Level two: organization, productivity and an introduction to using AI",
           ),
           topics: [
             topic("organization", text("التنظيم في Notion", "Organizing in Notion"), {
@@ -714,8 +714,8 @@ const techDomain: RoadmapDomain = {
         {
           id: "level-3",
           title: text(
-            "المستوى الثالث: التعمق في الذكاء الاصطناعي وصناعة المحتوى",
-            "Level three: going deep into AI, and making content",
+            "المستوى الثالث: التعمق في استخدام الذكاء الاصطناعي وصناعة المحتوى",
+            "Level three: going deep into using AI, and making content",
           ),
           topics: [
             topic("prompting", text("كتابة الأوامر", "Prompting"), {
