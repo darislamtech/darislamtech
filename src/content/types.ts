@@ -41,9 +41,13 @@ export type RoadmapTopic = { id: string; title: Localized; points?: Localized<st
 
 /**
  * One step of a path, shown as a toggle: its topics, the YouTube videos to start with (links or bare IDs; title and
- * thumbnail are fetched from YouTube) and the project that proves it was learned.
+ * thumbnail are fetched from YouTube; a link with `list=` is a whole series, shown as a link to it) and the project
+ * that proves it was learned.
  */
-export type RoadmapLevel = { id: string; title: Localized; topics: RoadmapTopic[]; videos?: string[]; project?: Localized };
+export type RoadmapLevel = { id: string; title: Localized; topics: RoadmapTopic[]; videos?: LevelVideo[]; project?: Localized };
+
+/** A YouTube link a level starts with, optionally with what it covers (shown under it, e.g. for a series). */
+export type LevelVideo = string | { url: string; about: Localized };
 
 /** A path studied in order within its domain, at the learner's own pace (no timing). */
 export type RoadmapPath = {

@@ -59,6 +59,53 @@ export async function getYouTubeVideo(input: string): Promise<YouTubeVideo | nul
   }
 }
 
+/** The playlist ID in a YouTube link (`list=`), or null. */
+export function getYouTubePlaylistId(input: string): string | null {
+  try {
+    const id = new URL(input.trim()).searchParams.get("list");
+    return id && /^[\w-]{10,}$/.test(id) ? id : null;
+  } catch {
+    return null;
+  }
+}
+
+export type YouTubePlaylist = { title: string | null; channel: string | null; videos: number | null };
+
+/**
+ * Title, channel and number of videos of a YouTube playlist (a series): the title and channel from oEmbed like a
+ * video, the count from the public playlist page (null if YouTube refuses it). Cached; null when YouTube says the
+ * playlist is missing or private.
+ */
+export async function getYouTubePlaylist(id: string): Promise<YouTubePlaylist | null> {
+  "use cache";
+  cacheLife("days");
+
+  try {
+    const listUrl = `https://www.youtube.com/playlist?list=${id}`;
+    const response = await fetch(`https://www.youtube.com/oembed?format=json&url=${encodeURIComponent(listUrl)}`, {
+      signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
+    });
+    if ([400, 401, 403, 404].includes(response.status)) return null;
+    const videos = await getPlaylistVideoCount(listUrl);
+    if (!response.ok) return { title: null, channel: null, videos };
+    const data = (await response.json()) as { title?: string; author_name?: string };
+    return { title: data.title ?? null, channel: data.author_name ?? null, videos };
+  } catch {
+    return { title: null, channel: null, videos: null };
+  }
+}
+
+async function getPlaylistVideoCount(listUrl: string): Promise<number | null> {
+  try {
+    const response = await fetch(listUrl, { headers: { "Accept-Language": "en" }, signal: AbortSignal.timeout(FETCH_TIMEOUT_MS) });
+    if (!response.ok) return null;
+    const count = (await response.text()).match(/"stats":\[\{"runs":\[\{"text":"(\d+)"\},\{"text":" videos?"/)?.[1];
+    return count ? Number(count) : null;
+  } catch {
+    return null;
+  }
+}
+
 export type YouTubeVideoDetails = {
   views: number | null;
   /** ISO date-time YouTube published the video. */

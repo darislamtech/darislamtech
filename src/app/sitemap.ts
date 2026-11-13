@@ -20,6 +20,7 @@ const paths = [
   "/support",
   "/about",
   "/contact",
+  "/privacy",
   ...posts.map((post) => `/content/${post.slug}`),
   ...products.map((product) => `/products/${product.slug}`),
 ];

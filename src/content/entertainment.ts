@@ -94,6 +94,18 @@ export const entertainmentGroups: EntertainmentGroup[] = [
         ],
       },
       {
+        // د. عبدالله رشدي: his five latest videos, oldest first.
+        id: "sunnah-deniers",
+        title: { ar: "منكرو السنة", en: "Sunnah deniers" },
+        items: [
+          { url: "https://www.youtube.com/watch?v=sbsbKujWa4Y", added: "2026-11-13T20:40" },
+          { url: "https://www.youtube.com/watch?v=nQP33ZnKlFw", added: "2026-11-13T20:41" },
+          { url: "https://www.youtube.com/watch?v=3jJWw33fao4", added: "2026-11-13T20:42" },
+          { url: "https://www.youtube.com/watch?v=D4i4LjjWuEw", added: "2026-11-13T20:43" },
+          { url: "https://www.youtube.com/watch?v=GJiDxsa0GcU", added: "2026-11-13T20:44" },
+        ],
+      },
+      {
         id: "feminism",
         title: { ar: "النسوية", en: "Feminism" },
         items: [
@@ -112,6 +124,7 @@ export const entertainmentGroups: EntertainmentGroup[] = [
         items: [
           { url: "https://www.youtube.com/watch?v=pIVlYDFQc6o", added: "2026-11-08T12:15" },
           { url: "https://www.youtube.com/watch?v=TGUsvlJIXXw", added: "2026-11-09T13:40" },
+          { url: "https://www.youtube.com/watch?v=jvmSmOdsIEs", added: "2026-11-13T20:45" },
         ],
       },
       {

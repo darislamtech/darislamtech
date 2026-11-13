@@ -134,7 +134,7 @@
       },
       "contribute": {
         "title": "Contribute",
-        "body": "Code, design, translation or review: every skill has a place in our open projects.",
+        "body": "A suggestion or an idea, help with the da'wah projects, or development, design and translation: every contribution has a place.",
         "flow": [
           "Fork",
           "Branch",
@@ -234,8 +234,9 @@
   "learn": {
     "eyebrow": "Learn",
     "title": "A learning program that joins Islamic and tech knowledge",
-    "description": "An Islamic knowledge and da'wah track and a technology track, studied at your own pace, in two plans: one you study on your own from outside sources we recommend, and one from the platform with lessons made by Dar. This section is under construction.",
+    "description": "An Islamic knowledge and da'wah track and a technology track, studied at your own pace, in two plans: one you study on your own from outside sources we recommend, and one from the platform with lessons made by Dar.",
     "underConstruction": "Under construction",
+    "sectionStatus": "Under construction and development",
     "goalTitle": "Our goal",
     "goal": "That every learner takes on a da'wah project, starts calling people to Allah, and produces work that benefits the Muslim ummah.",
     "sectionsLabel": "Learn sections",
@@ -251,6 +252,8 @@
     },
     "project": "Project",
     "startHere": "Start here",
+    "fullSeries": "Series",
+    "videos": "videos",
     "read": "Read",
     "download": "Download",
     "graduation": "Graduation project",
@@ -262,25 +265,59 @@
   "contribute": {
     "eyebrow": "Contribute",
     "title": "Projects built by the community",
-    "description": "The website's code and every product we own the rights to are available to everyone on GitHub. Every contribution, however small, makes an impact.",
-    "statusTitle": "The website's code is on GitHub",
-    "status": "The website repository is live. We are preparing the contribution guide and the code of conduct, and will publish them here as soon as they are ready.",
-    "repoButton": "Open the repository",
+    "description": "Dar Islam & Technology is built by its community: your suggestion, idea, knowledge or skill, however small, makes an impact.",
+    "suggestTitle": "Have a suggestion or an idea?",
+    "suggestBody": "We read every suggestion, and add the useful ideas to our plan.",
+    "suggestButton": "Send your suggestion",
+    "suggestSubject": "A suggestion or an idea",
+    "waysEyebrow": "For everyone",
+    "waysTitle": "How you can contribute",
+    "waysSend": "Email us",
+    "ways": [
+      {
+        "title": "A suggestion or an idea",
+        "body": "Suggest an idea for a product, a new section or an improvement to the site, or recommend a useful video, channel or book.",
+        "subject": "A suggestion or an idea"
+      },
+      {
+        "title": "Da'wah projects",
+        "body": "For students of Islamic knowledge: help with the da'wah projects and with answering atheism and doubts, by preparing material or recommending trusted sources for the Learn paths.",
+        "subject": "Helping with the da'wah projects"
+      },
+      {
+        "title": "Islamic review",
+        "body": "Review the verses, hadiths, adhkar and Islamic information on the site and in the products, if you are qualified to.",
+        "subject": "Islamic review"
+      },
+      {
+        "title": "Development",
+        "body": "Build the website and products and fix bugs; the code is open source on GitHub.",
+        "subject": "Helping with development"
+      },
+      {
+        "title": "Design and content",
+        "body": "Design interfaces and visual identity, or help with editing and making da'wah videos.",
+        "subject": "Design and content"
+      },
+      {
+        "title": "Translation",
+        "body": "Translate between Arabic and English, or review translated texts.",
+        "subject": "Translation"
+      }
+    ],
+    "shariaNote": "Changes to Islamic content are only accepted with documented sources and qualified review.",
     "stepsEyebrow": "For developers",
-    "stepsTitle": "How to contribute code",
-    "stepsBody": "A clear, familiar flow for anyone who has contributed to a project on GitHub.",
+    "stepsTitle": "Contributing to development",
+    "stepsBody": "The website's code is open source on GitHub, with a flow familiar to anyone who has contributed to an open project.",
+    "repoButton": "Open the repository",
     "steps": [
       {
-        "title": "Explore the projects",
-        "body": "See our products and what needs development, translation or testing."
+        "title": "Get to know the project",
+        "body": "Read the README in the repository for the site's structure and how to run it."
       },
       {
-        "title": "Read the guides",
-        "body": "The README and the CONTRIBUTING guide in the repository."
-      },
-      {
-        "title": "Pick a task",
-        "body": "An open issue that suits you; newcomers can start with good first issue."
+        "title": "Choose what to work on",
+        "body": "A bug you noticed, an improvement you suggest, or an open issue."
       },
       {
         "title": "Discuss big changes first",
@@ -288,42 +325,13 @@
       },
       {
         "title": "Open a pull request",
-        "body": "Fork, create a branch, and write your change with tests."
+        "body": "Fork the repository, create a branch, write your change and open a pull request."
       },
       {
         "title": "Review and merge",
-        "body": "Your change is reviewed and tested, then merged with credit."
+        "body": "Your change is reviewed and checked, then merged with credit."
       }
     ],
-    "waysEyebrow": "For everyone",
-    "waysTitle": "Every skill has a place",
-    "ways": [
-      {
-        "title": "Islamic review",
-        "body": "Review of verses, adhkar and quoted information by qualified people."
-      },
-      {
-        "title": "Code",
-        "body": "Build the website and products, write tests and fix bugs."
-      },
-      {
-        "title": "Design",
-        "body": "Interfaces, user experience and visual identity."
-      },
-      {
-        "title": "Translation & writing",
-        "body": "Arabic/English translation, documentation and articles."
-      },
-      {
-        "title": "Testing",
-        "body": "Accessibility and performance testing, and bug reports."
-      },
-      {
-        "title": "Product ideas",
-        "body": "Suggest useful ideas and assess their feasibility."
-      }
-    ],
-    "shariaNote": "Changes to Islamic content are only accepted with documented sources and qualified review.",
     "principlesEyebrow": "Governance",
     "principlesTitle": "How we run the project",
     "principles": [
@@ -333,11 +341,11 @@
       },
       {
         "title": "Respect",
-        "body": "A shared code of conduct, with respectful discussions open to all backgrounds."
+        "body": "Respectful discussions, open to all backgrounds."
       },
       {
         "title": "Review",
-        "body": "Every change is reviewed and tested before merging, and trusted reviewers join gradually."
+        "body": "Every change is reviewed and checked before merging, and trusted reviewers join gradually."
       },
       {
         "title": "Security",
@@ -346,6 +354,10 @@
     ],
     "faqTitle": "Frequently asked questions",
     "faq": [
+      {
+        "q": "Do I have to be a programmer to contribute?",
+        "a": "No. You can contribute a suggestion or an idea, your knowledge in the da'wah projects and Islamic review, or design and translation. Programmers contribute to development on GitHub."
+      },
       {
         "q": "Can I support the project financially?",
         "a": "Yes, and support is entirely optional. The details are on the \"Support us\" page."
@@ -511,11 +523,64 @@
     "community": "Community",
     "openSourceTitle": "Source code",
     "openSource": "The website's code is on GitHub.",
-    "rights": "Dar Islam & Technology"
+    "rights": "Dar Islam & Technology",
+    "privacy": "Privacy policy"
   },
   "notFound": {
     "title": "Page not found",
     "body": "The page may have moved or has not been published yet.",
     "back": "Back to home"
+  },
+  "privacy": {
+    "eyebrow": "Privacy",
+    "title": "Privacy policy",
+    "description": "In short: we don't track you, show ads, sell any data, or ask you for an account.",
+    "updated": "Last updated: 13 November 2026",
+    "sections": [
+      {
+        "title": "What we keep on your device",
+        "points": [
+          "Your language choice, in a cookie named locale for one year, so the site opens in your language next time.",
+          "Your choice of light or dark theme, in your browser's storage.",
+          "The reminder date if you choose \"Remind me in a week\" on the install card, in your browser's storage.",
+          "None of this reaches us, and you can delete it any time in your browser's settings."
+        ]
+      },
+      {
+        "title": "What we don't do",
+        "points": [
+          "We use no analytics or tracking tools, and show no ads.",
+          "There are no accounts or forms on the site that collect your data.",
+          "We don't sell or share any data with anyone."
+        ]
+      },
+      {
+        "title": "Hosting",
+        "points": [
+          "The site is hosted on Vercel, which records technical data about visits (such as IP address and browser type) to run and protect the site, under its own privacy policy."
+        ]
+      },
+      {
+        "title": "Outside services",
+        "points": [
+          "YouTube videos: the player runs in privacy-enhanced mode (youtube-nocookie), and on the Entertainment and Learn pages it loads only when you press play. Video and channel images pass through our server.",
+          "Learn books: reading or downloading takes you to Google Drive, where Google's privacy policy applies.",
+          "Links to our social accounts and to \"Support us\" take you to those sites, each with its own policy."
+        ]
+      },
+      {
+        "title": "Emailing us",
+        "points": [
+          "If you email us, we use your address and message only to reply, and share them with no one."
+        ]
+      },
+      {
+        "title": "Updates to this page",
+        "points": [
+          "We update this page whenever we add a service that stores data, with the date of the last update at the top."
+        ]
+      }
+    ],
+    "questions": "For any question about privacy, email us at:"
   }
 }

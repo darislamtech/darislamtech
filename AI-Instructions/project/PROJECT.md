@@ -15,7 +15,7 @@ It aims to prepare scholars and callers with da'wah projects of their own, and p
 4. Simple to maintain by one owner; content changes through pull requests.
 
 ## Current state
-- Website v1 in the "Build" phase («بناء», shown on the About page: `CURRENT_PHASE` in `components/about/roadmap-section.tsx`), live at https://darislamtech.com (Vercel). Sections: Home, Content, Entertainment, Products, Learn (under construction), Contribute, Support, About, Contact. Installable as a PWA.
+- Website v1 in the "Build" phase («بناء», shown on the About page: `CURRENT_PHASE` in `components/about/roadmap-section.tsx`), live at https://darislamtech.com (Vercel). Sections: Home, Content, Entertainment, Products, Learn (under construction), Contribute, Support, About, Contact, and a Privacy page linked from the footer. Installable as a PWA.
 - Entertainment lists 64 recommended videos, 36 YouTube channels (ours listed in both groups) and 14 books. Products lists four, none available yet: Dar Al-Adhkar (coming soon), Dar Al-Quran, Dar Al-Dirasa and Dar Al-Shubuhat (ideas). No articles or Content videos published yet; those pages show empty states.
 - The logo is the owner's image (approved). The palette is approved by the owner for now; the fonts are not final yet.
 - Name (approved by the owner): «دار الإسلام والتقنية» / "Dar Islam & Technology".

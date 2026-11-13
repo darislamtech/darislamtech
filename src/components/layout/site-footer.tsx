@@ -91,7 +91,15 @@ export function SiteFooter({ locale, dict }: { locale: Locale; dict: Dictionary 
         </div>
 
         <div className="border-t border-line py-6 text-center text-sm text-muted">
-          <p>© 2026 {dict.footer.rights}</p>
+          <p>
+            © 2026 {dict.footer.rights}
+            <span aria-hidden="true" className="mx-2">
+              ·
+            </span>
+            <Link href={localePath(locale, "/privacy")} className="hover:text-ink hover:underline">
+              {dict.footer.privacy}
+            </Link>
+          </p>
         </div>
       </Container>
     </footer>
