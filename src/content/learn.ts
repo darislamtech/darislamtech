@@ -1,4 +1,4 @@
-import type { BookFile, BookSeries, Localized, RoadmapDomain, RoadmapLevel, RoadmapTopic } from "./types";
+import type { BookFile, BookSeries, LevelVideo, Localized, RoadmapDomain, RoadmapLevel, RoadmapTopic } from "./types";
 
 // The program plan, shown on the Learn page as the external track (what to study, in order, from recommended outside
 // sources, in the spirit of roadmap.sh) and the platform track (lessons and series made by Dar, under construction).
@@ -114,7 +114,7 @@ const contentProject = text(
   "Make content in this field (videos, shorts or articles) with the technology track's skills, based on trusted sources.",
 );
 
-const field = (id: string, title: Localized, study: { ar: string[]; en: string[] }, videos?: string[]): RoadmapLevel => ({
+const field = (id: string, title: Localized, study: { ar: string[]; en: string[] }, videos?: LevelVideo[]): RoadmapLevel => ({
   id,
   title,
   topics: [topic(`${id}-study`, text("ما يدرسه في المجال", "What to study in the field"), study)],
@@ -451,8 +451,8 @@ const zadSeries: BookSeries = {
   })),
   study: {
     body: text(
-      "لو حابب تدرس المسار مع أكاديمية زاد نفسها لمدة سنتين، بمحاضرات واختبارات وشهادة:",
-      "To study this path with Zad Academy itself over two years, with lectures, exams and a certificate:",
+      "ادرسه مع زاد نفسها سنتين، بمحاضرات وشهادة:",
+      "Study it with Zad over two years, with lectures and a certificate:",
     ),
     label: text("سجّل في أكاديمية زاد", "Enroll at Zad Academy"),
     url: text("https://zad-academy.com/ar", "https://zad-academy.com/en"),
@@ -486,7 +486,7 @@ const externalShariaDomain: RoadmapDomain = {
       ),
       levels: [
         // Spreading Islam so that people enter it.
-        field("dawah", text("الدعوة إلى الإسلام ونشره", "Calling people to Islam"), {
+        field("dawah", text("مشروع انتشار الإسلام", "Project: spreading Islam"), {
           ar: [
             "التعريف بالإسلام ومحاسنه",
             "فقه الدعوة وأساليبها ووسائلها",
@@ -499,15 +499,62 @@ const externalShariaDomain: RoadmapDomain = {
             "Speaking to non-Muslims and answering their common questions",
             "Caring for new Muslims",
           ],
-        }),
-        field("atheism", text("الرد على الإلحاد والشبهات", "Answering atheism and doubts"), {
+        }, [
+          // دعوة تك: the whole series «دورة الدعوة علي تيك توك», as a link to the playlist.
+          "https://www.youtube.com/watch?v=WpLXtAmIpo4&list=PLU5S-DONgsA4",
+          {
+            // هشام صدقي الإبراشي (بودكاست ربوة), the series «مدخل الى دعوة الوثنيين بغرب إفريقيا»; after the first series, as the owner asked.
+            url: "https://www.youtube.com/playlist?list=PL_Og7SMq1nHA5z-z3NiSwBPzO1GOi0lge",
+            about: text(
+              "مدخل إلى دعوة الوثنيين والتعريف بغرب إفريقيا وأهلها وأديانها، مع د. هشام صدقي الإبراشي في بودكاست ربوة.",
+              "An introduction to calling pagans to Islam, and to West Africa, its peoples and religions, with Dr. Hisham Sedki El-Ebrashy on the Rabwa podcast.",
+            ),
+          },
+          {
+            // دعوة تك: the series that are not already inside «دورة الدعوة علي تيك توك».
+            url: "https://www.youtube.com/playlist?list=PLcB1MiLrdnA8",
+            about: text(
+              "تحفيز لكل من يدعو إلى الإسلام، ومنها «القواعد العشر في دعوة غير المسلمين» للشيخ وليد السحيباني، والدعوة من الهاتف بدون لغة.",
+              "Motivation for anyone calling people to Islam, including Shaykh Waleed Al-Suhaibani's «ten rules for calling non-Muslims», and calling from your phone without a foreign language.",
+            ),
+          },
+          {
+            url: "https://www.youtube.com/playlist?list=PLIA-l_D5M6HM",
+            about: text(
+              "مقاطع قصيرة لمن أسلموا عن طريق الدعوة على تيك توك: ثمار حقيقية تشجّعك على البدء.",
+              "Short clips of people who embraced Islam through da'wah on TikTok: real results to encourage you to start.",
+            ),
+          },
+          {
+            url: "https://www.youtube.com/playlist?list=PLVkFnp3FuWak",
+            about: text(
+              "شرح تطبيق «خزينة الداعية» للدعاة المحاورين والمعلمين.",
+              "A walkthrough of the «Khazinat Al-Da'iyah» app for those who call to Islam, debate and teach.",
+            ),
+          },
+        ]),
+        field("atheism", text("مشروع الرد على الإلحاد والشبهات", "Project: answering atheism and doubts"), {
           ar: ["أدلة وجود الله", "النبوة وصدق القرآن", "أصول الإلحاد وأشهر شبهاته", "أدب الحوار والرد"],
           en: ["The proofs of Allah's existence", "Prophethood and the truth of the Quran", "The roots of atheism and its best-known claims", "The manners of dialogue and response"],
         }, [
           // د. هيثم طلعت: «منهج لدراسة نقد الإلحاد | الكتب التي أحتاجها للرد على الملحدين ومناظرتهم».
           "https://www.youtube.com/watch?v=QIPzwDxDdJg",
+          {
+            url: "https://www.youtube.com/playlist?list=PL56IcDjrf3YJr__TEOJ2UOv3jCzht1_yc",
+            about: text(
+              "سلسلة د. إياد قنيبي لترسيخ اليقين بالله وبالإسلام والرد على الشبهات: الفطرة، وأدلة وجود الله من العقل والعلم، وأخلاق الإلحاد، ونقد نظرية التطور، والتفكير الناقد.",
+              "Dr. Eyad Qunaibi's series to build certainty in Allah and Islam and answer doubts: the innate nature (fitrah), the rational and scientific proofs of Allah's existence, atheism's morals, a critique of evolution, and critical thinking.",
+            ),
+          },
+          {
+            url: "https://www.youtube.com/playlist?list=PLNZ5dcsJaeJ3uqnYiF0hnp7Q3a31j3pim",
+            about: text(
+              "برنامج د. هيثم طلعت على قناة البينة: نشأة الإلحاد وعقيدة الملحد، ومشكلة الشر، والوعي، والمعايرة الدقيقة للكون، وخرافة الأكوان المتعددة، ولماذا الإسلام، والرد على أشهر شبهات الملحدين.",
+              "Dr. Haitham Talaat's program on Al-Bayyinah: the origins of atheism and the atheist's creed, the problem of evil, consciousness, the fine-tuning of the universe, the multiverse myth, why Islam, and answers to atheists' best-known claims.",
+            ),
+          },
         ]),
-        field("comparative-religion", text("مقارنة الأديان", "Comparative religion"), {
+        field("comparative-religion", text("مشروع مقارنة الأديان", "Project: comparative religion"), {
           ar: ["الأديان الكبرى وعقائدها", "الكتب السابقة وتاريخها", "دلائل صدق النبوة والقرآن", "أدب الحوار والمناظرة"],
           en: [
             "The major religions and their beliefs",
@@ -515,20 +562,44 @@ const externalShariaDomain: RoadmapDomain = {
             "The signs of true prophethood and of the Quran",
             "The manners of dialogue and debate",
           ],
-        }),
-        field("quranists", text("الرد على القرآنيين ومنكري السنة", "Answering Quranists and Sunnah deniers"), {
+        }, [
+          // معاذ عليان: «إزاي اتعلم مقارنة أديان؟».
+          "https://www.youtube.com/watch?v=GKXWjpVAcnY",
+          {
+            url: "https://www.youtube.com/playlist?list=PLNZ5dcsJaeJ0hknrf6xWDtd4mCC8doOPs",
+            about: text(
+              "دروس منهجية مبسّطة عن النصرانية والكتاب المقدس مع أ. أحمد سبيع: مصطلحات أساسية، وأسفار التوراة والأنبياء، والأناجيل، والنص الماسوري والترجمة السبعينية.",
+              "Simple, methodical lessons on Christianity and the Bible with Ahmad Sobaie: key terms, the books of the Torah and the Prophets, the Gospels, the Masoretic Text and the Septuagint.",
+            ),
+          },
+          {
+            url: "https://www.youtube.com/playlist?list=PLaeiqSJqUjhxbTxNIfF0gvsndy2Jlvz1L",
+            about: text(
+              "محاضرات منهجية لطلاب معهد آفاق للبناء العقدي عن الأديان الوضعية: الهندوسية، والبوذية، والجاينية والسيخية، والكونفوشية والطاوية، والشنتوية، والزرادشتية.",
+              "Methodical lectures for the students of the Afaq Institute on the man-made religions: Hinduism, Buddhism, Jainism and Sikhism, Confucianism and Taoism, Shinto and Zoroastrianism.",
+            ),
+          },
+          {
+            url: "https://www.youtube.com/playlist?list=PLZmIJBHGeCLw",
+            about: text(
+              "نقد أصول الفلسفة البوذية من خلال أصول دين الأنبياء، مع هشام صدقي الإبراشي: إثبات الصانع، والعدل الإلهي في مقابل الكرما، والبعث في مقابل التناسخ، وضرورة النبوة، وحقيقة الروح، وفقه دعوة البوذيين.",
+              "A critique of the foundations of Buddhist philosophy through the prophets' faith, with Hisham Sedki El-Ebrashy: the Creator, divine justice versus karma, resurrection versus reincarnation, the need for prophethood, the reality of the soul, and calling Buddhists to Islam.",
+            ),
+          },
+        ]),
+        field("quranists", text("مشروع الرد على القرآنيين ومنكري السنة", "Project: answering Quranists and Sunnah deniers"), {
           ar: ["حجية السنة ومكانتها", "علوم الحديث وتدوين السنة", "أشهر شبهاتهم"],
           en: ["The authority and place of the Sunnah", "The sciences of hadith and how the Sunnah was recorded", "Their best-known claims"],
         }),
-        field("feminism", text("الرد على النسوية", "Answering feminism"), {
+        field("feminism", text("مشروع الرد على النسوية", "Project: answering feminism"), {
           ar: ["المرأة في الإسلام: الحقوق والواجبات", "نشأة النسوية وأصولها", "أشهر شبهاتها"],
           en: ["Women in Islam: rights and duties", "The origins and roots of feminism", "Its best-known claims"],
         }),
-        field("secularism", text("الرد على العلمانية", "Answering secularism"), {
+        field("secularism", text("مشروع الرد على العلمانية", "Project: answering secularism"), {
           ar: ["مفهوم العلمانية ونشأتها", "شمول الإسلام للحياة", "أشهر شبهاتها"],
           en: ["What secularism is and where it came from", "Islam as a whole way of life", "Its best-known claims"],
         }),
-        field("kemetism", text("الرد على الكمايتة", "Answering Kemetism"), {
+        field("kemetism", text("مشروع الرد على الكمايتة", "Project: answering Kemetism"), {
           ar: ["أفكار الكمايتة ونشأتها", "دعاوى الهوية والعرق", "موقف الإسلام من العصبية والوثنية", "أشهر شبهاتهم"],
           en: [
             "What Kemetism is and where it came from",
@@ -537,14 +608,20 @@ const externalShariaDomain: RoadmapDomain = {
             "Their best-known claims",
           ],
         }),
-        field("spirituality", text("الرد على دعاوى الطاقة والروحانيات الحديثة", "Answering \"energy\" and modern spirituality claims"), {
+        field("spirituality", text("مشروع الرد على دعاوى الطاقة والروحانيات الحديثة", "Project: answering \"energy\" and modern spirituality claims"), {
           ar: ["أصول هذه الدعاوى وجذورها", "موقف العقيدة منها", "أشهر صورها المنتشرة"],
           en: ["The origins and roots of these claims", "Where Islamic creed stands on them", "Their most widespread forms"],
         }),
-        field("preaching", text("العلم الشرعي والوعظ", "Islamic knowledge and preaching"), {
-          ar: ["التوسع في العلوم الشرعية", "فقه الوعظ وأسلوبه"],
-          en: ["Going further in the Islamic sciences", "The understanding and style of preaching"],
-        }),
+        {
+          // Builds on the first path itself (Zad's books), so it has no study list of its own.
+          id: "preaching",
+          title: text("مشروع العلم الشرعي والوعظ", "Project: Islamic knowledge and preaching"),
+          topics: [],
+          project: text(
+            "بما أنك درست كتب «ما لا يسع المسلمَ جهلُه»، فأنت الآن قادر على تبنّي هذا المشروع: تصنع مما تعلّمته فيديوهات تعليمية ووعظية ودعوية، بمهارات المسار التقني.",
+            "Since you have studied the books of \"What no Muslim may be ignorant of\", you can now take on this project: turn what you learned into educational, preaching and da'wah videos, with the technology track's skills.",
+          ),
+        },
       ],
     },
   ],

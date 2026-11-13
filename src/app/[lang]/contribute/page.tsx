@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import {
+  BookOpenCheck,
   Code,
   Eye,
-  FlaskConical,
   Handshake,
   Languages,
   Lightbulb,
+  Mail,
   Palette,
   Plus,
   ScrollText,
@@ -18,7 +19,7 @@ import { getDictionary, getLocale } from "@/i18n/dictionaries";
 import { pageMetadata } from "@/lib/seo";
 import { GitHubIcon } from "@/components/icons";
 import { CtaPanel, PageHero } from "@/components/page-blocks";
-import { ButtonLink, Container, IconTile, SectionHeading, toneText, type Tone } from "@/components/ui";
+import { ButtonLink, Container, ForwardArrow, IconTile, SectionHeading, toneText, type Tone } from "@/components/ui";
 import { cn } from "@/lib/cn";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -26,10 +27,13 @@ export async function generateMetadata(): Promise<Metadata> {
   return pageMetadata({ locale, dict, path: "/contribute", title: dict.nav.contribute, description: dict.contribute.description });
 }
 
-// Islamic review first, then the technical and creative ways to help.
-const wayIcons = [ScrollText, Code, Palette, Languages, FlaskConical, Lightbulb];
+// Suggestions and the da'wah projects first, then Islamic review, development, design and translation.
+const wayIcons = [Lightbulb, BookOpenCheck, ScrollText, Code, Palette, Languages];
 const principleIcons = [Eye, Handshake, UserCheck, ShieldCheck];
-const wayTones: Tone[] = ["mint", "blue", "rose", "gold", "blue", "rose"];
+const wayTones: Tone[] = ["gold", "mint", "rose", "blue", "rose", "gold"];
+
+// An email to the project with the subject filled in, as on the Contact page.
+const mailto = (subject: string) => `mailto:${siteConfig.email}?subject=${encodeURIComponent(`[Dar] ${subject}`)}`;
 const principleTones: Tone[] = ["blue", "mint", "gold", "rose"];
 
 export default async function ContributePage() {
@@ -51,14 +55,14 @@ export default async function ContributePage() {
         ]}
       >
         <div className="flex max-w-2xl gap-4 rounded-2xl border border-line bg-surface/90 p-5 shadow-soft backdrop-blur">
-          <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-ink text-paper">
-            <GitHubIcon className="size-5" />
-          </span>
+          <IconTile tone="gold" className="size-11 shrink-0">
+            <Lightbulb />
+          </IconTile>
           <div>
-            <p className="font-semibold text-ink">{t.statusTitle}</p>
-            <p className="mt-1 text-sm leading-relaxed text-muted">{t.status}</p>
-            <ButtonLink href={siteConfig.repository} external variant="secondary" size="sm" arrow className="mt-4">
-              {t.repoButton}
+            <p className="font-semibold text-ink">{t.suggestTitle}</p>
+            <p className="mt-1 text-sm leading-relaxed text-muted">{t.suggestBody}</p>
+            <ButtonLink href={mailto(t.suggestSubject)} variant="secondary" size="sm" arrow className="mt-4">
+              {t.suggestButton}
             </ButtonLink>
           </div>
         </div>
@@ -72,15 +76,22 @@ export default async function ContributePage() {
             {t.ways.map((way, index) => {
               const Icon = wayIcons[index];
               return (
-                <li
-                  key={way.title}
-                  className="group rounded-3xl border border-line bg-surface p-6 transition-colors duration-300 hover:border-line-strong sm:p-7"
-                >
-                  <IconTile tone={wayTones[index]}>
-                    <Icon />
-                  </IconTile>
-                  <h3 className="mt-5 font-display text-lg font-semibold text-ink">{way.title}</h3>
-                  <p className="mt-2 leading-relaxed text-muted">{way.body}</p>
+                <li key={way.title}>
+                  <a
+                    href={mailto(way.subject)}
+                    className="group flex h-full flex-col rounded-3xl border border-line bg-surface p-6 transition-all duration-300 hover:-translate-y-0.5 hover:border-line-strong hover:shadow-lift sm:p-7"
+                  >
+                    <IconTile tone={wayTones[index]}>
+                      <Icon />
+                    </IconTile>
+                    <h3 className="mt-5 font-display text-lg font-semibold text-ink">{way.title}</h3>
+                    <p className="mt-2 leading-relaxed text-muted">{way.body}</p>
+                    <span className="mt-auto flex items-center gap-2 pt-6 text-sm font-semibold text-primary">
+                      <Mail aria-hidden="true" className="size-4" />
+                      {t.waysSend}
+                      <ForwardArrow />
+                    </span>
+                  </a>
                 </li>
               );
             })}
@@ -92,12 +103,16 @@ export default async function ContributePage() {
         </Container>
       </section>
 
-      {/* Code contribution flow */}
+      {/* Contributing to development, for developers */}
       <section className="reveal border-y border-line bg-band py-20 sm:py-24">
         <Container className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-4">
             <div className="lg:sticky lg:top-28">
               <SectionHeading eyebrow={t.stepsEyebrow} eyebrowTone="mint" title={t.stepsTitle} description={t.stepsBody} />
+              <ButtonLink href={siteConfig.repository} external variant="secondary" size="sm" arrow className="mt-6">
+                <GitHubIcon className="me-2 size-4" />
+                {t.repoButton}
+              </ButtonLink>
             </div>
           </div>
           <ol className="relative lg:col-span-8">

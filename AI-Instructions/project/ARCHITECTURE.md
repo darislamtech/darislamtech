@@ -18,7 +18,7 @@ src/
     [lang]/                 # root layout; every page lives under /ar or /en
       layout.tsx            # <html lang dir data-theme>, theme script, fonts, header, footer, metadata
       page.tsx              # Home
-      content/ entertainment/ products/ learn/ contribute/ support/ about/ contact/
+      content/ entertainment/ products/ learn/ contribute/ support/ about/ contact/ privacy/
       content/[slug]/ products/[slug]/   # detail pages; generateStaticParams from src/content
       entertainment/channels/ entertainment/books/ entertainment/dartube/   # Entertainment: channel and book recommendations, and DarTube (all videos mixed, shuffled per visit); videos stay at /entertainment
       not-found.tsx

@@ -10,6 +10,7 @@ import {
   ExternalLink,
   GraduationCap,
   Hammer,
+  ListVideo,
   PlayCircle,
   ScrollText,
   ShieldCheck,
@@ -18,9 +19,9 @@ import {
 import { localePath, type Locale } from "@/i18n/config";
 import { getDictionary, getLocale, type Dictionary } from "@/i18n/dictionaries";
 import { pageMetadata } from "@/lib/seo";
-import { getYouTubeVideo } from "@/lib/youtube";
+import { getYouTubePlaylist, getYouTubePlaylistId, getYouTubeVideo } from "@/lib/youtube";
 import { externalDomains, platformDomains } from "@/content/learn";
-import type { BookSeries, RoadmapDomain, RoadmapLevel, RoadmapPath } from "@/content/types";
+import type { BookSeries, LevelVideo, RoadmapDomain, RoadmapLevel, RoadmapPath } from "@/content/types";
 import { CtaPanel, PageHero } from "@/components/page-blocks";
 import { Tabs } from "@/components/tabs";
 import { VideoCard } from "@/components/video/video-card";
@@ -59,7 +60,12 @@ export default async function LearnPage() {
           { href: localePath(locale), label: dict.nav.home },
           { href: localePath(locale, "/learn"), label: dict.nav.learn },
         ]}
-      />
+      >
+        <p className="inline-flex items-center gap-2 rounded-full border border-line bg-tone-gold-soft px-4 py-2 text-sm font-semibold text-ink">
+          <Construction aria-hidden="true" className="size-4 shrink-0 text-tone-gold" />
+          {t.sectionStatus}
+        </p>
+      </PageHero>
 
       <section className="py-16 sm:py-24">
         <Container>
@@ -307,7 +313,7 @@ function LevelToggle({ level, tone, locale, t }: { level: RoadmapLevel; tone: To
             )
           )}
           {level.videos && level.videos.length > 0 && (
-            <LevelVideos urls={level.videos} tone={tone} label={t.startHere} />
+            <LevelVideos entries={level.videos} tone={tone} locale={locale} label={t.startHere} t={t} />
           )}
           {level.project && (
             <div className={cn("flex gap-2 text-sm leading-relaxed", (level.topics.length > 0 || level.videos?.length) && "mt-4")}>
@@ -325,35 +331,91 @@ function LevelToggle({ level, tone, locale, t }: { level: RoadmapLevel; tone: To
 }
 
 /**
- * The videos a level starts with, as cards that play in place (title and thumbnail from YouTube, cached). A link
- * YouTube doesn't know is dropped.
+ * What a level starts with: videos as cards that play in place, and series (a link with `list=`) as links to the
+ * playlist on YouTube, with its name, channel and number of videos. Titles and thumbnails come from YouTube (cached);
+ * a link YouTube doesn't know is dropped, and the same video or series listed twice shows once.
  */
-async function LevelVideos({ urls, tone, label }: { urls: string[]; tone: Tone; label: string }) {
-  const [videos, dict] = await Promise.all([Promise.all(urls.map((url) => getYouTubeVideo(url))), getDictionary()]);
-  // The same video listed twice (e.g. a youtu.be and a watch link) shows once.
-  const found = videos
-    .filter((video) => video !== null)
-    .filter((video, index, list) => list.findIndex((other) => other.id === video.id) === index);
+async function LevelVideos({
+  entries,
+  tone,
+  locale,
+  label,
+  t,
+}: {
+  entries: LevelVideo[];
+  tone: Tone;
+  locale: Locale;
+  label: string;
+  t: Learn;
+}) {
+  const resolve = async (entry: LevelVideo) => {
+    const url = typeof entry === "string" ? entry : entry.url;
+    const about = typeof entry === "string" ? undefined : entry.about[locale];
+    const list = getYouTubePlaylistId(url);
+    if (list) {
+      const series = await getYouTubePlaylist(list);
+      return series && { kind: "series" as const, key: list, list, about, ...series };
+    }
+    const video = await getYouTubeVideo(url);
+    return video && { kind: "video" as const, key: video.id, ...video };
+  };
+  const [items, dict] = await Promise.all([Promise.all(entries.map(resolve)), getDictionary()]);
+  const found = items
+    .filter((item) => item !== null)
+    .filter((item, index, all) => all.findIndex((other) => other.key === item.key) === index);
   if (found.length === 0) return null;
+  const videos = found.filter((item) => item.kind === "video");
+  const series = found.filter((item) => item.kind === "series");
   return (
     <div className="mt-4">
       <p className="flex items-center gap-2 text-sm font-semibold text-ink">
         <PlayCircle aria-hidden="true" className={cn("size-4 shrink-0", toneText[tone])} />
         {label}
       </p>
-      <div className="mt-3 grid gap-4 sm:grid-cols-2">
-        {found.map((video) => (
-          <VideoCard
-            key={video.id}
-            id={video.id}
-            title={video.title ?? dict.entertainment.untitled}
-            thumbnail={video.thumbnail}
-            playLabel={dict.entertainment.play}
-            meta={video.channel ?? undefined}
-            sizes="(min-width: 640px) 360px, 100vw"
-          />
-        ))}
-      </div>
+      {videos.length > 0 && (
+        <div className="mt-3 grid gap-4 sm:grid-cols-2">
+          {videos.map((video) => (
+            <VideoCard
+              key={video.key}
+              id={video.id}
+              title={video.title ?? dict.entertainment.untitled}
+              thumbnail={video.thumbnail}
+              playLabel={dict.entertainment.play}
+              meta={video.channel ?? undefined}
+              sizes="(min-width: 640px) 360px, 100vw"
+            />
+          ))}
+        </div>
+      )}
+      {series.length > 0 && (
+        <ul className="mt-3 space-y-2">
+          {series.map((item) => (
+            <li key={item.key}>
+              <a
+                href={`https://www.youtube.com/playlist?list=${item.list}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex min-h-11 items-center gap-3 rounded-xl border border-line bg-surface px-3 py-2.5 transition-colors hover:border-line-strong"
+              >
+                <ListVideo aria-hidden="true" className={cn("size-5 shrink-0", toneText[tone])} />
+                {/* YouTube titles and channel names can be in any language, so each takes its own direction. */}
+                <span className="min-w-0 flex-1">
+                  <span dir="auto" className="block text-sm font-semibold text-ink">
+                    {item.title ?? t.fullSeries}
+                  </span>
+                  <span className="block text-xs text-muted">
+                    {[t.fullSeries, item.videos && `${item.videos} ${t.videos}`, item.channel].filter(Boolean).join(" · ")}
+                  </span>
+                  {item.about && (
+                    <span className="mt-1 block text-xs leading-relaxed text-ink-2">{item.about}</span>
+                  )}
+                </span>
+                <ExternalLink aria-hidden="true" className="size-4 shrink-0 text-muted" />
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
@@ -424,21 +486,22 @@ function SeriesLevels({ series, tone, locale, t }: { series: BookSeries; tone: T
           </li>
         ))}
       </ul>
-      <div className="mt-4 flex gap-3 rounded-2xl border border-line bg-tone-gold-soft p-4">
-        <GraduationCap aria-hidden="true" className={cn("mt-0.5 size-5 shrink-0", toneText.gold)} />
-        <div>
-          <p className="text-sm leading-relaxed text-ink-2">{series.study.body[locale]}</p>
+      {/* Compact: the text and the enroll link run on together, so the card takes a line or two. */}
+      <p className="mt-3 flex gap-2 rounded-xl border border-line bg-tone-gold-soft px-3 py-1.5 text-sm leading-relaxed text-ink-2">
+        <GraduationCap aria-hidden="true" className={cn("mt-3 size-4 shrink-0", toneText.gold)} />
+        <span>
+          {series.study.body[locale]}{" "}
           <a
             href={series.study.url[locale]}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-2 inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
+            className="inline-flex min-h-11 items-center gap-1 align-middle font-semibold text-primary hover:underline"
           >
             {series.study.label[locale]}
             <ExternalLink aria-hidden="true" className="size-3.5" />
           </a>
-        </div>
-      </div>
+        </span>
+      </p>
     </>
   );
 }
