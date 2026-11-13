@@ -237,6 +237,7 @@
     "description": "An Islamic knowledge and da'wah track and a technology track, studied at your own pace, in two plans: one you study on your own from outside sources we recommend, and one from the platform with lessons made by Dar.",
     "underConstruction": "Under construction",
     "sectionStatus": "Under construction and development",
+    "buildingBody": "We are preparing this part's sources; they will appear here soon.",
     "goalTitle": "Our goal",
     "goal": "That every learner takes on a da'wah project, starts calling people to Allah, and produces work that benefits the Muslim ummah.",
     "sectionsLabel": "Learn sections",
@@ -257,7 +258,6 @@
     "read": "Read",
     "download": "Download",
     "graduation": "Graduation project",
-    "sourcesSoon": "Sources coming soon",
     "suggestTitle": "Have a suggestion for the program?",
     "suggestBody": "Your opinion helps us build the program.",
     "suggestCta": "Share your opinion"
@@ -317,7 +317,7 @@
       },
       {
         "title": "Choose what to work on",
-        "body": "A bug you noticed, an improvement you suggest, or an open issue."
+        "body": "A bug you noticed, or an improvement you suggest."
       },
       {
         "title": "Discuss big changes first",
@@ -543,7 +543,7 @@
           "Your language choice, in a cookie named locale for one year, so the site opens in your language next time.",
           "Your choice of light or dark theme, in your browser's storage.",
           "The reminder date if you choose \"Remind me in a week\" on the install card, in your browser's storage.",
-          "None of this reaches us, and you can delete it any time in your browser's settings."
+          "The language cookie reaches the site with each visit; we use it only to open the site in your language, and we don't store it. The theme and the reminder never leave your browser. You can delete all of this any time in your browser's settings."
         ]
       },
       {

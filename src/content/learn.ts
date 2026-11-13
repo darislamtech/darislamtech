@@ -617,6 +617,7 @@ const externalShariaDomain: RoadmapDomain = {
           id: "preaching",
           title: text("مشروع العلم الشرعي والوعظ", "Project: Islamic knowledge and preaching"),
           topics: [],
+          ready: true,
           project: text(
             "بما أنك درست كتب «ما لا يسع المسلمَ جهلُه»، فأنت الآن قادر على تبنّي هذا المشروع: تصنع مما تعلّمته فيديوهات تعليمية ووعظية ودعوية، بمهارات المسار التقني.",
             "Since you have studied the books of \"What no Muslim may be ignorant of\", you can now take on this project: turn what you learned into educational, preaching and da'wah videos, with the technology track's skills.",

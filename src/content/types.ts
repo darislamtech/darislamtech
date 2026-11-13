@@ -44,7 +44,15 @@ export type RoadmapTopic = { id: string; title: Localized; points?: Localized<st
  * thumbnail are fetched from YouTube; a link with `list=` is a whole series, shown as a link to it) and the project
  * that proves it was learned.
  */
-export type RoadmapLevel = { id: string; title: Localized; topics: RoadmapTopic[]; videos?: LevelVideo[]; project?: Localized };
+export type RoadmapLevel = {
+  id: string;
+  title: Localized;
+  topics: RoadmapTopic[];
+  videos?: LevelVideo[];
+  project?: Localized;
+  /** Built without sources of its own (e.g. it builds on an earlier path), so it never shows as under construction. */
+  ready?: boolean;
+};
 
 /** A YouTube link a level starts with, optionally with what it covers (shown under it, e.g. for a series). */
 export type LevelVideo = string | { url: string; about: Localized };

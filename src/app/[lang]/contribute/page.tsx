@@ -16,6 +16,7 @@ import {
 import { siteConfig } from "@/config/site";
 import { localePath } from "@/i18n/config";
 import { getDictionary, getLocale } from "@/i18n/dictionaries";
+import { mailtoDar } from "@/lib/mailto";
 import { pageMetadata } from "@/lib/seo";
 import { GitHubIcon } from "@/components/icons";
 import { CtaPanel, PageHero } from "@/components/page-blocks";
@@ -33,7 +34,6 @@ const principleIcons = [Eye, Handshake, UserCheck, ShieldCheck];
 const wayTones: Tone[] = ["gold", "mint", "rose", "blue", "rose", "gold"];
 
 // An email to the project with the subject filled in, as on the Contact page.
-const mailto = (subject: string) => `mailto:${siteConfig.email}?subject=${encodeURIComponent(`[Dar] ${subject}`)}`;
 const principleTones: Tone[] = ["blue", "mint", "gold", "rose"];
 
 export default async function ContributePage() {
@@ -61,7 +61,7 @@ export default async function ContributePage() {
           <div>
             <p className="font-semibold text-ink">{t.suggestTitle}</p>
             <p className="mt-1 text-sm leading-relaxed text-muted">{t.suggestBody}</p>
-            <ButtonLink href={mailto(t.suggestSubject)} variant="secondary" size="sm" arrow className="mt-4">
+            <ButtonLink href={mailtoDar(t.suggestSubject)} variant="secondary" size="sm" arrow className="mt-4">
               {t.suggestButton}
             </ButtonLink>
           </div>
@@ -78,7 +78,7 @@ export default async function ContributePage() {
               return (
                 <li key={way.title}>
                   <a
-                    href={mailto(way.subject)}
+                    href={mailtoDar(way.subject)}
                     className="group flex h-full flex-col rounded-3xl border border-line bg-surface p-6 transition-all duration-300 hover:-translate-y-0.5 hover:border-line-strong hover:shadow-lift sm:p-7"
                   >
                     <IconTile tone={wayTones[index]}>
