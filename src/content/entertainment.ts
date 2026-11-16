@@ -306,6 +306,11 @@ export const entertainmentGroups: EntertainmentGroup[] = [
           { url: "https://www.youtube.com/watch?v=EFhjaCxMMCM", added: "2026-11-09T13:34" },
         ],
       },
+      {
+        id: "electronics-repair",
+        title: { ar: "صيانة الإلكترونيات", en: "Electronics repair" },
+        items: [{ url: "https://www.youtube.com/watch?v=JMbuYOn34xI", added: "2026-11-16T15:50" }],
+      },
     ],
     channels: [
       {
