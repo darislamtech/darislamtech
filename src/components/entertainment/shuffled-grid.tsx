@@ -6,7 +6,7 @@ import { shuffled } from "@/lib/shuffle";
 type Item = { key: string; node: React.ReactNode };
 
 /**
- * A grid shown in a new random order each time it appears (DarTube). The page is prerendered with the items in their
+ * A grid shown in a new random order each time it appears (the videos page's «الكل» tab). The page is prerendered with the items in their
  * listed order; the browser shuffles them on mount, and the grid stays invisible and `aria-busy` until then so the
  * reorder isn't seen (globals.css shows it anyway if the script never runs; without JavaScript it shows at once).
  */

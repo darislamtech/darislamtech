@@ -10,7 +10,7 @@ type VideoCardProps = {
   title: string;
   thumbnail: string;
   playLabel: string;
-  /** A line under the title, e.g. the channel and views (DarTube). */
+  /** A line under the title, e.g. the channel and views (the videos page's «الكل» tab). */
   meta?: string;
   /** The thumbnail's width on the page, for the browser to pick its size (default: up to 3 per row). */
   sizes?: string;

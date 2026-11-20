@@ -13,7 +13,7 @@ export type ResolvedVideo = YouTubeVideo & YouTubeVideoDetails & { order: number
  * Resolves one recommended video for the Entertainment pages: title, channel and thumbnail, then views and publish
  * date (all cached; see lib/youtube.ts). Returns null for a link YouTube doesn't know, so it is dropped.
  */
-export async function resolveVideo(item: RecommendedVideo, order: number): Promise<ResolvedVideo | null> {
+async function resolveVideo(item: RecommendedVideo, order: number): Promise<ResolvedVideo | null> {
   // A mistyped date would silently break the order, so the build stops on it instead.
   if (!ADDED_FORMAT.test(item.added) || Number.isNaN(Date.parse(item.added))) {
     throw new Error(`Entertainment video ${item.url}: "added" must look like 2026-11-06T21:30, got "${item.added}"`);
@@ -21,6 +21,28 @@ export async function resolveVideo(item: RecommendedVideo, order: number): Promi
   const video = await getYouTubeVideo(item.url);
   if (!video) return null;
   return { ...video, ...(await getYouTubeDetails(video.id)), order, added: Date.parse(item.added) };
+}
+
+// How many videos a page resolves at once. Pages list hundreds of videos, and asking YouTube about all of them together
+// saturated the connection during the build: most requests timed out and the videos lost their titles.
+const RESOLVE_PARALLEL = 8;
+
+/**
+ * Resolves many videos, at most RESOLVE_PARALLEL at a time, keeping their order (each entry's own `order` is its place
+ * in its category). The limit lives here, in the page's render, not inside the cached YouTube functions: a cached
+ * function must never wait on another call's promise.
+ */
+export async function resolveVideos(entries: { item: RecommendedVideo; order: number }[]): Promise<(ResolvedVideo | null)[]> {
+  const results: (ResolvedVideo | null)[] = Array.from({ length: entries.length }, () => null);
+  let next = 0;
+  const worker = async () => {
+    while (next < entries.length) {
+      const index = next++;
+      results[index] = await resolveVideo(entries[index].item, entries[index].order);
+    }
+  };
+  await Promise.all(Array.from({ length: Math.min(RESOLVE_PARALLEL, entries.length) }, worker));
+  return results;
 }
 
 // Categories that have videos, in the videos page order: group by group (cultural before tech), and inside each group

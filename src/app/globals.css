@@ -340,8 +340,9 @@
   }
 }
 
-/* ShuffledGrid (DarTube) stays hidden until the browser shuffles it; if its script never runs, it shows anyway after a
-   moment. This is a wait, not motion, so the reduced-motion override below must not shorten it (this selector wins). */
+/* ShuffledGrid (the videos page's «الكل» tab) stays hidden until the browser shuffles it; if its script never runs,
+   it shows anyway after a moment. This is a wait, not motion, so the reduced-motion override below must not shorten
+   it (this selector wins). */
 [data-shuffled-grid][aria-busy="true"] {
   opacity: 0;
   animation: shuffled-grid-fallback 0s 1.5s forwards !important;

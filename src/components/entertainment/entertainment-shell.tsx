@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BookOpen, Clapperboard, MonitorPlay, Tv } from "lucide-react";
+import { BookOpen, Clapperboard, Tv } from "lucide-react";
 import { localePath, type Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries";
 import { PageHero } from "../page-blocks";
@@ -7,11 +7,13 @@ import { Tabs } from "../tabs";
 import { Container, toneDot, type Tone } from "../ui";
 import { cn } from "@/lib/cn";
 
-export type EntertainmentSection = "videos" | "channels" | "books" | "dartube";
+export type EntertainmentSection = "videos" | "channels" | "books";
 
 export type EntertainmentGroupView = {
   id: string;
   label: string;
+  /** A tab with its own content instead of categories (the videos page's «الكل»), and the count its button shows. */
+  own?: { content: React.ReactNode; count: number };
   categories: {
     id: string;
     title: string;
@@ -25,7 +27,6 @@ const sections: { id: EntertainmentSection; path: string; Icon: typeof Tv }[] = 
   { id: "videos", path: "/entertainment", Icon: Clapperboard },
   { id: "channels", path: "/entertainment/channels", Icon: Tv },
   { id: "books", path: "/entertainment/books", Icon: BookOpen },
-  { id: "dartube", path: "/entertainment/dartube", Icon: MonitorPlay },
 ];
 
 // Each category heading takes the next of the four tones.
@@ -36,33 +37,24 @@ type EntertainmentShellProps = {
   dict: Dictionary;
   current: EntertainmentSection;
   description: string;
-  /** Controls shown above the content, e.g. the videos sort. */
+  /** Controls shown above the tabs, e.g. the random pick. */
   toolbar?: React.ReactNode;
-} & (
-  | {
-      /** One tab per group, with its categories. */
-      groups: EntertainmentGroupView[];
-      /** Shown under a category with nothing in it yet, or once in a tab with no categories. */
-      empty: string;
-      /** Grid columns for this kind of card. */
-      gridClassName: string;
-      children?: never;
-    }
-  | {
-      /** A page's own content instead of the group tabs (DarTube's single mixed grid). */
-      children: React.ReactNode;
-      groups?: never;
-      empty?: never;
-      gridClassName?: never;
-    }
-);
+  /** Controls shown at the top of each group's tab, above its categories (the videos sort). */
+  groupToolbar?: React.ReactNode;
+  /** One tab per group, with its categories (or its own content). The first tab is open by default. */
+  groups: EntertainmentGroupView[];
+  /** Shown under a category with nothing in it yet, or once in a tab with no categories. */
+  empty: string;
+  /** Grid columns for this kind of card. */
+  gridClassName: string;
+};
 
 /**
- * Shared layout of the Entertainment pages (videos, channels, books, DarTube): hero, links between the pages, then one
- * tab per group with its categories, or the page's own content. Each page resolves its own cards and passes them in.
+ * Shared layout of the Entertainment pages (videos, channels, books): hero, links between the pages, then one tab per
+ * group with its categories. Each page resolves its own cards and passes them in.
  */
 export function EntertainmentShell(props: EntertainmentShellProps) {
-  const { locale, dict, current, description, toolbar } = props;
+  const { locale, dict, current, description, toolbar, groupToolbar, groups, empty, gridClassName } = props;
   const t = dict.entertainment;
   const crumbs = [
     { href: localePath(locale), label: dict.nav.home },
@@ -83,8 +75,8 @@ export function EntertainmentShell(props: EntertainmentShellProps) {
 
       <Container className="py-16 sm:py-20">
         <nav aria-label={t.sectionsLabel}>
-          {/* Phones: no icons, tighter padding, and two rows of two, so the four links fit at 320px in both languages. */}
-          <ul className="grid grid-cols-2 gap-1 rounded-2xl border border-line bg-surface p-1.5 sm:inline-flex">
+          {/* Phones: no icons and tighter padding, so the three links fit in one row at 320px in both languages. */}
+          <ul className="grid grid-cols-3 gap-1 rounded-2xl border border-line bg-surface p-1.5 sm:inline-flex">
             {sections.map(({ id, path, Icon }) => (
               <li key={id} className="min-w-0">
                 <Link
@@ -105,11 +97,13 @@ export function EntertainmentShell(props: EntertainmentShellProps) {
 
         <div className="mt-10">
           {toolbar && <div className="mb-8">{toolbar}</div>}
-          {props.groups ? (
-            <GroupTabs label={t.groupsLabel} groups={props.groups} empty={props.empty} gridClassName={props.gridClassName} />
-          ) : (
-            props.children
-          )}
+          <GroupTabs
+            label={t.groupsLabel}
+            groups={groups}
+            groupToolbar={groupToolbar}
+            empty={empty}
+            gridClassName={gridClassName}
+          />
         </div>
       </Container>
     </>
@@ -120,25 +114,32 @@ export function EntertainmentShell(props: EntertainmentShellProps) {
 function GroupTabs({
   label,
   groups,
+  groupToolbar,
   empty,
   gridClassName,
 }: {
   label: string;
   groups: EntertainmentGroupView[];
+  groupToolbar?: React.ReactNode;
   empty: string;
   gridClassName: string;
 }) {
   return (
     <Tabs
       label={label}
+      // Three tabs (the videos page with «الكل») would scroll out of sight on phones, so they stack there.
+      stackOnMobile={groups.length > 2}
       items={groups.map((group) => ({
         id: group.id,
         label: group.label,
-        count: group.categories.reduce((total, category) => total + category.items.length, 0),
-        content:
-          group.categories.length === 0 ? (
-            <EmptyNote text={empty} />
-          ) : (
+        count: group.own?.count ?? group.categories.reduce((total, category) => total + category.items.length, 0),
+        content: group.own ? (
+          group.own.content
+        ) : group.categories.length === 0 ? (
+          <EmptyNote text={empty} />
+        ) : (
+          <>
+            {groupToolbar && <div className="mb-8">{groupToolbar}</div>}
             <div className="space-y-14">
               {group.categories.map((category, index) => (
                 <section key={category.id} aria-labelledby={`category-${category.id}`}>
@@ -166,7 +167,8 @@ function GroupTabs({
                 </section>
               ))}
             </div>
-          ),
+          </>
+        ),
       }))}
     />
   );

@@ -392,6 +392,8 @@
     "title": "Entertainment with benefit",
     "description": "Videos we pick for you from YouTube, grouped by topic.",
     "groupsLabel": "Entertainment groups",
+    "all": "All",
+    "views": "{n} views",
     "empty": "No videos in this category yet.",
     "play": "Play video",
     "untitled": "YouTube video",
@@ -402,11 +404,7 @@
     "next": "Next",
     "topics": "Topics:",
     "sectionsLabel": "Entertainment types",
-    "sections": { "videos": "Videos", "channels": "Channels", "books": "Books", "dartube": "DarTube" },
-    "dartube": {
-      "description": "All our entertainment videos in one place, Islamic and tech together, in a new random order on every visit.",
-      "views": "{n} views"
-    },
+    "sections": { "videos": "Videos", "channels": "Channels", "books": "Books" },
     "channels": {
       "description": "YouTube channels we recommend, grouped by topic.",
       "featured": "Including:",

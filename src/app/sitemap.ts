@@ -13,7 +13,6 @@ const paths = [
   "/entertainment",
   "/entertainment/channels",
   "/entertainment/books",
-  "/entertainment/dartube",
   "/products",
   "/learn",
   "/contribute",
