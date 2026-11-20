@@ -13,7 +13,7 @@ export type ResolvedVideo = YouTubeVideo & YouTubeVideoDetails & { order: number
  * Resolves one recommended video for the Entertainment pages: title, channel and thumbnail, then views and publish
  * date (all cached; see lib/youtube.ts). Returns null for a link YouTube doesn't know, so it is dropped.
  */
-export async function resolveVideo(item: RecommendedVideo, order: number): Promise<ResolvedVideo | null> {
+async function resolveVideo(item: RecommendedVideo, order: number): Promise<ResolvedVideo | null> {
   // A mistyped date would silently break the order, so the build stops on it instead.
   if (!ADDED_FORMAT.test(item.added) || Number.isNaN(Date.parse(item.added))) {
     throw new Error(`Entertainment video ${item.url}: "added" must look like 2026-11-06T21:30, got "${item.added}"`);

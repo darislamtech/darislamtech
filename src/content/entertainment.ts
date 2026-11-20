@@ -432,17 +432,12 @@ export const entertainmentGroups: EntertainmentGroup[] = [
         id: "software-quality",
         title: { ar: "هندسة البرمجيات وجودة الكود", en: "Software engineering and code quality" },
         items: [
+          { url: "https://www.youtube.com/watch?v=oNElDx0KsYg", added: "2026-11-19T13:29" },
           { url: "https://www.youtube.com/watch?v=c0c1NmAfLuM", added: "2026-11-19T13:21" },
           { url: "https://www.youtube.com/watch?v=yK8LC_JbH00", added: "2026-11-19T13:27" },
           { url: "https://www.youtube.com/watch?v=u327eeZLfLs", added: "2026-11-19T13:25" },
           { url: "https://www.youtube.com/watch?v=CnzCXtvDLzA", added: "2026-11-19T13:21" },
           { url: "https://www.youtube.com/watch?v=OT2SbUIR4ps", added: "2026-11-19T13:22" },
-        ],
-      },
-      {
-        id: "algorithms",
-        title: { ar: "الخوارزميات وهياكل البيانات", en: "Algorithms and data structures" },
-        items: [
         ],
       },
       {
@@ -460,7 +455,6 @@ export const entertainmentGroups: EntertainmentGroup[] = [
           { url: "https://www.youtube.com/watch?v=DevQaHbgcB4", added: "2026-11-19T13:28" },
           { url: "https://www.youtube.com/watch?v=Xnu-zoqopNM", added: "2026-11-19T13:29" },
           { url: "https://www.youtube.com/watch?v=jSNMPZ3Ti8I", added: "2026-11-19T13:28" },
-          { url: "https://www.youtube.com/watch?v=a7wYHAH9-NQ", added: "2026-11-19T13:23" },
         ],
       },
       {
@@ -496,17 +490,12 @@ export const entertainmentGroups: EntertainmentGroup[] = [
           { url: "https://www.youtube.com/watch?v=ZJKbFj3OKeI", added: "2026-11-19T13:29" },
           { url: "https://www.youtube.com/watch?v=h57lGKNev9s", added: "2026-11-19T13:27" },
           { url: "https://www.youtube.com/watch?v=qowb41lzpgc", added: "2026-11-19T13:26" },
-          { url: "https://www.youtube.com/watch?v=M__8C7QBT4k", added: "2026-11-19T13:25" },
-          { url: "https://www.youtube.com/watch?v=_gs-DIGfQJs", added: "2026-11-19T13:24" },
-          { url: "https://www.youtube.com/watch?v=uN4GsroBv8E", added: "2026-11-19T13:22" },
-          { url: "https://www.youtube.com/watch?v=QqKdGHgvvOI", added: "2026-11-19T13:21" },
         ],
       },
       {
         id: "seo-marketing",
         title: { ar: "السيو والتسويق الرقمي", en: "SEO and digital marketing" },
         items: [
-          { url: "https://www.youtube.com/watch?v=XE6_o1ntJDc", added: "2026-11-19T13:29" },
           { url: "https://www.youtube.com/watch?v=gl4pV-YBTSo", added: "2026-11-19T13:22" },
           { url: "https://www.youtube.com/watch?v=2ZKw0jdYFr8", added: "2026-11-19T13:24" },
         ],

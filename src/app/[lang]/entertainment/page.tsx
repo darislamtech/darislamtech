@@ -32,7 +32,7 @@ export default async function EntertainmentPage() {
   const entries = entertainmentGroups.flatMap((group) =>
     group.videos.flatMap((category) => category.items.map((item, order) => ({ item, order }))),
   );
-  const resolved = new Map(entries.map((entry, index) => [entry.item, index]));
+  const indexOf = new Map(entries.map((entry, index) => [entry.item, index]));
   const results = await resolveVideos(entries);
 
   // «الكل»: every video once, both groups together (a video may sit in two categories), in a grid like YouTube's home
@@ -70,33 +70,29 @@ export default async function EntertainmentPage() {
     },
   };
 
-  const groups = await Promise.all(
-    entertainmentGroups.map(async (group) => {
-      const categories = await Promise.all(
-        group.videos.map(async (category) => {
-          const videos = category.items
-            .map((item) => results[resolved.get(item) ?? -1] ?? null)
-            .filter((video) => video !== null);
-          const items = videos.map((video) => ({
-            key: video.id,
-            added: video.added,
-            order: video.order,
-            views: video.views,
-            node: <VideoCard id={video.id} title={video.title ?? t.untitled} thumbnail={video.thumbnail} playLabel={t.play} />,
-          }));
-          return {
-            id: category.id,
-            title: category.title[locale],
-            items,
-            newest: Math.max(0, ...videos.map((video) => video.added)),
-            content: <VideoRow items={items} labels={{ previous: t.previous, next: t.next }} />,
-          };
-        }),
-      );
-      // The category we added a video to most recently comes first; empty ones keep their order at the end.
-      return { id: group.id, label: group.title[locale], categories: categories.sort((a, b) => b.newest - a.newest) };
-    }),
-  );
+  const groups = entertainmentGroups.map((group) => {
+    const categories = group.videos.map((category) => {
+      const videos = category.items
+        .map((item) => results[indexOf.get(item) ?? -1] ?? null)
+        .filter((video) => video !== null);
+      const items = videos.map((video) => ({
+        key: video.id,
+        added: video.added,
+        order: video.order,
+        views: video.views,
+        node: <VideoCard id={video.id} title={video.title ?? t.untitled} thumbnail={video.thumbnail} playLabel={t.play} />,
+      }));
+      return {
+        id: category.id,
+        title: category.title[locale],
+        items,
+        newest: Math.max(0, ...videos.map((video) => video.added)),
+        content: <VideoRow items={items} labels={{ previous: t.previous, next: t.next }} />,
+      };
+    });
+    // The category we added a video to most recently comes first; empty ones keep their order at the end.
+    return { id: group.id, label: group.title[locale], categories: categories.sort((a, b) => b.newest - a.newest) };
+  });
 
   // "Most viewed" only when YouTube gave us view counts; otherwise it would just repeat "newest".
   const hasViews = groups.some((group) => group.categories.some((category) => category.items.some((item) => item.views !== null)));
