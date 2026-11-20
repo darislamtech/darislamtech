@@ -508,9 +508,12 @@ export const entertainmentGroups: EntertainmentGroup[] = [
         ],
       },
       {
-        id: "hardware",
-        title: { ar: "الأجهزة وإصلاحها", en: "Devices and repairing them" },
-        items: [{ url: "https://www.youtube.com/watch?v=by1ITGPVojU", added: "2026-11-20T03:41" }],
+        id: "electronics-repair",
+        title: { ar: "صيانة الإلكترونيات", en: "Electronics repair" },
+        items: [
+          { url: "https://www.youtube.com/watch?v=JMbuYOn34xI", added: "2026-11-16T15:50" },
+          { url: "https://www.youtube.com/watch?v=by1ITGPVojU", added: "2026-11-20T03:41" },
+        ],
       },
     ],
     channels: [
