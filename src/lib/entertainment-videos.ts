@@ -23,6 +23,28 @@ export async function resolveVideo(item: RecommendedVideo, order: number): Promi
   return { ...video, ...(await getYouTubeDetails(video.id)), order, added: Date.parse(item.added) };
 }
 
+// How many videos a page resolves at once. Pages list hundreds of videos, and asking YouTube about all of them together
+// saturated the connection during the build: most requests timed out and the videos lost their titles.
+const RESOLVE_PARALLEL = 8;
+
+/**
+ * Resolves many videos, at most RESOLVE_PARALLEL at a time, keeping their order (each entry's own `order` is its place
+ * in its category). The limit lives here, in the page's render, not inside the cached YouTube functions: a cached
+ * function must never wait on another call's promise.
+ */
+export async function resolveVideos(entries: { item: RecommendedVideo; order: number }[]): Promise<(ResolvedVideo | null)[]> {
+  const results: (ResolvedVideo | null)[] = Array.from({ length: entries.length }, () => null);
+  let next = 0;
+  const worker = async () => {
+    while (next < entries.length) {
+      const index = next++;
+      results[index] = await resolveVideo(entries[index].item, entries[index].order);
+    }
+  };
+  await Promise.all(Array.from({ length: Math.min(RESOLVE_PARALLEL, entries.length) }, worker));
+  return results;
+}
+
 // Categories that have videos, in the videos page order: group by group (cultural before tech), and inside each group
 // the category we added to most recently first.
 const newestAdded = (items: { added: string }[]) => Math.max(...items.map((item) => Date.parse(item.added)));

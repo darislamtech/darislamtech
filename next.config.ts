@@ -56,6 +56,8 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // DarTube became the «الكل» tab of the videos page (owner, 2026-11-20); old links land there.
+      { source: "/:lang(ar|en)/entertainment/dartube", destination: "/:lang/entertainment", permanent: true },
       // One public address: the Vercel production URL sends visitors and search engines to the domain.
       {
         source: "/:path*",

@@ -20,7 +20,7 @@ src/
       page.tsx              # Home
       content/ entertainment/ products/ learn/ contribute/ support/ about/ contact/ privacy/
       content/[slug]/ products/[slug]/   # detail pages; generateStaticParams from src/content
-      entertainment/channels/ entertainment/books/ entertainment/dartube/   # Entertainment: channel and book recommendations, and DarTube (all videos mixed, shuffled per visit); videos stay at /entertainment
+      entertainment/channels/ entertainment/books/   # Entertainment: channel and book recommendations; videos stay at /entertainment, opening on the «الكل» tab (all videos mixed, shuffled per visit; /entertainment/dartube redirects there)
       not-found.tsx
   components/               # root: only shared building blocks used across pages — ui.tsx (primitives), page-blocks.tsx, icons.tsx, pattern.tsx, brand.tsx (logo), tabs.tsx, copy-button.tsx. Everything else lives in a feature folder:
     layout/                 # the site shell: site-header (+ header-shell, mobile-menu, nav data, nav-link, language-switcher), site-footer, install-prompt (mobile install card)
@@ -30,7 +30,7 @@ src/
     products/               # product-status.ts (status order and colors)
     home/                   # the home page sections, one file each (home-hero, offer-section + bento-card, latest-posts, mission-section, channel-section) + hero-visual; app/[lang]/page.tsx assembles them and adds the site JSON-LD
     about/                  # roadmap-section.tsx: «أين نحن الآن», the project phases with the current one (CURRENT_PHASE)
-    entertainment/          # shared layout of the four Entertainment pages (hero, links between them, then group tabs or a page's own content) + channel and book cards; video-rows.tsx: the videos sort buttons and one-row-per-category carousel; random-pick.tsx: the «اختر لي...» random pick button; shuffled-grid.tsx: DarTube's grid, shuffled in the browser
+    entertainment/          # shared layout of the three Entertainment pages (hero, links between them, then group tabs; a tab may have its own content, like the videos page's «الكل») + channel and book cards; video-rows.tsx: the videos sort buttons and one-row-per-category carousel; random-pick.tsx: the «اختر لي...» random pick button; shuffled-grid.tsx: the «الكل» tab's grid, shuffled in the browser
   content/                  # site content as typed data (posts, videos, entertainment, products, learning program) + types.ts
   i18n/
     config.ts               # locales, direction, localePath()
@@ -39,7 +39,7 @@ src/
     dictionaries/en.json    # must match ar.json's shape (type-checked)
   config/site.ts            # site URL, project email, Dar's and the founder's accounts, support links
   lib/cn.ts                 # clsx + tailwind-merge
-  lib/entertainment-videos.ts   # resolveVideo(): one recommended video → title, channel, thumbnail, views, publish date; the topics meta description and the CollectionPage/VideoObject JSON-LD (shared by the videos page and DarTube)
+  lib/entertainment-videos.ts   # resolveVideo()/resolveVideos(): one recommended video (or many, a few at a time) → title, channel, thumbnail, views, publish date; the topics meta description and the CollectionPage/VideoObject JSON-LD (videos page)
   lib/shuffle.ts            # shuffled(): random order (browser only, or after connection() on the server)
   lib/seo.ts                # pageMetadata(): canonical, ar/en/x-default alternates, Open Graph/X card for every page
   lib/youtube.ts            # link → video id; title via YouTube oEmbed ("use cache", cacheLife days), hqdefault thumbnail; channel name and picture from the channel page's Open Graph tags (same cache); video views and publish date (getYouTubeDetails) via the YouTube Data API when `YOUTUBE_API_KEY` is set (Vercel env), else the watch page
@@ -48,7 +48,7 @@ src/
 ## Data flow
 - Locale comes from the `[lang]` root param (`next/root-params`), never from props drilled through components.
 - UI strings come from the dictionaries; content entries carry both languages as `{ ar, en }`.
-- Client components are limited to interactivity: header scroll state, mobile menu, nav active state, language switcher, theme script and toggle, tabs, video player, videos sort and carousel, random pick, DarTube shuffle, copy button, install prompt (mobile install card).
+- Client components are limited to interactivity: header scroll state, mobile menu, nav active state, language switcher, theme script and toggle, tabs, video player, videos sort and carousel, random pick, «الكل» shuffle, copy button, install prompt (mobile install card).
 
 ## Cache Components constraints
 - Dynamic routes must return at least one param from `generateStaticParams`; empty content lists return a placeholder slug that renders `notFound()`.
