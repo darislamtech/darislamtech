@@ -23,6 +23,7 @@ export const entertainmentGroups: EntertainmentGroup[] = [
         items: [
           { url: "https://www.youtube.com/watch?v=S9QMNG9Lt9I", added: "2026-11-05T21:40" },
           { url: "https://www.youtube.com/watch?v=G7PyaAorVHE", added: "2026-11-05T21:41" },
+          { url: "https://www.youtube.com/watch?v=rMwhRrI3gEQ", added: "2026-11-21T06:03" },
         ],
       },
       {
@@ -34,6 +35,11 @@ export const entertainmentGroups: EntertainmentGroup[] = [
           { url: "https://www.youtube.com/watch?v=KZQlfUGoky8", added: "2026-11-05T21:50" },
           { url: "https://www.youtube.com/watch?v=DfAuJSQu3pI", added: "2026-11-06T01:20" },
         ],
+      },
+      {
+        id: "anime",
+        title: { ar: "الأنمي", en: "Anime" },
+        items: [{ url: "https://www.youtube.com/watch?v=aci1RygX5rE", added: "2026-11-21T06:08" }],
       },
       { id: "quran-clips", title: { ar: "تلاوات قرآنية قصيرة", en: "Short Quran recitations" }, items: [] },
       {
@@ -83,6 +89,8 @@ export const entertainmentGroups: EntertainmentGroup[] = [
           { url: "https://www.youtube.com/watch?v=LquO5LWcf6Y", added: "2026-11-06T18:22" },
           { url: "https://www.youtube.com/watch?v=3WVIycBGRRE", added: "2026-11-06T18:24" },
           { url: "https://www.youtube.com/watch?v=eaW10GIWIpQ", added: "2026-11-09T13:32" },
+          { url: "https://www.youtube.com/watch?v=xC5eGRht7Ig", added: "2026-11-21T06:02" },
+          { url: "https://www.youtube.com/watch?v=GEOibv1sDas", added: "2026-11-21T06:06" },
         ],
       },
       {
@@ -94,7 +102,7 @@ export const entertainmentGroups: EntertainmentGroup[] = [
         ],
       },
       {
-        // د. عبدالله رشدي: his five latest videos, oldest first.
+        // د. عبدالله رشدي: his five latest videos, oldest first; then two from محمد غنايم Plus.
         id: "sunnah-deniers",
         title: { ar: "منكرو السنة", en: "Sunnah deniers" },
         items: [
@@ -103,6 +111,8 @@ export const entertainmentGroups: EntertainmentGroup[] = [
           { url: "https://www.youtube.com/watch?v=3jJWw33fao4", added: "2026-11-13T20:42" },
           { url: "https://www.youtube.com/watch?v=D4i4LjjWuEw", added: "2026-11-13T20:43" },
           { url: "https://www.youtube.com/watch?v=GJiDxsa0GcU", added: "2026-11-13T20:44" },
+          { url: "https://www.youtube.com/watch?v=zgyBg8qj05I", added: "2026-11-21T06:05" },
+          { url: "https://www.youtube.com/watch?v=U8q98OQYsBE", added: "2026-11-21T06:07" },
         ],
       },
       {
@@ -113,10 +123,20 @@ export const entertainmentGroups: EntertainmentGroup[] = [
           { url: "https://www.youtube.com/watch?v=cnjq7I7yMoY", added: "2026-11-06T01:11" },
           { url: "https://www.youtube.com/watch?v=iHvae7hb_q0", added: "2026-11-06T01:12" },
           { url: "https://www.youtube.com/watch?v=_EQpPmK-3jE", added: "2026-11-06T01:21" },
+          { url: "https://www.youtube.com/watch?v=knPpPBr14Ec", added: "2026-11-21T06:01" },
         ],
       },
       { id: "secularism", title: { ar: "العلمانية", en: "Secularism" }, items: [] },
       { id: "kemetism", title: { ar: "الكمايتة والعنصرية", en: "Kemetism and racism" }, items: [] },
+      {
+        id: "energy-astrology",
+        title: { ar: "دعاوى الطاقة والتنجيم", en: "Energy-healing claims and astrology" },
+        items: [
+          { url: "https://www.youtube.com/watch?v=JMsxXg41I2o", added: "2026-11-10T12:25" },
+          { url: "https://www.youtube.com/watch?v=_fdlTA0vwA0", added: "2026-11-21T06:00" },
+          { url: "https://www.youtube.com/watch?v=sybpQo7K5eU", added: "2026-11-21T06:04" },
+        ],
+      },
       { id: "colonialism", title: { ar: "جرائم الاستعمار", en: "Crimes of colonialism" }, items: [] },
       {
         id: "podcasts",
@@ -128,12 +148,11 @@ export const entertainmentGroups: EntertainmentGroup[] = [
         ],
       },
       {
-        // Videos that fit no other category clearly go here (owner's rule).
+        // Only for a video whose topic itself is unclear; a clear topic with no category gets a new category (owner's rule).
         id: "misc",
         title: { ar: "منوعات", en: "Miscellaneous" },
         items: [
           { url: "https://www.youtube.com/watch?v=F6E1mFIZC0o", added: "2026-11-08T12:35" },
-          { url: "https://www.youtube.com/watch?v=JMsxXg41I2o", added: "2026-11-10T12:25" },
         ],
       },
     ],
@@ -160,6 +179,7 @@ export const entertainmentGroups: EntertainmentGroup[] = [
           { url: "https://www.youtube.com/@Dr.Ibrahem_Emam", name: "Ibrahim Emam - الساخر الهادف" },
           { url: "https://www.youtube.com/@marwan7egazy", name: "Marwan Hegazy - مروان حجازي" },
           { url: "https://www.youtube.com/@yuosef_jo", name: "YUOSEF JO" },
+          { url: "https://www.youtube.com/@GhanayemShorts", name: "محمد غنايم Plus" },
           ourChannel,
         ],
       },
