@@ -29,6 +29,8 @@ export function ShuffledGrid({
 }) {
   const [order, setOrder] = useState<number[] | null>(null);
   const [shown, setShown] = useState(pageSize);
+  // Bumped when the button loses focus, so the observer checks again (it skipped loading while the button had focus).
+  const [blurs, setBlurs] = useState(0);
   const grid = useRef<HTMLDivElement>(null);
   const more = useRef<HTMLButtonElement>(null);
   // Set when the button (not scrolling) loaded a batch: focus then moves to the first new video.
@@ -47,19 +49,22 @@ export function ShuffledGrid({
   }, [count, pageSize]);
 
   // The next batch when the button comes near the screen. Observing again after each batch fires at once if the
-  // button is still near, so a tall screen fills up. A hidden tab never intersects.
+  // button is still near, so a tall screen fills up. A hidden tab never intersects. Not while the button has focus:
+  // the new videos would land before it unseen (a screen reader can jump straight to the button), so pressing it
+  // loads them and moves focus to the first one.
   useEffect(() => {
     const button = more.current;
     if (!hasMore || !button) return;
     const observer = new IntersectionObserver(
       (entries) => {
+        if (document.activeElement === button) return;
         if (entries.some((entry) => entry.isIntersecting)) setShown((value) => Math.min(value + pageSize, count));
       },
       { rootMargin: `0px 0px ${LOAD_AHEAD} 0px` },
     );
     observer.observe(button);
     return () => observer.disconnect();
-  }, [hasMore, shown, pageSize, count]);
+  }, [hasMore, shown, pageSize, count, blurs]);
 
   useEffect(() => {
     if (focusFrom.current === null) return;
@@ -80,6 +85,7 @@ export function ShuffledGrid({
           <button
             ref={more}
             type="button"
+            onBlur={() => setBlurs((value) => value + 1)}
             onClick={() => {
               focusFrom.current = shown;
               setShown((value) => Math.min(value + pageSize, count));
