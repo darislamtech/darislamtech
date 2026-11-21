@@ -36,6 +36,11 @@ export const entertainmentGroups: EntertainmentGroup[] = [
           { url: "https://www.youtube.com/watch?v=DfAuJSQu3pI", added: "2026-11-06T01:20" },
         ],
       },
+      {
+        id: "anime",
+        title: { ar: "الأنمي", en: "Anime" },
+        items: [{ url: "https://www.youtube.com/watch?v=aci1RygX5rE", added: "2026-11-21T06:08" }],
+      },
       { id: "quran-clips", title: { ar: "تلاوات قرآنية قصيرة", en: "Short Quran recitations" }, items: [] },
       {
         id: "quran-reflections",
@@ -123,6 +128,14 @@ export const entertainmentGroups: EntertainmentGroup[] = [
       },
       { id: "secularism", title: { ar: "العلمانية", en: "Secularism" }, items: [] },
       { id: "kemetism", title: { ar: "الكمايتة والعنصرية", en: "Kemetism and racism" }, items: [] },
+      {
+        id: "energy-astrology",
+        title: { ar: "دعاوى الطاقة والتنجيم", en: "Energy-healing claims and astrology" },
+        items: [
+          { url: "https://www.youtube.com/watch?v=_fdlTA0vwA0", added: "2026-11-21T06:00" },
+          { url: "https://www.youtube.com/watch?v=sybpQo7K5eU", added: "2026-11-21T06:04" },
+        ],
+      },
       { id: "colonialism", title: { ar: "جرائم الاستعمار", en: "Crimes of colonialism" }, items: [] },
       {
         id: "podcasts",
@@ -134,15 +147,12 @@ export const entertainmentGroups: EntertainmentGroup[] = [
         ],
       },
       {
-        // Videos that fit no other category clearly go here (owner's rule).
+        // Only for a video whose topic itself is unclear; a clear topic with no category gets a new category (owner's rule).
         id: "misc",
         title: { ar: "منوعات", en: "Miscellaneous" },
         items: [
           { url: "https://www.youtube.com/watch?v=F6E1mFIZC0o", added: "2026-11-08T12:35" },
           { url: "https://www.youtube.com/watch?v=JMsxXg41I2o", added: "2026-11-10T12:25" },
-          { url: "https://www.youtube.com/watch?v=_fdlTA0vwA0", added: "2026-11-21T06:00" },
-          { url: "https://www.youtube.com/watch?v=sybpQo7K5eU", added: "2026-11-21T06:04" },
-          { url: "https://www.youtube.com/watch?v=aci1RygX5rE", added: "2026-11-21T06:08" },
         ],
       },
     ],
