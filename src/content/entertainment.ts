@@ -132,6 +132,7 @@ export const entertainmentGroups: EntertainmentGroup[] = [
         id: "energy-astrology",
         title: { ar: "دعاوى الطاقة والتنجيم", en: "Energy-healing claims and astrology" },
         items: [
+          { url: "https://www.youtube.com/watch?v=JMsxXg41I2o", added: "2026-11-10T12:25" },
           { url: "https://www.youtube.com/watch?v=_fdlTA0vwA0", added: "2026-11-21T06:00" },
           { url: "https://www.youtube.com/watch?v=sybpQo7K5eU", added: "2026-11-21T06:04" },
         ],
@@ -152,7 +153,6 @@ export const entertainmentGroups: EntertainmentGroup[] = [
         title: { ar: "منوعات", en: "Miscellaneous" },
         items: [
           { url: "https://www.youtube.com/watch?v=F6E1mFIZC0o", added: "2026-11-08T12:35" },
-          { url: "https://www.youtube.com/watch?v=JMsxXg41I2o", added: "2026-11-10T12:25" },
         ],
       },
     ],

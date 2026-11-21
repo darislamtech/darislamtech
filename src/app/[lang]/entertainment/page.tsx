@@ -36,7 +36,8 @@ export default async function EntertainmentPage() {
   const results = await resolveVideos(entries);
 
   // «الكل»: every video once, both groups together (a video may sit in two categories), in a grid like YouTube's home
-  // page, shown in a new random order on every visit. It is the tab the page opens on.
+  // page, shown in a new random order on every visit, 24 at a time (more as the visitor scrolls). It is the tab the
+  // page opens on.
   const allVideos = [
     ...new Map(results.filter((video) => video !== null).map((video) => [video.id, video])).values(),
   ];
@@ -50,6 +51,9 @@ export default async function EntertainmentPage() {
       content: (
         <ShuffledGrid
           className="grid grid-cols-1 gap-x-5 gap-y-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+          // Full rows at 1 to 4 columns.
+          pageSize={24}
+          moreLabel={t.more}
           items={allVideos.map((video) => ({
             key: video.id,
             node: (
