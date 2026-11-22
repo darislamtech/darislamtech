@@ -58,10 +58,13 @@ export default async function RootLayout({ children }: LayoutProps<"/[lang]">) {
 
   return (
     // data-theme may be switched to "dark" by ThemeScript before hydration, hence suppressHydrationWarning.
+    // data-scroll-behavior: globals.css scrolls smoothly within a page; Next then jumps (instead of gliding) to the top
+    // of a new page.
     <html
       lang={locale}
       dir={getDirection(locale)}
       data-theme="light"
+      data-scroll-behavior="smooth"
       suppressHydrationWarning
       className={`${readex.variable} ${plexArabic.variable} ${plexMono.variable} h-full antialiased`}
     >

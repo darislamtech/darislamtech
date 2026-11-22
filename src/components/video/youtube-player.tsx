@@ -17,11 +17,14 @@ const permissions = (autoplay: boolean) =>
  *
  * Next keeps a page the visitor left in the document, only hidden, and a hidden player keeps playing; a browser may
  * also reload a hidden frame, which with `autoplay` started the video again from the beginning. So when the page is
- * hidden or the player removed (React runs this effect's cleanup for both):
- * - with `onStop` (a video card), the frame is emptied at once, so nothing can play or reload behind the visitor's
- *   back, and `onStop` gets where the video was, for the card to go back to its thumbnail and resume from there;
- * - without it (an embed on a content page), the player is paused and stays where it was.
- * The player reports its time through YouTube's iframe API (`enablejsapi`).
+ * hidden or the player removed (React runs this effect's cleanup for both), the player is told to pause, and:
+ * - with `onStop` (a video card), the frame is also emptied, so nothing can play or reload behind the visitor's back,
+ *   and `onStop` gets where the video was, for the card to go back to its thumbnail and resume from there. This waits
+ *   one task: in development React runs every effect's cleanup and setup once more on mount (Strict Mode), and a
+ *   setup that follows at once cancels it;
+ * - without it (an embed on a content page), the player stays where it paused.
+ * The player reports its time through YouTube's iframe API (`enablejsapi`). `rel=0` keeps the videos it suggests
+ * to the same channel.
  */
 export function YouTubePlayer({
   id,
@@ -41,8 +44,10 @@ export function YouTubePlayer({
   const frame = useRef<HTMLIFrameElement | null>(null);
   // Kept across hide and show (the effect below runs again each time): whether the player has loaded, and its state.
   const loaded = useRef(false);
-  const state = useRef({ time: start ?? 0, duration: 0 });
+  const state = useRef({ time: start ?? 0, duration: 0, otherVideo: false });
   const stop = useRef(onStop);
+  // The card's close, waiting one task (see above).
+  const closing = useRef<number | undefined>(undefined);
   useLayoutEffect(() => {
     stop.current = onStop;
   });
@@ -52,13 +57,22 @@ export function YouTubePlayer({
     // One object for the player's life, updated in place by its messages.
     const playerState = state.current;
     if (!player) return;
-    const send = (message: object) => {
-      if (loaded.current) player.contentWindow?.postMessage(JSON.stringify(message), ORIGIN);
-    };
+    window.clearTimeout(closing.current);
+    closing.current = undefined;
+    // Before the player's load was seen (an embed can load before the page's script runs), its frame may still be
+    // YouTube's: a pause sent to any origin is harmless, so it goes anyway.
+    const pause = () =>
+      player.contentWindow?.postMessage(
+        JSON.stringify({ event: "command", func: "pauseVideo", args: [] }),
+        loaded.current ? ORIGIN : "*",
+      );
     const onMessage = (event: MessageEvent) => {
       if (event.source !== player.contentWindow || event.origin !== ORIGIN || typeof event.data !== "string") return;
       try {
         const info = JSON.parse(event.data)?.info;
+        // The visitor may open another video inside the player: its time is not this video's.
+        if (typeof info?.videoData?.video_id === "string") playerState.otherVideo = info.videoData.video_id !== id;
+        if (playerState.otherVideo) return;
         if (typeof info?.currentTime === "number") playerState.time = info.currentTime;
         if (typeof info?.duration === "number") playerState.duration = info.duration;
       } catch {
@@ -67,24 +81,25 @@ export function YouTubePlayer({
     };
     // An embed pauses when a card starts playing or the videos are stopped; a card's player is closed by its card.
     const onPlay = () => {
-      if (!stop.current) send({ event: "command", func: "pauseVideo", args: [] });
+      if (!stop.current) pause();
     };
     window.addEventListener("message", onMessage);
     window.addEventListener(PLAY_EVENT, onPlay);
     return () => {
       window.removeEventListener("message", onMessage);
       window.removeEventListener(PLAY_EVENT, onPlay);
-      if (stop.current) {
+      pause();
+      if (!stop.current) return;
+      closing.current = window.setTimeout(() => {
+        closing.current = undefined;
         loaded.current = false;
         player.src = "about:blank";
-        stop.current(playerState.time, playerState.duration);
-      } else {
-        send({ event: "command", func: "pauseVideo", args: [] });
-      }
+        stop.current?.(playerState.time, playerState.duration);
+      });
     };
-  }, []);
+  }, [id]);
 
-  const query = new URLSearchParams({ enablejsapi: "1" });
+  const query = new URLSearchParams({ enablejsapi: "1", rel: "0" });
   if (autoplay) query.set("autoplay", "1");
   if (start) query.set("start", String(start));
 

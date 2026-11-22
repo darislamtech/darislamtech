@@ -11,6 +11,8 @@ type VideoCardProps = {
   title: string;
   thumbnail: string;
   playLabel: string;
+  /** Said instead of `playLabel` when the video continues from where the visitor stopped it. */
+  resumeLabel: string;
   /** A line under the title, e.g. the channel and views (the videos page's «الكل» tab). */
   meta?: string;
   /** The thumbnail's width on the page, for the browser to pick its size (default: up to 3 per row). */
@@ -22,7 +24,7 @@ type VideoCardProps = {
  * videos stays light. One video plays at a time: starting one turns any other playing card back into its thumbnail.
  *
  * A card whose player is closed (another video starts, the visitor leaves the page or its tab, the row is re-sorted)
- * goes back to its thumbnail and remembers where it stopped, shown as a red bar along the thumbnail's bottom like
+ * goes back to its thumbnail and remembers where it stopped, shown as a bar along the thumbnail's bottom like
  * YouTube's; pressing play again continues from there, also from another card of the same video.
  */
 export function VideoCard({
@@ -30,6 +32,7 @@ export function VideoCard({
   title,
   thumbnail,
   playLabel,
+  resumeLabel,
   meta,
   sizes = "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw",
 }: VideoCardProps) {
@@ -89,7 +92,7 @@ export function VideoCard({
             type="button"
             onClick={play}
             data-random-pick="play"
-            aria-label={`${playLabel}: ${title}`}
+            aria-label={`${stopped ? resumeLabel : playLabel}: ${title}`}
             className="group absolute inset-0 size-full"
           >
             <Image
@@ -104,9 +107,9 @@ export function VideoCard({
               <Play aria-hidden="true" className="size-6 translate-x-0.5 fill-current" />
             </span>
             {stopped && stopped.duration > 0 && (
-              <span aria-hidden="true" className="absolute inset-x-0 bottom-0 h-1 bg-white/40">
+              <span aria-hidden="true" className="absolute inset-x-0 bottom-0 h-1 bg-paper/50">
                 <span
-                  className="block h-full bg-red-600"
+                  className="block h-full bg-primary-fill"
                   style={{ width: `${Math.min(100, (stopped.time / stopped.duration) * 100)}%` }}
                 />
               </span>
