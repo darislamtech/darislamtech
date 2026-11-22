@@ -3,6 +3,7 @@
 import { createContext, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/cn";
+import { stopAllVideos } from "@/components/video/playback";
 
 export type VideoSort = "newest" | "oldest" | "mostViewed";
 
@@ -39,7 +40,12 @@ export function VideoSortControl({ label, options }: { label: string; options: P
           key={value}
           type="button"
           aria-pressed={sort === value}
-          onClick={() => setSort(value)}
+          onClick={() => {
+            if (value === sort) return;
+            // Re-sorting moves the cards, and a moved player reloads (it started over): stop the videos first.
+            stopAllVideos();
+            setSort(value);
+          }}
           className={cn(
             "min-h-11 rounded-full border px-4 text-sm font-medium transition-colors",
             sort === value ? "border-ink bg-ink text-paper" : "border-line bg-surface text-ink-2 hover:bg-paper-2",

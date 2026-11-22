@@ -98,6 +98,7 @@ export function EntertainmentShell(props: EntertainmentShellProps) {
         <div className="mt-10">
           {toolbar && <div className="mb-8">{toolbar}</div>}
           <GroupTabs
+            section={current}
             label={t.groupsLabel}
             groups={groups}
             groupToolbar={groupToolbar}
@@ -112,12 +113,14 @@ export function EntertainmentShell(props: EntertainmentShellProps) {
 
 /** One tab per group, each with its categories: a heading, then the items (or the category's own content). */
 function GroupTabs({
+  section,
   label,
   groups,
   groupToolbar,
   empty,
   gridClassName,
 }: {
+  section: EntertainmentSection;
   label: string;
   groups: EntertainmentGroupView[];
   groupToolbar?: React.ReactNode;
@@ -127,8 +130,8 @@ function GroupTabs({
   return (
     <Tabs
       label={label}
-      // Three tabs (the videos page with «الكل») would scroll out of sight on phones, so they stack there.
-      stackOnMobile={groups.length > 2}
+      // On phones the tabs stack as full-width buttons: side by side, the longer labels scrolled out of sight.
+      stackOnMobile
       items={groups.map((group) => ({
         id: group.id,
         label: group.label,
@@ -142,9 +145,11 @@ function GroupTabs({
             {groupToolbar && <div className="mb-8">{groupToolbar}</div>}
             <div className="space-y-14">
               {group.categories.map((category, index) => (
-                <section key={category.id} aria-labelledby={`category-${category.id}`}>
+                // Next keeps the other entertainment pages in the document after a visit, and they share category
+                // ids, so each heading's id names its page.
+                <section key={category.id} aria-labelledby={`${section}-category-${category.id}`}>
                   <h2
-                    id={`category-${category.id}`}
+                    id={`${section}-category-${category.id}`}
                     className="mb-6 flex items-center gap-3 font-display text-2xl font-semibold text-ink"
                   >
                     <span

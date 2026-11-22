@@ -62,6 +62,7 @@ export default async function EntertainmentPage() {
                 title={video.title ?? t.untitled}
                 thumbnail={video.thumbnail}
                 playLabel={t.play}
+                resumeLabel={t.resume}
                 sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                 meta={[video.channel, video.views !== null ? t.views.replace("{n}", views.format(video.views)) : null]
                   .filter(Boolean)
@@ -84,7 +85,15 @@ export default async function EntertainmentPage() {
         added: video.added,
         order: video.order,
         views: video.views,
-        node: <VideoCard id={video.id} title={video.title ?? t.untitled} thumbnail={video.thumbnail} playLabel={t.play} />,
+        node: (
+          <VideoCard
+            id={video.id}
+            title={video.title ?? t.untitled}
+            thumbnail={video.thumbnail}
+            playLabel={t.play}
+            resumeLabel={t.resume}
+          />
+        ),
       }));
       return {
         id: category.id,

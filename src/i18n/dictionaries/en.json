@@ -397,6 +397,7 @@
     "more": "Show more",
     "empty": "No videos in this category yet.",
     "play": "Play video",
+    "resume": "Resume video from where you stopped",
     "untitled": "YouTube video",
     "sortLabel": "Sort:",
     "sort": { "newest": "Newest", "oldest": "Oldest", "mostViewed": "Most viewed" },

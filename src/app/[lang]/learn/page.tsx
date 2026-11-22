@@ -435,6 +435,7 @@ async function LevelVideos({
               title={video.title ?? dict.entertainment.untitled}
               thumbnail={video.thumbnail}
               playLabel={dict.entertainment.play}
+              resumeLabel={dict.entertainment.resume}
               meta={video.channel ?? undefined}
               sizes="(min-width: 640px) 360px, 100vw"
             />

@@ -77,7 +77,8 @@ export const entertainmentGroups: EntertainmentGroup[] = [
         ],
       },
       {
-        id: "tazkiyah",
+        // Same id as the books category of this name.
+        id: "purification",
         title: { ar: "تزكية النفس", en: "Purifying the soul" },
         items: [
           { url: "https://www.youtube.com/watch?v=OcLJgOPbOec", added: "2026-11-22T12:34" },
@@ -86,7 +87,6 @@ export const entertainmentGroups: EntertainmentGroup[] = [
           { url: "https://www.youtube.com/watch?v=8vnUS_x0-Yg", added: "2026-11-22T12:42" },
           { url: "https://www.youtube.com/watch?v=2_06IRuYYAs", added: "2026-11-22T12:43" },
           { url: "https://www.youtube.com/watch?v=x5hgT5fTXCY", added: "2026-11-22T12:44" },
-          { url: "https://www.youtube.com/watch?v=lzbYDer_weU", added: "2026-11-22T12:50" },
           { url: "https://www.youtube.com/watch?v=Rbmd_cbICfs", added: "2026-11-22T12:52" },
           { url: "https://www.youtube.com/watch?v=5poR11mE9P4", added: "2026-11-22T12:53" },
         ],
@@ -106,7 +106,10 @@ export const entertainmentGroups: EntertainmentGroup[] = [
       {
         id: "islamic-studies",
         title: { ar: "طلب العلم الشرعي", en: "Studying Islamic knowledge" },
-        items: [{ url: "https://www.youtube.com/watch?v=K9m35qrKtTE", added: "2026-11-06T18:26" }],
+        items: [
+          { url: "https://www.youtube.com/watch?v=K9m35qrKtTE", added: "2026-11-06T18:26" },
+          { url: "https://www.youtube.com/watch?v=lzbYDer_weU", added: "2026-11-22T12:50" },
+        ],
       },
       {
         id: "family",

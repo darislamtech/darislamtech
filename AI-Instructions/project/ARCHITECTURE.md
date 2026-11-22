@@ -25,7 +25,7 @@ src/
   components/               # root: only shared building blocks used across pages — ui.tsx (primitives), page-blocks.tsx, icons.tsx, pattern.tsx, brand.tsx (logo), tabs.tsx, copy-button.tsx. Everything else lives in a feature folder:
     layout/                 # the site shell: site-header (+ header-shell, mobile-menu, nav data, nav-link, language-switcher), site-footer, install-prompt (mobile install card)
     theme/                  # light/dark theme: colors.ts (theme-color values), theme-script (applied before paint), theme-toggle
-    video/                  # youtube-player.tsx (the one YouTube iframe), video-card.tsx (thumbnail → player, one at a time), youtube-embed.tsx (a video shown in place)
+    video/                  # youtube-player.tsx (the one YouTube iframe), video-card.tsx (thumbnail → player, one at a time), youtube-embed.tsx (a video shown in place), playback.ts (where each video stopped this visit; stopAllVideos)
     content/                # post-card.tsx
     products/               # product-status.ts (status order and colors)
     home/                   # the home page sections, one file each (home-hero, offer-section + bento-card, latest-posts, mission-section, channel-section) + hero-visual; app/[lang]/page.tsx assembles them and adds the site JSON-LD
