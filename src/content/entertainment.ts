@@ -45,7 +45,13 @@ export const entertainmentGroups: EntertainmentGroup[] = [
       {
         id: "quran-reflections",
         title: { ar: "تدبرات قرآنية", en: "Quranic reflections" },
-        items: [{ url: "https://www.youtube.com/watch?v=s0-kPcacIcw", added: "2026-11-06T18:21" }],
+        items: [
+          { url: "https://www.youtube.com/watch?v=s0-kPcacIcw", added: "2026-11-06T18:21" },
+          { url: "https://www.youtube.com/watch?v=ZQDL4EnvL8s", added: "2026-11-22T12:31" },
+          { url: "https://www.youtube.com/watch?v=nBhgNo94SKU", added: "2026-11-22T12:35" },
+          { url: "https://www.youtube.com/watch?v=3ESpTmkdEaw", added: "2026-11-22T12:55" },
+          { url: "https://www.youtube.com/watch?v=J65ZEsHdqrs", added: "2026-11-22T12:58" },
+        ],
       },
       {
         id: "nasheeds",
@@ -65,9 +71,37 @@ export const entertainmentGroups: EntertainmentGroup[] = [
           { url: "https://www.youtube.com/watch?v=akKm9tZo7yI", added: "2026-11-06T18:28" },
           { url: "https://www.youtube.com/watch?v=Ss6cVO9c_aY", added: "2026-11-07T23:22" },
           { url: "https://www.youtube.com/watch?v=DUjjlMMD9g0", added: "2026-11-07T23:23" },
+          { url: "https://www.youtube.com/watch?v=2uXXR59GMaM", added: "2026-11-22T12:30" },
+          { url: "https://www.youtube.com/watch?v=o8NaF88oxTc", added: "2026-11-22T12:32" },
+          { url: "https://www.youtube.com/watch?v=HVDRrHa2Q5E", added: "2026-11-22T12:33" },
         ],
       },
-      { id: "advice", title: { ar: "نصائح", en: "Advice" }, items: [] },
+      {
+        id: "tazkiyah",
+        title: { ar: "تزكية النفس", en: "Purifying the soul" },
+        items: [
+          { url: "https://www.youtube.com/watch?v=OcLJgOPbOec", added: "2026-11-22T12:34" },
+          { url: "https://www.youtube.com/watch?v=xW4cHcHqRS4", added: "2026-11-22T12:37" },
+          { url: "https://www.youtube.com/watch?v=_6OWmDCFgWc", added: "2026-11-22T12:39" },
+          { url: "https://www.youtube.com/watch?v=8vnUS_x0-Yg", added: "2026-11-22T12:42" },
+          { url: "https://www.youtube.com/watch?v=2_06IRuYYAs", added: "2026-11-22T12:43" },
+          { url: "https://www.youtube.com/watch?v=x5hgT5fTXCY", added: "2026-11-22T12:44" },
+          { url: "https://www.youtube.com/watch?v=lzbYDer_weU", added: "2026-11-22T12:50" },
+          { url: "https://www.youtube.com/watch?v=Rbmd_cbICfs", added: "2026-11-22T12:52" },
+          { url: "https://www.youtube.com/watch?v=5poR11mE9P4", added: "2026-11-22T12:53" },
+        ],
+      },
+      {
+        id: "advice",
+        title: { ar: "نصائح", en: "Advice" },
+        items: [
+          { url: "https://www.youtube.com/watch?v=g3vDlFAjiHQ", added: "2026-11-22T12:36" },
+          { url: "https://www.youtube.com/watch?v=LT9wsFT-Vig", added: "2026-11-22T12:40" },
+          { url: "https://www.youtube.com/watch?v=P0ujBzB1lco", added: "2026-11-22T12:41" },
+          { url: "https://www.youtube.com/watch?v=f3_40WBfPts", added: "2026-11-22T12:47" },
+          { url: "https://www.youtube.com/watch?v=nklMziZ-GHQ", added: "2026-11-22T12:54" },
+        ],
+      },
       { id: "fatwas", title: { ar: "فتاوى", en: "Fatwas" }, items: [] },
       {
         id: "islamic-studies",
@@ -91,6 +125,8 @@ export const entertainmentGroups: EntertainmentGroup[] = [
           { url: "https://www.youtube.com/watch?v=eaW10GIWIpQ", added: "2026-11-09T13:32" },
           { url: "https://www.youtube.com/watch?v=xC5eGRht7Ig", added: "2026-11-21T06:02" },
           { url: "https://www.youtube.com/watch?v=GEOibv1sDas", added: "2026-11-21T06:06" },
+          { url: "https://www.youtube.com/watch?v=qjwLpnEv2pM", added: "2026-11-22T12:38" },
+          { url: "https://www.youtube.com/watch?v=3U-0pPfyU8A", added: "2026-11-22T12:49" },
         ],
       },
       {
@@ -102,7 +138,7 @@ export const entertainmentGroups: EntertainmentGroup[] = [
         ],
       },
       {
-        // د. عبدالله رشدي: his five latest videos, oldest first; then two from محمد غنايم Plus.
+        // د. عبدالله رشدي: his five latest videos, oldest first; then two from محمد غنايم Plus and one from فداءالدين.
         id: "sunnah-deniers",
         title: { ar: "منكرو السنة", en: "Sunnah deniers" },
         items: [
@@ -113,6 +149,7 @@ export const entertainmentGroups: EntertainmentGroup[] = [
           { url: "https://www.youtube.com/watch?v=GJiDxsa0GcU", added: "2026-11-13T20:44" },
           { url: "https://www.youtube.com/watch?v=zgyBg8qj05I", added: "2026-11-21T06:05" },
           { url: "https://www.youtube.com/watch?v=U8q98OQYsBE", added: "2026-11-21T06:07" },
+          { url: "https://www.youtube.com/watch?v=CgOCaxgq4xA", added: "2026-11-22T12:46" },
         ],
       },
       {
@@ -137,7 +174,22 @@ export const entertainmentGroups: EntertainmentGroup[] = [
           { url: "https://www.youtube.com/watch?v=sybpQo7K5eU", added: "2026-11-21T06:04" },
         ],
       },
-      { id: "colonialism", title: { ar: "جرائم الاستعمار", en: "Crimes of colonialism" }, items: [] },
+      {
+        id: "colonialism",
+        title: { ar: "جرائم الاستعمار", en: "Crimes of colonialism" },
+        items: [
+          { url: "https://www.youtube.com/watch?v=bQPG_1mJqtk", added: "2026-11-22T12:51" },
+        ],
+      },
+      {
+        id: "ummah",
+        title: { ar: "قضايا الأمة", en: "Issues of the Muslim ummah" },
+        items: [
+          { url: "https://www.youtube.com/watch?v=7C4t3CxdhZU", added: "2026-11-22T12:45" },
+          { url: "https://www.youtube.com/watch?v=IJLiQ__g5UE", added: "2026-11-22T12:48" },
+          { url: "https://www.youtube.com/watch?v=iQHK0q8snSw", added: "2026-11-22T12:57" },
+        ],
+      },
       {
         id: "podcasts",
         title: { ar: "بودكاست", en: "Podcasts" },
