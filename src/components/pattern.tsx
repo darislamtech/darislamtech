@@ -1,25 +1,30 @@
-import { useId } from "react";
 import { cn } from "@/lib/cn";
 
-/** Tiled eight-point-star lattice, used as a faint background texture. Color comes from `text-*`. */
+/**
+ * Tiled eight-point-star lattice, used as a faint background texture. Color comes from `text-*`; `className` may also
+ * fade it with a `mask-[…]`. The tile is a CSS mask over the text color rather than an SVG `<pattern>`, which needs
+ * an id: Next keeps pages the visitor left in the document, and their pattern ids clashed.
+ */
 export function GeometricPattern({ className, size = 64 }: { className?: string; size?: number }) {
-  const id = useId();
   const c = size / 2;
   const s = size * 0.22;
+  const tile = [
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}">`,
+    `<g fill="none" stroke="black" stroke-width="1">`,
+    `<rect x="${c - s}" y="${c - s}" width="${s * 2}" height="${s * 2}"/>`,
+    `<rect x="${c - s}" y="${c - s}" width="${s * 2}" height="${s * 2}" transform="rotate(45 ${c} ${c})"/>`,
+    `<path d="M0 0L${c - s * 1.41} ${c - s * 1.41}M${size} 0L${c + s * 1.41} ${c - s * 1.41}M0 ${size}L${c - s * 1.41} ${c + s * 1.41}M${size} ${size}L${c + s * 1.41} ${c + s * 1.41}"/>`,
+    `</g></svg>`,
+  ].join("");
+  const image = `url("data:image/svg+xml,${encodeURIComponent(tile)}")`;
 
   return (
-    <svg aria-hidden="true" className={cn("pointer-events-none absolute inset-0 size-full", className)}>
-      <defs>
-        <pattern id={id} width={size} height={size} patternUnits="userSpaceOnUse">
-          <g fill="none" stroke="currentColor" strokeWidth="1">
-            <rect x={c - s} y={c - s} width={s * 2} height={s * 2} />
-            <rect x={c - s} y={c - s} width={s * 2} height={s * 2} transform={`rotate(45 ${c} ${c})`} />
-            <path d={`M0 0L${c - s * 1.41} ${c - s * 1.41}M${size} 0L${c + s * 1.41} ${c - s * 1.41}M0 ${size}L${c - s * 1.41} ${c + s * 1.41}M${size} ${size}L${c + s * 1.41} ${c + s * 1.41}`} />
-          </g>
-        </pattern>
-      </defs>
-      <rect width="100%" height="100%" fill={`url(#${id})`} />
-    </svg>
+    <div aria-hidden="true" className={cn("pointer-events-none absolute inset-0 size-full", className)}>
+      <div
+        className="size-full bg-current"
+        style={{ maskImage: image, maskSize: `${size}px ${size}px`, maskRepeat: "repeat", maskPosition: "0 0" }}
+      />
+    </div>
   );
 }
 
