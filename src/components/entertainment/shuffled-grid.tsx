@@ -35,14 +35,17 @@ export function ShuffledGrid({
   const more = useRef<HTMLButtonElement>(null);
   // Set when the button (not scrolling) loaded a batch: focus then moves to the first new video.
   const focusFrom = useRef<number | null>(null);
+  // Set once the grid has been shuffled: later runs of the effect below are returns to the page.
+  const shuffledOnce = useRef(false);
   const count = items.length;
   const hasMore = order !== null && shown < count;
 
   // On every mount, including a return to the page, which Next keeps alive in the background; before the browser
-  // paints, so the old order never shows. A video still playing in the grid keeps the order (and what is shown):
-  // moving its player would restart it.
+  // paints, so the old order never shows. On a return, a grid with a video still playing, or one the visitor stopped
+  // part-way (it resumes from there), keeps its order and what is shown, so that video is where the visitor left it.
   useLayoutEffect(() => {
-    if (grid.current?.querySelector("iframe")) return;
+    if (shuffledOnce.current && grid.current?.querySelector("iframe, [data-stopped]")) return;
+    shuffledOnce.current = true;
     // Random, so it can only run in the browser after hydration.
     setOrder(shuffled(Array.from({ length: count }, (_, index) => index)));
     setShown(pageSize);

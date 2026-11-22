@@ -2,16 +2,24 @@
 
 import { useId, useState } from "react";
 import { cn } from "@/lib/cn";
+import { stopAllVideos } from "@/components/video/playback";
 
 export type TabItem = { id: string; label: string; count?: number; content: React.ReactNode };
 
 /**
  * Accessible tabs (roving focus with arrow keys). Panels are rendered on the server and passed in. With
- * `stackOnMobile`, long labels stack as full-width 44px buttons on phones instead of scrolling out of sight.
+ * `stackOnMobile`, long labels stack as full-width 44px buttons on phones instead of scrolling out of sight. Changing
+ * tab stops every video, so none plays on in the panel being hidden.
  */
 export function Tabs({ items, label, stackOnMobile }: { items: TabItem[]; label: string; stackOnMobile?: boolean }) {
   const [active, setActive] = useState(items[0]?.id);
   const baseId = useId();
+
+  function select(id: string) {
+    if (id === active) return;
+    stopAllVideos();
+    setActive(id);
+  }
 
   function onKeyDown(event: React.KeyboardEvent<HTMLButtonElement>, index: number) {
     const isRtl = document.documentElement.dir === "rtl";
@@ -19,7 +27,7 @@ export function Tabs({ items, label, stackOnMobile }: { items: TabItem[]; label:
     if (!next) return;
     event.preventDefault();
     const target = items[(index + next + items.length) % items.length];
-    setActive(target.id);
+    select(target.id);
     document.getElementById(`${baseId}-tab-${target.id}`)?.focus();
   }
 
@@ -46,7 +54,7 @@ export function Tabs({ items, label, stackOnMobile }: { items: TabItem[]; label:
               aria-selected={selected}
               aria-controls={`${baseId}-panel-${item.id}`}
               tabIndex={selected ? 0 : -1}
-              onClick={() => setActive(item.id)}
+              onClick={() => select(item.id)}
               onKeyDown={(event) => onKeyDown(event, index)}
               className={cn(
                 "flex shrink-0 items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-colors",
