@@ -2,8 +2,8 @@ import type { Dictionary } from "@/i18n/dictionaries";
 import { cn } from "@/lib/cn";
 import { Badge, Container, SectionHeading } from "../ui";
 
-// The current phase, an index into `dict.phases`: "Build" (the site is live; first products and learning tracks in
-// progress). Update it when the project moves on — the site must not show an outdated phase.
+// The current phase, an index into `dict.phases`: "Build" (the site is live; the first product has launched, the
+// other products and the learning tracks are in progress). Update it when the project moves on — the site must not show an outdated phase.
 const CURRENT_PHASE = 2;
 
 /** About: «أين نحن الآن», the project's phases in order with the current one marked. */
