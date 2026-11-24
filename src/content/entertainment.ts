@@ -41,7 +41,6 @@ export const entertainmentGroups: EntertainmentGroup[] = [
         title: { ar: "الأنمي", en: "Anime" },
         items: [{ url: "https://www.youtube.com/watch?v=aci1RygX5rE", added: "2026-11-21T06:08" }],
       },
-      { id: "quran-clips", title: { ar: "تلاوات قرآنية قصيرة", en: "Short Quran recitations" }, items: [] },
       {
         id: "quran-reflections",
         title: { ar: "تدبرات قرآنية", en: "Quranic reflections" },
@@ -62,7 +61,6 @@ export const entertainmentGroups: EntertainmentGroup[] = [
           { url: "https://www.youtube.com/watch?v=_-CBrlKxz9k", added: "2026-11-06T18:16" },
         ],
       },
-      { id: "islamic-figures", title: { ar: "شخصيات إسلامية", en: "Islamic figures" }, items: [] },
       {
         id: "asceticism",
         title: { ar: "الزهد وحقيقة الدنيا", en: "Asceticism and the truth about this world" },
@@ -102,7 +100,6 @@ export const entertainmentGroups: EntertainmentGroup[] = [
           { url: "https://www.youtube.com/watch?v=nklMziZ-GHQ", added: "2026-11-22T12:54" },
         ],
       },
-      { id: "fatwas", title: { ar: "فتاوى", en: "Fatwas" }, items: [] },
       {
         id: "islamic-studies",
         title: { ar: "طلب العلم الشرعي", en: "Studying Islamic knowledge" },
@@ -166,8 +163,6 @@ export const entertainmentGroups: EntertainmentGroup[] = [
           { url: "https://www.youtube.com/watch?v=knPpPBr14Ec", added: "2026-11-21T06:01" },
         ],
       },
-      { id: "secularism", title: { ar: "العلمانية", en: "Secularism" }, items: [] },
-      { id: "kemetism", title: { ar: "الكمايتة والعنصرية", en: "Kemetism and racism" }, items: [] },
       {
         id: "energy-astrology",
         title: { ar: "دعاوى الطاقة والتنجيم", en: "Energy-healing claims and astrology" },
@@ -317,7 +312,6 @@ export const entertainmentGroups: EntertainmentGroup[] = [
           { url: "https://www.youtube.com/watch?v=c-IEmWbUbKc", added: "2026-11-19T13:29" },
         ],
       },
-      { id: "tokens", title: { ar: "الحفاظ على التوكنز", en: "Saving tokens" }, items: [] },
       // Videos about Claude and other AI tools from the recommended tech channels, by what they teach (Shorts left out).
       {
         id: "ai-basics",
@@ -620,7 +614,6 @@ export const entertainmentGroups: EntertainmentGroup[] = [
         title: { ar: "الأمن السيبراني", en: "Cybersecurity" },
         items: [{ url: "https://www.youtube.com/@Limbo0x01", name: "MrLimbo" }],
       },
-      { id: "digital-marketing", title: { ar: "التسويق الرقمي", en: "Digital marketing" }, items: [] },
     ],
     // Covers from Open Library (covers.openlibrary.org).
     books: [
