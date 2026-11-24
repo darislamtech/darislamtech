@@ -23,6 +23,7 @@ const permissions = (autoplay: boolean) =>
  *   one task: in development React runs every effect's cleanup and setup once more on mount (Strict Mode), and a
  *   setup that follows at once cancels it;
  * - without it (an embed on a content page), the player stays where it paused.
+ * Closing a `<details>` around the player (a level in «تعلّم») hides it too, and does the same at once.
  * The player reports its time through YouTube's iframe API (`enablejsapi`). `rel=0` keeps the videos it suggests
  * to the same channel.
  */
@@ -79,22 +80,42 @@ export function YouTubePlayer({
         // Not a player message.
       }
     };
+    // A card's player: emptied, and the card told where the video was.
+    const close = () => {
+      loaded.current = false;
+      player.src = "about:blank";
+      stop.current?.(playerState.time, playerState.duration);
+    };
     // An embed pauses when a card starts playing or the videos are stopped; a card's player is closed by its card.
     const onPlay = () => {
       if (!stop.current) pause();
     };
+    const sections: HTMLDetailsElement[] = [];
+    for (let element = player.parentElement; element; element = element.parentElement) {
+      if (element instanceof HTMLDetailsElement) sections.push(element);
+    }
+    // Set once a closing level has closed the card's player, so the unmount that follows doesn't close it again.
+    let closed = false;
+    const onToggle = (event: Event) => {
+      if ((event.currentTarget as HTMLDetailsElement).open) return;
+      pause();
+      if (stop.current && !closed) {
+        closed = true;
+        close();
+      }
+    };
     window.addEventListener("message", onMessage);
     window.addEventListener(PLAY_EVENT, onPlay);
+    for (const section of sections) section.addEventListener("toggle", onToggle);
     return () => {
       window.removeEventListener("message", onMessage);
       window.removeEventListener(PLAY_EVENT, onPlay);
+      for (const section of sections) section.removeEventListener("toggle", onToggle);
       pause();
-      if (!stop.current) return;
+      if (!stop.current || closed) return;
       closing.current = window.setTimeout(() => {
         closing.current = undefined;
-        loaded.current = false;
-        player.src = "about:blank";
-        stop.current?.(playerState.time, playerState.duration);
+        close();
       });
     };
   }, [id]);
