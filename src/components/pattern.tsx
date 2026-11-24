@@ -2,8 +2,9 @@ import { cn } from "@/lib/cn";
 
 /**
  * Tiled eight-point-star lattice, used as a faint background texture. Color comes from `text-*`; `className` may also
- * fade it with a `mask-[…]`. The tile is a CSS mask over the text color rather than an SVG `<pattern>`, which needs
- * an id: Next keeps pages the visitor left in the document, and their pattern ids clashed.
+ * fade it with a mask class. The tile is a CSS mask over the text color rather than an SVG `<pattern>`, which needs
+ * an id: Next keeps pages the visitor left in the document, and their pattern ids clashed. Inline styles get no
+ * vendor prefixes, so the -webkit- mask properties are set too (older Chrome, Samsung Internet, Android WebView).
  */
 export function GeometricPattern({ className, size = 64 }: { className?: string; size?: number }) {
   const c = size / 2;
@@ -22,7 +23,16 @@ export function GeometricPattern({ className, size = 64 }: { className?: string;
     <div aria-hidden="true" className={cn("pointer-events-none absolute inset-0 size-full", className)}>
       <div
         className="size-full bg-current"
-        style={{ maskImage: image, maskSize: `${size}px ${size}px`, maskRepeat: "repeat", maskPosition: "0 0" }}
+        style={{
+          maskImage: image,
+          WebkitMaskImage: image,
+          maskSize: `${size}px ${size}px`,
+          WebkitMaskSize: `${size}px ${size}px`,
+          maskRepeat: "repeat",
+          WebkitMaskRepeat: "repeat",
+          maskPosition: "0 0",
+          WebkitMaskPosition: "0 0",
+        }}
       />
     </div>
   );

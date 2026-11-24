@@ -94,10 +94,15 @@ export function YouTubePlayer({
     for (let element = player.parentElement; element; element = element.parentElement) {
       if (element instanceof HTMLDetailsElement) sections.push(element);
     }
+    // Set once a closing level has closed the card's player, so the unmount that follows doesn't close it again.
+    let closed = false;
     const onToggle = (event: Event) => {
       if ((event.currentTarget as HTMLDetailsElement).open) return;
       pause();
-      if (stop.current) close();
+      if (stop.current && !closed) {
+        closed = true;
+        close();
+      }
     };
     window.addEventListener("message", onMessage);
     window.addEventListener(PLAY_EVENT, onPlay);
@@ -107,7 +112,7 @@ export function YouTubePlayer({
       window.removeEventListener(PLAY_EVENT, onPlay);
       for (const section of sections) section.removeEventListener("toggle", onToggle);
       pause();
-      if (!stop.current) return;
+      if (!stop.current || closed) return;
       closing.current = window.setTimeout(() => {
         closing.current = undefined;
         close();
