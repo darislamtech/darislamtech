@@ -4,8 +4,9 @@ import type { Product } from "./types";
 export const products: Product[] = [
   {
     slug: "dar-adhkar",
-    status: "comingSoon",
+    status: "available",
     name: { ar: "دار الأذكار", en: "Dar Al-Adhkar" },
+    url: "https://darazkar.vercel.app/",
     summary: { ar: "موقع يجمع الأذكار كلها في مكان واحد.", en: "A website that brings all the adhkar together in one place." },
     description: {
       ar: "دار الأذكار موقع يجمع جميع الأذكار في مكان واحد، لتصل إلى الذكر الذي تحتاجه بسهولة.",
