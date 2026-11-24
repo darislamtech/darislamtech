@@ -12,6 +12,20 @@ export const products: Product[] = [
       ar: "دار الأذكار موقع يجمع جميع الأذكار في مكان واحد، لتصل إلى الذكر الذي تحتاجه بسهولة.",
       en: "Dar Al-Adhkar is a website that gathers all the adhkar in one place, so you can easily find the one you need.",
     },
+    installSteps: {
+      ar: [
+        "افتح الموقع darazkar.vercel.app من متصفح هاتفك.",
+        "على أندرويد: اضغط زر «تثبيت التطبيق» في الموقع، أو افتح قائمة Chrome (⋮) واختر «تثبيت التطبيق» أو «إضافة إلى الشاشة الرئيسية» ثم «تثبيت».",
+        "على الآيفون: افتح الموقع من Safari، واضغط زر المشاركة (أو زر ⋯ ثم «مشاركة»)، ثم «إضافة إلى الشاشة الرئيسية».",
+        "افتح دار الأذكار من أيقونته على الشاشة، ويعمل بعدها حتى بدون إنترنت.",
+      ],
+      en: [
+        "Open darazkar.vercel.app in your phone's browser.",
+        "On Android: tap the site's «تثبيت التطبيق» (Install app) button, or open Chrome's menu (⋮) and choose Install app, or Add to home screen and then Install.",
+        "On iPhone: open the site in Safari, tap the Share button (or the ⋯ button, then Share), then Add to Home Screen.",
+        "Open Dar Al-Adhkar from its icon on your home screen; it then works even without internet.",
+      ],
+    },
   },
   {
     slug: "dar-quran",
