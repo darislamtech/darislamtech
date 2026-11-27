@@ -15,6 +15,7 @@ src/
     sitemap.ts robots.ts    # /sitemap.xml (every page × locale with alternates) and /robots.txt
     icon.svg favicon.ico apple-icon.png   # generated from the logo paths in components/brand.tsx
     global-not-found.tsx    # bilingual 404 for URLs outside /[lang] (experimental.globalNotFound)
+    yt/[...path]/route.ts   # YouTube thumbnails (/yt/vi/<id>.jpg) and channel pictures (/yt/avatar/<key>.jpg) fetched from YouTube and served from the site, cached up to 30 days at the CDN (per deployment and region: each deploy starts cold)
     [lang]/                 # root layout; every page lives under /ar or /en
       layout.tsx            # <html lang dir data-theme>, theme script, fonts, header, footer, metadata
       page.tsx              # Home
@@ -42,6 +43,7 @@ src/
   lib/entertainment-videos.ts   # resolveVideo()/resolveVideos(): one recommended video (or many, a few at a time) → title, channel, thumbnail, views, publish date; the topics meta description and the CollectionPage/VideoObject JSON-LD (videos page)
   lib/shuffle.ts            # shuffled(): random order (browser only, or after connection() on the server)
   lib/seo.ts                # pageMetadata(): canonical, ar/en/x-default alternates, Open Graph/X card for every page
+  lib/youtube-image.ts      # youtubeImage(): a YouTube thumbnail or channel picture URL → its /yt/ path; youtubeImageSource(): the reverse, for the route
   lib/youtube.ts            # link → video id; title via YouTube oEmbed ("use cache", cacheLife days), hqdefault thumbnail; channel name and picture from the channel page's Open Graph tags (same cache); video views and publish date (getYouTubeDetails) via the YouTube Data API when `YOUTUBE_API_KEY` is set (Vercel env), else the watch page
 ```
 

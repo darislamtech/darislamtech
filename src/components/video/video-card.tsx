@@ -3,6 +3,7 @@
 import { useEffect, useId, useRef, useState, useSyncExternalStore } from "react";
 import Image from "next/image";
 import { Play } from "lucide-react";
+import { youtubeImage } from "@/lib/youtube-image";
 import { PLAY_EVENT, STOPPED_EVENT, rememberStop, stopPoint } from "./playback";
 import { YouTubePlayer } from "./youtube-player";
 
@@ -36,6 +37,8 @@ export function VideoCard({
   meta,
   sizes = "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw",
 }: VideoCardProps) {
+  // The thumbnail's address on this site; a picture the site can't serve shows no image rather than load from YouTube.
+  const picture = youtubeImage(thumbnail);
   const [playing, setPlaying] = useState(false);
   const [start, setStart] = useState<number>();
   const cardId = useId();
@@ -95,13 +98,17 @@ export function VideoCard({
             aria-label={`${stopped ? resumeLabel : playLabel}: ${title}`}
             className="group absolute inset-0 size-full"
           >
-            <Image
-              src={thumbnail}
-              alt=""
-              fill
-              sizes={sizes}
-              className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-            />
+            {/* Served from this site as is (see youtube-image.ts), not through Vercel's image optimization. */}
+            {picture && (
+              <Image
+                src={picture}
+                alt=""
+                fill
+                unoptimized
+                sizes={sizes}
+                className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+              />
+            )}
             <span className="absolute inset-0 bg-[linear-gradient(to_top,rgb(0_0_0/0.35),transparent_60%)]" />
             <span className="absolute top-1/2 left-1/2 grid size-14 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-primary-fill text-on-primary shadow-lift transition-transform duration-300 group-hover:scale-110">
               <Play aria-hidden="true" className="size-6 translate-x-0.5 fill-current" />

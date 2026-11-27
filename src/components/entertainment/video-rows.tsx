@@ -7,14 +7,17 @@ import { stopAllVideos } from "@/components/video/playback";
 
 export type VideoSort = "newest" | "oldest" | "mostViewed";
 
-/** A rendered video card plus what the sorts need: when we added it, its place in the list, and its YouTube views. */
-export type SortableVideo = { key: string; added: number; order: number; views: number | null; node: React.ReactNode };
+/**
+ * A rendered video card plus what the sorts need: its date (when YouTube published it, or when we added it if YouTube
+ * didn't say), its place in the list, and its YouTube views.
+ */
+export type SortableVideo = { key: string; date: number; order: number; views: number | null; node: React.ReactNode };
 
-// "Newest" and "oldest" follow when we added the video (ties keep the list order); "most viewed" follows YouTube.
+// "Newest" and "oldest" follow the video's date (ties keep the list order); "most viewed" follows YouTube.
 const compare: Record<VideoSort, (a: SortableVideo, b: SortableVideo) => number> = {
-  newest: (a, b) => b.added - a.added || b.order - a.order,
-  oldest: (a, b) => a.added - b.added || a.order - b.order,
-  mostViewed: (a, b) => (b.views ?? -1) - (a.views ?? -1) || b.added - a.added,
+  newest: (a, b) => b.date - a.date || b.order - a.order,
+  oldest: (a, b) => a.date - b.date || a.order - b.order,
+  mostViewed: (a, b) => (b.views ?? -1) - (a.views ?? -1) || b.date - a.date,
 };
 
 const SortContext = createContext<{ sort: VideoSort; setSort: (sort: VideoSort) => void }>({

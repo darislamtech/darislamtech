@@ -1,4 +1,5 @@
 import { cacheLife } from "next/cache";
+import { youtubeImage } from "./youtube-image";
 
 // A YouTube request that hangs gives up after this and falls back like any other failure, so the build never stalls.
 const FETCH_TIMEOUT_MS = 10_000;
@@ -221,7 +222,8 @@ export async function getYouTubeChannel(input: string): Promise<YouTubeChannel |
     return {
       url,
       name: meta("title"),
-      avatar: avatar && /^https:\/\/yt3\.(googleusercontent|ggpht)\.com\//.test(avatar) ? avatar : null,
+      // Only a picture address the site can serve (src/lib/youtube-image.ts); any other shows the YouTube icon.
+      avatar: avatar && youtubeImage(avatar) ? avatar : null,
     };
   } catch {
     return { url, name: null, avatar: null };
