@@ -6,8 +6,11 @@ import { getYouTubeDetails, getYouTubeVideo, type YouTubeVideo, type YouTubeVide
 
 const ADDED_FORMAT = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/;
 
-/** A recommended video with what YouTube tells us about it, plus when we added it and its place in its category. */
-export type ResolvedVideo = YouTubeVideo & YouTubeVideoDetails & { order: number; added: number };
+/**
+ * A recommended video with what YouTube tells us about it, plus when we added it, its place in its category, and the
+ * date the page sorts it by: when YouTube published it, or when we added it if YouTube didn't say.
+ */
+export type ResolvedVideo = YouTubeVideo & YouTubeVideoDetails & { order: number; added: number; date: number };
 
 /**
  * Resolves one recommended video for the Entertainment pages: title, channel and thumbnail, then views and publish
@@ -20,7 +23,10 @@ async function resolveVideo(item: RecommendedVideo, order: number): Promise<Reso
   }
   const video = await getYouTubeVideo(item.url);
   if (!video) return null;
-  return { ...video, ...(await getYouTubeDetails(video.id)), order, added: Date.parse(item.added) };
+  const details = await getYouTubeDetails(video.id);
+  const added = Date.parse(item.added);
+  const published = details.published ? Date.parse(details.published) : Number.NaN;
+  return { ...video, ...details, order, added, date: Number.isNaN(published) ? added : published };
 }
 
 // How many videos a page resolves at once. Pages list hundreds of videos, and asking YouTube about all of them together
@@ -45,8 +51,8 @@ export async function resolveVideos(entries: { item: RecommendedVideo; order: nu
   return results;
 }
 
-// Categories that have videos, in the videos page order: group by group (cultural before tech), and inside each group
-// the category we added to most recently first.
+// Categories that have videos, group by group (cultural before tech), and inside each group the category we added to
+// most recently first. Close to the page's order, which follows YouTube publish dates; this one needs no YouTube request.
 const newestAdded = (items: { added: string }[]) => Math.max(...items.map((item) => Date.parse(item.added)));
 const filledVideoCategories = entertainmentGroups.flatMap((group) =>
   group.videos.filter((category) => category.items.length > 0).sort((a, b) => newestAdded(b.items) - newestAdded(a.items)),

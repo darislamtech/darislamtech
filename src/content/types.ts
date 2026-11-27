@@ -95,7 +95,7 @@ export type RoadmapDomain = { id: "sharia" | "tech"; title: Localized; descripti
 export type RecommendedVideo = {
   /** YouTube link (or bare video ID). The title and thumbnail are fetched from YouTube. */
   url: string;
-  /** When we added it, e.g. "2026-11-06T21:30". Newest first by default; the category with the newest video goes on top. */
+  /** When we added it, e.g. "2026-11-06T21:30". The page sorts by YouTube's publish date; this is used when YouTube doesn't give one. */
   added: string;
 };
 

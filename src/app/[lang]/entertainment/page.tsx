@@ -82,7 +82,7 @@ export default async function EntertainmentPage() {
         .filter((video) => video !== null);
       const items = videos.map((video) => ({
         key: video.id,
-        added: video.added,
+        date: video.date,
         order: video.order,
         views: video.views,
         node: (
@@ -99,11 +99,11 @@ export default async function EntertainmentPage() {
         id: category.id,
         title: category.title[locale],
         items,
-        newest: Math.max(0, ...videos.map((video) => video.added)),
+        newest: Math.max(0, ...videos.map((video) => video.date)),
         content: <VideoRow items={items} labels={{ previous: t.previous, next: t.next }} />,
       };
     });
-    // The category we added a video to most recently comes first; empty ones keep their order at the end.
+    // The category with the most recently published video comes first; empty ones keep their order at the end.
     return { id: group.id, label: group.title[locale], categories: categories.sort((a, b) => b.newest - a.newest) };
   });
 
