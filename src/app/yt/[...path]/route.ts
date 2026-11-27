@@ -19,8 +19,9 @@ export async function GET(_request: Request, { params }: RouteContext<"/yt/[...p
       return new Response(upstream.body, { headers: { "Content-Type": type, "Cache-Control": CACHE } });
     }
     await upstream.body?.cancel();
-    // A picture YouTube doesn't have is remembered for an hour; anything else (a rate limit, an outage) isn't kept.
-    if (upstream.status === 404 || upstream.status === 410) {
+    // A picture YouTube doesn't have is remembered for an hour (yt3 answers 400 for a malformed key); anything else (a
+    // rate limit, an outage) isn't kept.
+    if (upstream.status === 400 || upstream.status === 404 || upstream.status === 410) {
       return new Response(null, { status: 404, headers: { "Cache-Control": "public, max-age=300, s-maxage=3600" } });
     }
     return new Response(null, { status: 502, headers: { "Cache-Control": "no-store" } });
