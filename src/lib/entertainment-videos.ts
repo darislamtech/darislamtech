@@ -7,10 +7,10 @@ import { getYouTubeDetails, getYouTubeVideo, type YouTubeVideo, type YouTubeVide
 const ADDED_FORMAT = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/;
 
 /**
- * A recommended video with what YouTube tells us about it, plus when we added it, its place in its category, and the
- * date the page sorts it by: when YouTube published it, or when we added it if YouTube didn't say.
+ * A recommended video with what YouTube tells us about it, plus its place in its category and the date the page sorts
+ * it by: when YouTube published it, or when we added it if YouTube didn't say.
  */
-export type ResolvedVideo = YouTubeVideo & YouTubeVideoDetails & { order: number; added: number; date: number };
+export type ResolvedVideo = YouTubeVideo & YouTubeVideoDetails & { order: number; date: number };
 
 /**
  * Resolves one recommended video for the Entertainment pages: title, channel and thumbnail, then views and publish
@@ -26,7 +26,7 @@ async function resolveVideo(item: RecommendedVideo, order: number): Promise<Reso
   const details = await getYouTubeDetails(video.id);
   const added = Date.parse(item.added);
   const published = details.published ? Date.parse(details.published) : Number.NaN;
-  return { ...video, ...details, order, added, date: Number.isNaN(published) ? added : published };
+  return { ...video, ...details, order, date: Number.isNaN(published) ? added : published };
 }
 
 // How many videos a page resolves at once. Pages list hundreds of videos, and asking YouTube about all of them together
