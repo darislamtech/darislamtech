@@ -38,8 +38,11 @@ export const entertainmentGroups: EntertainmentGroup[] = [
       },
       {
         id: "anime",
-        title: { ar: "الأنمي", en: "Anime" },
-        items: [{ url: "https://www.youtube.com/watch?v=aci1RygX5rE", added: "2026-11-21T06:08" }],
+        title: { ar: "الأنمي والكرتون", en: "Anime and cartoons" },
+        items: [
+          { url: "https://www.youtube.com/watch?v=aci1RygX5rE", added: "2026-11-21T06:08" },
+          { url: "https://www.youtube.com/watch?v=Ds7dxjZXy5g", added: "2026-11-27T12:49" },
+        ],
       },
       {
         id: "quran-reflections",
@@ -50,6 +53,20 @@ export const entertainmentGroups: EntertainmentGroup[] = [
           { url: "https://www.youtube.com/watch?v=nBhgNo94SKU", added: "2026-11-22T12:35" },
           { url: "https://www.youtube.com/watch?v=3ESpTmkdEaw", added: "2026-11-22T12:55" },
           { url: "https://www.youtube.com/watch?v=J65ZEsHdqrs", added: "2026-11-22T12:58" },
+          { url: "https://www.youtube.com/watch?v=hXzJJ9TNj9w", added: "2026-11-27T12:40" },
+          { url: "https://www.youtube.com/watch?v=FcSiLwKg5SY", added: "2026-11-27T12:41" },
+          { url: "https://www.youtube.com/watch?v=StWzUyo8khU", added: "2026-11-27T12:43" },
+          { url: "https://www.youtube.com/watch?v=c-ATANwS30A", added: "2026-11-27T13:00" },
+          { url: "https://www.youtube.com/watch?v=O4WH9gkIMz4", added: "2026-11-27T13:01" },
+        ],
+      },
+      {
+        id: "seerah",
+        title: { ar: "السيرة والتاريخ الإسلامي", en: "The Prophet's life and Islamic history" },
+        items: [
+          { url: "https://www.youtube.com/watch?v=vZLdvbcPyFA", added: "2026-11-27T12:47" },
+          { url: "https://www.youtube.com/watch?v=RvDlkw8DT3Y", added: "2026-11-27T13:22" },
+          { url: "https://www.youtube.com/watch?v=IhlDonVn0vk", added: "2026-11-27T13:23" },
         ],
       },
       {
@@ -72,6 +89,7 @@ export const entertainmentGroups: EntertainmentGroup[] = [
           { url: "https://www.youtube.com/watch?v=2uXXR59GMaM", added: "2026-11-22T12:30" },
           { url: "https://www.youtube.com/watch?v=o8NaF88oxTc", added: "2026-11-22T12:32" },
           { url: "https://www.youtube.com/watch?v=HVDRrHa2Q5E", added: "2026-11-22T12:33" },
+          { url: "https://www.youtube.com/watch?v=a541PcaYnm8", added: "2026-11-27T12:33" },
         ],
       },
       {
@@ -87,6 +105,31 @@ export const entertainmentGroups: EntertainmentGroup[] = [
           { url: "https://www.youtube.com/watch?v=x5hgT5fTXCY", added: "2026-11-22T12:44" },
           { url: "https://www.youtube.com/watch?v=Rbmd_cbICfs", added: "2026-11-22T12:52" },
           { url: "https://www.youtube.com/watch?v=5poR11mE9P4", added: "2026-11-22T12:53" },
+          { url: "https://www.youtube.com/watch?v=VfZA1sIKjtc", added: "2026-11-27T12:34" },
+          { url: "https://www.youtube.com/watch?v=42n7nb2N6XI", added: "2026-11-27T12:35" },
+          { url: "https://www.youtube.com/watch?v=uGA0Q4LcxXQ", added: "2026-11-27T12:36" },
+          { url: "https://www.youtube.com/watch?v=rxmxH91RCa0", added: "2026-11-27T12:37" },
+          { url: "https://www.youtube.com/watch?v=kKe1EsbvKg4", added: "2026-11-27T12:38" },
+          { url: "https://www.youtube.com/watch?v=-uTVAQc_Exg", added: "2026-11-27T13:02" },
+          { url: "https://www.youtube.com/watch?v=X35X4a2E1-M", added: "2026-11-27T13:03" },
+        ],
+      },
+      {
+        id: "worship",
+        title: { ar: "العبادات", en: "Acts of worship" },
+        items: [
+          { url: "https://www.youtube.com/watch?v=ciokhXA37cs", added: "2026-11-27T12:28" },
+          { url: "https://www.youtube.com/watch?v=iEMLAUwVAk8", added: "2026-11-27T12:39" },
+          { url: "https://www.youtube.com/watch?v=4SvFDkMyT7E", added: "2026-11-27T12:58" },
+          { url: "https://www.youtube.com/watch?v=sLy8yMk2qcE", added: "2026-11-27T13:04" },
+        ],
+      },
+      {
+        id: "porn-recovery",
+        title: { ar: "التعافي من الإباحية", en: "Recovering from pornography" },
+        items: [
+          { url: "https://www.youtube.com/watch?v=CSIry2i0nTI", added: "2026-11-27T12:04" },
+          { url: "https://www.youtube.com/watch?v=_22rvDwhB_E", added: "2026-11-27T12:29" },
         ],
       },
       {
@@ -98,6 +141,18 @@ export const entertainmentGroups: EntertainmentGroup[] = [
           { url: "https://www.youtube.com/watch?v=P0ujBzB1lco", added: "2026-11-22T12:41" },
           { url: "https://www.youtube.com/watch?v=f3_40WBfPts", added: "2026-11-22T12:47" },
           { url: "https://www.youtube.com/watch?v=nklMziZ-GHQ", added: "2026-11-22T12:54" },
+          { url: "https://www.youtube.com/watch?v=Cw4P1msl6YE", added: "2026-11-27T12:31" },
+          { url: "https://www.youtube.com/watch?v=vby0466g5dw", added: "2026-11-27T12:48" },
+        ],
+      },
+      {
+        id: "people-skills",
+        title: { ar: "فن التعامل مع الناس", en: "Dealing with people" },
+        items: [
+          { url: "https://www.youtube.com/watch?v=LlDQNh2ZLTo", added: "2026-11-27T12:55" },
+          { url: "https://www.youtube.com/watch?v=Q5qyGcYszsc", added: "2026-11-27T12:56" },
+          { url: "https://www.youtube.com/watch?v=A8dfGGLzh2U", added: "2026-11-27T12:57" },
+          { url: "https://www.youtube.com/watch?v=gtcDUMg4hX8", added: "2026-11-27T12:59" },
         ],
       },
       {
@@ -109,11 +164,24 @@ export const entertainmentGroups: EntertainmentGroup[] = [
         ],
       },
       {
+        id: "fiqh",
+        title: { ar: "مسائل فقهية", en: "Questions of Islamic law" },
+        items: [
+          { url: "https://www.youtube.com/watch?v=YEF4wgXGy4I", added: "2026-11-27T12:08" },
+          { url: "https://www.youtube.com/watch?v=y3_UGuzM5Ks", added: "2026-11-27T12:09" },
+          { url: "https://www.youtube.com/watch?v=cyI7-Qwwhd8", added: "2026-11-27T12:18" },
+        ],
+      },
+      {
         id: "family",
         title: { ar: "الأسرة والمجتمع", en: "Family and society" },
         items: [
           { url: "https://www.youtube.com/watch?v=pm1PRg-_q5g", added: "2026-11-06T18:20" },
           { url: "https://www.youtube.com/watch?v=SoNssPRyQTE", added: "2026-11-06T18:23" },
+          { url: "https://www.youtube.com/watch?v=ylJ-Sm3UZWg", added: "2026-11-27T12:17" },
+          { url: "https://www.youtube.com/watch?v=lHJeLnUdbx8", added: "2026-11-27T12:44" },
+          { url: "https://www.youtube.com/watch?v=HBzY1gZRArQ", added: "2026-11-27T12:51" },
+          { url: "https://www.youtube.com/watch?v=yOCeXodgJHA", added: "2026-11-27T12:53" },
         ],
       },
       {
@@ -127,6 +195,15 @@ export const entertainmentGroups: EntertainmentGroup[] = [
           { url: "https://www.youtube.com/watch?v=GEOibv1sDas", added: "2026-11-21T06:06" },
           { url: "https://www.youtube.com/watch?v=qjwLpnEv2pM", added: "2026-11-22T12:38" },
           { url: "https://www.youtube.com/watch?v=3U-0pPfyU8A", added: "2026-11-22T12:49" },
+          { url: "https://www.youtube.com/watch?v=pZlktc3hrZk", added: "2026-11-27T12:00" },
+          { url: "https://www.youtube.com/watch?v=InHfj8WEJrQ", added: "2026-11-27T12:01" },
+          { url: "https://www.youtube.com/watch?v=SGGs8t5JzrU", added: "2026-11-27T12:16" },
+          { url: "https://www.youtube.com/watch?v=MuAdIBJGZeU", added: "2026-11-27T12:20" },
+          { url: "https://www.youtube.com/watch?v=pljzvP5o2Lg", added: "2026-11-27T12:21" },
+          { url: "https://www.youtube.com/watch?v=beylpiOW0SQ", added: "2026-11-27T12:22" },
+          { url: "https://www.youtube.com/watch?v=0mzJptzg4Tw", added: "2026-11-27T12:24" },
+          { url: "https://www.youtube.com/watch?v=mJicnGqY7e0", added: "2026-11-27T12:25" },
+          { url: "https://www.youtube.com/watch?v=9kLXOdAn3lQ", added: "2026-11-27T12:54" },
         ],
       },
       {
@@ -135,6 +212,45 @@ export const entertainmentGroups: EntertainmentGroup[] = [
         items: [
           { url: "https://www.youtube.com/watch?v=Jfl9kguMZj4", added: "2026-11-09T13:33" },
           { url: "https://www.youtube.com/watch?v=huPMNLlXFNg", added: "2026-11-09T13:33" },
+        ],
+      },
+      {
+        id: "religions",
+        title: { ar: "مقارنة الأديان", en: "Comparative religion" },
+        items: [
+          { url: "https://www.youtube.com/watch?v=YBEHhaTO2YY", added: "2026-11-27T12:19" },
+          { url: "https://www.youtube.com/watch?v=KXUZfXl-UrY", added: "2026-11-27T13:10" },
+          { url: "https://www.youtube.com/watch?v=38wMRPu3XgI", added: "2026-11-27T13:11" },
+          { url: "https://www.youtube.com/watch?v=wbBGfCFOXmY", added: "2026-11-27T13:12" },
+          { url: "https://www.youtube.com/watch?v=zpJqmwjVlYQ", added: "2026-11-27T13:13" },
+          { url: "https://www.youtube.com/watch?v=uKPcU75PIow", added: "2026-11-27T13:14" },
+          { url: "https://www.youtube.com/watch?v=P6iFPz-JhRs", added: "2026-11-27T13:21" },
+          { url: "https://www.youtube.com/watch?v=hNVx7kWkmaM", added: "2026-11-27T13:24" },
+        ],
+      },
+      {
+        id: "shia",
+        title: { ar: "الرد على الشيعة", en: "Answering Shia claims" },
+        items: [
+          { url: "https://www.youtube.com/watch?v=3P9vU3GxTp8", added: "2026-11-27T12:13" },
+          { url: "https://www.youtube.com/watch?v=KVgSeDpJEYo", added: "2026-11-27T12:14" },
+          { url: "https://www.youtube.com/watch?v=85VN8XypuY0", added: "2026-11-27T12:23" },
+          { url: "https://www.youtube.com/watch?v=j6TvtCYAj18", added: "2026-11-27T13:05" },
+          { url: "https://www.youtube.com/watch?v=31aX7UBX3SQ", added: "2026-11-27T13:07" },
+          { url: "https://www.youtube.com/watch?v=CAOg9vnR4XA", added: "2026-11-27T13:08" },
+          { url: "https://www.youtube.com/watch?v=9PsOLcusYJU", added: "2026-11-27T13:09" },
+        ],
+      },
+      {
+        id: "dawah",
+        title: { ar: "دعوة غير المسلمين", en: "Inviting non-Muslims to Islam" },
+        items: [
+          { url: "https://www.youtube.com/watch?v=byfPLUZ1XQE", added: "2026-11-27T12:03" },
+          { url: "https://www.youtube.com/watch?v=labpu-tWMqM", added: "2026-11-27T13:15" },
+          { url: "https://www.youtube.com/watch?v=uYm0xzEmif8", added: "2026-11-27T13:16" },
+          { url: "https://www.youtube.com/watch?v=6jT70xcqd94", added: "2026-11-27T13:17" },
+          { url: "https://www.youtube.com/watch?v=Y4qYYlxvIZA", added: "2026-11-27T13:18" },
+          { url: "https://www.youtube.com/watch?v=DdAcPNMGG4s", added: "2026-11-27T13:19" },
         ],
       },
       {
@@ -150,6 +266,14 @@ export const entertainmentGroups: EntertainmentGroup[] = [
           { url: "https://www.youtube.com/watch?v=zgyBg8qj05I", added: "2026-11-21T06:05" },
           { url: "https://www.youtube.com/watch?v=U8q98OQYsBE", added: "2026-11-21T06:07" },
           { url: "https://www.youtube.com/watch?v=CgOCaxgq4xA", added: "2026-11-22T12:46" },
+          { url: "https://www.youtube.com/watch?v=Pl6I0M7dSPo", added: "2026-11-27T12:05" },
+          { url: "https://www.youtube.com/watch?v=SrFpAuCC5a0", added: "2026-11-27T12:06" },
+          { url: "https://www.youtube.com/watch?v=HtzTODLfOIU", added: "2026-11-27T12:07" },
+          { url: "https://www.youtube.com/watch?v=YPaoIjidC2M", added: "2026-11-27T12:10" },
+          { url: "https://www.youtube.com/watch?v=2tgCNBAJRrw", added: "2026-11-27T12:11" },
+          { url: "https://www.youtube.com/watch?v=Fq2ft_FcvlI", added: "2026-11-27T12:12" },
+          { url: "https://www.youtube.com/watch?v=bdj2Ver_gQ4", added: "2026-11-27T12:46" },
+          { url: "https://www.youtube.com/watch?v=V6-VI7wEe1M", added: "2026-11-27T12:52" },
         ],
       },
       {
@@ -161,6 +285,7 @@ export const entertainmentGroups: EntertainmentGroup[] = [
           { url: "https://www.youtube.com/watch?v=iHvae7hb_q0", added: "2026-11-06T01:12" },
           { url: "https://www.youtube.com/watch?v=_EQpPmK-3jE", added: "2026-11-06T01:21" },
           { url: "https://www.youtube.com/watch?v=knPpPBr14Ec", added: "2026-11-21T06:01" },
+          { url: "https://www.youtube.com/watch?v=Zlqi3scAQ98", added: "2026-11-27T12:50" },
         ],
       },
       {
@@ -170,6 +295,14 @@ export const entertainmentGroups: EntertainmentGroup[] = [
           { url: "https://www.youtube.com/watch?v=JMsxXg41I2o", added: "2026-11-10T12:25" },
           { url: "https://www.youtube.com/watch?v=_fdlTA0vwA0", added: "2026-11-21T06:00" },
           { url: "https://www.youtube.com/watch?v=sybpQo7K5eU", added: "2026-11-21T06:04" },
+        ],
+      },
+      {
+        id: "sorcery",
+        title: { ar: "السحر والشعوذة", en: "Sorcery and charlatans" },
+        items: [
+          { url: "https://www.youtube.com/watch?v=4IIaoKdsTf8", added: "2026-11-27T12:02" },
+          { url: "https://www.youtube.com/watch?v=xoURCUZl84Y", added: "2026-11-27T13:06" },
         ],
       },
       {
@@ -186,6 +319,11 @@ export const entertainmentGroups: EntertainmentGroup[] = [
           { url: "https://www.youtube.com/watch?v=7C4t3CxdhZU", added: "2026-11-22T12:45" },
           { url: "https://www.youtube.com/watch?v=IJLiQ__g5UE", added: "2026-11-22T12:48" },
           { url: "https://www.youtube.com/watch?v=iQHK0q8snSw", added: "2026-11-22T12:57" },
+          { url: "https://www.youtube.com/watch?v=2UkbCb8oNgA", added: "2026-11-27T12:27" },
+          { url: "https://www.youtube.com/watch?v=GfWnB-EP0hc", added: "2026-11-27T12:30" },
+          { url: "https://www.youtube.com/watch?v=p2OhDQLDD0Y", added: "2026-11-27T12:32" },
+          { url: "https://www.youtube.com/watch?v=eiGKja3rEnk", added: "2026-11-27T12:42" },
+          { url: "https://www.youtube.com/watch?v=Lzjn_xtYKfk", added: "2026-11-27T13:20" },
         ],
       },
       {
@@ -203,6 +341,7 @@ export const entertainmentGroups: EntertainmentGroup[] = [
         title: { ar: "منوعات", en: "Miscellaneous" },
         items: [
           { url: "https://www.youtube.com/watch?v=F6E1mFIZC0o", added: "2026-11-08T12:35" },
+          { url: "https://www.youtube.com/watch?v=S6zEVo_F_qw", added: "2026-11-27T12:15" },
         ],
       },
     ],
@@ -421,6 +560,8 @@ export const entertainmentGroups: EntertainmentGroup[] = [
           { url: "https://www.youtube.com/watch?v=6LFA_BHEYU8", added: "2026-11-19T13:28" },
           { url: "https://www.youtube.com/watch?v=VFrS685dVYQ", added: "2026-11-19T13:24" },
           { url: "https://www.youtube.com/watch?v=IgfciB655kM", added: "2026-11-19T13:29" },
+          { url: "https://www.youtube.com/watch?v=NR6QqS6T7ro", added: "2026-11-27T12:26" },
+          { url: "https://www.youtube.com/watch?v=CYwqDGPoTVU", added: "2026-11-27T12:45" },
         ],
       },
       {

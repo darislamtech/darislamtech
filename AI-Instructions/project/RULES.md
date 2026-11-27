@@ -69,6 +69,7 @@ SEO matters to the owner. Apply these on every new or changed page:
 ## Security headers (added by claude)
 - Security headers and the Content-Security-Policy live in `next.config.ts`. Anything that loads from another origin (a script, iframe, font, analytics or API) must be added to the CSP in the same change, then checked on the built site.
 - The CSP is sent on `darislamtech.com` only, so Vercel preview deployments keep their toolbar.
+- YouTube thumbnails and channel pictures are served from the site under `/yt/` (`src/lib/youtube-image.ts`), never loaded from YouTube in the visitor's browser (the privacy page says they pass through our server), and with `unoptimized`: Vercel's image optimization has a monthly free quota, which hundreds of thumbnails used up (owner, 2026-11-27). `next/image` optimization stays for the site's own images, which are few.
 - The repository is public. GitHub secret scanning, push protection, Dependabot alerts and Dependabot security updates are on (owner approved, 2026-11-06); never turn them off. Secrets live only in Vercel environment variables (`.env*` is git-ignored; a future `.env.example` needs a `!.env.example` exception).
 - Server secrets: `YOUTUBE_API_KEY` (Vercel, production + preview, sensitive; restricted to the YouTube Data API v3). Never put a secret in a fetch URL: Next stores fetch URLs in its Data Cache, so send keys in a header (a key in the URL was once written to `.next/cache/fetch-cache` in plain text, caught in review before push).
 

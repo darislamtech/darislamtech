@@ -3,6 +3,7 @@
 import { useEffect, useId, useRef, useState, useSyncExternalStore } from "react";
 import Image from "next/image";
 import { Play } from "lucide-react";
+import { youtubeImage } from "@/lib/youtube-image";
 import { PLAY_EVENT, STOPPED_EVENT, rememberStop, stopPoint } from "./playback";
 import { YouTubePlayer } from "./youtube-player";
 
@@ -95,10 +96,12 @@ export function VideoCard({
             aria-label={`${stopped ? resumeLabel : playLabel}: ${title}`}
             className="group absolute inset-0 size-full"
           >
+            {/* Served from this site as is (see youtube-image.ts), not through Vercel's image optimization. */}
             <Image
-              src={thumbnail}
+              src={youtubeImage(thumbnail) ?? thumbnail}
               alt=""
               fill
+              unoptimized
               sizes={sizes}
               className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
             />
