@@ -118,6 +118,7 @@ export const entertainmentGroups: EntertainmentGroup[] = [
         id: "worship",
         title: { ar: "العبادات", en: "Acts of worship" },
         items: [
+          { url: "https://www.youtube.com/watch?v=S6zEVo_F_qw", added: "2026-11-27T12:15" },
           { url: "https://www.youtube.com/watch?v=ciokhXA37cs", added: "2026-11-27T12:28" },
           { url: "https://www.youtube.com/watch?v=iEMLAUwVAk8", added: "2026-11-27T12:39" },
           { url: "https://www.youtube.com/watch?v=4SvFDkMyT7E", added: "2026-11-27T12:58" },
@@ -254,7 +255,8 @@ export const entertainmentGroups: EntertainmentGroup[] = [
         ],
       },
       {
-        // د. عبدالله رشدي: his five latest videos, oldest first; then two from محمد غنايم Plus and one from فداءالدين.
+        // د. عبدالله رشدي: his five latest videos, oldest first; then two from محمد غنايم Plus and one from فداءالدين; then
+        // (2026-11-27) newer ones from عبدالله رشدي، محمد الخزرجي، محمد غنايم Plus and YUOSEF JO.
         id: "sunnah-deniers",
         title: { ar: "منكرو السنة", en: "Sunnah deniers" },
         items: [
@@ -341,7 +343,6 @@ export const entertainmentGroups: EntertainmentGroup[] = [
         title: { ar: "منوعات", en: "Miscellaneous" },
         items: [
           { url: "https://www.youtube.com/watch?v=F6E1mFIZC0o", added: "2026-11-08T12:35" },
-          { url: "https://www.youtube.com/watch?v=S6zEVo_F_qw", added: "2026-11-27T12:15" },
         ],
       },
     ],
@@ -451,7 +452,8 @@ export const entertainmentGroups: EntertainmentGroup[] = [
           { url: "https://www.youtube.com/watch?v=c-IEmWbUbKc", added: "2026-11-19T13:29" },
         ],
       },
-      // Videos about Claude and other AI tools from the recommended tech channels, by what they teach (Shorts left out).
+      // Videos about Claude and other AI tools from the recommended tech channels, by what they teach (Shorts left out);
+      // two in «أخبار ومقارنات» come from Islamic channels we recommend (د. إياد قنيبي، محمد غنايم Plus).
       {
         id: "ai-basics",
         title: { ar: "تعلّم أدوات الذكاء الاصطناعي من الصفر", en: "Learning AI tools from scratch" },

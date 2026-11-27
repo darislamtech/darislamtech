@@ -15,7 +15,7 @@ src/
     sitemap.ts robots.ts    # /sitemap.xml (every page × locale with alternates) and /robots.txt
     icon.svg favicon.ico apple-icon.png   # generated from the logo paths in components/brand.tsx
     global-not-found.tsx    # bilingual 404 for URLs outside /[lang] (experimental.globalNotFound)
-    yt/[...path]/route.ts   # YouTube thumbnails (/yt/vi/<id>.jpg) and channel pictures (/yt/avatar/<key>.jpg) fetched from YouTube and served from the site, cached 30 days at the CDN
+    yt/[...path]/route.ts   # YouTube thumbnails (/yt/vi/<id>.jpg) and channel pictures (/yt/avatar/<key>.jpg) fetched from YouTube and served from the site, cached up to 30 days at the CDN (per deployment and region: each deploy starts cold)
     [lang]/                 # root layout; every page lives under /ar or /en
       layout.tsx            # <html lang dir data-theme>, theme script, fonts, header, footer, metadata
       page.tsx              # Home
